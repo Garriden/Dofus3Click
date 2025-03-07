@@ -1,0 +1,7 @@
+[
+{
+  "directory": "C:/Users/Garri/Desktop/Dofus3Click/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\Llvm\\x64\\bin\\clang.exe -I../include -g -Xclang -gcodeview -O0 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -std=gnu++20 -o CMakeFiles\\Dofus3Click.dir\\src\\main.cpp.obj -c C:\\Users\\Garri\\Desktop\\Dofus3Click\\src\\main.cpp",
+  "file": "C:/Users/Garri/Desktop/Dofus3Click/src/main.cpp"
+}
+]

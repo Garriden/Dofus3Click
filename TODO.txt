@@ -1,0 +1,37 @@
+
+- Build project in C++ CMake VSCode.
+
+- Migrate to Dofus 3.
+ . UML classes
+
+- Documentate 
+  . default Dofus settings. Positions. KeyAtajos.
+  . How code works.
+
+
+Programming:
+	. Refactor click / screen.
+	. Refactor defines.
+
+	. Refactor Right (key atajo)
+
+
+	. Refactor sleeps.
+
+	. State Machine.
+
+Game:
+
+	. If the tree is not in there?
+
+	. When my pods are full.
+
+	. Go to bank.
+
+	. Battles Scarecows.
+
+
+- DOPEULS ?
+
+- Tresure search.
+  . Igame recognition?
