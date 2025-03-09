@@ -24,8 +24,9 @@ set(HEADERS
 # Source files (relative to "src" directory)
 set(SOURCES
     main.cpp
-    inputs.cpp
     basicOperations.cpp
+    system/inputs.cpp
+    system/file.cpp
 )
 
 # Compiler definitions

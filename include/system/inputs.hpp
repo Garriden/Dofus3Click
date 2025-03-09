@@ -107,7 +107,7 @@
 /*
  * Start recording real Clicks. Check menu telemetry for more information.
  */
-//void recordTelemetry();
+void RecordTelemetry();
 
 /*
  * Change the map in the desired direction.
