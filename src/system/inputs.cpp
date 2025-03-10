@@ -1,5 +1,6 @@
-#pragma once
-#include "inputs.hpp"
+#include "system/inputs.hpp"
+#include "system/file.hpp"
+#include "utils.hpp"
 #include "basicOperations.hpp"
 
 #include <iostream>
@@ -49,9 +50,10 @@ void RecordTelemetry()
     bool firstTime = true;
     bool telemetry_paused = false;
 
-    std::ofstream myFile;
-    std::string randomName = std::to_string(RuletaInput(1, 999999));
-    myFile.open(randomName + ".txt");
+    File::ReadFile("1");
+    //std::ofstream myFile;
+    //std::string randomName = std::to_string(RuletaInput(1, 999999));
+    //myFile.open(randomName + ".txt");
 
     Sleep(2 * SECONDS);
 
@@ -59,15 +61,15 @@ void RecordTelemetry()
 
         if(firstTime) {
             firstTime = false;
-            sprintf_s(buff, "const std::vector < std::vector<std::pair<int, int> > > Coordets = { \n");
-            OutputDebugStringA(buff);
+            //sprintf_s(buff, "const std::vector < std::vector<std::pair<int, int> > > Coordets = { \n");
+            //OutputDebugStringA(buff);
         }
 
         if(GetAsyncKeyState(VK_LSHIFT)) {
             if(!telemetry_paused) {
-                LogFile("Telemetry paused...");
+                File::LogFile("Telemetry paused...");
             } else {
-                LogFile("Telemetry back to hit again");
+                File::LogFile("Telemetry back to hit again");
             }
             telemetry_paused = !telemetry_paused;
             Sleep(3 * SECONDS);
@@ -75,17 +77,18 @@ void RecordTelemetry()
 
         if(!telemetry_paused) {
             if(GetAsyncKeyState(VK_ESCAPE)) {
+                std::cout << "Escape pressed!" << std::endl;
                 sprintf_s(buff, "};\n");
-                OutputDebugStringA(buff);
+                //OutputDebugStringA(buff);
 
-                myFile.close();
+                //File::DeleteFile( "1" );
 
                 break;
-            }
+            }     
 
-            if(GetAsyncKeyState(VK_LBUTTON) < 0) { // Click
+            if(GetAsyncKeyState(VK_LBUTTON) < 0) { // Click 
                 GetCursorPos(&cursor);
-                Coord.push_back(std::make_pair(cursor.x, cursor.y));
+                Coord.push_back(std::make_pair(cursor.x, cursor.y)); 
                 ++pos;
                 Sleep(500);
             } else if(GetAsyncKeyState(VK_NUMPAD1) < 0) {
@@ -104,26 +107,26 @@ void RecordTelemetry()
                 Sleep(500);
                 Coord.push_back(std::make_pair(-5, -5));
             } else if(GetAsyncKeyState(VK_SPACE)) {
-                LogFile("Coord: ");
-                sprintf_s(buff, "{ ");
-                myFile << "";
-                OutputDebugStringA(buff);
+                File::LogFile("Coord: ");
+                //sprintf_s(buff, "{ ");
+                //File::LogFile("");
+                //OutputDebugStringA(buff);
                 for (int ii = 0; ii < static_cast<int>(Coord.size()); ++ii) {
-                    sprintf_s(buff, "{%d,%d}", Coord[ii].first, Coord[ii].second);
-                    OutputDebugStringA(buff);
-                    myFile << Coord[ii].first << "," << Coord[ii].second;
+                    //sprintf_s(buff, "{%d,%d}", Coord[ii].first, Coord[ii].second);
+                    //OutputDebugStringA(buff);
+                    File::LogFile( std::to_string(Coord[ii].first) + "," + std::to_string(Coord[ii].second) );
                     std::cout << "{" << Coord[ii].first << "," << Coord[ii].second << "}";
                     if (ii < static_cast<int>(Coord.size()) - 1) {
                         std::cout << ", ";
-                        myFile << ", ";
-                        sprintf_s(buff, ", ");
-                        OutputDebugStringA(buff);
+                        File::LogFile(", ");
+                        //sprintf_s(buff, ", ");
+                        //OutputDebugStringA(buff);
                     }
                 }
-                sprintf_s(buff, " },\n");
-                OutputDebugStringA(buff);
+                //sprintf_s(buff, " },\n");
+                //OutputDebugStringA(buff);
                 std::cout << std::endl;
-                myFile << "\n";
+                File::LogFile("\n");
 
                 Coord.clear();
 
@@ -134,5 +137,6 @@ void RecordTelemetry()
         }
 
     }
+    std::cout << "Record Telemetry ended." << std::endl;
 
 }

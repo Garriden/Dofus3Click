@@ -19,6 +19,10 @@ set(LOCAL_PROJECT_DESCRIPTION "Migration to Dofus3")
 # Header files (relative to "include" directory)
 set(HEADERS
     header.h
+    utils.hpp
+    system/inputs.hpp
+    system/file.hpp
+    system/actualTime.hpp
 )
 
 # Source files (relative to "src" directory)
@@ -27,6 +31,7 @@ set(SOURCES
     basicOperations.cpp
     system/inputs.cpp
     system/file.cpp
+    system/actualTime.cpp
 )
 
 # Compiler definitions

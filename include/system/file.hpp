@@ -1,4 +1,7 @@
 #pragma once
+#include <iostream>
+#include <filesystem>
+#include <string>
 
 class File {
     public:
