@@ -12,5 +12,5 @@ class File {
         static void WriteFile(const std::string &dataToWrite, const std::string &filePath);
         static void DeleteFile(const std::string &filePath);
 
-        static void LogFile(std::string message);
+        static void LogFile(std::string message, bool date);
 };

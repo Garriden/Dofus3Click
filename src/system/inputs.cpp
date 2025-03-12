@@ -50,12 +50,12 @@ void RecordTelemetry()
     bool firstTime = true;
     bool telemetry_paused = false;
 
-    File::ReadFile("1");
+    //File::ReadFile("1");
     //std::ofstream myFile;
     //std::string randomName = std::to_string(RuletaInput(1, 999999));
     //myFile.open(randomName + ".txt");
 
-    Sleep(2 * SECONDS);
+    //Sleep(2 * SECONDS);
 
     while(true) {
 
@@ -66,19 +66,19 @@ void RecordTelemetry()
         }
 
         if(GetAsyncKeyState(VK_LSHIFT)) {
-            if(!telemetry_paused) {
-                File::LogFile("Telemetry paused...");
+            if(telemetry_paused) {
+                std::cout << "Telemetry paused." << std::endl;
             } else {
-                File::LogFile("Telemetry back to hit again");
+                std::cout << "Telemetry ON." << std::endl;
             }
             telemetry_paused = !telemetry_paused;
-            Sleep(3 * SECONDS);
+            Sleep(1 * SECONDS);
         }
 
         if(!telemetry_paused) {
             if(GetAsyncKeyState(VK_ESCAPE)) {
                 std::cout << "Escape pressed!" << std::endl;
-                sprintf_s(buff, "};\n");
+                //sprintf_s(buff, "};\n");
                 //OutputDebugStringA(buff);
 
                 //File::DeleteFile( "1" );
@@ -86,9 +86,9 @@ void RecordTelemetry()
                 break;
             }     
 
-            if(GetAsyncKeyState(VK_LBUTTON) < 0) { // Click 
+            if(GetAsyncKeyState(VK_LBUTTON) < 0) { // Click
                 GetCursorPos(&cursor);
-                Coord.push_back(std::make_pair(cursor.x, cursor.y)); 
+                Coord.push_back(std::make_pair(cursor.x, cursor.y));
                 ++pos;
                 Sleep(500);
             } else if(GetAsyncKeyState(VK_NUMPAD1) < 0) {
@@ -107,18 +107,18 @@ void RecordTelemetry()
                 Sleep(500);
                 Coord.push_back(std::make_pair(-5, -5));
             } else if(GetAsyncKeyState(VK_SPACE)) {
-                File::LogFile("Coord: ");
+                File::LogFile("Coord: ", false);
                 //sprintf_s(buff, "{ ");
                 //File::LogFile("");
                 //OutputDebugStringA(buff);
                 for (int ii = 0; ii < static_cast<int>(Coord.size()); ++ii) {
                     //sprintf_s(buff, "{%d,%d}", Coord[ii].first, Coord[ii].second);
                     //OutputDebugStringA(buff);
-                    File::LogFile( std::to_string(Coord[ii].first) + "," + std::to_string(Coord[ii].second) );
-                    std::cout << "{" << Coord[ii].first << "," << Coord[ii].second << "}";
+                    File::LogFile( std::to_string(Coord[ii].first) + "," + std::to_string(Coord[ii].second), false);
+                    std::cout << "{" << Coord[ii].first << "," << Coord[ii].second << "}" << std::endl;
                     if (ii < static_cast<int>(Coord.size()) - 1) {
                         std::cout << ", ";
-                        File::LogFile(", ");
+                        File::LogFile(", ", false);
                         //sprintf_s(buff, ", ");
                         //OutputDebugStringA(buff);
                     }
@@ -126,7 +126,7 @@ void RecordTelemetry()
                 //sprintf_s(buff, " },\n");
                 //OutputDebugStringA(buff);
                 std::cout << std::endl;
-                File::LogFile("\n");
+                File::LogFile("\n", false);
 
                 Coord.clear();
 

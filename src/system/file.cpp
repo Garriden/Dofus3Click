@@ -26,7 +26,7 @@ std::string File::ReadFile(const std::string &filePath)
     return ret;
 }
 
-void File::WriteFile(const std::string &dataToWrite, const std::string &filePath)
+void File::WriteFile(const std::string &dataToWrite, const std::string &filePath)    
 {
     // Find file.
     std::filesystem::path path{ filePath };
@@ -47,19 +47,25 @@ void File::DeleteFile(const std::string &filePath)
     }
 }
 
-void File::LogFile(std::string message)
+void File::LogFile(std::string message, bool date)
 {
+    //std::cout << " message: " <<  message << std::endl;
+
     std::string s = std::to_string(GetDay())   + 
                     std::to_string(GetMonth()) + 
                     std::to_string(GetYear())  + 
                     ".txt";
-    std::string base = "["						 +
-                        std::to_string(GetHour()) + ":" +
-                        std::to_string(GetMin())  + ":" +
-                        std::to_string(GetSec()) + 
-                        "] ";
 
-    File::WriteFile(base + message, "1");
+    std::string base = "";
+    if(date) {
+        base = "[" +
+            std::to_string(GetHour()) + ":" +
+            std::to_string(GetMin())  + ":" +
+            std::to_string(GetSec()) + 
+            "] ";
+    }
 
-    std::cout << message << std::endl;
+    std::string read = File::ReadFile(s);
+
+    File::WriteFile(base + read + message, s);
 }
