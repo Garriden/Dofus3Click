@@ -50,26 +50,20 @@ void RecordTelemetry()
     bool firstTime = true;
     bool telemetry_paused = false;
 
-    //File::ReadFile("1");
-    //std::ofstream myFile;
-    //std::string randomName = std::to_string(RuletaInput(1, 999999));
-    //myFile.open(randomName + ".txt");
-
-    //Sleep(2 * SECONDS);
-
     while(true) {
 
         if(firstTime) {
             firstTime = false;
             //sprintf_s(buff, "const std::vector < std::vector<std::pair<int, int> > > Coordets = { \n");
-            //OutputDebugStringA(buff);
         }
 
         if(GetAsyncKeyState(VK_LSHIFT)) {
             if(telemetry_paused) {
+                telemetry_paused = false;
                 std::cout << "Telemetry paused." << std::endl;
             } else {
                 std::cout << "Telemetry ON." << std::endl;
+                telemetry_paused = true;
             }
             telemetry_paused = !telemetry_paused;
             Sleep(1 * SECONDS);
@@ -78,15 +72,12 @@ void RecordTelemetry()
         if(!telemetry_paused) {
             if(GetAsyncKeyState(VK_ESCAPE)) {
                 std::cout << "Escape pressed!" << std::endl;
-                //sprintf_s(buff, "};\n");
-                //OutputDebugStringA(buff);
-
-                //File::DeleteFile( "1" );
 
                 break;
             }     
 
             if(GetAsyncKeyState(VK_LBUTTON) < 0) { // Click
+                std::cout << "Click!" << std::endl;
                 GetCursorPos(&cursor);
                 Coord.push_back(std::make_pair(cursor.x, cursor.y));
                 ++pos;
@@ -107,26 +98,16 @@ void RecordTelemetry()
                 Sleep(500);
                 Coord.push_back(std::make_pair(-5, -5));
             } else if(GetAsyncKeyState(VK_SPACE)) {
-                File::LogFile("Coord: ", false);
-                //sprintf_s(buff, "{ ");
-                //File::LogFile("");
-                //OutputDebugStringA(buff);
+                std::cout << std::endl; 
+                File::LogFile("\r\nCoord: ", false);
                 for (int ii = 0; ii < static_cast<int>(Coord.size()); ++ii) {
-                    //sprintf_s(buff, "{%d,%d}", Coord[ii].first, Coord[ii].second);
-                    //OutputDebugStringA(buff);
                     File::LogFile( std::to_string(Coord[ii].first) + "," + std::to_string(Coord[ii].second), false);
                     std::cout << "{" << Coord[ii].first << "," << Coord[ii].second << "}" << std::endl;
                     if (ii < static_cast<int>(Coord.size()) - 1) {
                         std::cout << ", ";
                         File::LogFile(", ", false);
-                        //sprintf_s(buff, ", ");
-                        //OutputDebugStringA(buff);
                     }
                 }
-                //sprintf_s(buff, " },\n");
-                //OutputDebugStringA(buff);
-                std::cout << std::endl;
-                File::LogFile("\n", false);
 
                 Coord.clear();
 

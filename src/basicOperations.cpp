@@ -9,7 +9,7 @@ COLORREF GetColor(int x, int y, bool printRGB)
     ReleaseDC(NULL, hdc_);
 
     if(printRGB) {
-        std::cout << (int(GetRValue(color))) << " " << (int(GetGValue(color))) << " " << (int(GetBValue(color)));
+        std::cout << (int(GetRValue(color))) << " " << (int(GetGValue(color))) << " " << (int(GetBValue(color))) << std::endl;
     }
 
     return color;

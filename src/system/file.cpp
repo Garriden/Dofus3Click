@@ -21,12 +21,14 @@ std::string File::ReadFile(const std::string &filePath)
         ifs.close();
     } else {
         std::cout << "! Could not open the file: " << filePath << ". Error: " << error.message() << std::endl;
+        std::cout << "Creating new file: " << std::endl;
+        std::filesystem::create_directories(path);
     }
 
     return ret;
 }
 
-void File::WriteFile(const std::string &dataToWrite, const std::string &filePath)    
+void File::WriteFile(const std::string &dataToWrite, const std::string &filePath)
 {
     // Find file.
     std::filesystem::path path{ filePath };
