@@ -5,6 +5,7 @@
 *.slo
 *.lo
 *.o
+*.cpp.obj
 *.obj
 
 # Precompiled Headers
@@ -30,6 +31,8 @@
 *.exe
 *.out
 *.app
+
+settings.json
 
 #Cmake
 CMakeLists.txt.user

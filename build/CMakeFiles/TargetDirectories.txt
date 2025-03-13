@@ -1,3 +1,0 @@
-C:/Users/Garri/Desktop/Dofus3Click/build/CMakeFiles/Dofus3Click.dir
-C:/Users/Garri/Desktop/Dofus3Click/build/CMakeFiles/edit_cache.dir
-C:/Users/Garri/Desktop/Dofus3Click/build/CMakeFiles/rebuild_cache.dir
