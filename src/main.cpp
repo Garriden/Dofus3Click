@@ -1,28 +1,8 @@
 #include "system/inputs.hpp"
+#include "menusInterface.hpp"
 
 #include <windows.h>
 #include <iostream>
-
-void showMainMenu()
-{
-    //system("TITLE Click Bot");
-    std::cout << "TITLE Click Bot" << std::endl;
-    std::cout << "===================================" << std::endl;
-    std::cout << "1 = DEBUG points" << std::endl;
-    std::cout << "2 = FARMER" << std::endl;
-    std::cout << "3 = WOOD" << std::endl;
-    std::cout << "4 = MINERAL" << std::endl;
-    std::cout << "5 = ALCHEMIST" << std::endl;
-    std::cout << "6 = FISHERMAN" << std::endl;
-    std::cout << "9 = Daily missions" << std::endl;
-    std::cout << "10= FindEnemies" << std::endl;
-    std::cout << "-----------------------------------" << std::endl;
-    std::cout << "70= I am playing in a slow PC" << std::endl;
-    std::cout << "71= I will play as ENU" << std::endl;
-    std::cout << "99= DEBUG" << std::endl;
-    std::cout << "0 = EXIT" << std::endl;
-    std::cout << "===================================" << std::endl;
-}
 
 int main()
 {
@@ -34,7 +14,7 @@ int main()
 
     //AskPj();
     while(true) {
-        showMainMenu();
+        Show::ShowMainMenu();
         int in;
         std::cin >> in;
         switch(in) {
@@ -49,7 +29,7 @@ int main()
                 //FarmerMenu();
                 break;
             case 3:
-                //WoodMenu();
+                WoodMenu();
                 break;
             case 4:
                 //MineralMenu();

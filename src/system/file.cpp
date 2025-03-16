@@ -1,7 +1,9 @@
-#include <fstream>
 #include "system/file.hpp"
 //#include "Utils.h"
 #include "system/actualTime.hpp"
+#include <filesystem>
+#include <fstream>
+#include <iostream>
 
 std::string File::ReadFile(const std::string &filePath)
 {
@@ -20,8 +22,8 @@ std::string File::ReadFile(const std::string &filePath)
         }
         ifs.close();
     } else {
-        std::cout << "! Could not open the file: " << filePath << ". Error: " << error.message() << std::endl;
-        std::cout << "Creating new file: " << std::endl;
+        std::cout << "File doesnt exist: " << filePath << " / " << error.message() << std::endl;
+        std::cout << "Creating new file..." << std::endl;
         std::filesystem::create_directories(path);
     }
 

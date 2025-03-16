@@ -20,6 +20,8 @@ set(LOCAL_PROJECT_DESCRIPTION "Migration to Dofus3")
 set(HEADERS
     header.h
     utils.hpp
+    basicOperations.hpp
+    menusInterface.hpp
     system/inputs.hpp
     system/file.hpp
     system/actualTime.hpp
@@ -29,6 +31,7 @@ set(HEADERS
 set(SOURCES
     main.cpp
     basicOperations.cpp
+    menusInterface.cpp
     system/inputs.cpp
     system/file.cpp
     system/actualTime.cpp
