@@ -19,6 +19,7 @@ set(LOCAL_PROJECT_DESCRIPTION "Migration to Dofus3")
 # Header files (relative to "include" directory)
 set(HEADERS
     header.h
+    roadmap.hpp
     utils.hpp
     basicOperations.hpp
     menusInterface.hpp
@@ -32,6 +33,7 @@ set(SOURCES
     main.cpp
     basicOperations.cpp
     menusInterface.cpp
+    roadmap.cpp
     system/inputs.cpp
     system/file.cpp
     system/actualTime.cpp

@@ -1,8 +1,14 @@
 #include "basicOperations.hpp"
 
-#include <iostream>
+int basicOperations::RuletaInput(int x, int y)
+{
+    int ret = 0;
+    std::mt19937 rng(static_cast<unsigned int>(std::chrono::steady_clock::now().time_since_epoch().count()));
+    ret = (rng()) % (abs(y - x));
+    return (x + ret);
+}
 
-COLORREF GetColor(int x, int y, bool printRGB)
+COLORREF basicOperations::GetColor(int x, int y, bool printRGB)
 {
     HDC hdc_ = GetDC(NULL);
     COLORREF color = GetPixel(hdc_, x, y);

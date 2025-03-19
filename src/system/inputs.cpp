@@ -2,6 +2,7 @@
 #include "system/file.hpp"
 #include "utils.hpp"
 #include "basicOperations.hpp"
+#include "menusInterface.hpp"
 
 #include <iostream>
 #include <windows.h>
@@ -9,23 +10,51 @@
 #include <thread>
 #include <filesystem>
 
-void ShowMenuDebugPoints()
+std::vector<std::vector<std::pair<int, int> > > TranslateCSVToArray(std::string file_name)
 {
-    std::cout << "TITLE Debug points"                   << std::endl;
-    std::cout << "==================================="  << std::endl;
-    std::cout << "press CTRL  to get a point"           << std::endl;
-    std::cout << "press SHIFT to record telemetry"      << std::endl;
-    std::cout << "  - Click to save the point"          << std::endl;
-    std::cout << "  - SPACE to change map (subvector)"  << std::endl;
-    std::cout << "  - ESC   to end the telemetry"       << std::endl;
-    std::cout << "  - You can put numpads numbers"      << std::endl;
-    std::cout << "==================================="  << std::endl;
+    std::fstream file(file_name, std::ios::in);
+
+    std::vector<std::vector<std::pair<int, int> > > content;
+    std::vector<std::pair<int, int> > row;
+    std::pair<int, int> coord;
+    std::string line, word;
+
+    while(getline(file, line)) {
+        row.clear();
+
+        std::stringstream str(line);
+
+        while(getline(str, word, ',')) {
+            coord.first = stoi(word);
+            getline(str, word, ',');
+            coord.second = stoi(word);
+            row.push_back(coord);
+        }
+        content.push_back(row);
+    }
+
+    return content;
+}
+
+std::vector<std::vector<std::pair<int, int> > > GetCSVFile(std::string file_name)
+{
+    std::string file_name_path = "x64/Release/Telemetry/" + file_name + ".csv";
+    std::fstream file(file_name_path, std::ios::in);
+
+    if (!file.is_open()) {
+        file_name_path = "Telemetry/" + file_name + ".csv";
+        std::fstream file(file_name_path, std::ios::in);
+        if (!file.is_open()) {
+            File::LogFile("Could not open the file", true);
+        }
+    }
+    return TranslateCSVToArray(file_name_path);
 }
 
 
 void DebugPoints()
 {
-    ShowMenuDebugPoints();
+    Show::MenuDebugPoints();
     while (true) {
         if (GetAsyncKeyState(VK_LCONTROL)) {
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
@@ -66,7 +95,7 @@ void RecordTelemetry()
                 telemetry_paused = true;
             }
             telemetry_paused = !telemetry_paused;
-            Sleep(1 * SECONDS);
+            std::this_thread::sleep_for(std::chrono::seconds(1));
         }
 
         if(!telemetry_paused) {

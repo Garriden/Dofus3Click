@@ -81,14 +81,14 @@
  *
  * in: file_name, the name of the desired file.
  */
-//std::vector<std::vector<std::pair<int, int> > > TranslateCSVToArray(std::string file_name);
+std::vector<std::vector<std::pair<int, int> > > TranslateCSVToArray(std::string file_name);
 
 /*
  * Find the desired file .csv to extract his Coordenates.
  *
  * in: file_name, the name of the desired file.
  */
-//std::vector<std::vector<std::pair<int, int> > > GetCSVFile(std::string file_name);
+std::vector<std::vector<std::pair<int, int> > > GetCSVFile(std::string file_name);
 
 /*
  * Click the OK button in the levelUp window.

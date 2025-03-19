@@ -1,5 +1,6 @@
 #include "system/inputs.hpp"
 #include "menusInterface.hpp"
+#include "menus.hpp"
 
 #include <windows.h>
 #include <iostream>
@@ -14,7 +15,7 @@ int main()
 
     //AskPj();
     while(true) {
-        Show::ShowMainMenu();
+        Show::MainMenu();
         int in;
         std::cin >> in;
         switch(in) {
@@ -29,7 +30,7 @@ int main()
                 //FarmerMenu();
                 break;
             case 3:
-                WoodMenu();
+                Menu::Wood();
                 break;
             case 4:
                 //MineralMenu();
