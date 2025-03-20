@@ -1,5 +1,5 @@
 #pragma once
 
-namespace Menu {
+namespace menu {
     void Wood();
 }

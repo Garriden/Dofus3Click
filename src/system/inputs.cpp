@@ -4,57 +4,14 @@
 #include "basicOperations.hpp"
 #include "menusInterface.hpp"
 
-#include <iostream>
 #include <windows.h>
 #include <chrono>
 #include <thread>
 #include <filesystem>
-
-std::vector<std::vector<std::pair<int, int> > > TranslateCSVToArray(std::string file_name)
+#include <iostream>
+void inputs::DebugPoints()
 {
-    std::fstream file(file_name, std::ios::in);
-
-    std::vector<std::vector<std::pair<int, int> > > content;
-    std::vector<std::pair<int, int> > row;
-    std::pair<int, int> coord;
-    std::string line, word;
-
-    while(getline(file, line)) {
-        row.clear();
-
-        std::stringstream str(line);
-
-        while(getline(str, word, ',')) {
-            coord.first = stoi(word);
-            getline(str, word, ',');
-            coord.second = stoi(word);
-            row.push_back(coord);
-        }
-        content.push_back(row);
-    }
-
-    return content;
-}
-
-std::vector<std::vector<std::pair<int, int> > > GetCSVFile(std::string file_name)
-{
-    std::string file_name_path = "x64/Release/Telemetry/" + file_name + ".csv";
-    std::fstream file(file_name_path, std::ios::in);
-
-    if (!file.is_open()) {
-        file_name_path = "Telemetry/" + file_name + ".csv";
-        std::fstream file(file_name_path, std::ios::in);
-        if (!file.is_open()) {
-            File::LogFile("Could not open the file", true);
-        }
-    }
-    return TranslateCSVToArray(file_name_path);
-}
-
-
-void DebugPoints()
-{
-    Show::MenuDebugPoints();
+    show::MenuDebugPoints();
     while (true) {
         if (GetAsyncKeyState(VK_LCONTROL)) {
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
@@ -62,14 +19,14 @@ void DebugPoints()
             GetCursorPos(&cursorPos);
             std::cout << "Mouse X = " << cursorPos.x << std::endl;
             std::cout << "Mouse Y = " << cursorPos.y << std::endl;
-            COLORREF color = GetColor(cursorPos.x, cursorPos.y, true);
+            COLORREF color = basicOperations::GetColor(cursorPos.x, cursorPos.y, true);
         } else if(GetAsyncKeyState(VK_LSHIFT)) {
             RecordTelemetry();
         }
     }
 }
 
-void RecordTelemetry()
+void inputs::RecordTelemetry()
 {
     std::vector<std::pair<int, int> > Coord;
     POINT cursor;
@@ -110,21 +67,21 @@ void RecordTelemetry()
                 GetCursorPos(&cursor);
                 Coord.push_back(std::make_pair(cursor.x, cursor.y));
                 ++pos;
-                Sleep(500);
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
             } else if(GetAsyncKeyState(VK_NUMPAD1) < 0) {
-                Sleep(500);
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
                 Coord.push_back(std::make_pair(-1, -1));
             } else if(GetAsyncKeyState(VK_NUMPAD2) < 0) {
-                Sleep(500);
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
                 Coord.push_back(std::make_pair(-2, -2));
             } else if(GetAsyncKeyState(VK_NUMPAD3) < 0) {
-                Sleep(500);
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
                 Coord.push_back(std::make_pair(-3, -3));
             } else if(GetAsyncKeyState(VK_NUMPAD4) < 0) {
-                Sleep(500);
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
                 Coord.push_back(std::make_pair(-4, -4));
             } else if(GetAsyncKeyState(VK_NUMPAD5) < 0) {
-                Sleep(500);
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
                 Coord.push_back(std::make_pair(-5, -5));
             } else if(GetAsyncKeyState(VK_SPACE)) {
                 std::cout << std::endl; 

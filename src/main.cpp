@@ -10,12 +10,12 @@ int main()
     std::cout << "holaaaaaaa" << std::endl;
 
     // TODO: External console
-    //HWND hwnd = GetConsoleWindow();
-    //MoveWindow(hwnd, 0, 0,200, 400,TRUE);
+    HWND hwnd = GetConsoleWindow();
+    MoveWindow(hwnd, 0, 0,200, 400,TRUE);
 
     //AskPj();
     while(true) {
-        Show::MainMenu();
+        show::MainMenu();
         int in;
         std::cin >> in;
         switch(in) {
@@ -24,13 +24,13 @@ int main()
                 return 0; //system("exit");
                 break;
             case 1:
-                DebugPoints();
+                inputs::DebugPoints();
                 break;
             case 2:
                 //FarmerMenu();
                 break;
             case 3:
-                Menu::Wood();
+                menu::Wood();
                 break;
             case 4:
                 //MineralMenu();

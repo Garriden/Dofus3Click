@@ -23,6 +23,7 @@ set(HEADERS
     utils.hpp
     basicOperations.hpp
     menusInterface.hpp
+    menus.hpp
     system/inputs.hpp
     system/file.hpp
     system/actualTime.hpp
@@ -33,6 +34,7 @@ set(SOURCES
     main.cpp
     basicOperations.cpp
     menusInterface.cpp
+    menus.cpp
     roadmap.cpp
     system/inputs.cpp
     system/file.cpp

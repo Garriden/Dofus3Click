@@ -3,7 +3,7 @@
 #include "system/file.hpp"
 #include <iostream>
 
-void Show::MainMenu()
+void show::MainMenu()
 {
     system("TITLE Click Bot");
     File::LogFile("===================================", true);
@@ -23,7 +23,7 @@ void Show::MainMenu()
     std::cout << "===================================" << std::endl;
 }
 
-void Show::MenuDebugPoints()
+void show::MenuDebugPoints()
 {
     system("TITLE Debug points");
     std::cout << "===================================" << std::endl;
@@ -36,7 +36,7 @@ void Show::MenuDebugPoints()
     std::cout << "===================================" << std::endl;
 }
 
-void Show::DailyMissions()
+void show::DailyMissions()
 {
     system("TITLE Daily missions");
     std::cout << "===================================" << std::endl;
@@ -46,7 +46,7 @@ void Show::DailyMissions()
     std::cout << "===================================" << std::endl;
 }
 
-void Show::WoodMenu()
+void show::WoodMenu()
 {
     system("TITLE Wood menu");
     std::cout << "===================================" << std::endl;
@@ -61,7 +61,7 @@ void Show::WoodMenu()
     std::cout << "===================================" << std::endl;
 }
 
-void Show::MineralMenu()
+void show::MineralMenu()
 {
     system("TITLE Mineral menu");
     std::cout << "===================================" << std::endl;
@@ -70,7 +70,7 @@ void Show::MineralMenu()
     std::cout << "===================================" << std::endl;
 }
 
-void Show::FarmerMenu()
+void show::FarmerMenu()
 {
     system("TITLE Farmer menu");
     std::cout << "===================================" << std::endl;
@@ -79,7 +79,7 @@ void Show::FarmerMenu()
     std::cout << "===================================" << std::endl;
 }
 
-void Show::AlchemistMenu()
+void show::AlchemistMenu()
 {
     system("TITLE Alchemist menu");
     std::cout << "===================================" << std::endl;
@@ -92,7 +92,7 @@ void Show::AlchemistMenu()
     std::cout << "===================================" << std::endl;
 }
 
-void Show::FishermanMenu()
+void show::FishermanMenu()
 {
     system("TITLE Fisherman menu");
     std::cout << "===================================" << std::endl;
@@ -104,7 +104,7 @@ void Show::FishermanMenu()
     std::cout << "===================================" << std::endl;
 }
 
-void Show::FindEnemiesMenu()
+void show::FindEnemiesMenu()
 {
     system("TITLE Find enemies menu");
     std::cout << "===================================" << std::endl;
@@ -118,7 +118,7 @@ void Show::FindEnemiesMenu()
     std::cout << "===================================" << std::endl;
 }
 
-void Show::AskPj()
+void show::AskPj()
 {/*
     int x;
 
@@ -141,7 +141,7 @@ void Show::AskPj()
 */
 }
 
-void Show::Heal()
+void show::Heal()
 {/*
     system("TITLE Heal?");
     std::cout << "Do you want to heal \n";
@@ -154,7 +154,7 @@ void Show::Heal()
     }*/
 }
 
-void Show::WhereAreYouUbicated()
+void show::WhereAreYouUbicated()
 {/*
     system("TITLE Where are you?");
 
@@ -184,7 +184,7 @@ void Show::WhereAreYouUbicated()
     go_kill_monsters_ = x;*/
 }
 
-void Show::FindEnemiesMenuGetRoadmap()
+void show::FindEnemiesMenuGetRoadmap()
 {/*
     system("TITLE Find enemies menu");
     std::cout << "Give me the number of \n";

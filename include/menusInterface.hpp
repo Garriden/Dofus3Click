@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Show {
+namespace show {
     void MainMenu();
     void MenuDebugPoints();
     void DailyMissions();

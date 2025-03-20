@@ -4,23 +4,25 @@
 #include "system/file.hpp"
 #include "basicOperations.hpp"
 
-void ExecuteRoadMap(std::string name)
+void roadmap::ExecuteRoadMap(std::string name)
 {
-    std::vector<std::vector<std::pair<int, int> > > roadmap = GetCSVFile(name);
-    for (int ii = 0; ii < static_cast<int>(roadmap.size()); ++ii) {
-        File::LogFile("ii: " + std::to_string(ii), true);
-        if(restart_roadmap_) {
-            return;
-        }
+    File::LogFile("  ExecuteRoadMap: " + name, true);
+    std::vector<std::vector<std::pair<int, int> > > roadmap = File::ReadFileAndBuildMap(name);
+
+    for(int ii = 0; ii < static_cast<int>(roadmap.size()); ++ii) {
+        //File::LogFile("ii: " + std::to_string(ii), true);
+        //if(restart_roadmap_) {
+        //    return;
+        //}
         ClickIdentities(roadmap[ii]);
-        if (restart_roadmap_) {
-            return;
-        }
+        //if (restart_roadmap_) {
+        //    return;
+        //}
     }
 }
 
 
-void ClickIdentities(const std::vector<std::pair<int, int> > map)
+void roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
 {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
@@ -28,12 +30,15 @@ void ClickIdentities(const std::vector<std::pair<int, int> > map)
     int x = 0;
     int y = 0;
 
-    for (int ii = 0; ii < static_cast<int>(map.size()) - 1; ++ii) {
-        if(!restart_roadmap_) {
+    std::cout << "bbbbbbbb: " <<  map.size() << "    " << map[0].first << " . " << map[0].second << std::endl;
+    for(int ii = 0; ii < map.size(); ++ii) {
+        File::LogFile("ii: " + std::to_string(ii), true);
+        //if(!restart_roadmap_) {
             ruletNumber = basicOperations::RuletaInput(0, 9) + 1;
 
             //if(DELAY_BETWEEN_CHOPPS_) {
-                Sleep(7 * SECONDS + ruletNumber * 100);
+            std::this_thread::sleep_for(std::chrono::seconds(7));
+            std::this_thread::sleep_for(std::chrono::milliseconds(ruletNumber * 100));
             //}
 
             //CheckFight(); TODO
@@ -41,12 +46,12 @@ void ClickIdentities(const std::vector<std::pair<int, int> > map)
             x = map[ii].first - ruletNumber / 4;
             y = map[ii].second - ruletNumber / 4;
 
-            std::this_thread::sleep_for(std::chrono::milliseconds(100) + ruletNumber);
+            std::this_thread::sleep_for(std::chrono::milliseconds(100 + ruletNumber) );
             SetCursorPos(x, y);
             mouse_event(MOUSEEVENTF_LEFTDOWN, x, y, 0, 0);
-            std::this_thread::sleep_for(ruletNumber);
+            std::this_thread::sleep_for( std::chrono::milliseconds(10 + ruletNumber) );
             mouse_event(MOUSEEVENTF_LEFTUP, x, y, 0, 0);
-        }
+        //}
     }
 
     /**************************************************************
@@ -58,17 +63,17 @@ void ClickIdentities(const std::vector<std::pair<int, int> > map)
      *
      ***************************************************************/
 
-    CheckFight();
+    //CheckFight();
 
-    if(AmITalkingWithNPJ() || IsMercant() || IsErrorWindow()) {
-        PressEscape();
-        Sleep(1 * SECONDS);
-    }
+    //if(AmITalkingWithNPJ() || IsMercant() || IsErrorWindow()) {
+    //    PressEscape();
+    //    std::this_thread::sleep_for(std::chrono::seconds(7));
+    //}
 
-    if(IsMainMenuWindow()) {
-        PressEscape();
-    }
-
+    //if(IsMainMenuWindow()) {
+    //    PressEscape();
+    //}
+/*
     if(lowering_pods_ || (!CheckPods() && !restart_roadmap_)) {
         //LogFile("Change maaaaap");
         Sleep(17 * SECONDS + ruletNumber * 100);
@@ -77,19 +82,19 @@ void ClickIdentities(const std::vector<std::pair<int, int> > map)
 
         if (IsMercantMode()) {
             PressEscape();
-            Sleep(2 * SECONDS);
+            std::this_thread::sleep_for(std::chrono::seconds(2));
         }
         ruletNumber = Ruleta10();
 
         x = (map[map.size() - 1].first)  - (ruletNumber / 4);
         y = (map[map.size() - 1].second) - (ruletNumber / 2);
 
-        /* Don't hit treasure hunt window */
+        // Don't hit treasure hunt window 
         if((x < 355) && ((y > 200) && (y < 250))) {
             y = 300;
         }
 
-        /* Don't hit office level up window */
+        // Don't hit office level up window 
         if((x < 355) && ((y > 570) && (y < 715))) {
             y = 750;
         }
@@ -104,4 +109,5 @@ void ClickIdentities(const std::vector<std::pair<int, int> > map)
         Sleep(3 * SECONDS + ruletNumber * 100);
         
     }
+    */
 }
