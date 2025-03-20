@@ -10,9 +10,7 @@ int main()
     std::cout << "holaaaaaaa" << std::endl;
 
     // TODO: External console
-    HWND hwnd = GetConsoleWindow();
-    MoveWindow(hwnd, 0, 0,200, 400,TRUE);
-
+    
     //AskPj();
     while(true) {
         show::MainMenu();

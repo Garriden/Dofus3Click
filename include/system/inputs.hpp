@@ -58,12 +58,8 @@ namespace inputs {
     */
     //void KeyboardWrite(std::string s);
 
-    /*
-    * Do a Click a little bit on the Righ, on the top.
-    * Where the executable should be.
-    * (Open the exe window near this program)
-    */
-    //void ClickOnExe();
+    // Do a Click a little bit on the Dofus executable bar.
+    bool ClickOnExe();
 
     /*
     * Get all the characters inside a .txt, given a file.
