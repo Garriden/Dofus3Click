@@ -66,7 +66,7 @@ std::string File::ReadFile(const std::string &filePath)
     } else {
         std::cout << "File doesnt exist: " << filePath << " / " << error.message() << std::endl;
         std::cout << "Creating new file..." << std::endl;
-        std::filesystem::create_directories(path);
+        std::ofstream ofs(path);
     }
 
     return ret;

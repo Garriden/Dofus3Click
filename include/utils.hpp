@@ -45,6 +45,9 @@
 #define DOFUS_EXE_POS_COLOR_RED_1                       (241)
 #define DOFUS_EXE_POS_COLOR_GREEN_1                     (247)
 #define DOFUS_EXE_POS_COLOR_BLUE_1                      (120)
+#define DOFUS_EXE_POS_COLOR_RED_2                       (222)
+#define DOFUS_EXE_POS_COLOR_GREEN_2                     (255)
+#define DOFUS_EXE_POS_COLOR_BLUE_2                      (123)
 
 #define PRIVATE_MODE_POS_X_1							(270)
 #define PRIVATE_MODE_POS_Y_1							(1038)

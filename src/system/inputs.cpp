@@ -21,7 +21,14 @@ namespace {
             (int(GetGValue(color)) < DOFUS_EXE_POS_COLOR_GREEN_1 + ERROR_GET_COLOUR_SMALL) &&
             (int(GetGValue(color)) > DOFUS_EXE_POS_COLOR_GREEN_1 - ERROR_GET_COLOUR_SMALL) &&
             (int(GetBValue(color)) < DOFUS_EXE_POS_COLOR_BLUE_1  + ERROR_GET_COLOUR_SMALL) &&
-            (int(GetBValue(color)) > DOFUS_EXE_POS_COLOR_BLUE_1  - ERROR_GET_COLOUR_SMALL)))
+            (int(GetBValue(color)) > DOFUS_EXE_POS_COLOR_BLUE_1  - ERROR_GET_COLOUR_SMALL))
+            ||
+            ((int(GetRValue(color)) < DOFUS_EXE_POS_COLOR_RED_2   + ERROR_GET_COLOUR_SMALL) &&
+            (int(GetRValue(color)) > DOFUS_EXE_POS_COLOR_RED_2   - ERROR_GET_COLOUR_SMALL) &&
+            (int(GetGValue(color)) < DOFUS_EXE_POS_COLOR_GREEN_2 + ERROR_GET_COLOUR_SMALL) &&
+            (int(GetGValue(color)) > DOFUS_EXE_POS_COLOR_GREEN_2 - ERROR_GET_COLOUR_SMALL) &&
+            (int(GetBValue(color)) < DOFUS_EXE_POS_COLOR_BLUE_2  + ERROR_GET_COLOUR_SMALL) &&
+            (int(GetBValue(color)) > DOFUS_EXE_POS_COLOR_BLUE_2  - ERROR_GET_COLOUR_SMALL)) )
         {
             ret = true;
             File::LogFile("FindDofusExe (dot) it is found!", true);
@@ -31,68 +38,91 @@ namespace {
     }
 }
 
+void inputs::PressKey(int keyParam)
+{
+    SHORT key;
+    UINT mappedkey;
+    INPUT input = { 0 };
+    key = VkKeyScan(keyParam);
+    mappedkey = MapVirtualKey(LOBYTE(key), 0);
+    input.type = INPUT_KEYBOARD;
+    input.ki.dwFlags = KEYEVENTF_SCANCODE;
+    input.ki.wScan = mappedkey;
+    SendInput(1, &input, sizeof(input));
+    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    input.ki.dwFlags = KEYEVENTF_SCANCODE | KEYEVENTF_KEYUP;
+    SendInput(1, &input, sizeof(input));
+}
+
+void inputs::PressCtrlKey(int keyParam)
+{
+    SHORT key;
+    UINT mappedkey;
+    INPUT ip;
+    ip.type = INPUT_KEYBOARD;
+    ip.ki.wScan = 0;
+    ip.ki.time = 0;
+    ip.ki.dwExtraInfo = 0;
+
+    // Press the "Ctrl" key
+    ip.ki.wVk = VK_CONTROL;
+    ip.ki.dwFlags = 0; // 0 for key press
+    SendInput(1, &ip, sizeof(INPUT));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+    // Press the key
+    key = VkKeyScan(keyParam);
+    mappedkey = MapVirtualKey(LOBYTE(key), 0);
+    ip.ki.dwFlags = KEYEVENTF_SCANCODE;
+    ip.ki.wScan = mappedkey;
+    SendInput(1, &ip, sizeof(INPUT));
+    std::this_thread::sleep_for(std::chrono::milliseconds(30));
+
+    // Release the key
+    ip.ki.dwFlags = KEYEVENTF_SCANCODE | KEYEVENTF_KEYUP;
+    SendInput(1, &ip, sizeof(INPUT));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+    // Release the "Ctrl" key
+    ip.ki.wVk = VK_CONTROL;
+    ip.ki.dwFlags = KEYEVENTF_KEYUP;
+    SendInput(1, &ip, sizeof(INPUT));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+    //Sleep(SECONDS); // pause for 1 second
+}
+
 bool inputs::ClickOnExe()
 {
     int x = DOFUS_EXE_POS_X_1;
     int y = DOFUS_EXE_POS_Y_1;
     COLORREF color;
 
-    for(int ii = 0; ii < 200; ii += 10) {
-        //SetCursorPos(x+ii, y);
-        Sleep(10);
+    for(int ii = 0; ii < 200; ii += 2) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
         color = basicOperations::GetColor(x+ii, y, false);
 
         if(FindDofusExe(color)) {
-            SetCursorPos(x+ii, y); // Private mode
-            Sleep(30);
-            mouse_event(MOUSEEVENTF_LEFTDOWN, x+ii, y, 0, 0);
-            Sleep(50);
-            mouse_event(MOUSEEVENTF_LEFTUP, x+ii, y, 0, 0);
+            Click(x+ii, y);
             return true;
         }
     }
 
     return false;
+}
 
-    /*
-    int x = PRIVATE_MODE_POS_X_1 - 100;
-    int y = PRIVATE_MODE_POS_Y_1;
-    int ii = 0;
-    COLORREF color;
-    bool color_found = false;
+void inputs::Click(int x, int y)
+{
+    int ruletNumber = basicOperations::RuletaInput(10, 20);
 
-    for(ii = 0; ii < 170 && !color_found; ii += 5) {
-        //SetCursorPos(x+ii, y); // Private mode
-        Sleep(10);
-        color = basicOperations::GetColor(x+ii, y, false);
-
-        //if(FindPrivateMode(color)) {
-        //    color_found = true;
-        //}
-    }
-
-    if(color_found) {
-        SetCursorPos(x+ii, y); // Private mode
-        Sleep(30);
-        mouse_event(MOUSEEVENTF_LEFTDOWN, x+ii, y, 0, 0);
-        Sleep(50);
-        mouse_event(MOUSEEVENTF_LEFTUP, x+ii, y, 0, 0);
-
-        Sleep(500);
-
-        x = PRIVATE_MODE_POS_X_2;
-        y = PRIVATE_MODE_POS_Y_2;
-    } else { // Click on the top exe bar
-        x = LIMIT_CELL_X_MIN - 10;
-        y = LIMIT_CELL_Y_MIN - 100;
-    }
-
-    SetCursorPos(x, y); // Private mode
-    Sleep(100);
+    // Press it!
+    SetCursorPos(x, y);
+    std::this_thread::sleep_for(std::chrono::milliseconds(30));
     mouse_event(MOUSEEVENTF_LEFTDOWN, x, y, 0, 0);
-    Sleep(50);
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
     mouse_event(MOUSEEVENTF_LEFTUP, x, y, 0, 0);
-    */
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(10 * ruletNumber));
 }
 
 void inputs::DebugPoints()

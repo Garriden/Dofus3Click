@@ -12,14 +12,14 @@ namespace inputs {
     *
     * in: keyParam, key desired to press.
     */
-    //void PressKey(int keyParam);
+    void PressKey(int keyParam);
 
     /*
     * Simulates a key pressing + Ctrl key pressing.
     *
     * in: keyParam, key desired to press, besides the Ctrl key.
     */
-    //void PressCtrlKey(int keyParam);
+    void PressCtrlKey(int keyParam);
 
     /*
     * Simulates a key pressing, keeps it pressed.
@@ -107,7 +107,7 @@ namespace inputs {
     *
     * in: x and y coordenates.
     */
-    //void ClickWhereIWant(int x, int y);
+    void Click(int x, int y);
 
     /*
     * Give information of the coordenates of real clicks.

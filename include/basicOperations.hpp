@@ -12,10 +12,10 @@ namespace basicOperations {
     /*
     * Returns a random number between x and y.
     * 
-    * in: x, minimum range number.
-    * in: y, maximum range number.
+    * in: min, minimum range number.
+    * in: max, maximum range number.
     */
-    int RuletaInput(int x, int y);
+    int RuletaInput(int min, int max);
 
     /*
     * Returns the pixel color RGB(red, green, blue) of x and y positions (coordenates).
