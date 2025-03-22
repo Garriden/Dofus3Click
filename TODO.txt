@@ -1,8 +1,5 @@
-
-- Build project in C++ CMake VSCode.
-
 - Migrate to Dofus 3.
- . UML classes
+ . UML classes (namespaces)
 
 - Documentate 
   . default Dofus settings. Positions. KeyAtajos.
@@ -10,19 +7,17 @@
 
 
 Programming:
-	. Refactor click / screen.
-	. Refactor defines.
-
-	. Refactor Right (key atajo)
-
-
-	. Refactor sleeps.
+	. Check change map "Accion imposible"
 
 	. State Machine.
 
 	. Threads ?
+	. Thread checks.
 
 Game:
+	. Calibrate: up, down, right, left
+
+
 
 	. If the tree is not in there?
 

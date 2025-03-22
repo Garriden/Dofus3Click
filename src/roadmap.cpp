@@ -3,6 +3,7 @@
 #include "system/inputs.hpp"
 #include "system/file.hpp"
 #include "basicOperations.hpp"
+#include "checks.hpp"
 
 void roadmap::ExecuteRoadMap(std::string name)
 {
@@ -10,7 +11,7 @@ void roadmap::ExecuteRoadMap(std::string name)
     std::vector<std::vector<std::pair<int, int> > > roadmap = File::ReadFileAndBuildMap(name);
 
     for(int ii = 0; ii < static_cast<int>(roadmap.size()); ++ii) {
-        //File::LogFile("ii: " + std::to_string(ii), true);
+        File::LogFile("ii: " + std::to_string(ii), true);
         //if(restart_roadmap_) {
         //    return;
         //}
@@ -30,38 +31,46 @@ void roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
     int x = 0;
     int y = 0;
 
-    std::cout << "bbbbbbbb: " <<  map.size() << "    " << map[0].first << " . " << map[0].second << std::endl;
+    //std::cout << "bbbbbbbb: " <<  map.size() << "    " << map[0].first << " . " << map[0].second << std::endl;
     for(int ii = 0; ii < map.size(); ++ii) {
-        File::LogFile("ii: " + std::to_string(ii), true);
+        //File::LogFile("ii: " + std::to_string(ii), true);
         //if(!restart_roadmap_) {
             ruletNumber = basicOperations::RuletaInput(0, 9) + 1;
 
-            //if(DELAY_BETWEEN_CHOPPS_) {
-            std::this_thread::sleep_for(std::chrono::seconds(7));
+            std::this_thread::sleep_for(std::chrono::seconds(10));
             std::this_thread::sleep_for(std::chrono::milliseconds(ruletNumber * 100));
-            //}
 
             //CheckFight(); TODO
 
-            x = map[ii].first - ruletNumber / 4;
-            y = map[ii].second - ruletNumber / 4;
-
-            std::this_thread::sleep_for(std::chrono::milliseconds(100 + ruletNumber) );
-            SetCursorPos(x, y);
-            mouse_event(MOUSEEVENTF_LEFTDOWN, x, y, 0, 0);
-            std::this_thread::sleep_for( std::chrono::milliseconds(10 + ruletNumber) );
-            mouse_event(MOUSEEVENTF_LEFTUP, x, y, 0, 0);
+            inputs::Click(map[ii].first, map[ii].second);
         //}
     }
 
-    /**************************************************************
-     * Move to the another map.
-     *
-     * Get the last coordenates from my hardcoded struct, to move to the next map.
-     * - It has, in the input sleep variable. Waiting to finish chopping before moving.
-     * - It has some other sleep, to wait to upload correctly the new map.
-     *
-     ***************************************************************/
+    // Change map
+    // Sometimes it doesn't change propperly because of "Acción imposible" Dofus error...
+    // Catch when screen goes black to detect the map change. Repeat last click if not changed properly.
+
+
+    // Wait for Black Screen
+    bool mapChanged = false;
+    int retries = 0;
+    while(!mapChanged && retries < 3) {
+        for(int ii = 0; !mapChanged && ii < 500; ++ii) {
+            if(check::IsBlackScreen()) {
+                mapChanged = true;
+                File::LogFile("Backscreen detected! mapChanged", false);
+            }
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        }
+
+        if(!mapChanged) { // Invalid action, try again.
+            File::LogFile(" NO! mapChanged... Clicking again...", true);
+            inputs::Click(map[map.size()-1].first, map[map.size()-1].second);
+            ++retries;
+        }
+    }
+    //std::this_thread::sleep_for(std::chrono::seconds(1));
+
 
     //CheckFight();
 

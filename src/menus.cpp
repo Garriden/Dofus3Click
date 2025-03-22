@@ -16,7 +16,16 @@
                 File::LogFile("! Error Cannot find Dofus exe!", true);
                 return;
             }
-            
+
+            std::this_thread::sleep_for(std::chrono::seconds(5));
+            File::LogFile("PODS . . ", true);
+            inputs::PressCtrlKey('3'); // Pods
+            std::this_thread::sleep_for(std::chrono::seconds(2));
+
+            //File::LogFile("aaahands . . ", true);
+            //inputs::PressKey('3'); // Pods
+            //std::this_thread::sleep_for(std::chrono::seconds(3));
+
             int restartRoadmap = true;
             File::LogFile("lv.1  [ASTRUB] . . . ", true);
             //back_to_starting_roadmap_ = "Wood/fromAstrubZaapToWoodLv1";
@@ -25,15 +34,14 @@
             if(restartRoadmap) {
                 restartRoadmap = false;
                 //roadmap::ExecuteRoadMap("Wood\\fromAstrubZaapToWoodLv1");
-                roadmap::ExecuteRoadMap("../../Telemetry/Wood/fromAstrubZaapToWoodLv1.csv");
+                //MARCroadmap::ExecuteRoadMap("../../Telemetry/Wood/fromAstrubZaapToWoodLv1.csv");
             }
 
             //if(first_time_go_to_initial_map_) {
                 //first_time_go_to_initial_map_ = false;
 
                 //Sleep(10 * SECONDS); std::this_thread::sleep_for(std::chrono::seconds(10));
-                inputs::PressCtrlKey('3'); // Pods
-                std::this_thread::sleep_for(std::chrono::seconds(3));
+
                 //CheckFight();
                 //if(!CheckZaapAstrub()) {
                 //    PressCtrlKey('0');		// Recall Potion

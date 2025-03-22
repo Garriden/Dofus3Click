@@ -1,5 +1,5 @@
 #include "system/file.hpp"
-//#include "Utils.h"
+#include "utils.hpp"
 #include "system/actualTime.hpp"
 #include <filesystem>
 #include <fstream>
@@ -15,7 +15,7 @@ std::vector<std::vector<std::pair<int, int> > > File::ReadFileAndBuildMap(const 
 
     std::vector<std::pair<int, int> > row;
     std::pair<int, int> coord;
-    std::string word;
+    std::string word, word2;
 
     // Read file.
     std::error_code error;
@@ -29,11 +29,25 @@ std::vector<std::vector<std::pair<int, int> > > File::ReadFileAndBuildMap(const 
             std::stringstream str(line);
 
             while(std::getline(str, word, ',')) {
-                coord.first = stoi(word);
-                std::getline(str, word, ',');
-                coord.second = stoi(word);
+                std::getline(str, word2, ',');
+                if(word == "up" || (word2 != "" && stoi(word2) <= UP_Y) ) { // CheckChangeMap
+                    coord.first  = UP_X;
+                    coord.second = UP_Y;
+                } else if(word == "left" || (word2 != "" && stoi(word) <= LEFT_X) ) {
+                    coord.first  = LEFT_X;
+                    coord.second = LEFT_Y;
+                } else if(word == "down" || (word2 != "" && stoi(word2) >= DOWN_Y) ) {
+                    coord.first  = DOWN_X;
+                    coord.second = DOWN_Y;
+                } else if(word == "right" || (word2 != "" && stoi(word) >= RIGHT_X) ) {
+                    coord.first  = RIGHT_X;
+                    coord.second = RIGHT_Y;
+                } else {
+                    coord.first = stoi(word);
+                    coord.second = stoi(word2);
+                }
                 row.push_back(coord);
-                std::cout <<  "coord.first: " << coord.first  << "  coord.second: " << coord.second << std::endl;
+                //std::cout <<  "coord.first: " << coord.first  << "  coord.second: " << coord.second << std::endl;
             }
             ret.push_back(row);
         }
@@ -83,7 +97,7 @@ void File::WriteFile(const std::string &dataToWrite, const std::string &filePath
     ofs.close();
 }
 
-void File::DeleteFile(const std::string &filePath)
+void File::DeleteLocalFile(const std::string &filePath)
 {
     std::filesystem::path path{ filePath };
 

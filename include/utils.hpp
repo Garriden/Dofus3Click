@@ -17,19 +17,43 @@
 #define LIMIT_CELL_X_MIN                                (400)
 #define LIMIT_CELL_X_MAX                                (1515)
 
-#define UP											    (0)
-#define DOWN										    (1)
-#define LEFT										    (2)
-#define RIGHT										    (3)
+#define UP                                              (0)
+#define DOWN                                            (1)
+#define LEFT                                            (2)
+#define RIGHT                                           (3)
 
-#define UP_X											(836)
-#define UP_Y											(39)
-#define DOWN_X											(989)
-#define DOWN_Y											(930)
-#define LEFT_X											(349)
-#define LEFT_Y											(331)
-#define RIGHT_X											(1599)
-#define RIGHT_Y											(511)
+#define UP_X                                            (800)
+#define UP_Y                                            (30)
+#define DOWN_X                                          (989)
+#define DOWN_Y                                          (908)
+#define LEFT_X                                          (346)
+#define LEFT_Y                                          (531)
+#define RIGHT_X                                         (1575)
+#define RIGHT_Y                                         (511)
+
+
+///////////////////////////////////////////////////////////
+// SCREEN POSITIONS
+///////////////////////////////////////////////////////////
+
+#define DOFUS_EXE_POS_X_1                               (130)
+#define DOFUS_EXE_POS_Y_1                               (1064)
+#define DOFUS_EXE_POS_COLOR_RED_1                       (241)
+#define DOFUS_EXE_POS_COLOR_GREEN_1                     (247)
+#define DOFUS_EXE_POS_COLOR_BLUE_1                      (120)
+#define DOFUS_EXE_POS_COLOR_RED_2                       (222)
+#define DOFUS_EXE_POS_COLOR_GREEN_2                     (255)
+#define DOFUS_EXE_POS_COLOR_BLUE_2                      (123)
+
+#define BLACK_SCREEN_POS_X_1                               (850)
+#define BLACK_SCREEN_POS_Y_1                               (850)
+#define BLACK_SCREEN_POS_X_2                               (1200)
+#define BLACK_SCREEN_POS_Y_2                               (350)
+#define BLACK_SCREEN_POS_X_3                               (700)
+#define BLACK_SCREEN_POS_Y_3                               (700)
+#define BLACK_SCREEN_POS_X_4                               (1200)
+#define BLACK_SCREEN_POS_Y_4                               (725)
+
 
 #define CHECK_PODS_POS_X								(1300)
 #define CHECK_PODS_POS_Y								(1041)
@@ -40,14 +64,7 @@
 #define OBSERVER_MODE_POS_X								(1395)
 #define OBSERVER_MODE_POS_Y								(1030)
 
-#define DOFUS_EXE_POS_X_1                               (130)
-#define DOFUS_EXE_POS_Y_1                               (1064)
-#define DOFUS_EXE_POS_COLOR_RED_1                       (241)
-#define DOFUS_EXE_POS_COLOR_GREEN_1                     (247)
-#define DOFUS_EXE_POS_COLOR_BLUE_1                      (120)
-#define DOFUS_EXE_POS_COLOR_RED_2                       (222)
-#define DOFUS_EXE_POS_COLOR_GREEN_2                     (255)
-#define DOFUS_EXE_POS_COLOR_BLUE_2                      (123)
+
 
 #define PRIVATE_MODE_POS_X_1							(270)
 #define PRIVATE_MODE_POS_Y_1							(1038)

@@ -59,6 +59,8 @@ void inputs::PressCtrlKey(int keyParam)
     SHORT key;
     UINT mappedkey;
     INPUT ip;
+
+    ip.ki.dwFlags = 0;
     ip.type = INPUT_KEYBOARD;
     ip.ki.wScan = 0;
     ip.ki.time = 0;
@@ -66,9 +68,11 @@ void inputs::PressCtrlKey(int keyParam)
 
     // Press the "Ctrl" key
     ip.ki.wVk = VK_CONTROL;
+    ip.ki.wScan = MapVirtualKey(VK_CONTROL, 0);
     ip.ki.dwFlags = 0; // 0 for key press
+    ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
     SendInput(1, &ip, sizeof(INPUT));
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
     // Press the key
     key = VkKeyScan(keyParam);
@@ -76,18 +80,20 @@ void inputs::PressCtrlKey(int keyParam)
     ip.ki.dwFlags = KEYEVENTF_SCANCODE;
     ip.ki.wScan = mappedkey;
     SendInput(1, &ip, sizeof(INPUT));
-    std::this_thread::sleep_for(std::chrono::milliseconds(30));
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
 
     // Release the key
     ip.ki.dwFlags = KEYEVENTF_SCANCODE | KEYEVENTF_KEYUP;
     SendInput(1, &ip, sizeof(INPUT));
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
 
     // Release the "Ctrl" key
     ip.ki.wVk = VK_CONTROL;
+    ip.ki.wScan = MapVirtualKey(VK_CONTROL, 0);
     ip.ki.dwFlags = KEYEVENTF_KEYUP;
+    ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
     SendInput(1, &ip, sizeof(INPUT));
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
     //Sleep(SECONDS); // pause for 1 second
 }
@@ -117,12 +123,40 @@ void inputs::Click(int x, int y)
 
     // Press it!
     SetCursorPos(x, y);
-    std::this_thread::sleep_for(std::chrono::milliseconds(30));
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
     mouse_event(MOUSEEVENTF_LEFTDOWN, x, y, 0, 0);
-    std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
     mouse_event(MOUSEEVENTF_LEFTUP, x, y, 0, 0);
 
     std::this_thread::sleep_for(std::chrono::milliseconds(10 * ruletNumber));
+}
+
+void ChangeMap(int position)
+{
+    int x = 0, y = 0;
+    switch (position)
+    {
+    case UP:
+        x = UP_X;
+        y = UP_Y;
+        break;
+    case DOWN:
+        x = DOWN_X;
+        y = DOWN_Y;
+        break;
+    case LEFT:
+        x = LEFT_X;
+        y = LEFT_Y;
+        break;
+    case RIGHT:
+        x = RIGHT_X;
+        y = RIGHT_Y;
+        break;
+    default:
+        break;
+    }
+
+    inputs::Click(x, y);
 }
 
 void inputs::DebugPoints()

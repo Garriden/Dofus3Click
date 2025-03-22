@@ -96,18 +96,18 @@ namespace inputs {
     void RecordTelemetry();
 
     /*
-    * Change the map in the desired direction.
-    *
-    * in: position, RIGHT, LEFT, UP, DOWN.
-    */
-    //void ChangeMap(int position);
-
-    /*
     * Set the cursor and click the position I want.
     *
     * in: x and y coordenates.
     */
     void Click(int x, int y);
+
+    /*
+    * Change the map in the desired direction.
+    *
+    * in: position, RIGHT, LEFT, UP, DOWN.
+    */
+   void ChangeMap(int position);
 
     /*
     * Give information of the coordenates of real clicks.
