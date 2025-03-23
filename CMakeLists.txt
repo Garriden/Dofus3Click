@@ -20,6 +20,7 @@ set(LOCAL_PROJECT_DESCRIPTION "Migration to Dofus3")
 set(HEADERS
     basicOperations.hpp
     checks.hpp
+    fight.hpp
     roadmap.hpp
     utils.hpp
     menusInterface.hpp
@@ -35,6 +36,7 @@ set(SOURCES
     
     basicOperations.cpp
     checks.cpp
+    fight.cpp
     menusInterface.cpp
     menus.cpp
     roadmap.cpp

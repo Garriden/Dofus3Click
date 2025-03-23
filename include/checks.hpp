@@ -9,11 +9,10 @@ namespace check {
  */
 
 /*
- * Look if I entered in a fight.
- * Check the turn bar (Orange/Yellow).
- * Also, works if it is my turn.
+ * Look if I am in a fight.
+ * Check the pjs bar (Red/Blue).
  */
-//bool AmIEnteringInAFight();
+bool CheckFight();
 
 /*
 * Find the red/green dot in the chat (private mode).
@@ -78,13 +77,13 @@ namespace check {
  * Look if the fight it is already finished. If I lost it
  * Checking if it is visible the postFight defeated window.
  */
-//bool AmIDefeated();
+bool AmIDefeated();
 
 /*
  * Look if the fight it is already finished. If I won it
  * Checking if it is visible the postFight Victory window.
  */
-//bool IWonTheFight();
+bool IWonTheFight();
 
 // Is the screen black?
 bool IsBlackScreen();

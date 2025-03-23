@@ -1,0 +1,15 @@
+
+Alt + W             Ir al Norte
+Alt + S             Ir al Sur
+Alt + A             Ir al Oste
+Alt + D             Ir al Este
+
+
+
+Shift + D           Transparencia
+D                   Burbuja Monstruos y NPCs
+Y                   Elementos interactivos
+
+
+Q                   Ataque cuerpo a cuerpo
+Space               Pasar turno

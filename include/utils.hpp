@@ -36,14 +36,14 @@
 // SCREEN POSITIONS
 ///////////////////////////////////////////////////////////
 
-#define DOFUS_EXE_POS_X_1                               (130)
-#define DOFUS_EXE_POS_Y_1                               (1064)
-#define DOFUS_EXE_POS_COLOR_RED_1                       (241)
-#define DOFUS_EXE_POS_COLOR_GREEN_1                     (247)
-#define DOFUS_EXE_POS_COLOR_BLUE_1                      (120)
-#define DOFUS_EXE_POS_COLOR_RED_2                       (222)
-#define DOFUS_EXE_POS_COLOR_GREEN_2                     (255)
-#define DOFUS_EXE_POS_COLOR_BLUE_2                      (123)
+#define DOFUS_EXE_POS_X_1                                  (130)
+#define DOFUS_EXE_POS_Y_1                                  (1064)
+#define DOFUS_EXE_POS_COLOR_RED_1                          (241)
+#define DOFUS_EXE_POS_COLOR_GREEN_1                        (247)
+#define DOFUS_EXE_POS_COLOR_BLUE_1                         (120)
+#define DOFUS_EXE_POS_COLOR_RED_2                          (222)
+#define DOFUS_EXE_POS_COLOR_GREEN_2                        (255)
+#define DOFUS_EXE_POS_COLOR_BLUE_2                         (123)
 
 #define BLACK_SCREEN_POS_X_1                               (850)
 #define BLACK_SCREEN_POS_Y_1                               (850)
@@ -55,16 +55,93 @@
 #define BLACK_SCREEN_POS_Y_4                               (725)
 
 
+///////////////////////////////////
+// COLOR
+///////////////////////////////////
+
+#define BLACK_COLOR_RED                                    (0)
+#define BLACK_COLOR_GREEN                                  (0)
+#define BLACK_COLOR_BLUE                                   (0)
+
+
+///////////////////////////////////
+// FIGHT
+///////////////////////////////////
+
+#define IT_IS_MY_TURN_POS_X_1                              (1324)
+#define IT_IS_MY_TURN_POS_Y_1                              (912)
+#define IT_IS_MY_TURN_POS_X_2                              (1318)
+#define IT_IS_MY_TURN_POS_Y_2                              (915)
+#define IT_IS_MY_TURN_COLOR_RED                            (236)
+#define IT_IS_MY_TURN_COLOR_GREEN                          (173)
+#define IT_IS_MY_TURN_COLOR_BLUE                           (85)
+
+
+
+#define FIGTH_MENU_FRIEND_POS_X                            (700) // Depending of the enemies on a fight
+#define FIGTH_MENU_FRIEND_POS_Y                            (60)
+
+#define FIGTH_MENU_FRIEND_COLOR_RED                        (62)
+#define FIGTH_MENU_FRIEND_COLOR_GREEN                      (102)
+#define FIGTH_MENU_FRIEND_COLOR_BLUE                       (131)
+#define FIGTH_MENU_FRIEND_TURN_COLOR_RED                   (129)
+#define FIGTH_MENU_FRIEND_TURN_COLOR_GREEN                 (155)
+#define FIGTH_MENU_FRIEND_TURN_COLOR_BLUE                  (174)
+
+#define FIGTH_MENU_ENEMY_COLOR_RED                         (117)
+#define FIGTH_MENU_ENEMY_COLOR_GREEN                       (80)
+#define FIGTH_MENU_ENEMY_COLOR_BLUE                        (84)
+
+
+
+
+
+#define I_WON_THE_FIGHT_POS_X_1                         (1038)
+#define I_WON_THE_FIGHT_POS_Y_1                         (491)
+#define I_WON_THE_FIGHT_COLOR_RED_1                     (206)
+#define I_WON_THE_FIGHT_COLOR_GREEN_1                   (147)
+#define I_WON_THE_FIGHT_COLOR_BLUE_1                    (22)
+#define I_WON_THE_FIGHT_POS_X_2                         (880)
+#define I_WON_THE_FIGHT_POS_Y_2                         (494)
+#define I_WON_THE_FIGHT_COLOR_RED_2                     (219)
+#define I_WON_THE_FIGHT_COLOR_GREEN_2                   (168)
+#define I_WON_THE_FIGHT_COLOR_BLUE_2                    (17)
+
+#define I_LOST_THE_FIGHT_POS_X_1                        (1039)
+#define I_LOST_THE_FIGHT_POS_Y_1                        (501)
+#define I_LOST_THE_FIGHT_COLOR_RED_1                    (159)
+#define I_LOST_THE_FIGHT_COLOR_GREEN_1                  (72)
+#define I_LOST_THE_FIGHT_COLOR_BLUE_1                   (66)
+#define I_LOST_THE_FIGHT_POS_X_2                        (879)
+#define I_LOST_THE_FIGHT_POS_Y_2                        (505)
+#define I_LOST_THE_FIGHT_COLOR_RED_2                    (165)
+#define I_LOST_THE_FIGHT_COLOR_GREEN_2                  (81)
+#define I_LOST_THE_FIGHT_COLOR_BLUE_2                   (68)
+
+
+
+
+
+
+
+
 #define CHECK_PODS_POS_X								(1300)
 #define CHECK_PODS_POS_Y								(1041)
 #define CHECK_PODS_COLOR_RED							(96)
 #define CHECK_PODS_COLOR_GREEN							(190)
 #define CHECK_PODS_COLOR_BLUE							(53)
 
+
+
+
+
+
+
+
+
+
 #define OBSERVER_MODE_POS_X								(1395)
 #define OBSERVER_MODE_POS_Y								(1030)
-
-
 
 #define PRIVATE_MODE_POS_X_1							(270)
 #define PRIVATE_MODE_POS_Y_1							(1038)
@@ -122,21 +199,7 @@
 #define FIGTH_MENU_POS_X_14								(982)
 #define FIGTH_MENU_POS_Y_14								(858)
 
-#define FIGTH_MENU_ENEMY_COLOR_RED					    (65)
-#define FIGTH_MENU_ENEMY_COLOR_GREEN					(145)
-#define FIGTH_MENU_ENEMY_COLOR_BLUE						(175)
-#define FIGTH_MENU_FRIEND_COLOR_RED                     (100)
-#define FIGTH_MENU_FRIEND_COLOR_GREEN			     	(50)
-#define FIGTH_MENU_FRIEND_COLOR_BLUE				    (50)
-#define BLACK_COLOR_RED                                 (0)
-#define BLACK_COLOR_GREEN			                	(0)
-#define BLACK_COLOR_BLUE				                (0)
-#define GREY_COLOR_RED                                  (48)
-#define GREY_COLOR_GREEN			                	(48)
-#define GREY_COLOR_BLUE				                    (44)
-#define GREEN_COLOR_RED                                 (0)
-#define GREEN_COLOR_GREEN			                	(102)
-#define GREEN_COLOR_BLUE				                (0)
+
 
 #define NPJ_TALKING_POS_X                               (1189)
 #define NPJ_TALKING_POS_Y_1                             (750)
@@ -331,11 +394,7 @@
 #define INVO_SPELL_POS_8_X			                   	(1158)
 #define INVO_SPELL_POS_8_Y		                    	(1002)
 
-#define I_AM_ENTERING_IN_A_FIGHT_POS_X					(1010)
-#define I_AM_ENTERING_IN_A_FIGHT_POS_Y					(1035)
-#define I_AM_ENTERING_IN_A_FIGHT_COLOR_RED				(252)
-#define I_AM_ENTERING_IN_A_FIGHT_COLOR_GREEN			(200)
-#define I_AM_ENTERING_IN_A_FIGHT_COLOR_BLUE				(0)
+
 
 #define IS_MERCANT_POS_X_1					            (693)
 #define IS_MERCANT_POS_Y_1					            (111)
@@ -407,38 +466,6 @@
 #define AM_I_DEAD_COLOR_BLUE_3			                (36)
 #define AM_I_DEAD_POS_X_4					            (920)
 #define AM_I_DEAD_POS_Y_4					            (625)
-
-#define I_AM_DEFEATED_POS_X_1                           (814)
-#define I_AM_DEFEATED_POS_Y_1                           (780)
-#define I_AM_DEFEATED_COLOR_RED_1                       (58)
-#define I_AM_DEFEATED_COLOR_GREEN_1                     (60)
-#define I_AM_DEFEATED_COLOR_BLUE_1                      (50)
-#define I_AM_DEFEATED_POS_X_2                           (1116)
-#define I_AM_DEFEATED_POS_Y_2                           (783)
-#define I_AM_DEFEATED_COLOR_RED_2                       (46)
-#define I_AM_DEFEATED_COLOR_GREEN_2                     (53)
-#define I_AM_DEFEATED_COLOR_BLUE_2                      (40)
-#define I_AM_DEFEATED_POS_X_3                           (1021)
-#define I_AM_DEFEATED_POS_Y_3                           (742)
-#define I_AM_DEFEATED_COLOR_RED_3                       (160)
-#define I_AM_DEFEATED_COLOR_GREEN_3                     (75)
-#define I_AM_DEFEATED_COLOR_BLUE_3                      (67)
-
-#define I_WON_THE_FIGHT_POS_X_1                         (1025)
-#define I_WON_THE_FIGHT_POS_Y_1                         (735)
-#define I_WON_THE_FIGHT_COLOR_RED_1                     (204)
-#define I_WON_THE_FIGHT_COLOR_GREEN_1                   (146)
-#define I_WON_THE_FIGHT_COLOR_BLUE_1                    (21)
-#define I_WON_THE_FIGHT_POS_X_2                         (886)
-#define I_WON_THE_FIGHT_POS_Y_2                         (739)
-#define I_WON_THE_FIGHT_COLOR_RED_2                     (214)
-#define I_WON_THE_FIGHT_COLOR_GREEN_2                   (161)
-#define I_WON_THE_FIGHT_COLOR_BLUE_2                    (19)
-#define I_WON_THE_FIGHT_POS_X_3                         (1021)
-#define I_WON_THE_FIGHT_POS_Y_3                         (765)
-#define I_WON_THE_FIGHT_COLOR_RED_3                     (54)
-#define I_WON_THE_FIGHT_COLOR_GREEN_3                   (56)
-#define I_WON_THE_FIGHT_COLOR_BLUE_3                    (45)
 
 #define PRE_FIGHT_RED_POSITION_COLOR_RED				(221)
 #define PRE_FIGHT_RED_POSITION_COLOR_GREEN				(34)
