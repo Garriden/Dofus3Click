@@ -94,7 +94,7 @@
 
 
 
-#define FIGTH_MENU_FRIEND_POS_X                            (700) // Depending of the enemies on a fight
+#define FIGTH_MENU_FRIEND_POS_X                            (900) // Depending of the enemies on a fight
 #define FIGTH_MENU_FRIEND_POS_Y                            (60)
 
 #define FIGTH_MENU_FRIEND_COLOR_RED                        (62)

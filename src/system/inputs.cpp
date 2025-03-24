@@ -191,9 +191,9 @@ void inputs::ChangeMap(int position)
 
 void inputs::ChangeMenuBar(int changes, bool up)
 {
-    int key = VK_PRIOR;
+    int key = VK_NEXT;
     if(up) {
-        key = VK_NEXT;
+        key = VK_PRIOR;
     }
 
     for (int ii = 0; ii < changes; ++ii) {

@@ -40,7 +40,19 @@ void Fight::Start()
             break;
         case FightPreparationState::FIND_MY_POSITION_MENU:
             FindMyPosition();
-            step = FightPreparationState::FIND_ENEMY_POSITIONS_MENU;
+            step = FightPreparationState::START_FIGHT_STRATEGY; // or find enemy positions ?
+            break;
+        case FightPreparationState::START_FIGHT_STRATEGY:
+            //();
+            step = FightPreparationState::AFTER_FIGHT_SET;
+            break;
+        case FightPreparationState::AFTER_FIGHT_SET:
+            AfterFightSet();
+            step = FightPreparationState::AFTER_FIGHT_SIT;
+            break;
+        case FightPreparationState::AFTER_FIGHT_SIT:
+            AfterFightSit();
+            step = -1;
             break;
         default:
             return;
@@ -56,7 +68,7 @@ void Fight::FightSet()
     Fight::ChangeObjectsMenu();
     std::this_thread::sleep_for(std::chrono::seconds(2));
 
-    inputs::ChangeMenuBar(5, true);
+    inputs::ChangeMenuBar(5, false);
 
     std::this_thread::sleep_for(std::chrono::seconds(1));
     inputs::PressCtrlKey('4'); // Fight Set
@@ -107,4 +119,24 @@ void Fight::FindMyPosition()
 
     }
 
+}
+
+void Fight::AfterFightSet()
+{
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+    Fight::ChangeObjectsMenu();
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+
+    //inputs::ChangeMenuBar(5, false);
+
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    inputs::PressCtrlKey('3'); // Pods Set
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+}
+
+void Fight::AfterFightSit()
+{
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    inputs::PressCtrlKey('2'); // Fight Set
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 }

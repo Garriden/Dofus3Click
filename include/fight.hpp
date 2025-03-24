@@ -13,6 +13,8 @@ class Fight {
         void ChangeObjectsMenu();
         void ChangeSpellsMenu();
         void FindMyPosition();
+        void AfterFightSet();
+        void AfterFightSit();
 
         int _turn;
         int _myXPositionInMenuFight;
