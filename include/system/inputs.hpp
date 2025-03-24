@@ -15,6 +15,13 @@ namespace inputs {
     void PressKey(int keyParam);
 
     /*
+    * Simulates a special key pressing (Repag...).
+    *
+    * in: specialKey, key desired to press.
+    */
+    void PressSpecialKey(int specialKey);
+
+    /*
     * Simulates a key pressing + Ctrl key pressing.
     *
     * in: keyParam, key desired to press, besides the Ctrl key.
@@ -107,7 +114,19 @@ namespace inputs {
     *
     * in: position, RIGHT, LEFT, UP, DOWN.
     */
-   void ChangeMap(int position);
+    void ChangeMap(int position);
+
+    /*
+    * Change the objects bar up or down.
+    *
+    * in: changes: How many ups or downs do you wanna change.
+    * in: up: if true, send Re Pag shortcut, Av Pag if false.
+    */
+    void ChangeMenuBar(int changes, bool up);
+
+    // Change bottom menu, from spells menu to objects menu, or otherwise.
+    //  Can check first if it is spells menu, calling: check::IsSpellsMenu()
+    void ClickSwitchBottomMenu();
 
     /*
     * Give information of the coordenates of real clicks.

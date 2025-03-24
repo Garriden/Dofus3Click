@@ -54,6 +54,35 @@ void inputs::PressKey(int keyParam)
     SendInput(1, &input, sizeof(input));
 }
 
+void inputs::PressSpecialKey(int specialKey)
+{
+    SHORT key;
+    UINT mappedkey;
+    INPUT ip;
+
+    ip.ki.dwFlags = 0;
+    ip.type = INPUT_KEYBOARD;
+    ip.ki.wScan = 0;
+    ip.ki.time = 0;
+    ip.ki.dwExtraInfo = 0;
+
+    // Press the key
+    ip.ki.wVk = specialKey;
+    ip.ki.wScan = MapVirtualKey(specialKey, 0);
+    ip.ki.dwFlags = 0; // 0 for key press
+    ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
+    SendInput(1, &ip, sizeof(INPUT));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+    // Release the  key
+    ip.ki.wVk = specialKey;
+    ip.ki.wScan = MapVirtualKey(specialKey, 0);
+    ip.ki.dwFlags = KEYEVENTF_KEYUP;
+    ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
+    SendInput(1, &ip, sizeof(INPUT));
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
+}
+
 void inputs::PressCtrlKey(int keyParam)
 {
     SHORT key;
@@ -93,7 +122,7 @@ void inputs::PressCtrlKey(int keyParam)
     ip.ki.dwFlags = KEYEVENTF_KEYUP;
     ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
     SendInput(1, &ip, sizeof(INPUT));
-    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
     //Sleep(SECONDS); // pause for 1 second
 }
@@ -131,8 +160,9 @@ void inputs::Click(int x, int y)
     std::this_thread::sleep_for(std::chrono::milliseconds(10 * ruletNumber));
 }
 
-void ChangeMap(int position)
+void inputs::ChangeMap(int position)
 {
+    //TODO: Alt + W atajo teclado
     int x = 0, y = 0;
     switch (position)
     {
@@ -157,6 +187,24 @@ void ChangeMap(int position)
     }
 
     inputs::Click(x, y);
+}
+
+void inputs::ChangeMenuBar(int changes, bool up)
+{
+    int key = VK_PRIOR;
+    if(up) {
+        key = VK_NEXT;
+    }
+
+    for (int ii = 0; ii < changes; ++ii) {
+        PressSpecialKey(key);
+    }
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+}
+
+void inputs::ClickSwitchBottomMenu()
+{
+    Click(SWITCH_BOTTOM_MENU_POS_X_1, SWITCH_BOTTOM_MENU_POS_Y_1);
 }
 
 void inputs::DebugPoints()

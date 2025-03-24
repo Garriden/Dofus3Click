@@ -7,11 +7,15 @@ class Fight {
         ~Fight();
 
         void Start();
-        void FightSet();
 
     private:
+        void FightSet();
+        void ChangeObjectsMenu();
+        void ChangeSpellsMenu();
+        void FindMyPosition();
 
         int _turn;
+        int _myXPositionInMenuFight;
 
         enum FightPreparationState {
             FIGHT_SET                   = 0,

@@ -307,7 +307,7 @@ bool check::AmIDefeated()
     COLORREF color1 = basicOperations::GetColor(I_WON_THE_FIGHT_POS_X_1, I_WON_THE_FIGHT_POS_Y_1, true);
     COLORREF color2 = basicOperations::GetColor(I_WON_THE_FIGHT_POS_X_2, I_WON_THE_FIGHT_POS_Y_2, true);
 
-    // It is the desiRED   color
+    // It is the desiRED color
     if ((int(GetRValue(color1)) < I_WON_THE_FIGHT_COLOR_RED_1   + ERROR_GET_COLOUR_SOME) &&
         (int(GetRValue(color1)) > I_WON_THE_FIGHT_COLOR_RED_1   - ERROR_GET_COLOUR_SOME) &&
         (int(GetGValue(color1)) < I_WON_THE_FIGHT_COLOR_GREEN_1 + ERROR_GET_COLOUR_SOME) &&
@@ -594,3 +594,40 @@ bool HaveIHealth()
     return ret;
 }
 */
+
+bool check::IsSpellsMenu()
+{
+    bool ret = false;
+
+    COLORREF color1 = basicOperations::GetColor(IS_ORANGE_CAC_WEAPON_POS_X_1, IS_ORANGE_CAC_WEAPON_POS_Y_1, true);
+    COLORREF color2 = basicOperations::GetColor(IS_ORANGE_CAC_WEAPON_POS_X_2, IS_ORANGE_CAC_WEAPON_POS_Y_2, true);
+    COLORREF color3 = basicOperations::GetColor(IS_ORANGE_CAC_WEAPON_POS_X_3, IS_ORANGE_CAC_WEAPON_POS_Y_3, true);
+
+    // If the bottom-rightmost icon is a CaC weapon (has orange). Then the bottom menu is a spells menu.
+    if ((int(GetRValue(color1)) < IS_ORANGE_CAC_WEAPON_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color1)) > IS_ORANGE_CAC_WEAPON_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) < IS_ORANGE_CAC_WEAPON_COLOR_GREEN  + ERROR_GET_COLOUR_SOME) &&
+        (int(GetGValue(color1)) > IS_ORANGE_CAC_WEAPON_COLOR_GREEN  - ERROR_GET_COLOUR_SOME) &&
+        (int(GetBValue(color1)) < IS_ORANGE_CAC_WEAPON_COLOR_BLUE   + ERROR_GET_COLOUR) &&
+        (int(GetBValue(color1)) > IS_ORANGE_CAC_WEAPON_COLOR_BLUE   - ERROR_GET_COLOUR)
+        &&
+        (int(GetRValue(color2)) < IS_ORANGE_CAC_WEAPON_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color2)) > IS_ORANGE_CAC_WEAPON_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) < IS_ORANGE_CAC_WEAPON_COLOR_GREEN  + ERROR_GET_COLOUR_SOME ) &&
+        (int(GetGValue(color2)) > IS_ORANGE_CAC_WEAPON_COLOR_GREEN  - ERROR_GET_COLOUR_SOME ) &&
+        (int(GetBValue(color2)) < IS_ORANGE_CAC_WEAPON_COLOR_BLUE   + ERROR_GET_COLOUR) &&
+        (int(GetBValue(color2)) > IS_ORANGE_CAC_WEAPON_COLOR_BLUE   - ERROR_GET_COLOUR)
+        &&
+        (int(GetRValue(color3)) < IS_ORANGE_CAC_WEAPON_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color3)) > IS_ORANGE_CAC_WEAPON_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color3)) < IS_ORANGE_CAC_WEAPON_COLOR_GREEN  + ERROR_GET_COLOUR_SOME ) &&
+        (int(GetGValue(color3)) > IS_ORANGE_CAC_WEAPON_COLOR_GREEN  - ERROR_GET_COLOUR_SOME ) &&
+        (int(GetBValue(color3)) < IS_ORANGE_CAC_WEAPON_COLOR_BLUE   + ERROR_GET_COLOUR) &&
+        (int(GetBValue(color3)) > IS_ORANGE_CAC_WEAPON_COLOR_BLUE   - ERROR_GET_COLOUR) )
+    {
+        File::LogFile("Is the spells menu!", true);
+        ret = true;
+    }
+
+    return ret;
+}

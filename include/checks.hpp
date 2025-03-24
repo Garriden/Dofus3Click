@@ -125,4 +125,9 @@ bool IsBlack(int x, int y);
  * Check if I am trying to go into merchant mode.
  */
 //bool IsMercantMode();
+
+// Check if the bottom menu is spells menu.
+//  I check if the bottom rightmost icon is orange (CaC weapon)
+bool IsSpellsMenu();
+
 }

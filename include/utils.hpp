@@ -54,6 +54,22 @@
 #define BLACK_SCREEN_POS_X_4                               (1200)
 #define BLACK_SCREEN_POS_Y_4                               (725)
 
+///////////////////////////////////
+// BOTTOM MENU
+///////////////////////////////////
+
+#define IS_ORANGE_CAC_WEAPON_POS_X_1                              (1129)
+#define IS_ORANGE_CAC_WEAPON_POS_Y_1                              (1003)
+#define IS_ORANGE_CAC_WEAPON_POS_X_2                              (1127)
+#define IS_ORANGE_CAC_WEAPON_POS_Y_2                              (1013)
+#define IS_ORANGE_CAC_WEAPON_POS_X_3                              (1158)
+#define IS_ORANGE_CAC_WEAPON_POS_Y_3                              (1031)
+#define IS_ORANGE_CAC_WEAPON_COLOR_RED                            (252) //exact
+#define IS_ORANGE_CAC_WEAPON_COLOR_GREEN                          (140) // 128-150
+#define IS_ORANGE_CAC_WEAPON_COLOR_BLUE                           (60)  // 46 - 68
+
+#define SWITCH_BOTTOM_MENU_POS_X_1                                (1217)
+#define SWITCH_BOTTOM_MENU_POS_Y_1                                (997)
 
 ///////////////////////////////////
 // COLOR
@@ -95,6 +111,9 @@
 
 
 
+///////////////////////////////////
+// AFTER FIGHT
+///////////////////////////////////
 
 #define I_WON_THE_FIGHT_POS_X_1                         (1038)
 #define I_WON_THE_FIGHT_POS_Y_1                         (491)
@@ -117,6 +136,7 @@
 #define I_LOST_THE_FIGHT_COLOR_RED_2                    (165)
 #define I_LOST_THE_FIGHT_COLOR_GREEN_2                  (81)
 #define I_LOST_THE_FIGHT_COLOR_BLUE_2                   (68)
+
 
 
 
@@ -467,26 +487,6 @@
 #define AM_I_DEAD_POS_X_4					            (920)
 #define AM_I_DEAD_POS_Y_4					            (625)
 
-#define PRE_FIGHT_RED_POSITION_COLOR_RED				(221)
-#define PRE_FIGHT_RED_POSITION_COLOR_GREEN				(34)
-#define PRE_FIGHT_RED_POSITION_COLOR_BLUE				(0)
-
-#define IS_THE_FIGHT_FINISHED_POS_X_1					(910)
-#define IS_THE_FIGHT_FINISHED_POS_Y_1					(738)
-#define IS_THE_FIGHT_FINISHED_COLOR_RED_1				(244)
-#define IS_THE_FIGHT_FINISHED_COLOR_GREEN_1				(227)
-#define IS_THE_FIGHT_FINISHED_COLOR_BLUE_1				(49)
-#define IS_THE_FIGHT_FINISHED_POS_X_2					(904)
-#define IS_THE_FIGHT_FINISHED_POS_Y_2					(769)
-#define IS_THE_FIGHT_FINISHED_COLOR_RED_2				(53)
-#define IS_THE_FIGHT_FINISHED_COLOR_GREEN_2				(55)
-#define IS_THE_FIGHT_FINISHED_COLOR_BLUE_2				(44)
-#define IS_THE_FIGHT_FINISHED_POS_X_3					(1017)
-#define IS_THE_FIGHT_FINISHED_POS_Y_3					(746)
-#define IS_THE_FIGHT_FINISHED_COLOR_RED_3				(214)
-#define IS_THE_FIGHT_FINISHED_COLOR_GREEN_3				(162)
-#define IS_THE_FIGHT_FINISHED_COLOR_BLUE_3				(19)
-
 #define CLOSE_POSTFIGHT_WINDOW_POS_X					(1252)
 #define CLOSE_POSTFIGHT_WINDOW_POS_Y					(745)
 
@@ -522,53 +522,14 @@
 #define INVENTARY_CONSUMABLES_BRAK_POTI_COLOR_GREEN                 (70)
 #define INVENTARY_CONSUMABLES_BRAK_POTI_COLOR_BLUE                  (72)
 
-#define ERROR_GET_COLOUR_BIG										(50)
-#define ERROR_GET_COLOUR											(25)
-#define ERROR_GET_COLOUR_SOME										(20)
-#define ERROR_GET_COLOUR_QUITE										(10)
-#define ERROR_GET_COLOUR_SMALL										(5)
-#define ERROR_GET_COLOUR_SMALLER									(1)
-#define POSIBLE_FIGHT_POSITIONS										(8)
+#define POSIBLE_FIGHT_POSITIONS                                     (8)
 
-
-
-
-/**************************
- * GLOBAL VARIABLES
- **************************/
-#ifdef DEFINE_VARIABLES
-#define EXTERN /* nothing */
-#else
-#define EXTERN extern
-#endif /* DEFINE_VARIABLES */
-
-EXTERN std::string current_pj_;
-
-/* Roadmap */
-EXTERN bool restart_roadmap_;
-EXTERN bool first_time_go_to_initial_map_;
-EXTERN bool lowering_pods_;
-EXTERN bool use_zaap_;
-EXTERN std::string zaap_file_;
-
-EXTERN int x_roadmap_;
-EXTERN int y_roadmap_;
-
-/* Fight */;
-EXTERN int myselfFightMenuPosition_;
-EXTERN int black_position_;
-
-EXTERN int turnNumber_;
-EXTERN int bastionRemainingTurns_;
-
-EXTERN bool sequential_;
-EXTERN bool hunting_;
-EXTERN bool invos_;
-EXTERN bool heal_;
-
-EXTERN std::vector<void(*)()> GoKillMonsters_funcs_;
-EXTERN int go_kill_monsters_;
-EXTERN std::pair<int, int> myself_in_the_arena_pos_;
-
-/* Checks */;
-EXTERN bool talking_with_npj_disable_check_;
+///////////////////////////////////
+// ERRORS VARIANCE
+///////////////////////////////////
+#define ERROR_GET_COLOUR_BIG                                        (50)
+#define ERROR_GET_COLOUR                                            (25)
+#define ERROR_GET_COLOUR_SOME                                       (20)
+#define ERROR_GET_COLOUR_QUITE                                      (10)
+#define ERROR_GET_COLOUR_SMALL                                      (5)
+#define ERROR_GET_COLOUR_SMALLER                                    (1)
