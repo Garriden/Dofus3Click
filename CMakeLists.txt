@@ -23,8 +23,9 @@ set(HEADERS
     fight.hpp
     roadmap.hpp
     utils.hpp
-    menusInterface.hpp
+    menuMappings.hpp
     menus.hpp
+    menusInterface.hpp
     system/inputs.hpp
     system/file.hpp
     system/actualTime.hpp

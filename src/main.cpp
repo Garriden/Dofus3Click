@@ -61,10 +61,10 @@ int main()
                 //LogFile("Playing as Enutrof.");
                 break;
             case 99: //debug
-                //if(check::CheckFight()) {
+                if(check::CheckFight()) {
                     Fight fight(0);
                     fight.Start();
-                //}
+                }
 
                 //Sleep(5000);
                 //if(!restart_roadmap_) ExecuteRoadMap("Fisher/SufokianShorelinelv40_4");

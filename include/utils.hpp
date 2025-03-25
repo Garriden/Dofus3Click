@@ -92,7 +92,8 @@
 #define IT_IS_MY_TURN_COLOR_GREEN                          (173)
 #define IT_IS_MY_TURN_COLOR_BLUE                           (85)
 
-
+#define ACCEPT_RETO_POS_X                                  (186)
+#define ACCEPT_RETO_POS_Y                                  (363)
 
 #define FIGTH_MENU_FRIEND_POS_X                            (900) // Depending of the enemies on a fight
 #define FIGTH_MENU_FRIEND_POS_Y                            (60)

@@ -4,6 +4,7 @@ bool check::CheckFight()
 {
     bool ret = false;
 
+    //SetCursorPos(IT_IS_MY_TURN_POS_X_1, IT_IS_MY_TURN_POS_Y_1);
     COLORREF color1 = basicOperations::GetColor(IT_IS_MY_TURN_POS_X_1, IT_IS_MY_TURN_POS_Y_1, true);
     COLORREF color2 = basicOperations::GetColor(IT_IS_MY_TURN_POS_X_2, IT_IS_MY_TURN_POS_Y_2, true);
 

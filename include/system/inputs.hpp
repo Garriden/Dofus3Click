@@ -45,17 +45,17 @@ namespace inputs {
     /*
     * Simulates a space key pressing.
     */
-    //void PressSpace();
+    void PressSpace();
 
     /*
     * Simulates an escape key pressing.
     */
-    //void PressEscape();
+    void PressEscape();
 
     /*
     * Simulates an enter key pressing.
     */
-    //void PressEnter();
+    void PressEnter();
 
     /*
     * Simulate an execution of different sequencial keys.

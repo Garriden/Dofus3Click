@@ -123,8 +123,42 @@ void inputs::PressCtrlKey(int keyParam)
     ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
     SendInput(1, &ip, sizeof(INPUT));
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
+}
 
-    //Sleep(SECONDS); // pause for 1 second
+void inputs::PressSpace()
+{
+    INPUT space = { 0 };
+    space.type = INPUT_KEYBOARD;
+    space.ki.wVk = VK_SPACE;
+    space.ki.wScan = MapVirtualKey(VK_SPACE, 0);
+    SendInput(1, &space, sizeof(INPUT)); // Send KeyDown
+    space.ki.dwFlags = KEYEVENTF_KEYUP | KEYEVENTF_EXTENDEDKEY;
+    SendInput(1, &space, sizeof(INPUT)); // Send KeyUp
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+}
+
+void inputs::PressEscape()
+{
+    INPUT escape = { 0 };
+    escape.type = INPUT_KEYBOARD;
+    escape.ki.wVk = VK_ESCAPE;
+    escape.ki.wScan = MapVirtualKey(VK_ESCAPE, 0);
+    SendInput(1, &escape, sizeof(INPUT)); // Send KeyDown
+    escape.ki.dwFlags = KEYEVENTF_KEYUP | KEYEVENTF_EXTENDEDKEY;
+    SendInput(1, &escape, sizeof(INPUT)); // Send KeyUp
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+}
+
+void inputs::PressEnter()
+{
+    INPUT enter = { 0 };
+    enter.type = INPUT_KEYBOARD;
+    enter.ki.wVk = VK_RETURN;
+    enter.ki.wScan = MapVirtualKey(VK_RETURN, 0);
+    SendInput(1, &enter, sizeof(INPUT)); // Send KeyDown
+    enter.ki.dwFlags = KEYEVENTF_KEYUP | KEYEVENTF_EXTENDEDKEY;
+    SendInput(1, &enter, sizeof(INPUT)); // Send KeyUp
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
 }
 
 bool inputs::ClickOnExe()
@@ -191,9 +225,9 @@ void inputs::ChangeMap(int position)
 
 void inputs::ChangeMenuBar(int changes, bool up)
 {
-    int key = VK_NEXT;
+    int key = VK_PRIOR;
     if(up) {
-        key = VK_PRIOR;
+        key = VK_NEXT;
     }
 
     for (int ii = 0; ii < changes; ++ii) {
