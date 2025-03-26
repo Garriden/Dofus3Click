@@ -30,16 +30,16 @@ std::vector<std::vector<std::pair<int, int> > > File::ReadFileAndBuildMap(const 
 
             while(std::getline(str, word, ',')) {
                 std::getline(str, word2, ',');
-                if(word == "up" || (word2 != "" && stoi(word2) <= UP_Y) ) { // CheckChangeMap
+                if(word == "up" || (word2 != "" && (stoi(word2) <= UP_Y + ERROR_GET_COLOUR_QUITE)) ) { // CheckChangeMap
                     coord.first  = UP_X;
                     coord.second = UP_Y;
-                } else if(word == "left" || (word2 != "" && stoi(word) <= LEFT_X) ) {
+                } else if(word == "left" || (word != "" && (stoi(word) <= LEFT_X + ERROR_GET_COLOUR_QUITE)) ) {
                     coord.first  = LEFT_X;
                     coord.second = LEFT_Y;
-                } else if(word == "down" || (word2 != "" && stoi(word2) >= DOWN_Y) ) {
+                } else if(word == "down" || (word2 != "" && (stoi(word2) >= DOWN_Y - ERROR_GET_COLOUR_QUITE)) ) {
                     coord.first  = DOWN_X;
                     coord.second = DOWN_Y;
-                } else if(word == "right" || (word2 != "" && stoi(word) >= RIGHT_X) ) {
+                } else if(word == "right" || (word != "" && (stoi(word) >= RIGHT_X - ERROR_GET_COLOUR_QUITE)) ) {
                     coord.first  = RIGHT_X;
                     coord.second = RIGHT_Y;
                 } else {

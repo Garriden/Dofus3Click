@@ -347,7 +347,7 @@ bool check::IsBlack(int x, int y)
         (int(GetGValue(color)) < BLACK_COLOR_GREEN + ERROR_GET_COLOUR_SMALL) &&
         (int(GetBValue(color)) < BLACK_COLOR_BLUE  + ERROR_GET_COLOUR_SMALL))
     {
-        File::LogFile("IS BLACK!", false);
+        //File::LogFile("IS BLACK!", false);
         ret = true;
     }
 

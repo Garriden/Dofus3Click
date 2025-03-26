@@ -99,7 +99,7 @@
 #define ACCEPT_RETO_POS_X                                  (186)
 #define ACCEPT_RETO_POS_Y                                  (363)
 
-#define FIGTH_MENU_FRIEND_POS_X                            (900) // Depending of the enemies on a fight
+#define FIGTH_MENU_FRIEND_POS_X                            (750) // Depending of the enemies on a fight
 #define FIGTH_MENU_FRIEND_POS_Y                            (60)
 
 #define FIGTH_MENU_FRIEND_COLOR_RED                        (62)
@@ -150,6 +150,12 @@
 
 
 
+
+
+
+
+
+
 #define CHECK_PODS_POS_X								(1300)
 #define CHECK_PODS_POS_Y								(1041)
 #define CHECK_PODS_COLOR_RED							(96)
@@ -157,13 +163,46 @@
 #define CHECK_PODS_COLOR_BLUE							(53)
 
 
+//////////////////////////////////////////////////////////////
+// ZAAPS CHECKS
+//////////////////////////////////////////////////////////////
 
+#define I_AM_IN_ASTRUB_ZAAP_POS_X_1                     (1101)
+#define I_AM_IN_ASTRUB_ZAAP_POS_Y_1                     (318)
+#define I_AM_IN_ASTRUB_ZAAP_COLOR_RED_1                 (127)
+#define I_AM_IN_ASTRUB_ZAAP_COLOR_GREEN_1               (168)
+#define I_AM_IN_ASTRUB_ZAAP_COLOR_BLUE_1                (115)
+#define I_AM_IN_ASTRUB_ZAAP_POS_X_2                     (1102)
+#define I_AM_IN_ASTRUB_ZAAP_POS_Y_2                     (299)
+#define I_AM_IN_ASTRUB_ZAAP_COLOR_RED_2                 (234)
+#define I_AM_IN_ASTRUB_ZAAP_COLOR_GREEN_2               (210)
+#define I_AM_IN_ASTRUB_ZAAP_COLOR_BLUE_2                (134)
+#define I_AM_IN_ASTRUB_ZAAP_POS_X_3                     (1029)
+#define I_AM_IN_ASTRUB_ZAAP_POS_Y_3                     (274)
+#define I_AM_IN_ASTRUB_ZAAP_COLOR_RED_3                 (167)
+#define I_AM_IN_ASTRUB_ZAAP_COLOR_GREEN_3               (137)
+#define I_AM_IN_ASTRUB_ZAAP_COLOR_BLUE_3                (58)
 
+//////////////////////////////////////////////////////////////
+// ROADMAPS CHECKS
+//////////////////////////////////////////////////////////////
 
-
-
-
-
+// 0, -18
+#define I_AM_IN_WOOD_LV1_POS_X_1                     (1369)
+#define I_AM_IN_WOOD_LV1_POS_Y_1                     (161)
+#define I_AM_IN_WOOD_LV1_COLOR_RED_1                 (84)
+#define I_AM_IN_WOOD_LV1_COLOR_GREEN_1               (134)
+#define I_AM_IN_WOOD_LV1_COLOR_BLUE_1                (138)
+#define I_AM_IN_WOOD_LV1_POS_X_2                     (625)
+#define I_AM_IN_WOOD_LV1_POS_Y_2                     (99)
+#define I_AM_IN_WOOD_LV1_COLOR_RED_2                 (114)
+#define I_AM_IN_WOOD_LV1_COLOR_GREEN_2               (27)
+#define I_AM_IN_WOOD_LV1_COLOR_BLUE_2                (23)
+#define I_AM_IN_WOOD_LV1_POS_X_3                     (695)
+#define I_AM_IN_WOOD_LV1_POS_Y_3                     (871)
+#define I_AM_IN_WOOD_LV1_COLOR_RED_3                 (110)
+#define I_AM_IN_WOOD_LV1_COLOR_GREEN_3               (104)
+#define I_AM_IN_WOOD_LV1_COLOR_BLUE_3                (63)
 
 #define OBSERVER_MODE_POS_X								(1395)
 #define OBSERVER_MODE_POS_Y								(1030)
@@ -187,42 +226,6 @@
 #define HEALTH_POS_X    								(803)
 #define HEALTH_POS_Y    								(934)
 #define HEALTH_COLOR_RED   								(200)
-
-#define MENU_BAR_ARROW_UP_POS_X							(1281)
-#define MENU_BAR_ARROW_UP_POS_Y							(962)
-#define MENU_BAR_ARROW_DOWN_POS_X						(1281)
-#define MENU_BAR_ARROW_DOWN_POS_Y						(1004)
-
-#define FIGTH_MENU_POS_X_0								(1850) // Most right one
-#define FIGTH_MENU_POS_Y_0								(858)
-#define FIGTH_MENU_POS_X_1								(1788)
-#define FIGTH_MENU_POS_Y_1								(858)
-#define FIGTH_MENU_POS_X_2								(1726)
-#define FIGTH_MENU_POS_Y_2								(858)
-#define FIGTH_MENU_POS_X_3								(1664)
-#define FIGTH_MENU_POS_Y_3								(858)
-#define FIGTH_MENU_POS_X_4								(1602)
-#define FIGTH_MENU_POS_Y_4								(858)
-#define FIGTH_MENU_POS_X_5								(1540)
-#define FIGTH_MENU_POS_Y_5								(858)
-#define FIGTH_MENU_POS_X_6								(1478)
-#define FIGTH_MENU_POS_Y_6								(858)
-#define FIGTH_MENU_POS_X_7								(1416)
-#define FIGTH_MENU_POS_Y_7								(858)
-#define FIGTH_MENU_POS_X_8								(1354)
-#define FIGTH_MENU_POS_Y_8								(858)
-#define FIGTH_MENU_POS_X_9								(1292)
-#define FIGTH_MENU_POS_Y_9								(858)
-#define FIGTH_MENU_POS_X_10								(1230)
-#define FIGTH_MENU_POS_Y_10								(858)
-#define FIGTH_MENU_POS_X_11								(1168)
-#define FIGTH_MENU_POS_Y_11								(858)
-#define FIGTH_MENU_POS_X_12								(1106)
-#define FIGTH_MENU_POS_Y_12								(858)
-#define FIGTH_MENU_POS_X_13								(1044)
-#define FIGTH_MENU_POS_Y_13								(858)
-#define FIGTH_MENU_POS_X_14								(982)
-#define FIGTH_MENU_POS_Y_14								(858)
 
 
 
@@ -275,21 +278,7 @@
 #define I_AM_IN_EDGE_ZAAP_COLOR_GREEN_3                 (219)
 #define I_AM_IN_EDGE_ZAAP_COLOR_BLUE_3                  (122)
 
-#define I_AM_IN_ASTRUB_ZAAP_POS_X_1                     (1101)
-#define I_AM_IN_ASTRUB_ZAAP_POS_Y_1                     (318)
-#define I_AM_IN_ASTRUB_ZAAP_COLOR_RED_1                 (124)
-#define I_AM_IN_ASTRUB_ZAAP_COLOR_GREEN_1               (181)
-#define I_AM_IN_ASTRUB_ZAAP_COLOR_BLUE_1                (140)
-#define I_AM_IN_ASTRUB_ZAAP_POS_X_2                     (1102)
-#define I_AM_IN_ASTRUB_ZAAP_POS_Y_2                     (299)
-#define I_AM_IN_ASTRUB_ZAAP_COLOR_RED_2                 (238)
-#define I_AM_IN_ASTRUB_ZAAP_COLOR_GREEN_2               (216)
-#define I_AM_IN_ASTRUB_ZAAP_COLOR_BLUE_2                (132)
-#define I_AM_IN_ASTRUB_ZAAP_POS_X_3                     (1029)
-#define I_AM_IN_ASTRUB_ZAAP_POS_Y_3                     (274)
-#define I_AM_IN_ASTRUB_ZAAP_COLOR_RED_3                 (168)
-#define I_AM_IN_ASTRUB_ZAAP_COLOR_GREEN_3               (135)
-#define I_AM_IN_ASTRUB_ZAAP_COLOR_BLUE_3                (60)
+
 
 #define I_AM_IN_OTO_COAST_ZAAP_POS_X_1                  (900)
 #define I_AM_IN_OTO_COAST_ZAAP_POS_Y_1                  (328)

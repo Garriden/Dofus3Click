@@ -8,14 +8,16 @@
 
 Fight::Fight() :
     _turn(0),
-    _myXPositionInMenuFight(0)
+    _myXPositionInMenuFight(0),
+    _enemiesXPositionInMenuFight{}
 {
     std::cout << "Fight constructor called" << std::endl;
 }
 
 Fight::Fight(int turn) :
     _turn(turn),
-    _myXPositionInMenuFight(0)
+    _myXPositionInMenuFight(0),
+    _enemiesXPositionInMenuFight{}
 {
     std::cout << "Fight constructor 2 called" << std::endl;
 }
@@ -84,6 +86,7 @@ void Fight::FightSet()
     std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 
+// Todo: sned to inputs
 void Fight::ChangeObjectsMenu()
 {
     if(check::IsSpellsMenu()) {
@@ -121,7 +124,7 @@ void Fight::FindMyPosition()
         )
         {
             _myXPositionInMenuFight = ii + 10; // When my turn, window gets slightly bigger.
-            //File::LogFile(("My X position in fight menu: " + std::to_string(_myXPositionInMenuFight)).c_str(), true);
+            //File::LogFile(("My X position in fight menu: " + std::to_string(_myXPositionInMenuFight)).c_str(1), true);
             return;
         }
         ii += 10;
@@ -217,12 +220,16 @@ int Fight::FightStrategySM()
         ThrowSpellToEnemies(SpellsRow::MOON,        SpellsRow::SPELLS_ROW);
         ThrowSpellToEnemies(SpellsRow::LLAMILLA,    SpellsRow::SPELLS_ROW);
 
-        ThrowSpellToEnemies(SpellsCtrlRow::POMPA,   SpellsCtrlRow::SPELLS_CTRL_ROW);
+        if(_enemiesXPositionInMenuFight.size() == 1) {
+            ThrowSpellToEnemies(SpellsCtrlRow::POMPA,      SpellsCtrlRow::SPELLS_CTRL_ROW);
+            ThrowSpellToEnemies(SpellsCtrlRow::ESCARCHA,   SpellsCtrlRow::SPELLS_CTRL_ROW);
+            ThrowSpellToEnemies(SpellsCtrlRow::ESCAPADITA, SpellsCtrlRow::SPELLS_CTRL_ROW);
+        }
 
         if(check::CheckFight()) { // if still my turn, pass
             std::this_thread::sleep_for(std::chrono::seconds(1));
             inputs::PressSpace();
-            std::this_thread::sleep_for(std::chrono::seconds(2));
+            std::this_thread::sleep_for(std::chrono::seconds(1));
         }
 
         ++_turn;

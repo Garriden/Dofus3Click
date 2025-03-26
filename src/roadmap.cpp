@@ -1,17 +1,92 @@
 #include "roadmap.hpp"
+#include "fight.hpp"
 #include "utils.hpp"
 #include "system/inputs.hpp"
 #include "system/file.hpp"
 #include "basicOperations.hpp"
 #include "checks.hpp"
+#include "checksRoadmap.hpp"
+#include "zaap.hpp"
 
-void roadmap::ExecuteRoadMap(std::string name)
+Roadmap::Roadmap() :
+    _profession{},
+    _zaap{""}
 {
-    File::LogFile("  ExecuteRoadMap: " + name, true);
+    std::cout << "Roadmap constructor called" << std::endl;
+}
+
+Roadmap::Roadmap(Profession profession, std::string zaap) :
+    _profession{profession},
+    _zaap{zaap}
+{
+    std::cout << "Roadmap started" << std::endl;
+}
+
+Roadmap::~Roadmap()
+{
+    std::cout << "Roadmap destructor called" << std::endl;
+}
+
+void Roadmap::Start()
+{
+    int step = RoadmapState::SET_PODS_SET;
+
+    while(1) {
+        switch(step) {
+        case RoadmapState::SET_PODS_SET:
+            SetPodsSet();
+            step = RoadmapState::CHECK_INITIAL_POSITION;
+            break;
+        case RoadmapState::CHECK_INITIAL_POSITION:
+            if(checkRoadmap::CheckWoodLv1()) {
+                step = RoadmapState::EXECUTE_ROADMAP;
+            } else {
+                step = RoadmapState::CHECK_ZAAP_POSITION;
+            }
+            break;
+        case RoadmapState::CHECK_ZAAP_POSITION:
+            if(zaap::CheckZaapAstrub()) {
+                step = RoadmapState::GO_TO_INITIAL_MAP;
+            } else {
+                step = RoadmapState::GO_TO_ZAAP;
+            }
+            break;
+        case RoadmapState::GO_TO_ZAAP:
+            File::LogFile("Going to initial Zaap ... ", true);
+            //inputs::PressCtrlKey('8'); // Recall Poti.
+            step = RoadmapState::GO_TO_INITIAL_MAP;
+            break;
+        case RoadmapState::GO_TO_INITIAL_MAP:
+            ExecuteRoadMap("../../Telemetry/Wood/fromAstrubZaapToWoodLv1.csv");
+            step = RoadmapState::EXECUTE_ROADMAP;
+            break;
+        case RoadmapState::EXECUTE_ROADMAP:
+            ExecuteRoadMap("../../Telemetry/Wood/astrubAshLv1.csv");
+            //step = RoadmapState::AFTER_FIGHT_SET;
+            break;
+        /*case RoadmapState::AFTER_FIGHT_SET:
+            //AfterFightSet();
+            step = RoadmapState::AFTER_FIGHT_SIT;
+            break;
+        case RoadmapState::AFTER_FIGHT_SIT:
+            //AfterFightSit();
+            step = -1;
+            break;*/
+        default:
+            return;
+            break;
+        }
+    }
+
+}
+
+void Roadmap::ExecuteRoadMap(std::string name)
+{
+    File::LogFile("ExecuteRoadMap: " + name, true);
     std::vector<std::vector<std::pair<int, int> > > roadmap = File::ReadFileAndBuildMap(name);
 
     for(int ii = 0; ii < static_cast<int>(roadmap.size()); ++ii) {
-        File::LogFile("ii: " + std::to_string(ii), true);
+        File::LogFile("map: " + std::to_string(ii), true);
         //if(restart_roadmap_) {
         //    return;
         //}
@@ -23,7 +98,7 @@ void roadmap::ExecuteRoadMap(std::string name)
 }
 
 
-void roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
+void Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
 {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
@@ -37,12 +112,17 @@ void roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
         //if(!restart_roadmap_) {
             ruletNumber = basicOperations::RuletaInput(0, 9) + 1;
 
-            std::this_thread::sleep_for(std::chrono::seconds(10));
+            std::this_thread::sleep_for(std::chrono::seconds(8));
             std::this_thread::sleep_for(std::chrono::milliseconds(ruletNumber * 100));
 
-            //CheckFight(); TODO
+            if(check::CheckFight()) {
+                Fight fight;
+                fight.Start();
+            }
 
             inputs::Click(map[ii].first, map[ii].second);
+
+
         //}
     }
 
@@ -54,20 +134,24 @@ void roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
     // Wait for Black Screen
     bool mapChanged = false;
     int retries = 0;
-    while(!mapChanged && retries < 3) {
+    while(!mapChanged && retries < 10) {
         for(int ii = 0; !mapChanged && ii < 500; ++ii) {
             if(check::IsBlackScreen()) {
                 mapChanged = true;
-                File::LogFile("Backscreen detected! mapChanged", false);
+                //File::LogFile("Backscreen detected! mapChanged", false);
             }
             std::this_thread::sleep_for(std::chrono::milliseconds(10));
         }
 
         if(!mapChanged) { // Invalid action, try again.
             File::LogFile(" NO! mapChanged... Clicking again...", true);
-            inputs::Click(map[map.size()-1].first, map[map.size()-1].second);
+            inputs::Click(map[map.size()-1].first, map[map.size()-1].second + retries);
             ++retries;
         }
+    }
+
+    if(retries >= 10) {
+        File::LogFile("Stuck! So many retries for invalid action...", true);
     }
     //std::this_thread::sleep_for(std::chrono::seconds(1));
 
@@ -119,4 +203,37 @@ void roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
         
     }
     */
+}
+
+// Todo: sned to inputs
+void Roadmap::ChangeObjectsMenu()
+{
+    if(check::IsSpellsMenu()) {
+        inputs::ClickSwitchBottomMenu();
+    } else {
+        //File::LogFile("Already Objects menu.", true);
+    }
+}
+
+void Roadmap::ChangeSpellsMenu()
+{
+    if(check::IsSpellsMenu()) {
+        //File::LogFile("Already Spells menu.", true);
+    } else {
+        inputs::ClickSwitchBottomMenu();
+    }
+
+}
+
+void Roadmap::SetPodsSet()
+{
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+    Roadmap::ChangeObjectsMenu();
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+
+    inputs::ChangeMenuBar(5, false);
+
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    inputs::PressCtrlKey('3'); // Pods Set
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 }

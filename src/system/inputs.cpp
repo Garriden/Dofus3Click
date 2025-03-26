@@ -31,7 +31,7 @@ namespace {
             (int(GetBValue(color)) > DOFUS_EXE_POS_COLOR_BLUE_2  - ERROR_GET_COLOUR_SMALL)) )
         {
             ret = true;
-            File::LogFile("FindDofusExe (dot) it is found!", true);
+            File::LogFile("DofusExe found!", true);
         }
 
         return ret;

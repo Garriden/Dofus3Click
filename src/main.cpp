@@ -5,6 +5,8 @@
 
 #include "checks.hpp"
 #include "fight.hpp"
+#include "roadmap.hpp"
+
 
 #include <windows.h>
 #include <iostream>
@@ -67,13 +69,13 @@ int main()
                 //LogFile("Playing as Enutrof.");
                 break;
             case 99: //debug
-                if(check::CheckFight()) {
-                    Fight fight(0);
-                    fight.Start();
-                }
+                //if(check::CheckFight()) {
+                //    Fight fight(0);
+                //    fight.Start();
+                //}
 
                 //Sleep(5000);
-                //if(!restart_roadmap_) ExecuteRoadMap("Fisher/SufokianShorelinelv40_4");
+                //roadmap::ExecuteRoadMap("../../Telemetry/Wood/astrubAshLv1.csv");
                 //FindExe();
             break;
         }

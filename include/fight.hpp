@@ -35,11 +35,6 @@ class Fight {
             AFTER_FIGHT_SIT             = 8
         };
 
-        enum FightStrategyState {
-            CHECK_TURN                  = 0,
-            DEFEND_MYSELF               = 1
-        };
-
         int FightStrategySM();
         void DefendMyself();
 
