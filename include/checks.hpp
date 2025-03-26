@@ -85,6 +85,9 @@ bool AmIDefeated();
  */
 bool IWonTheFight();
 
+// If I won or I lost.
+bool IsFightFinished();
+
 // Is the screen black?
 bool IsBlackScreen();
 

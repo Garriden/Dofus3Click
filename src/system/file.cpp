@@ -91,9 +91,10 @@ void File::WriteFile(const std::string &dataToWrite, const std::string &filePath
     // Find file.
     std::filesystem::path path{ filePath };
 
-    // Write it into file.
-    std::ofstream ofs(path);
-    ofs << dataToWrite;
+    // Write it into file in append mode.
+    std::ofstream ofs(path, std::ios_base::app);
+
+    ofs << dataToWrite << std::endl;
     ofs.close();
 }
 
@@ -125,7 +126,7 @@ void File::LogFile(std::string message, bool date)
             "] ";
     }
 
-    std::string read = File::ReadFile(s);
+    //std::string read = File::ReadFile(s);
 
-    File::WriteFile(base + read + message, s);
+    File::WriteFile(base /*+ read */ + message, s);
 }

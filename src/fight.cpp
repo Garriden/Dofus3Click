@@ -80,7 +80,7 @@ void Fight::FightSet()
     inputs::ChangeMenuBar(5, false);
 
     std::this_thread::sleep_for(std::chrono::seconds(1));
-    inputs::PressCtrlKey('4'); // Fight Set
+    inputs::PressCtrlKey('5'); // Fight Set
     std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 
@@ -89,14 +89,14 @@ void Fight::ChangeObjectsMenu()
     if(check::IsSpellsMenu()) {
         inputs::ClickSwitchBottomMenu();
     } else {
-        File::LogFile("Already Objects menu.", true);
+        //File::LogFile("Already Objects menu.", true);
     }
 }
 
 void Fight::ChangeSpellsMenu()
 {
     if(check::IsSpellsMenu()) {
-        File::LogFile("Already Spells menu.", true);
+        //File::LogFile("Already Spells menu.", true);
     } else {
         inputs::ClickSwitchBottomMenu();
     }
@@ -109,7 +109,7 @@ void Fight::FindMyPosition()
     int its = 50;
     while(its --> 0) {
         SetCursorPos(ii, FIGTH_MENU_FRIEND_POS_Y);
-        COLORREF color1 = basicOperations::GetColor(ii, FIGTH_MENU_FRIEND_POS_Y, true);
+        COLORREF color1 = basicOperations::GetColor(ii, FIGTH_MENU_FRIEND_POS_Y, false);
 
         if(
         (int(GetRValue(color1)) < FIGTH_MENU_FRIEND_COLOR_RED    + ERROR_GET_COLOUR_QUITE) &&
@@ -121,7 +121,7 @@ void Fight::FindMyPosition()
         )
         {
             _myXPositionInMenuFight = ii + 10; // When my turn, window gets slightly bigger.
-            File::LogFile(("My X position in fight menu: " + std::to_string(_myXPositionInMenuFight)).c_str(), true);
+            //File::LogFile(("My X position in fight menu: " + std::to_string(_myXPositionInMenuFight)).c_str(), true);
             return;
         }
         ii += 10;
@@ -131,10 +131,10 @@ void Fight::FindMyPosition()
 void Fight::FindEnemiesPositions()
 {
     int ii = FIGTH_MENU_FRIEND_POS_X;
-    int its = 10;
+    int its = 30;
     while(its --> 0) {
         SetCursorPos(ii, FIGTH_MENU_FRIEND_POS_Y);
-        COLORREF color1 = basicOperations::GetColor(ii, FIGTH_MENU_FRIEND_POS_Y, true);
+        COLORREF color1 = basicOperations::GetColor(ii, FIGTH_MENU_FRIEND_POS_Y, false);
 
         if(
         (int(GetRValue(color1)) < FIGTH_MENU_ENEMY_COLOR_RED    + ERROR_GET_COLOUR_QUITE) &&
@@ -146,12 +146,13 @@ void Fight::FindEnemiesPositions()
         )
         {
             its = 10; // if enemy found, keep iterating to find more enemies.
-            _enemiesXPositionInMenuFight.push_back(ii + 20); // When my turn, window gets slightly bigger.
-            File::LogFile(("_enemiesXPositionInMenuFight: " + std::to_string(ii+5)).c_str(), true);
-            ii += 80; // increment more or less where is the next enemy.
+            _enemiesXPositionInMenuFight.push_back(ii + 10); // When my turn, window gets slightly bigger.
+            //File::LogFile(("_enemiesXPositionInMenuFight: " + std::to_string(ii+10)).c_str(), true);
+            ii += 60; // increment more or less where is the next enemy.
         }
-        ii += 10;
+        ii += 20;
     }
+    File::LogFile(("Number of enemies: " + std::to_string(_enemiesXPositionInMenuFight.size())).c_str(), true);
 }
 
 void Fight::ReadyToFight()
@@ -187,102 +188,88 @@ void Fight::AfterFightSit()
 
 int Fight::FightStrategySM() 
 {
-    File::LogFile("FightStrategySM() ! ", true);
-    while(1 /*!dead || !fightFinished*/) {
-        while(!check::CheckFight()) {} // Wait for my turn.
+    File::LogFile("FightStarted ! ", true);
+    while(!check::IsFightFinished()) {
+
+        int enemiesUpdated = false;
+        while(!check::CheckFight()) { // Wait for my turn.
+            if(!enemiesUpdated) { // if I still have time, check how many enemies are still alive.
+                _enemiesXPositionInMenuFight.clear();
+                FindEnemiesPositions();
+                enemiesUpdated = true;
+            }
+        }
 
         if(_turn % 3 == 0) {
             DefendMyself();
+        } else if(_turn % 6 == 2) {
+            ThrowSpellToMyself(SpellsCtrlRow::BASTION,   SpellsCtrlRow::SPELLS_CTRL_ROW);
+        } else if(_turn % 6 == 5) {
+            ThrowSpellToMyself(SpellsCtrlRow::BARRICADA, SpellsCtrlRow::SPELLS_CTRL_ROW);
         }
 
-        for(int ii = 0; ii < _enemiesXPositionInMenuFight.size(); ++ii) {
-            inputs::PressKey(SpellsRow::MOON + '0');
-            SetCursorPos(_enemiesXPositionInMenuFight[ii], FIGTH_MENU_FRIEND_POS_Y);
-            inputs::Click(_enemiesXPositionInMenuFight[ii], FIGTH_MENU_FRIEND_POS_Y);
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        }
-        for(int ii = 0; ii < _enemiesXPositionInMenuFight.size(); ++ii) {
-            inputs::PressKey(SpellsRow::SILBO + '0');
-            SetCursorPos(_enemiesXPositionInMenuFight[ii], FIGTH_MENU_FRIEND_POS_Y);
-            inputs::Click(_enemiesXPositionInMenuFight[ii], FIGTH_MENU_FRIEND_POS_Y);
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        }
-        for(int ii = 0; ii < _enemiesXPositionInMenuFight.size(); ++ii) {
-            inputs::PressKey(SpellsRow::BORRASCA + '0');
-            SetCursorPos(_enemiesXPositionInMenuFight[ii], FIGTH_MENU_FRIEND_POS_Y);
-            inputs::Click(_enemiesXPositionInMenuFight[ii], FIGTH_MENU_FRIEND_POS_Y);
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        }
-        for(int ii = 0; ii < _enemiesXPositionInMenuFight.size(); ++ii) {
-            inputs::PressKey(SpellsRow::ESCALOFRIO + '0');
-            SetCursorPos(_enemiesXPositionInMenuFight[ii], FIGTH_MENU_FRIEND_POS_Y);
-            inputs::Click(_enemiesXPositionInMenuFight[ii], FIGTH_MENU_FRIEND_POS_Y);
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        }
-        for(int ii = 0; ii < _enemiesXPositionInMenuFight.size(); ++ii) {
-            inputs::PressKey(SpellsRow::MANIOBRA + '0');
-            SetCursorPos(_enemiesXPositionInMenuFight[ii], FIGTH_MENU_FRIEND_POS_Y);
-            inputs::Click(_enemiesXPositionInMenuFight[ii], FIGTH_MENU_FRIEND_POS_Y);
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        }
-        for(int ii = 0; ii < _enemiesXPositionInMenuFight.size(); ++ii) {
-            inputs::PressKey(SpellsRow::PASTO + '0');
-            SetCursorPos(_enemiesXPositionInMenuFight[ii], FIGTH_MENU_FRIEND_POS_Y);
-            inputs::Click(_enemiesXPositionInMenuFight[ii], FIGTH_MENU_FRIEND_POS_Y);
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        }
-        for(int ii = 0; ii < _enemiesXPositionInMenuFight.size(); ++ii) {
-            inputs::PressKey(SpellsRow::LLAMILLA + '0');
-            SetCursorPos(_enemiesXPositionInMenuFight[ii], FIGTH_MENU_FRIEND_POS_Y);
-            inputs::Click(_enemiesXPositionInMenuFight[ii], FIGTH_MENU_FRIEND_POS_Y);
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        }
-        for(int ii = 0; ii < _enemiesXPositionInMenuFight.size(); ++ii) {
-            inputs::PressKey(SpellsRow::LLAMILLA + '0');
-            SetCursorPos(_enemiesXPositionInMenuFight[ii], FIGTH_MENU_FRIEND_POS_Y);
-            inputs::Click(_enemiesXPositionInMenuFight[ii], FIGTH_MENU_FRIEND_POS_Y);
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        }
+        ThrowSpellToEnemies(SpellsCtrlRow::WEAPON,  SpellsRow::SPELLS_ROW); // weapon is just 'q'
+        ThrowSpellToEnemies(SpellsRow::SILBO,       SpellsRow::SPELLS_ROW);
+        ThrowSpellToEnemies(SpellsRow::BORRASCA,    SpellsRow::SPELLS_ROW);
+        ThrowSpellToEnemies(SpellsRow::ESCALOFRIO,  SpellsRow::SPELLS_ROW);
+        ThrowSpellToEnemies(SpellsRow::MANIOBRA,    SpellsRow::SPELLS_ROW);
+        ThrowSpellToEnemies(SpellsRow::PASTO,       SpellsRow::SPELLS_ROW);
+        ThrowSpellToEnemies(SpellsRow::MOON,        SpellsRow::SPELLS_ROW);
+        ThrowSpellToEnemies(SpellsRow::LLAMILLA,    SpellsRow::SPELLS_ROW);
 
-
-        //std::this_thread::sleep_for(std::chrono::seconds(1));
+        ThrowSpellToEnemies(SpellsCtrlRow::POMPA,   SpellsCtrlRow::SPELLS_CTRL_ROW);
 
         if(check::CheckFight()) { // if still my turn, pass
+            std::this_thread::sleep_for(std::chrono::seconds(1));
             inputs::PressSpace();
+            std::this_thread::sleep_for(std::chrono::seconds(2));
         }
 
         ++_turn;
+        File::LogFile(("turn: " + std::to_string(_turn)).c_str(), true);
     }
 
-    /*
-    int step = FightStrategyState::CHECK_TURN;
+    _turn = 0;
 
-    while(1) {
-        switch(step) {
-        case FightStrategyState::CHECK_TURN:
-            check::CheckFight();
-            step = FightStrategyState::DEFEND_MYSELF;
-            break;
-        case FightStrategyState::DEFEND_MYSELF:
-            //ChangeSpellsMenu();
-            //step = FightPreparationState::FIND_MY_POSITION_MENU;
-            break;
-        default:
-            return -1;
-            break;
-        }
-    }
-*/
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    inputs::PressEscape();
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
     return 0;
 }
 
 void Fight::DefendMyself()
 {
-    inputs::PressCtrlKey(SpellsCtrlRow::MURALLA + '0');
-    inputs::Click(_myXPositionInMenuFight, FIGTH_MENU_FRIEND_POS_Y);
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    ThrowSpellToMyself(SpellsCtrlRow::MURALLA, SpellsCtrlRow::SPELLS_CTRL_ROW);
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
+    ThrowSpellToMyself(SpellsCtrlRow::ESCUDO, SpellsCtrlRow::SPELLS_CTRL_ROW);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+}
 
-    inputs::PressCtrlKey(SpellsCtrlRow::ESCUDO + '0');
-    inputs::Click(_myXPositionInMenuFight, FIGTH_MENU_FRIEND_POS_Y);
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+void Fight::ThrowSpell(int spell, int who, int upperRow)
+{
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    if(upperRow) {
+        inputs::PressKey(spell);
+    } else {
+        inputs::PressCtrlKey(spell);
+    }
+    SetCursorPos(who, FIGTH_MENU_FRIEND_POS_Y);
+    inputs::Click(who, FIGTH_MENU_FRIEND_POS_Y);
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
+}
+
+void Fight::ThrowSpellToEnemies(int spell, int upperRow)
+{
+    for(int ii = 0; ii < _enemiesXPositionInMenuFight.size(); ++ii) {
+        if(check::CheckFight()) { // if still on fight or my turn.
+            ThrowSpell(spell, _enemiesXPositionInMenuFight[ii], upperRow);
+        }
+    }
+}
+
+void Fight::ThrowSpellToMyself(int spell, int upperRow)
+{
+    ThrowSpell(spell, _myXPositionInMenuFight, upperRow);
 }

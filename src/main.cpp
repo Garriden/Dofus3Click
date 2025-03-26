@@ -13,11 +13,17 @@ int main()
 {
     std::cout << "holaaaaaaa" << std::endl;
 
-    // TODO: External console
+    // Activeting the console in the other screen.
+    AllocConsole();
+    HWND consoleWindow = GetConsoleWindow();
+    if (consoleWindow != NULL) {
+        SetWindowPos(consoleWindow, 0, -600, -300, 600, 1000, 0);
+    }
     
     //AskPj();
     while(true) {
         show::MainMenu();
+        inputs::PressCtrlKey(0); // Reset Ctrl.
         int in;
         std::cin >> in;
         switch(in) {

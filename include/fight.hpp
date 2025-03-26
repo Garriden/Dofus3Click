@@ -43,4 +43,12 @@ class Fight {
         int FightStrategySM();
         void DefendMyself();
 
+        /**
+         * spell: from menuMappings enums.
+         * who: to myself or enemies.
+         * upperRow: True if spell on the upper row(SpellsRow::SPELLS_ROW), fals if spell on under row(SpellsCtrlRow::SPELLS_CTRL_ROW).
+         */
+        void ThrowSpell(int spell, int who, int upperRow);
+        void ThrowSpellToEnemies(int spell, int upperRow);
+        void ThrowSpellToMyself(int spell, int upperRow);
 };

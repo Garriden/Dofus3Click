@@ -5,8 +5,8 @@ bool check::CheckFight()
     bool ret = false;
 
     //SetCursorPos(IT_IS_MY_TURN_POS_X_1, IT_IS_MY_TURN_POS_Y_1);
-    COLORREF color1 = basicOperations::GetColor(IT_IS_MY_TURN_POS_X_1, IT_IS_MY_TURN_POS_Y_1, true);
-    COLORREF color2 = basicOperations::GetColor(IT_IS_MY_TURN_POS_X_2, IT_IS_MY_TURN_POS_Y_2, true);
+    COLORREF color1 = basicOperations::GetColor(IT_IS_MY_TURN_POS_X_3, IT_IS_MY_TURN_POS_Y_3, false);
+    COLORREF color2 = basicOperations::GetColor(IT_IS_MY_TURN_POS_X_4, IT_IS_MY_TURN_POS_Y_4, false);
 
     // It is the desiRED  color 
     if ((int(GetRValue(color1)) < IT_IS_MY_TURN_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
@@ -23,8 +23,8 @@ bool check::CheckFight()
         (int(GetBValue(color2)) < IT_IS_MY_TURN_COLOR_BLUE   + ERROR_GET_COLOUR_SMALL) &&
         (int(GetBValue(color2)) > IT_IS_MY_TURN_COLOR_BLUE   - ERROR_GET_COLOUR_SMALL) )
     {
-        File::LogFile("I am in a fight!", true);
         ret = true;
+        //File::LogFile("It is my turn!", true);
     }
 
     return ret;
@@ -274,8 +274,8 @@ bool check::AmIDefeated()
     bool ret = false;
     //LogFile("Am I defeated? ");
 
-    COLORREF color1 = basicOperations::GetColor(I_LOST_THE_FIGHT_POS_X_1, I_LOST_THE_FIGHT_POS_Y_1, true);
-    COLORREF color2 = basicOperations::GetColor(I_LOST_THE_FIGHT_POS_X_2, I_LOST_THE_FIGHT_POS_Y_2, true);
+    COLORREF color1 = basicOperations::GetColor(I_LOST_THE_FIGHT_POS_X_1, I_LOST_THE_FIGHT_POS_Y_1, false);
+    COLORREF color2 = basicOperations::GetColor(I_LOST_THE_FIGHT_POS_X_2, I_LOST_THE_FIGHT_POS_Y_2, false);
 
     // It is the desiRED   color 
     if ((int(GetRValue(color1)) < I_LOST_THE_FIGHT_COLOR_RED_1   + ERROR_GET_COLOUR_SOME) &&
@@ -305,8 +305,8 @@ bool check::AmIDefeated()
     bool ret = false;
     //LogFile("Am I defeated? ");
 
-    COLORREF color1 = basicOperations::GetColor(I_WON_THE_FIGHT_POS_X_1, I_WON_THE_FIGHT_POS_Y_1, true);
-    COLORREF color2 = basicOperations::GetColor(I_WON_THE_FIGHT_POS_X_2, I_WON_THE_FIGHT_POS_Y_2, true);
+    COLORREF color1 = basicOperations::GetColor(I_WON_THE_FIGHT_POS_X_1, I_WON_THE_FIGHT_POS_Y_1, false);
+    COLORREF color2 = basicOperations::GetColor(I_WON_THE_FIGHT_POS_X_2, I_WON_THE_FIGHT_POS_Y_2, false);
 
     // It is the desiRED color
     if ((int(GetRValue(color1)) < I_WON_THE_FIGHT_COLOR_RED_1   + ERROR_GET_COLOUR_SOME) &&
@@ -329,7 +329,12 @@ bool check::AmIDefeated()
     }
 
     return ret;
- }
+}
+
+bool check::IsFightFinished()
+{
+    return IWonTheFight() || AmIDefeated();
+}
 
 bool check::IsBlack(int x, int y)
 {
@@ -600,9 +605,9 @@ bool check::IsSpellsMenu()
 {
     bool ret = false;
 
-    COLORREF color1 = basicOperations::GetColor(IS_ORANGE_CAC_WEAPON_POS_X_1, IS_ORANGE_CAC_WEAPON_POS_Y_1, true);
-    COLORREF color2 = basicOperations::GetColor(IS_ORANGE_CAC_WEAPON_POS_X_2, IS_ORANGE_CAC_WEAPON_POS_Y_2, true);
-    COLORREF color3 = basicOperations::GetColor(IS_ORANGE_CAC_WEAPON_POS_X_3, IS_ORANGE_CAC_WEAPON_POS_Y_3, true);
+    COLORREF color1 = basicOperations::GetColor(IS_ORANGE_CAC_WEAPON_POS_X_1, IS_ORANGE_CAC_WEAPON_POS_Y_1, false);
+    COLORREF color2 = basicOperations::GetColor(IS_ORANGE_CAC_WEAPON_POS_X_2, IS_ORANGE_CAC_WEAPON_POS_Y_2, false);
+    COLORREF color3 = basicOperations::GetColor(IS_ORANGE_CAC_WEAPON_POS_X_3, IS_ORANGE_CAC_WEAPON_POS_Y_3, false);
 
     // If the bottom-rightmost icon is a CaC weapon (has orange). Then the bottom menu is a spells menu.
     if ((int(GetRValue(color1)) < IS_ORANGE_CAC_WEAPON_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
@@ -611,14 +616,14 @@ bool check::IsSpellsMenu()
         (int(GetGValue(color1)) > IS_ORANGE_CAC_WEAPON_COLOR_GREEN  - ERROR_GET_COLOUR_SOME) &&
         (int(GetBValue(color1)) < IS_ORANGE_CAC_WEAPON_COLOR_BLUE   + ERROR_GET_COLOUR) &&
         (int(GetBValue(color1)) > IS_ORANGE_CAC_WEAPON_COLOR_BLUE   - ERROR_GET_COLOUR)
-        &&
+        ||
         (int(GetRValue(color2)) < IS_ORANGE_CAC_WEAPON_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
         (int(GetRValue(color2)) > IS_ORANGE_CAC_WEAPON_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
         (int(GetGValue(color2)) < IS_ORANGE_CAC_WEAPON_COLOR_GREEN  + ERROR_GET_COLOUR_SOME ) &&
         (int(GetGValue(color2)) > IS_ORANGE_CAC_WEAPON_COLOR_GREEN  - ERROR_GET_COLOUR_SOME ) &&
         (int(GetBValue(color2)) < IS_ORANGE_CAC_WEAPON_COLOR_BLUE   + ERROR_GET_COLOUR) &&
         (int(GetBValue(color2)) > IS_ORANGE_CAC_WEAPON_COLOR_BLUE   - ERROR_GET_COLOUR)
-        &&
+        ||
         (int(GetRValue(color3)) < IS_ORANGE_CAC_WEAPON_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
         (int(GetRValue(color3)) > IS_ORANGE_CAC_WEAPON_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
         (int(GetGValue(color3)) < IS_ORANGE_CAC_WEAPON_COLOR_GREEN  + ERROR_GET_COLOUR_SOME ) &&

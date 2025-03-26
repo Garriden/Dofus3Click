@@ -17,31 +17,33 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 enum SpellsRow {
-    SILBO          = 1,
-    BORRASCA       = 2,
-    ESCALOFRIO     = 3,
-    MANIOBRA       = 4,
-    PASTO          = 5,
-    MOON           = 6,
-    LLAMILLA       = 7,
-    GRAVI          = 8,
-    RECELO         = 9,
-    VIGIA          = 0,
+    SILBO          = 1 +'0',
+    BORRASCA       = 2 +'0',
+    ESCALOFRIO     = 3 +'0',
+    MANIOBRA       = 4 +'0',
+    PASTO          = 5 +'0',
+    MOON           = 6 +'0',
+    LLAMILLA       = 7 +'0',
+    GRAVI          = 8 +'0',
+    RECELO         = 9 +'0',
+    VIGIA          = 0 +'0',
     REFUGIO        = 11,
-    REAGRUPAMIENTO = 12
+    REAGRUPAMIENTO = 12,
+    SPELLS_ROW     = true
 };
 
 enum SpellsCtrlRow {
-    MURALLA        = 1,
-    ESCUDO         = 2,
-    BASTION        = 3,
-    BARRICADA      = 4,
-    TELEPORT       = 5,
-    REFUERZO       = 6,
-    ESCARCHA       = 7,
-    POMPA          = 8,
-    ESCAPADITA     = 9,
-    MAGNETISMO     = 10,
-    DOMINIO        = 11,
-    WEAPON         = 12
+    MURALLA         = 1 +'0',
+    ESCUDO          = 2 +'0',
+    BASTION         = 3 +'0',
+    BARRICADA       = 4 +'0',
+    TELEPORT        = 5 +'0',
+    REFUERZO        = 6 +'0',
+    ESCARCHA        = 7 +'0',
+    POMPA           = 8 +'0',
+    ESCAPADITA      = 9 +'0',
+    MAGNETISMO      = 10,
+    DOMINIO         = 11,
+    WEAPON          = 'q',
+    SPELLS_CTRL_ROW = false
 };

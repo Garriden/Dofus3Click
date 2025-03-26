@@ -101,7 +101,7 @@ void inputs::PressCtrlKey(int keyParam)
     ip.ki.dwFlags = 0; // 0 for key press
     ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
     SendInput(1, &ip, sizeof(INPUT));
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
     // Press the key
     key = VkKeyScan(keyParam);
@@ -114,7 +114,7 @@ void inputs::PressCtrlKey(int keyParam)
     // Release the key
     ip.ki.dwFlags = KEYEVENTF_SCANCODE | KEYEVENTF_KEYUP;
     SendInput(1, &ip, sizeof(INPUT));
-    std::this_thread::sleep_for(std::chrono::milliseconds(200));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
     // Release the "Ctrl" key
     ip.ki.wVk = VK_CONTROL;
@@ -122,7 +122,7 @@ void inputs::PressCtrlKey(int keyParam)
     ip.ki.dwFlags = KEYEVENTF_KEYUP;
     ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
     SendInput(1, &ip, sizeof(INPUT));
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
 }
 
 void inputs::PressSpace()
@@ -131,8 +131,9 @@ void inputs::PressSpace()
     space.type = INPUT_KEYBOARD;
     space.ki.wVk = VK_SPACE;
     space.ki.wScan = MapVirtualKey(VK_SPACE, 0);
+    space.ki.dwFlags = 0;
     SendInput(1, &space, sizeof(INPUT)); // Send KeyDown
-    space.ki.dwFlags = KEYEVENTF_KEYUP | KEYEVENTF_EXTENDEDKEY;
+    space.ki.dwFlags = KEYEVENTF_KEYUP;
     SendInput(1, &space, sizeof(INPUT)); // Send KeyUp
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
 }
