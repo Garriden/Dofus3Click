@@ -332,11 +332,21 @@ void inputs::RecordTelemetry()
 
                 ++territory;
 
-                Sleep(500);
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
             }
         }
 
     }
     std::cout << "Record Telemetry ended." << std::endl;
+}
 
+void inputs::ClickPrivateMode()
+{
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
+    Click(PRIVATE_MODE_POS_X_1, PRIVATE_MODE_POS_Y_1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    Click(PRIVATE_MODE_POS_X_2, PRIVATE_MODE_POS_Y_2);
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    Click(PRIVATE_MODE_POS_X_3, PRIVATE_MODE_POS_Y_3);
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
 }

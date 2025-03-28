@@ -114,8 +114,6 @@
 #define FIGTH_MENU_ENEMY_COLOR_BLUE                        (84)
 
 
-
-
 ///////////////////////////////////
 // AFTER FIGHT
 ///////////////////////////////////
@@ -156,11 +154,6 @@
 
 
 
-#define CHECK_PODS_POS_X								(1300)
-#define CHECK_PODS_POS_Y								(1041)
-#define CHECK_PODS_COLOR_RED							(96)
-#define CHECK_PODS_COLOR_GREEN							(190)
-#define CHECK_PODS_COLOR_BLUE							(53)
 
 
 //////////////////////////////////////////////////////////////
@@ -204,28 +197,39 @@
 #define I_AM_IN_WOOD_LV1_COLOR_GREEN_3               (104)
 #define I_AM_IN_WOOD_LV1_COLOR_BLUE_3                (63)
 
-#define OBSERVER_MODE_POS_X								(1395)
-#define OBSERVER_MODE_POS_Y								(1030)
 
-#define PRIVATE_MODE_POS_X_1							(270)
-#define PRIVATE_MODE_POS_Y_1							(1038)
-#define PRIVATE_MODE_POS_X_2							(357)
-#define PRIVATE_MODE_POS_Y_2							(1030)
-#define PRIVATE_MODE_POS_COLOR_RED_1					(212)
-#define PRIVATE_MODE_POS_COLOR_GREEN_1					(0)
-#define PRIVATE_MODE_POS_COLOR_BLUE_1					(0)
-#define PRIVATE_MODE_POS_COLOR_RED_2					(212)
-#define PRIVATE_MODE_POS_COLOR_GREEN_2					(255)
-#define PRIVATE_MODE_POS_COLOR_BLUE_2					(0)
 
-#define RANDOM_X_LIMIT_MIN								(450)
-#define RANDOM_X_LIMIT_MAX								(1350)
-#define RANDOM_Y_LIMIT_MIN								(90)
-#define RANDOM_Y_LIMIT_MAX								(750)
 
-#define HEALTH_POS_X    								(803)
-#define HEALTH_POS_Y    								(934)
-#define HEALTH_COLOR_RED   								(200)
+
+
+
+//////////////////////////////////////////////////////////////
+// INTERFACE WORLD CHECKS
+//////////////////////////////////////////////////////////////
+
+#define HEALTH_POS_X                                    (518)
+#define HEALTH_POS_Y                                    (968)
+#define HEALTH_COLOR_RED                                (166)
+#define HEALTH_COLOR_GREEN                              (28)
+#define HEALTH_COLOR_BLUE                               (47)
+
+#define CHECK_PODS_POS_X                                (1856)
+#define CHECK_PODS_POS_Y                                (1007)
+#define CHECK_PODS_COLOR_RED                            (228)
+#define CHECK_PODS_COLOR_GREEN                          (242)
+#define CHECK_PODS_COLOR_BLUE                           (75)
+
+#define PRIVATE_MODE_POS_X_1                            (18)
+#define PRIVATE_MODE_POS_Y_1                            (1040)
+#define PRIVATE_MODE_POS_X_2                            (100)
+#define PRIVATE_MODE_POS_Y_2                            (1024)
+#define PRIVATE_MODE_POS_X_3                            (188)
+#define PRIVATE_MODE_POS_Y_3                            (1020)
+#define PRIVATE_MODE_POS_COLOR_RED_1                    (212) // red dot
+#define PRIVATE_MODE_POS_COLOR_GREEN_1                  (0)
+#define PRIVATE_MODE_POS_COLOR_BLUE_1                   (0)
+
+
 
 
 
@@ -527,3 +531,9 @@
 #define ERROR_GET_COLOUR_QUITE                                      (10)
 #define ERROR_GET_COLOUR_SMALL                                      (5)
 #define ERROR_GET_COLOUR_SMALLER                                    (1)
+
+///////////////////////////////////
+// RETURN ERRORS
+///////////////////////////////////
+#define E_OK                                                        (0)
+#define E_KO                                                        (-1)

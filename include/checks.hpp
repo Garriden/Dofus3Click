@@ -14,15 +14,16 @@ namespace check {
  */
 bool CheckFight();
 
-/*
-* Find the red/green dot in the chat (private mode).
-*/
-//bool FindPrivateMode(COLORREF color);
 
-/*
- * Check if the PODS bar it is almost full.
- */
-//bool AmIFull();
+
+// Check if the PODS bar its (almost) full.
+bool AmIFull();
+
+// The hearth (life) is (almost) full.
+bool HaveIHealth();
+
+//Find the red/green dot in the chat (private mode).
+bool IsPrivateMode();
 
 /*
  * Given a color, Check if the Consumable is a Mimilk.

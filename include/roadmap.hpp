@@ -25,14 +25,15 @@ class Roadmap {
 
         enum RoadmapState {
             SET_PODS_SET                = 0,
-            CHECK_INITIAL_POSITION      = 1,
-            CHECK_ZAAP_POSITION         = 2,
-            GO_TO_ZAAP                  = 3,
-            GO_TO_INITIAL_MAP           = 4,
-            EXECUTE_ROADMAP             = 5,
-            PREPARE_TO_FIGHT            = 6,
-            STORE_IT_TO_THE_ASTRUB_BANK = 7,
-            RETURN_TO_ASTRUB_ZAAP       = 8
+            SET_PRIVATE_MODE            = 1,
+            CHECK_INITIAL_POSITION      = 2,
+            CHECK_ZAAP_POSITION         = 3,
+            GO_TO_ZAAP                  = 4,
+            GO_TO_INITIAL_MAP           = 5,
+            EXECUTE_ROADMAP             = 6,
+            PREPARE_TO_FIGHT            = 7,
+            STORE_IT_TO_THE_ASTRUB_BANK = 8,
+            RETURN_TO_ASTRUB_ZAAP       = 9
         };
 
         /*
@@ -44,7 +45,7 @@ class Roadmap {
         * 
         * in: name, the file name (.csv) where to pull the telemetry.
         */
-        void ExecuteRoadMap(std::string name);
+        int ExecuteRoadMap(std::string name);
 
         /*
         * Chop all the identities.

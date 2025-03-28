@@ -35,6 +35,12 @@ void Roadmap::Start()
         switch(step) {
         case RoadmapState::SET_PODS_SET:
             SetPodsSet();
+            step = RoadmapState::SET_PRIVATE_MODE;
+            break;
+        case RoadmapState::SET_PRIVATE_MODE:
+            if(!check::IsPrivateMode()) {
+                inputs::ClickPrivateMode();
+            }
             step = RoadmapState::CHECK_INITIAL_POSITION;
             break;
         case RoadmapState::CHECK_INITIAL_POSITION:
@@ -61,7 +67,11 @@ void Roadmap::Start()
             step = RoadmapState::EXECUTE_ROADMAP;
             break;
         case RoadmapState::EXECUTE_ROADMAP:
-            ExecuteRoadMap("../../Telemetry/Wood/astrubAshLv1.csv");
+            if(E_OK == ExecuteRoadMap("../../Telemetry/Wood/astrubAshLv1.csv")) {
+                step = RoadmapState::EXECUTE_ROADMAP;
+            } else {
+                step = -1;
+            }
             //step = RoadmapState::AFTER_FIGHT_SET;
             break;
         /*case RoadmapState::AFTER_FIGHT_SET:
@@ -80,7 +90,7 @@ void Roadmap::Start()
 
 }
 
-void Roadmap::ExecuteRoadMap(std::string name)
+int Roadmap::ExecuteRoadMap(std::string name)
 {
     File::LogFile("ExecuteRoadMap: " + name, true);
     std::vector<std::vector<std::pair<int, int> > > roadmap = File::ReadFileAndBuildMap(name);
@@ -95,6 +105,8 @@ void Roadmap::ExecuteRoadMap(std::string name)
         //    return;
         //}
     }
+
+    return E_OK;
 }
 
 
@@ -129,7 +141,6 @@ void Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
     // Change map
     // Sometimes it doesn't change propperly because of "Acción imposible" Dofus error...
     // Catch when screen goes black to detect the map change. Repeat last click if not changed properly.
-
 
     // Wait for Black Screen
     bool mapChanged = false;

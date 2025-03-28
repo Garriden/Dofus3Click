@@ -29,28 +29,71 @@ bool check::CheckFight()
 
     return ret;
 }
-/*
-bool AmIFull()
+
+bool check::AmIFull()
 {
     bool ret = false;
 
-    COLORREF color = GetColor(CHECK_PODS_POS_X, CHECK_PODS_POS_Y);
+    COLORREF color = basicOperations::GetColor(CHECK_PODS_POS_X, CHECK_PODS_POS_Y, true);
 
-    // It is the desiRED  color
-    if ((int(GetRValue(color)) < CHECK_PODS_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetRValue(color)) > CHECK_PODS_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
+    if ((int(GetRValue(color)) < CHECK_PODS_COLOR_RED   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color)) > CHECK_PODS_COLOR_RED   - ERROR_GET_COLOUR_SMALL) &&
         (int(GetGValue(color)) < CHECK_PODS_COLOR_GREEN + ERROR_GET_COLOUR_SMALL) &&
         (int(GetGValue(color)) > CHECK_PODS_COLOR_GREEN - ERROR_GET_COLOUR_SMALL) &&
         (int(GetBValue(color)) < CHECK_PODS_COLOR_BLUE  + ERROR_GET_COLOUR_SMALL) &&
         (int(GetBValue(color)) > CHECK_PODS_COLOR_BLUE  - ERROR_GET_COLOUR_SMALL)
         )
     {
+        File::LogFile("I am full! (pods)", true);
         ret = true;
     }
 
     return ret;
 }
 
+bool check::HaveIHealth()
+{
+    bool ret = false;
+
+    COLORREF colorHealth = basicOperations::GetColor(HEALTH_POS_X, HEALTH_POS_Y, true);
+
+    if ((int(GetRValue(colorHealth)) < HEALTH_COLOR_RED   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(colorHealth)) > HEALTH_COLOR_RED   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(colorHealth)) < HEALTH_COLOR_GREEN + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(colorHealth)) > HEALTH_COLOR_GREEN - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(colorHealth)) < HEALTH_COLOR_BLUE  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(colorHealth)) > HEALTH_COLOR_BLUE  - ERROR_GET_COLOUR_SMALL)
+        )
+    {
+        ret = true;
+        File::LogFile("I have enough health.", true);
+    }
+    return ret;
+}
+
+bool check::IsPrivateMode()
+{
+    bool ret = false;
+
+    COLORREF color = basicOperations::GetColor(PRIVATE_MODE_POS_X_1, PRIVATE_MODE_POS_Y_1, true);
+
+    /* It is the desired color */
+    if(((int(GetRValue(color)) < PRIVATE_MODE_POS_COLOR_RED_1   + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetRValue(color)) > PRIVATE_MODE_POS_COLOR_RED_1   - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color)) < PRIVATE_MODE_POS_COLOR_GREEN_1 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color)) > PRIVATE_MODE_POS_COLOR_GREEN_1 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color)) < PRIVATE_MODE_POS_COLOR_BLUE_1  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color)) > PRIVATE_MODE_POS_COLOR_BLUE_1  - ERROR_GET_COLOUR_SMALL))
+        )
+    {
+        ret = true;
+        File::LogFile("Private mode (dot) it is found!", true);
+    }
+
+    return ret;
+}
+
+/*
 bool IsMimilk(COLORREF color)
 {
     bool ret = false;
@@ -111,7 +154,7 @@ bool IsBrakPoti(COLORREF color)
     return ret;
 }
 
- bool IsErrorWindow()
+bool IsErrorWindow()
 {
     bool ret = false;
     //LogFile("is the error window? ");
@@ -150,8 +193,8 @@ bool IsBrakPoti(COLORREF color)
     return ret;
 }
 
- bool IsMainMenuWindow()
- {
+bool IsMainMenuWindow()
+{
     bool ret = false;
     //LogFile("is the error window? ");
 
@@ -231,7 +274,7 @@ bool IsTheObjectBarActive()
     return ret;
 }
 
- bool IsTheFightFinished()
+bool IsTheFightFinished()
 {
     bool ret = false;
 
@@ -300,8 +343,8 @@ bool check::AmIDefeated()
     return ret;
 }
 
- bool check::IWonTheFight()
- {
+bool check::IWonTheFight()
+{
     bool ret = false;
     //LogFile("Am I defeated? ");
 
@@ -589,16 +632,7 @@ bool IsMercantMode()
     return ret;
 }
 
-bool HaveIHealth()
-{
-    bool ret = false;
-    COLORREF colorHealth = GetColor(HEALTH_POS_X, HEALTH_POS_Y);
-    if (int(GetRValue(colorHealth)) > HEALTH_COLOR_RED) {
-        ret = true;
-        //LogFile("I have health.");
-    }
-    return ret;
-}
+
 */
 
 bool check::IsSpellsMenu()

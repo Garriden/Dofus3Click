@@ -128,13 +128,9 @@ namespace inputs {
     //  Can check first if it is spells menu, calling: check::IsSpellsMenu()
     void ClickSwitchBottomMenu();
 
-    /*
-    * Give information of the coordenates of real clicks.
-    */
+    // Give information of the coordenates of real clicks.
     void DebugPoints();
 
-    /*
-    * Find the red/green dot in the chat (private mode).
-    */
-    //bool FindPrivateMode(COLORREF color);
+    // Change to private mode.
+    void ClickPrivateMode();
 }
