@@ -30,7 +30,8 @@ void menu::Wood()
 
         case 1:
             File::LogFile("lv.1  [ASTRUB] . . . ", true);
-            Roadmap roadmap(Profession::WOOD, "Astrub");
+            Roadmap roadmap(Profession::WOOD, "Astrub", 
+                {"../../Telemetry/Wood/fromAstrubZaapToWoodLv1.csv", "../../Telemetry/Wood/astrubAshLv1.csv"});
             roadmap.Start();
             //Astrub();
             break;

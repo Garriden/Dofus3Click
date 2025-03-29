@@ -3,16 +3,17 @@
 #include <vector>
 
 enum Profession {
-    WOOD       = 0,
-    FARMER     = 1,
-    FISHER     = 2,
-    MINERAL    = 3
+    WOOD          = 0,
+    FARMER        = 1,
+    FISHER        = 2,
+    MINERAL       = 3,
+    LOWERING_PODS = 4
 };
 
 class Roadmap {
     public:
         Roadmap();
-        Roadmap(Profession profession, std::string zaap);
+        Roadmap(Profession profession, std::string zaap, std::vector<std::string> roadmapFiles);
         ~Roadmap();
 
         void Start();
@@ -20,8 +21,9 @@ class Roadmap {
 
     private:
 
-        int _profession;
+        Profession _profession;
         std::string _zaap;
+        std::vector<std::string> _roadmapFiles;
 
         enum RoadmapState {
             SET_PODS_SET                = 0,
@@ -56,7 +58,7 @@ class Roadmap {
         *
         * in: map, the vector of Coordenates extracted from telemetry. 
         */
-        void ClickIdentities(const std::vector<std::pair<int, int> > map);
+        int ClickIdentities(const std::vector<std::pair<int, int> > map);
 
         void ChangeObjectsMenu();
 

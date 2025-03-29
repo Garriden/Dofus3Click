@@ -10,21 +10,29 @@
 
 Roadmap::Roadmap() :
     _profession{},
-    _zaap{""}
+    _zaap{""},
+    _roadmapFiles{}
 {
     std::cout << "Roadmap constructor called" << std::endl;
 }
 
-Roadmap::Roadmap(Profession profession, std::string zaap) :
+Roadmap::Roadmap(Profession profession, std::string zaap, std::vector<std::string> roadmapFiles) :
     _profession{profession},
-    _zaap{zaap}
+    _zaap{zaap},
+    _roadmapFiles{roadmapFiles}
 {
-    std::cout << "Roadmap started" << std::endl;
+    File::LogFile(("Roadmap started. Profession: " + std::to_string(_profession)).c_str(), true);
+
+    if(_roadmapFiles.size() < 2) {
+        File::LogFile("ERROR: _roadmapFiles < 2.  Firt roadmap must be: from zaap to initial position. \
+                        And at least have a second roadmap where it does the proper roadmap.", true);
+        //return;
+    }
 }
 
 Roadmap::~Roadmap()
 {
-    std::cout << "Roadmap destructor called" << std::endl;
+    File::LogFile("Roadmap ended!", true);
 }
 
 void Roadmap::Start()
@@ -44,7 +52,7 @@ void Roadmap::Start()
             step = RoadmapState::CHECK_INITIAL_POSITION;
             break;
         case RoadmapState::CHECK_INITIAL_POSITION:
-            if(checkRoadmap::CheckWoodLv1()) {
+            if(checkRoadmap::CheckWoodLv1() && _roadmapFiles[0] != "") {
                 step = RoadmapState::EXECUTE_ROADMAP;
             } else {
                 step = RoadmapState::CHECK_ZAAP_POSITION;
@@ -59,20 +67,30 @@ void Roadmap::Start()
             break;
         case RoadmapState::GO_TO_ZAAP:
             File::LogFile("Going to initial Zaap ... ", true);
-            //inputs::PressCtrlKey('8'); // Recall Poti.
+            inputs::PressCtrlKey('8'); // Recall Poti.
             step = RoadmapState::GO_TO_INITIAL_MAP;
             break;
         case RoadmapState::GO_TO_INITIAL_MAP:
-            ExecuteRoadMap("../../Telemetry/Wood/fromAstrubZaapToWoodLv1.csv");
+            if(_roadmapFiles[0] != "") {
+                ExecuteRoadMap(_roadmapFiles[0]/*"../../Telemetry/Wood/fromAstrubZaapToWoodLv1.csv"*/);
+            }
             step = RoadmapState::EXECUTE_ROADMAP;
             break;
         case RoadmapState::EXECUTE_ROADMAP:
-            if(E_OK == ExecuteRoadMap("../../Telemetry/Wood/astrubAshLv1.csv")) {
-                step = RoadmapState::EXECUTE_ROADMAP;
-            } else {
-                step = -1;
+            for(int roadmapIndex = 1; roadmapIndex < _roadmapFiles.size(); ++roadmapIndex) {
+                if(E_OK != ExecuteRoadMap(_roadmapFiles[roadmapIndex]/*"../../Telemetry/Wood/astrubAshLv1.csv"*/)) {
+                    //step = RoadmapState::GO_TO_ZAAP;
+                    step = -1;
+                }
+                //step = RoadmapState::AFTER_FIGHT_SET;
             }
-            //step = RoadmapState::AFTER_FIGHT_SET;
+
+            if(_profession == Profession::LOWERING_PODS) {
+                step = -1;
+            } else {
+                step = RoadmapState::EXECUTE_ROADMAP;
+            }
+
             break;
         /*case RoadmapState::AFTER_FIGHT_SET:
             //AfterFightSet();
@@ -96,11 +114,13 @@ int Roadmap::ExecuteRoadMap(std::string name)
     std::vector<std::vector<std::pair<int, int> > > roadmap = File::ReadFileAndBuildMap(name);
 
     for(int ii = 0; ii < static_cast<int>(roadmap.size()); ++ii) {
-        File::LogFile("map: " + std::to_string(ii), true);
+        //File::LogFile("map: " + std::to_string(ii), true);
         //if(restart_roadmap_) {
         //    return;
         //}
-        ClickIdentities(roadmap[ii]);
+        if(E_OK != ClickIdentities(roadmap[ii])) {
+            return E_KO;
+        }
         //if (restart_roadmap_) {
         //    return;
         //}
@@ -110,7 +130,7 @@ int Roadmap::ExecuteRoadMap(std::string name)
 }
 
 
-void Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
+int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
 {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
@@ -118,7 +138,6 @@ void Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
     int x = 0;
     int y = 0;
 
-    //std::cout << "bbbbbbbb: " <<  map.size() << "    " << map[0].first << " . " << map[0].second << std::endl;
     for(int ii = 0; ii < map.size(); ++ii) {
         //File::LogFile("ii: " + std::to_string(ii), true);
         //if(!restart_roadmap_) {
@@ -127,13 +146,19 @@ void Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
             std::this_thread::sleep_for(std::chrono::seconds(8));
             std::this_thread::sleep_for(std::chrono::milliseconds(ruletNumber * 100));
 
-            if(check::CheckFight()) {
+            if(check::IsFight()) {
                 Fight fight;
                 fight.Start();
             }
 
-            inputs::Click(map[ii].first, map[ii].second);
+            if(_profession != Profession::LOWERING_PODS && check::AmIFull()) {
+                Roadmap goToBank(Profession::LOWERING_PODS, "",
+                    {"", "../../Telemetry/ZaapToBank/astrubBankTransaction.csv", "../../Telemetry/ZaapToBank/fromAstrubZaapToBank.csv"});
+                goToBank.Start();
+            }
 
+            std::cout << "c: " <<  map.size() << "    " << map[ii].first << " . " << map[ii].second << std::endl;
+            inputs::Click(map[ii].first, map[ii].second);
 
         //}
     }
@@ -160,14 +185,14 @@ void Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
             ++retries;
         }
     }
-
     if(retries >= 10) {
         File::LogFile("Stuck! So many retries for invalid action...", true);
+        return E_KO;
     }
     //std::this_thread::sleep_for(std::chrono::seconds(1));
 
 
-    //CheckFight();
+    //IsFight();
 
     //if(AmITalkingWithNPJ() || IsMercant() || IsErrorWindow()) {
     //    PressEscape();
@@ -182,7 +207,7 @@ void Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
         //LogFile("Change maaaaap");
         Sleep(17 * SECONDS + ruletNumber * 100);
 
-        CheckFight();
+        IsFight();
 
         if (IsMercantMode()) {
             PressEscape();
@@ -214,6 +239,7 @@ void Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
         
     }
     */
+    return E_OK;
 }
 
 // Todo: sned to inputs

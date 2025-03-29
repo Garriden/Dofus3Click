@@ -12,9 +12,7 @@ namespace check {
  * Look if I am in a fight.
  * Check the pjs bar (Red/Blue).
  */
-bool CheckFight();
-
-
+bool IsFight();
 
 // Check if the PODS bar its (almost) full.
 bool AmIFull();

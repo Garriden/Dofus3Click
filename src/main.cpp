@@ -69,7 +69,7 @@ int main()
                 //LogFile("Playing as Enutrof.");
                 break;
             case 99: //debug
-                //if(check::CheckFight()) {
+                //if(check::IsFight()) {
                 //    Fight fight(0);
                 //    fight.Start();
                 //}

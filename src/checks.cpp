@@ -1,6 +1,6 @@
 #include "checks.hpp"
 
-bool check::CheckFight()
+bool check::IsFight()
 {
     bool ret = false;
 
@@ -402,7 +402,11 @@ bool check::IsBlackScreen()
     return  check::IsBlack(BLACK_SCREEN_POS_X_1, BLACK_SCREEN_POS_Y_1) &&
             check::IsBlack(BLACK_SCREEN_POS_X_2, BLACK_SCREEN_POS_Y_2) &&
             check::IsBlack(BLACK_SCREEN_POS_X_3, BLACK_SCREEN_POS_Y_3) &&
-            check::IsBlack(BLACK_SCREEN_POS_X_4, BLACK_SCREEN_POS_Y_4);
+            check::IsBlack(BLACK_SCREEN_POS_X_3, BLACK_SCREEN_POS_Y_4) &&
+            check::IsBlack(BLACK_SCREEN_POS_X_3, BLACK_SCREEN_POS_Y_5) &&
+            check::IsBlack(BLACK_SCREEN_POS_X_3, BLACK_SCREEN_POS_Y_6) &&
+            check::IsBlack(BLACK_SCREEN_POS_X_3, BLACK_SCREEN_POS_Y_7) &&
+            check::IsBlack(BLACK_SCREEN_POS_X_4, BLACK_SCREEN_POS_Y_8);
 }
 
 /*

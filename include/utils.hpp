@@ -53,6 +53,14 @@
 #define BLACK_SCREEN_POS_Y_3                               (700)
 #define BLACK_SCREEN_POS_X_4                               (1200)
 #define BLACK_SCREEN_POS_Y_4                               (725)
+#define BLACK_SCREEN_POS_X_5                               (800)
+#define BLACK_SCREEN_POS_Y_5                               (500)
+#define BLACK_SCREEN_POS_X_6                               (1000)
+#define BLACK_SCREEN_POS_Y_6                               (400)
+#define BLACK_SCREEN_POS_X_7                               (1100)
+#define BLACK_SCREEN_POS_Y_7                               (550)
+#define BLACK_SCREEN_POS_X_8                               (1200)
+#define BLACK_SCREEN_POS_Y_8                               (560)
 
 ///////////////////////////////////
 // BOTTOM MENU

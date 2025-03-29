@@ -8,6 +8,15 @@
 
 std::vector<std::vector<std::pair<int, int> > > File::ReadFileAndBuildMap(const std::string &filePath)
 {
+    auto isNumber = [](const std::string& str) -> bool { // Local function needed to parse strings.
+        for (char c : str) {
+            if (!std::isdigit(c) && c != '-' && c != '.') {
+                return false;
+            }
+        }
+        return !str.empty();
+    };
+
     // Find file.
     std::filesystem::path path{ filePath };
 
@@ -22,32 +31,34 @@ std::vector<std::vector<std::pair<int, int> > > File::ReadFileAndBuildMap(const 
     if(std::filesystem::exists(path, error)) {
         std::ifstream ifs(path);
         std::string line;
-        
+
         while(std::getline(ifs, line)) { // Read line by line
             row.clear();
-
             std::stringstream str(line);
-
+ 
             while(std::getline(str, word, ',')) {
                 std::getline(str, word2, ',');
-                if(word == "up" || (word2 != "" && (stoi(word2) <= UP_Y + ERROR_GET_COLOUR_QUITE)) ) { // CheckChangeMap
+
+                if(word == "up" || (isNumber(word2) && (stoi(word2) <= UP_Y + ERROR_GET_COLOUR_QUITE)) ) { // CheckChangeMap
                     coord.first  = UP_X;
                     coord.second = UP_Y;
-                } else if(word == "left" || (word != "" && (stoi(word) <= LEFT_X + ERROR_GET_COLOUR_QUITE)) ) {
+                } else if(word == "left" || (isNumber(word) && (stoi(word) <= LEFT_X + ERROR_GET_COLOUR_QUITE)) ) {
                     coord.first  = LEFT_X;
                     coord.second = LEFT_Y;
-                } else if(word == "down" || (word2 != "" && (stoi(word2) >= DOWN_Y - ERROR_GET_COLOUR_QUITE)) ) {
+                } else if(word == "down" || (isNumber(word2) && (stoi(word2) >= DOWN_Y - ERROR_GET_COLOUR_QUITE)) ) {
                     coord.first  = DOWN_X;
                     coord.second = DOWN_Y;
-                } else if(word == "right" || (word != "" && (stoi(word) >= RIGHT_X - ERROR_GET_COLOUR_QUITE)) ) {
+                } else if(word == "right" || (isNumber(word) && (stoi(word) >= RIGHT_X - ERROR_GET_COLOUR_QUITE)) ) {
                     coord.first  = RIGHT_X;
                     coord.second = RIGHT_Y;
                 } else {
-                    coord.first = stoi(word);
-                    coord.second = stoi(word2);
+                    //if(isNumber(word) && isNumber(word2)) {
+                        coord.first = stoi(word);
+                        coord.second = stoi(word2);
+                    //}
                 }
                 row.push_back(coord);
-                //std::cout <<  "coord.first: " << coord.first  << "  coord.second: " << coord.second << std::endl;
+                std::cout <<  "coord.first: " << coord.first  << "  coord.second: " << coord.second << std::endl;
             }
             ret.push_back(row);
         }

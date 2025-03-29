@@ -195,7 +195,7 @@ int Fight::FightStrategySM()
     while(!check::IsFightFinished()) {
 
         int enemiesUpdated = false;
-        while(!check::CheckFight()) { // Wait for my turn.
+        while(!check::IsFight()) { // Wait for my turn.
             if(!enemiesUpdated) { // if I still have time, check how many enemies are still alive.
                 _enemiesXPositionInMenuFight.clear();
                 FindEnemiesPositions();
@@ -226,7 +226,7 @@ int Fight::FightStrategySM()
             ThrowSpellToEnemies(SpellsCtrlRow::ESCAPADITA, SpellsCtrlRow::SPELLS_CTRL_ROW);
         }
 
-        if(check::CheckFight()) { // if still my turn, pass
+        if(check::IsFight()) { // if still my turn, pass
             std::this_thread::sleep_for(std::chrono::seconds(1));
             inputs::PressSpace();
             std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -270,7 +270,7 @@ void Fight::ThrowSpell(int spell, int who, int upperRow)
 void Fight::ThrowSpellToEnemies(int spell, int upperRow)
 {
     for(int ii = 0; ii < _enemiesXPositionInMenuFight.size(); ++ii) {
-        if(check::CheckFight()) { // if still on fight or my turn.
+        if(check::IsFight()) { // if still on fight or my turn.
             ThrowSpell(spell, _enemiesXPositionInMenuFight[ii], upperRow);
         }
     }
