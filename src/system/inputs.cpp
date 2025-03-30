@@ -49,9 +49,10 @@ void inputs::PressKey(int keyParam)
     input.ki.dwFlags = KEYEVENTF_SCANCODE;
     input.ki.wScan = mappedkey;
     SendInput(1, &input, sizeof(input));
-    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    std::this_thread::sleep_for(std::chrono::milliseconds(20));
     input.ki.dwFlags = KEYEVENTF_SCANCODE | KEYEVENTF_KEYUP;
     SendInput(1, &input, sizeof(input));
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
 }
 
 void inputs::PressSpecialKey(int specialKey)

@@ -276,7 +276,7 @@ void Fight::ThrowSpell(int spell, int who, int upperRow)
     }
     SetCursorPos(who, FIGTH_MENU_FRIEND_POS_Y);
     inputs::Click(who, FIGTH_MENU_FRIEND_POS_Y);
-    std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
 }
 
 void Fight::ThrowSpellToEnemies(int spell, int upperRow)

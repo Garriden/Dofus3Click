@@ -41,18 +41,21 @@ Roadmap::~Roadmap()
     File::LogFile("Roadmap ended!", true);
 }
 
-void Roadmap::Start()
+int Roadmap::Start()
 {
     int step = RoadmapState::SET_PODS_SET;
+    if(_profession == Profession::LOWERING_PODS) {
+        step = RoadmapState::CONVERT_RESOURCES;
+    }
 
     while(1) {
         switch(step) {
         case RoadmapState::SET_PODS_SET:
-            if(_profession == Profession::LOWERING_PODS) {
-                ConvertResources();
-            } else {
-                SetPodsSet();
-            }
+            SetPodsSet();
+            step = RoadmapState::SET_PRIVATE_MODE;
+            break;
+        case RoadmapState::CONVERT_RESOURCES:
+            ConvertResources();
             step = RoadmapState::SET_PRIVATE_MODE;
             break;
         case RoadmapState::SET_PRIVATE_MODE:
@@ -62,6 +65,11 @@ void Roadmap::Start()
             step = RoadmapState::CHECK_INITIAL_POSITION;
             break;
         case RoadmapState::CHECK_INITIAL_POSITION:
+            if(_callbackCheckInitialMap() == _callbackCheckInitialZaap()) {
+                step = RoadmapState::CHECK_ZAAP_POSITION;
+                break;
+            }
+
             if(_callbackCheckInitialMap() && _roadmapFiles[0] != "") {
                 step = RoadmapState::EXECUTE_ROADMAP;
             } else {
@@ -86,21 +94,30 @@ void Roadmap::Start()
             step = RoadmapState::EXECUTE_ROADMAP;
             break;
         case RoadmapState::EXECUTE_ROADMAP:
+        {
+            int roadmapExecution = E_KO;
             for(int roadmapIndex = 1; roadmapIndex < _roadmapFiles.size(); ++roadmapIndex) {
-                if(E_OK != ExecuteRoadMap(_roadmapFiles[roadmapIndex])) {
-                    //step = RoadmapState::GO_TO_ZAAP;
+                roadmapExecution = ExecuteRoadMap(_roadmapFiles[roadmapIndex]);
+                if(roadmapExecution == E_KO) {
                     step = -1;
+                    break;
+                } else if(roadmapExecution == E_NEED_TO_RESTART) {
+                    step = SET_PODS_SET;
+                    break;
                 }
                 //step = RoadmapState::AFTER_FIGHT_SET;
             }
 
-            if(_profession == Profession::LOWERING_PODS) {
-                step = -1;
-            } else {
-                step = RoadmapState::EXECUTE_ROADMAP;
+            if(roadmapExecution == E_OK) {
+                if(_profession == Profession::LOWERING_PODS) {
+                    return E_NEED_TO_RESTART;
+                } else {
+                    step = RoadmapState::EXECUTE_ROADMAP;
+                }
             }
 
             break;
+        }
         /*case RoadmapState::AFTER_FIGHT_SET:
             //AfterFightSet();
             step = RoadmapState::AFTER_FIGHT_SIT;
@@ -110,7 +127,7 @@ void Roadmap::Start()
             step = -1;
             break;*/
         default:
-            return;
+            return E_KO;
             break;
         }
     }
@@ -124,8 +141,9 @@ int Roadmap::ExecuteRoadMap(std::string name)
 
     for(int ii = 0; ii < static_cast<int>(roadmap.size()); ++ii) {
         File::LogFile("map: " + std::to_string(ii), true);
-        if(E_OK != ClickIdentities(roadmap[ii])) {
-            return E_KO;
+        int returnError = ClickIdentities(roadmap[ii]);
+        if(E_OK != returnError) {
+            return returnError;
         }
     }
 
@@ -160,7 +178,7 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
         if(_profession != Profession::LOWERING_PODS && check::AmIFull()) {
             Roadmap goToBank(Profession::LOWERING_PODS, "", &zaap::CheckZaapAstrub, &zaap::CheckZaapAstrub,
                 {"", "../../Telemetry/ZaapToBank/astrubBankTransaction.csv", "../../Telemetry/ZaapToBank/fromAstrubZaapToBank.csv"});
-            goToBank.Start();
+            return goToBank.Start();
         }
 
         //std::cout << "cord: " <<  map.size() << "    " << map[ii].first << " . " << map[ii].second << std::endl;

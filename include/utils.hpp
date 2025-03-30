@@ -136,6 +136,11 @@
 #define I_WON_THE_FIGHT_COLOR_RED_2                     (219)
 #define I_WON_THE_FIGHT_COLOR_GREEN_2                   (168)
 #define I_WON_THE_FIGHT_COLOR_BLUE_2                    (17)
+#define I_WON_THE_FIGHT_POS_X_3                         (1048)
+#define I_WON_THE_FIGHT_POS_Y_3                         (495)
+#define I_WON_THE_FIGHT_COLOR_RED_3                     (212)
+#define I_WON_THE_FIGHT_COLOR_GREEN_3                   (159)
+#define I_WON_THE_FIGHT_COLOR_BLUE_3                    (16)
 
 #define I_LOST_THE_FIGHT_POS_X_1                        (1039)
 #define I_LOST_THE_FIGHT_POS_Y_1                        (501)
@@ -159,8 +164,17 @@
 // ZAAPS CHECKS
 //////////////////////////////////////////////////////////////
 
-#define ASTRUB_ZAAP_POS_X					            (1120)
-#define ASTRUB_ZAAP_POS_Y					            (320)
+#define ZAAP_INTERFACE_POS_X                            (864)
+#define ZAAP_INTERFACE_POS_Y                            (299)
+#define ZAAP_INTERFACE_COLOR_RED_1                      (58)
+#define ZAAP_INTERFACE_COLOR_GREEN_1                    (61)
+#define ZAAP_INTERFACE_COLOR_BLUE_1                     (88)
+
+#define ZAAP_INTERFACE_WRITE_POS_X                      (600)
+#define ZAAP_INTERFACE_WRITE_POS_Y                      (360)
+
+#define ASTRUB_ZAAP_POS_X                               (1103)
+#define ASTRUB_ZAAP_POS_Y                               (299)
 
 #define I_AM_IN_ASTRUB_ZAAP_POS_X_1                     (1101)
 #define I_AM_IN_ASTRUB_ZAAP_POS_Y_1                     (318)
@@ -570,3 +584,5 @@
 ///////////////////////////////////
 #define E_OK                                                        (0)
 #define E_KO                                                        (-1)
+
+#define E_NEED_TO_RESTART                                           (10)

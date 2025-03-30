@@ -77,9 +77,9 @@ int main()
 
                 std::this_thread::sleep_for(std::chrono::seconds(2));
 
-                //Roadmap roadmap(Profession::WOOD, "linde", /*&checkRoadmap::CheckLinde*/ nullptr, /*&zaap::CheckZaapLinde*/ nullptr,
-                //    {"", "../../Telemetry/Wood/test.csv"});
-                //roadmap.Start();
+                Roadmap roadmap(Profession::WOOD, "linde", nullptr, nullptr,
+                    {"", "../../Telemetry/Wood/formAmaknaCheLv20FinishToStart.csv"});
+                roadmap.Start();
                 
             break;
         }

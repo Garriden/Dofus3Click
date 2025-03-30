@@ -8,6 +8,9 @@ namespace zaap {
     */
     void ClickZaap(std::string zaapName);
 
+    // Check if I'm in the zaap interface.
+    bool CheckZaapInterface();
+
     // Check if I am in Astrub zaap.
     bool CheckZaapAstrub();
 

@@ -8,20 +8,53 @@ void zaap::ClickZaap(std::string zaapName)
 {
     std::this_thread::sleep_for(std::chrono::seconds(8));
 
-    // Press the Zaap
-    inputs::Click(ASTRUB_ZAAP_POS_X, ASTRUB_ZAAP_POS_Y);
+    int retriesClickZaap = 0;
+    while(!CheckZaapInterface() && retriesClickZaap++ < 10) {
+    
+        // Press the Zaap
+        inputs::Click(ASTRUB_ZAAP_POS_X - retriesClickZaap, ASTRUB_ZAAP_POS_Y + retriesClickZaap);
 
-    std::this_thread::sleep_for(std::chrono::seconds(2));
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+    }
+
+    // Click Zaap tab.
+    inputs::Click(ZAAP_INTERFACE_POS_X, ZAAP_INTERFACE_POS_Y);
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
+    // Click Zaap writting space.
+    inputs::Click(ZAAP_INTERFACE_WRITE_POS_X, ZAAP_INTERFACE_WRITE_POS_Y);
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
     // Write desired Zaap name
     inputs::KeyboardWrite(zaapName);
-
-    std::this_thread::sleep_for(std::chrono::seconds(2));
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
     inputs::PressEnter();
-
     std::this_thread::sleep_for(std::chrono::seconds(5));
 }
+
+bool zaap::CheckZaapInterface()
+{
+    bool ret = false;
+
+    COLORREF color1 = basicOperations::GetColor(ZAAP_INTERFACE_POS_X, ZAAP_INTERFACE_POS_Y, true);
+
+    if ((int(GetRValue(color1)) < ZAAP_INTERFACE_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color1)) > ZAAP_INTERFACE_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) < ZAAP_INTERFACE_COLOR_GREEN_1 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) > ZAAP_INTERFACE_COLOR_GREEN_1 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) < ZAAP_INTERFACE_COLOR_BLUE_1  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) > ZAAP_INTERFACE_COLOR_BLUE_1  - ERROR_GET_COLOUR_SMALL) )
+    {
+        File::LogFile("I am in the zaap interface.", true);
+        ret = true;
+    }
+
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
+    return ret;
+}
+
 
 bool zaap::CheckZaapAstrub()
 {
@@ -62,15 +95,14 @@ bool zaap::CheckZaapAstrub()
     return ret;
 }
 
-
 bool zaap::CheckZaapLinde()
 {
     bool ret = false;
-    File::LogFile("Is Linde Zaap ? ? ", true);
+    File::LogFile("Is Linde Zaap ?", true);
 
-    COLORREF color1 = basicOperations::GetColor(I_AM_IN_LINDE_ZAAP_POS_X_1, I_AM_IN_LINDE_ZAAP_POS_Y_1, true);
-    COLORREF color2 = basicOperations::GetColor(I_AM_IN_LINDE_ZAAP_POS_X_2, I_AM_IN_LINDE_ZAAP_POS_Y_2, true);
-    COLORREF color3 = basicOperations::GetColor(I_AM_IN_LINDE_ZAAP_POS_X_3, I_AM_IN_LINDE_ZAAP_POS_Y_3, true);
+    COLORREF color1 = basicOperations::GetColor(I_AM_IN_LINDE_ZAAP_POS_X_1, I_AM_IN_LINDE_ZAAP_POS_Y_1, false);
+    COLORREF color2 = basicOperations::GetColor(I_AM_IN_LINDE_ZAAP_POS_X_2, I_AM_IN_LINDE_ZAAP_POS_Y_2, false);
+    COLORREF color3 = basicOperations::GetColor(I_AM_IN_LINDE_ZAAP_POS_X_3, I_AM_IN_LINDE_ZAAP_POS_Y_3, false);
 
     if ((int(GetRValue(color1)) < I_AM_IN_LINDE_ZAAP_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
         (int(GetRValue(color1)) > I_AM_IN_LINDE_ZAAP_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&

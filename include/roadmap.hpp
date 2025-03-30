@@ -19,7 +19,7 @@ class Roadmap {
             std::vector<std::string> roadmapFiles);
         ~Roadmap();
 
-        void Start();
+        int Start();
 
 
     private:
@@ -32,15 +32,16 @@ class Roadmap {
 
         enum RoadmapState {
             SET_PODS_SET                = 0,
-            SET_PRIVATE_MODE            = 1,
-            CHECK_INITIAL_POSITION      = 2,
-            CHECK_ZAAP_POSITION         = 3,
-            GO_TO_ZAAP                  = 4,
-            GO_TO_INITIAL_MAP           = 5,
-            EXECUTE_ROADMAP             = 6,
-            PREPARE_TO_FIGHT            = 7,
-            STORE_IT_TO_THE_ASTRUB_BANK = 8,
-            RETURN_TO_ASTRUB_ZAAP       = 9
+            CONVERT_RESOURCES           = 1,
+            SET_PRIVATE_MODE            = 2,
+            CHECK_INITIAL_POSITION      = 3,
+            CHECK_ZAAP_POSITION         = 4,
+            GO_TO_ZAAP                  = 5,
+            GO_TO_INITIAL_MAP           = 6,
+            EXECUTE_ROADMAP             = 7,
+            PREPARE_TO_FIGHT            = 8,
+            STORE_IT_TO_THE_ASTRUB_BANK = 9,
+            RETURN_TO_ASTRUB_ZAAP       = 10
         };
 
         /*

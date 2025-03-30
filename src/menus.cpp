@@ -41,7 +41,9 @@ void menu::Wood()
         {
             File::LogFile("lv.20 [AMAKNA]        (linde) . . . ", true);
             Roadmap roadmap(Profession::WOOD, "linde", &zaap::CheckZaapLinde, &zaap::CheckZaapLinde,
-                {"../../Telemetry/Wood/fromLindeZaapToWoodLv20.csv", "../../Telemetry/Wood/amaknaCheLv20.csv", "../../Telemetry/Wood/amaknaWoodTaller1.csv"});
+                {"", "../../Telemetry/Wood/fromLindeZaapToWoodLv20.csv", "../../Telemetry/Wood/amaknaCheLv20.csv", 
+                 "../../Telemetry/Wood/amaknaWoodTaller.csv", "../../Telemetry/Wood/amaknaCheLv20FromTallerToFinish.csv",
+                 "../../Telemetry/Wood/formAmaknaCheLv20FinishToStart.csv"});
             roadmap.Start();
             break;
         }
