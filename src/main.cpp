@@ -73,10 +73,14 @@ int main()
                 //    Fight fight(0);
                 //    fight.Start();
                 //}
+                inputs::ClickOnExe();
 
-                //Sleep(5000);
-                //roadmap::ExecuteRoadMap("../../Telemetry/Wood/astrubAshLv1.csv");
-                //FindExe();
+                std::this_thread::sleep_for(std::chrono::seconds(2));
+
+                //Roadmap roadmap(Profession::WOOD, "linde", /*&checkRoadmap::CheckLinde*/ nullptr, /*&zaap::CheckZaapLinde*/ nullptr,
+                //    {"", "../../Telemetry/Wood/test.csv"});
+                //roadmap.Start();
+                
             break;
         }
     }

@@ -63,7 +63,7 @@ namespace inputs {
     *
     * in: s, string desired to write.
     */
-    //void KeyboardWrite(std::string s);
+    void KeyboardWrite(std::string s);
 
     // Do a Click a little bit on the Dofus executable bar.
     bool ClickOnExe();
@@ -109,6 +109,9 @@ namespace inputs {
     */
     void Click(int x, int y);
 
+    // Similar as Click but DoubleClick.
+    void DoubleClick(int x, int y);
+
     /*
     * Change the map in the desired direction.
     *
@@ -122,7 +125,7 @@ namespace inputs {
     * in: changes: How many ups or downs do you wanna change.
     * in: up: if true, send Re Pag shortcut, Av Pag if false.
     */
-    void ChangeMenuBar(int changes, bool up);
+    void ChangeMenuBar(int changes, bool down);
 
     // Change bottom menu, from spells menu to objects menu, or otherwise.
     //  Can check first if it is spells menu, calling: check::IsSpellsMenu()

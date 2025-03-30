@@ -34,7 +34,7 @@ bool check::AmIFull()
 {
     bool ret = false;
 
-    COLORREF color = basicOperations::GetColor(CHECK_PODS_POS_X, CHECK_PODS_POS_Y, true);
+    COLORREF color = basicOperations::GetColor(CHECK_PODS_POS_X, CHECK_PODS_POS_Y, false);
 
     if ((int(GetRValue(color)) < CHECK_PODS_COLOR_RED   + ERROR_GET_COLOUR_SMALL) &&
         (int(GetRValue(color)) > CHECK_PODS_COLOR_RED   - ERROR_GET_COLOUR_SMALL) &&
@@ -55,7 +55,7 @@ bool check::HaveIHealth()
 {
     bool ret = false;
 
-    COLORREF colorHealth = basicOperations::GetColor(HEALTH_POS_X, HEALTH_POS_Y, true);
+    COLORREF colorHealth = basicOperations::GetColor(HEALTH_POS_X, HEALTH_POS_Y, false);
 
     if ((int(GetRValue(colorHealth)) < HEALTH_COLOR_RED   + ERROR_GET_COLOUR_SMALL) &&
         (int(GetRValue(colorHealth)) > HEALTH_COLOR_RED   - ERROR_GET_COLOUR_SMALL) &&
@@ -75,7 +75,7 @@ bool check::IsPrivateMode()
 {
     bool ret = false;
 
-    COLORREF color = basicOperations::GetColor(PRIVATE_MODE_POS_X_1, PRIVATE_MODE_POS_Y_1, true);
+    COLORREF color = basicOperations::GetColor(PRIVATE_MODE_POS_X_1, PRIVATE_MODE_POS_Y_1, false);
 
     /* It is the desired color */
     if(((int(GetRValue(color)) < PRIVATE_MODE_POS_COLOR_RED_1   + ERROR_GET_COLOUR_QUITE) &&
@@ -670,6 +670,28 @@ bool check::IsSpellsMenu()
         (int(GetBValue(color3)) > IS_ORANGE_CAC_WEAPON_COLOR_BLUE   - ERROR_GET_COLOUR) )
     {
         File::LogFile("Is the spells menu!", true);
+        ret = true;
+    }
+
+    return ret;
+}
+
+bool check::IsEmptyResource()
+{
+    bool ret = false;
+
+    COLORREF color1 = basicOperations::GetColor(INVENTARY_CONVERT_RESOURCES_X_4, INVENTARY_CONVERT_RESOURCES_Y_4, true);
+
+    // Check if the first position in the inventary is empty (dark black).
+    if ((int(GetRValue(color1)) < INVENTARY_NO_RESOURCES_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color1)) > INVENTARY_NO_RESOURCES_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) < INVENTARY_NO_RESOURCES_COLOR_GREEN  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) > INVENTARY_NO_RESOURCES_COLOR_GREEN  - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) < INVENTARY_NO_RESOURCES_COLOR_BLUE   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) > INVENTARY_NO_RESOURCES_COLOR_BLUE   - ERROR_GET_COLOUR_SMALL)
+        )
+    {
+        File::LogFile("Inventary empty!", true);
         ret = true;
     }
 

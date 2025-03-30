@@ -155,18 +155,12 @@
 
 
 
-
-
-
-
-
-
-
-
-
 //////////////////////////////////////////////////////////////
 // ZAAPS CHECKS
 //////////////////////////////////////////////////////////////
+
+#define ASTRUB_ZAAP_POS_X					            (1120)
+#define ASTRUB_ZAAP_POS_Y					            (320)
 
 #define I_AM_IN_ASTRUB_ZAAP_POS_X_1                     (1101)
 #define I_AM_IN_ASTRUB_ZAAP_POS_Y_1                     (318)
@@ -178,11 +172,27 @@
 #define I_AM_IN_ASTRUB_ZAAP_COLOR_RED_2                 (234)
 #define I_AM_IN_ASTRUB_ZAAP_COLOR_GREEN_2               (210)
 #define I_AM_IN_ASTRUB_ZAAP_COLOR_BLUE_2                (134)
-#define I_AM_IN_ASTRUB_ZAAP_POS_X_3                     (1029)
-#define I_AM_IN_ASTRUB_ZAAP_POS_Y_3                     (274)
-#define I_AM_IN_ASTRUB_ZAAP_COLOR_RED_3                 (167)
-#define I_AM_IN_ASTRUB_ZAAP_COLOR_GREEN_3               (137)
-#define I_AM_IN_ASTRUB_ZAAP_COLOR_BLUE_3                (58)
+#define I_AM_IN_ASTRUB_ZAAP_POS_X_3                     (1105) //(1029)
+#define I_AM_IN_ASTRUB_ZAAP_POS_Y_3                     (245) //(274)
+#define I_AM_IN_ASTRUB_ZAAP_COLOR_RED_3                 (207) //(167)
+#define I_AM_IN_ASTRUB_ZAAP_COLOR_GREEN_3               (179) //(137)
+#define I_AM_IN_ASTRUB_ZAAP_COLOR_BLUE_3                (105) //(58)
+
+#define I_AM_IN_LINDE_ZAAP_POS_X_1                       (869)
+#define I_AM_IN_LINDE_ZAAP_POS_Y_1                       (424)
+#define I_AM_IN_LINDE_ZAAP_COLOR_RED_1                   (85)
+#define I_AM_IN_LINDE_ZAAP_COLOR_GREEN_1                 (130)
+#define I_AM_IN_LINDE_ZAAP_COLOR_BLUE_1                  (104)
+#define I_AM_IN_LINDE_ZAAP_POS_X_2                       (871)
+#define I_AM_IN_LINDE_ZAAP_POS_Y_2                       (382)
+#define I_AM_IN_LINDE_ZAAP_COLOR_RED_2                   (109)
+#define I_AM_IN_LINDE_ZAAP_COLOR_GREEN_2                 (189)
+#define I_AM_IN_LINDE_ZAAP_COLOR_BLUE_2                  (127)
+#define I_AM_IN_LINDE_ZAAP_POS_X_3                       (881)
+#define I_AM_IN_LINDE_ZAAP_POS_Y_3                       (384)
+#define I_AM_IN_LINDE_ZAAP_COLOR_RED_3                   (226)
+#define I_AM_IN_LINDE_ZAAP_COLOR_GREEN_3                 (194)
+#define I_AM_IN_LINDE_ZAAP_COLOR_BLUE_3                  (109)
 
 //////////////////////////////////////////////////////////////
 // ROADMAPS CHECKS
@@ -204,6 +214,23 @@
 #define I_AM_IN_WOOD_LV1_COLOR_RED_3                 (110)
 #define I_AM_IN_WOOD_LV1_COLOR_GREEN_3               (104)
 #define I_AM_IN_WOOD_LV1_COLOR_BLUE_3                (63)
+
+// 6, 15
+//#define I_AM_IN_WOOD_LV20_POS_X_1                     ()
+//#define I_AM_IN_WOOD_LV20_POS_Y_1                     ()
+//#define I_AM_IN_WOOD_LV20_COLOR_RED_1                 ()
+//#define I_AM_IN_WOOD_LV20_COLOR_GREEN_1               ()
+//#define I_AM_IN_WOOD_LV20_COLOR_BLUE_1                ()
+//#define I_AM_IN_WOOD_LV20_POS_X_2                     ()
+//#define I_AM_IN_WOOD_LV20_POS_Y_2                     ()
+//#define I_AM_IN_WOOD_LV20_COLOR_RED_2                 ()
+//#define I_AM_IN_WOOD_LV20_COLOR_GREEN_2               ()
+//#define I_AM_IN_WOOD_LV20_COLOR_BLUE_2                ()
+//#define I_AM_IN_WOOD_LV20_POS_X_3                     ()
+//#define I_AM_IN_WOOD_LV20_POS_Y_3                     ()
+//#define I_AM_IN_WOOD_LV20_COLOR_RED_3                 ()
+//#define I_AM_IN_WOOD_LV20_COLOR_GREEN_3               ()
+//#define I_AM_IN_WOOD_LV20_COLOR_BLUE_3                ()
 
 
 
@@ -274,21 +301,7 @@
 #define I_AM_LEVEL_UP_COLOR_GREEN_4                     (247)
 #define I_AM_LEVEL_UP_COLOR_BLUE_4                      (0)
 
-#define I_AM_IN_EDGE_ZAAP_POS_X_1                       (869)
-#define I_AM_IN_EDGE_ZAAP_POS_Y_1                       (424)
-#define I_AM_IN_EDGE_ZAAP_COLOR_RED_1                   (63)
-#define I_AM_IN_EDGE_ZAAP_COLOR_GREEN_1                 (100)
-#define I_AM_IN_EDGE_ZAAP_COLOR_BLUE_1                  (63)
-#define I_AM_IN_EDGE_ZAAP_POS_X_2                       (871)
-#define I_AM_IN_EDGE_ZAAP_POS_Y_2                       (382)
-#define I_AM_IN_EDGE_ZAAP_COLOR_RED_2                   (111)
-#define I_AM_IN_EDGE_ZAAP_COLOR_GREEN_2                 (193)
-#define I_AM_IN_EDGE_ZAAP_COLOR_BLUE_2                  (129)
-#define I_AM_IN_EDGE_ZAAP_POS_X_3                       (881)
-#define I_AM_IN_EDGE_ZAAP_POS_Y_3                       (384)
-#define I_AM_IN_EDGE_ZAAP_COLOR_RED_3                   (255)
-#define I_AM_IN_EDGE_ZAAP_COLOR_GREEN_3                 (219)
-#define I_AM_IN_EDGE_ZAAP_COLOR_BLUE_3                  (122)
+
 
 
 
@@ -496,8 +509,7 @@
 #define CLOSE_POSTFIGHT_WINDOW_POS_X					(1252)
 #define CLOSE_POSTFIGHT_WINDOW_POS_Y					(745)
 
-#define ASTRUB_ZAAP_POS_X					            (1120)
-#define ASTRUB_ZAAP_POS_Y					            (320)
+
 
 #define INVENTARY_CONSUMABLES_TAB_POS_X_1                           (1421)
 #define INVENTARY_CONSUMABLES_TAB_POS_Y_1                           (106)
@@ -529,6 +541,19 @@
 #define INVENTARY_CONSUMABLES_BRAK_POTI_COLOR_BLUE                  (72)
 
 #define POSIBLE_FIGHT_POSITIONS                                     (8)
+
+
+#define INVENTARY_CONVERT_RESOURCES_X_1                             (1001)
+#define INVENTARY_CONVERT_RESOURCES_Y_1                             (317)
+#define INVENTARY_CONVERT_RESOURCES_X_2                             (1187)
+#define INVENTARY_CONVERT_RESOURCES_Y_2                             (223)
+#define INVENTARY_CONVERT_RESOURCES_X_3                             (1086)
+#define INVENTARY_CONVERT_RESOURCES_Y_3                             (221)
+#define INVENTARY_CONVERT_RESOURCES_X_4                             (1082)
+#define INVENTARY_CONVERT_RESOURCES_Y_4                             (333)
+#define INVENTARY_NO_RESOURCES_COLOR_RED                            (17)
+#define INVENTARY_NO_RESOURCES_COLOR_GREEN                          (19)
+#define INVENTARY_NO_RESOURCES_COLOR_BLUE                           (32)
 
 ///////////////////////////////////
 // ERRORS VARIANCE

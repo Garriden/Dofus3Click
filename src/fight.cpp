@@ -63,6 +63,10 @@ void Fight::Start()
             break;
         case FightPreparationState::AFTER_FIGHT_SIT:
             AfterFightSit();
+            step = WAIT_UNTIL_HEALED;
+            break;
+        case FightPreparationState::WAIT_UNTIL_HEALED:
+            AfterFightHeal(); // Wait until healed.
             step = -1;
             break;
         default:
@@ -134,7 +138,7 @@ void Fight::FindMyPosition()
 void Fight::FindEnemiesPositions()
 {
     int ii = FIGTH_MENU_FRIEND_POS_X;
-    int its = 30;
+    int its = 40;
     while(its --> 0) {
         SetCursorPos(ii, FIGTH_MENU_FRIEND_POS_Y);
         COLORREF color1 = basicOperations::GetColor(ii, FIGTH_MENU_FRIEND_POS_Y, false);
@@ -189,6 +193,13 @@ void Fight::AfterFightSit()
     std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 
+void Fight::AfterFightHeal()
+{
+    while(!check::HaveIHealth()) {
+        std::this_thread::sleep_for(std::chrono::seconds(10));
+    }
+}
+
 int Fight::FightStrategySM() 
 {
     File::LogFile("FightStarted ! ", true);
@@ -209,6 +220,7 @@ int Fight::FightStrategySM()
             ThrowSpellToMyself(SpellsCtrlRow::BASTION,   SpellsCtrlRow::SPELLS_CTRL_ROW);
         } else if(_turn % 6 == 5) {
             ThrowSpellToMyself(SpellsCtrlRow::BARRICADA, SpellsCtrlRow::SPELLS_CTRL_ROW);
+            ThrowSpellToMyself(SpellsRow::VIGIA,         SpellsRow::SPELLS_ROW);
         }
 
         ThrowSpellToEnemies(SpellsCtrlRow::WEAPON,  SpellsRow::SPELLS_ROW); // weapon is just 'q'

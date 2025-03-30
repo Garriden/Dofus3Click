@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 #include <string>
 #include <vector>
 
@@ -13,7 +14,9 @@ enum Profession {
 class Roadmap {
     public:
         Roadmap();
-        Roadmap(Profession profession, std::string zaap, std::vector<std::string> roadmapFiles);
+        Roadmap(Profession profession, std::string zaap, 
+            std::function<bool()> callbackCheckInitialMap, std::function<bool()> callbackCheckInitialZaap,
+            std::vector<std::string> roadmapFiles);
         ~Roadmap();
 
         void Start();
@@ -23,6 +26,8 @@ class Roadmap {
 
         Profession _profession;
         std::string _zaap;
+        std::function<bool()> _callbackCheckInitialMap;
+        std::function<bool()> _callbackCheckInitialZaap;
         std::vector<std::string> _roadmapFiles;
 
         enum RoadmapState {
@@ -59,12 +64,12 @@ class Roadmap {
         * in: map, the vector of Coordenates extracted from telemetry. 
         */
         int ClickIdentities(const std::vector<std::pair<int, int> > map);
-
         void ChangeObjectsMenu();
-
         void ChangeSpellsMenu();
-
         void SetPodsSet();
+        void ConvertResources();
+        // Go to default zaap (Astrub), and then, transport to the desired zaap.
+        void GoToZaap();
 
         /*
         * Open the consumables inventory and keeps pressing (unfolding bags of resources),

@@ -2,21 +2,17 @@
 
 namespace zaap {
     /*
-    * Click on the actual zaap and write the destination zaap name.
+    * Click on the actual zaap (Astrub) and write the destination zaap name.
     * 
     * in: zaap_file, the name of the file where is the destination zaap written. 
     */
-    //void ClickZaap(std::string zaap_file);
+    void ClickZaap(std::string zaapName);
 
-    /*
-    * Check if I am in Astrub zaap.
-    */
+    // Check if I am in Astrub zaap.
     bool CheckZaapAstrub();
 
-    /*
-    * Check if I am in Edge zaap.
-    */
-    //bool CheckZaapEdge();
+    // Check if I am in Linde zaap.
+    bool CheckZaapLinde();
 
     /*
     * Check if I am in Otomai Coast zaap.

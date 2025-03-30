@@ -18,6 +18,7 @@ class Fight {
         void ReadyToFight();
         void AfterFightSet();
         void AfterFightSit();
+        void AfterFightHeal();
 
         int _turn;
         int _myXPositionInMenuFight;
@@ -32,7 +33,8 @@ class Fight {
             START_FIGHT_STRATEGY        = 5,
             CHECK_FIGHT_ENDED           = 6,
             AFTER_FIGHT_SET             = 7,
-            AFTER_FIGHT_SIT             = 8
+            AFTER_FIGHT_SIT             = 8,
+            WAIT_UNTIL_HEALED           = 9
         };
 
         int FightStrategySM();

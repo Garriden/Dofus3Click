@@ -119,11 +119,6 @@ bool IsBlack(int x, int y);
 //bool IsMercant();
 
 /*
- * Check if I have at least 90% health.
- */
-//bool HaveIHealth();
-
-/*
  * Check if I am trying to go into merchant mode.
  */
 //bool IsMercantMode();
@@ -131,5 +126,8 @@ bool IsBlack(int x, int y);
 // Check if the bottom menu is spells menu.
 //  I check if the bottom rightmost icon is orange (CaC weapon)
 bool IsSpellsMenu();
+
+// Check if the first position in the inventary is empty.
+bool IsEmptyResource();
 
 }

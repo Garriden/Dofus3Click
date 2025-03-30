@@ -23,17 +23,27 @@ void menu::Wood()
         return;
     }
 
-    switch(in) {
+    switch(in) 
+    {
         case 0:
         default:
             break;
-
         case 1:
+        {
             File::LogFile("lv.1  [ASTRUB] . . . ", true);
-            Roadmap roadmap(Profession::WOOD, "Astrub", 
+            Roadmap roadmap(Profession::WOOD, "Astrub", &checkRoadmap::CheckWoodLv1, &zaap::CheckZaapAstrub,
                 {"../../Telemetry/Wood/fromAstrubZaapToWoodLv1.csv", "../../Telemetry/Wood/astrubAshLv1.csv"});
             roadmap.Start();
             //Astrub();
             break;
+        }
+        case 2:
+        {
+            File::LogFile("lv.20 [AMAKNA]        (linde) . . . ", true);
+            Roadmap roadmap(Profession::WOOD, "linde", &zaap::CheckZaapLinde, &zaap::CheckZaapLinde,
+                {"../../Telemetry/Wood/fromLindeZaapToWoodLv20.csv", "../../Telemetry/Wood/amaknaCheLv20.csv", "../../Telemetry/Wood/amaknaWoodTaller1.csv"});
+            roadmap.Start();
+            break;
+        }
     }
 }

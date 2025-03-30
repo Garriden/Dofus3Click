@@ -16,9 +16,15 @@ Roadmap::Roadmap() :
     std::cout << "Roadmap constructor called" << std::endl;
 }
 
-Roadmap::Roadmap(Profession profession, std::string zaap, std::vector<std::string> roadmapFiles) :
+Roadmap::Roadmap(Profession profession, 
+                std::string zaap,
+                std::function<bool()> callbackCheckInitialMap, 
+                std::function<bool()> callbackCheckInitialZaap,
+                std::vector<std::string> roadmapFiles) :
     _profession{profession},
     _zaap{zaap},
+    _callbackCheckInitialMap{callbackCheckInitialMap},
+    _callbackCheckInitialZaap{callbackCheckInitialZaap},
     _roadmapFiles{roadmapFiles}
 {
     File::LogFile(("Roadmap started. Profession: " + std::to_string(_profession)).c_str(), true);
@@ -42,7 +48,11 @@ void Roadmap::Start()
     while(1) {
         switch(step) {
         case RoadmapState::SET_PODS_SET:
-            SetPodsSet();
+            if(_profession == Profession::LOWERING_PODS) {
+                ConvertResources();
+            } else {
+                SetPodsSet();
+            }
             step = RoadmapState::SET_PRIVATE_MODE;
             break;
         case RoadmapState::SET_PRIVATE_MODE:
@@ -52,33 +62,32 @@ void Roadmap::Start()
             step = RoadmapState::CHECK_INITIAL_POSITION;
             break;
         case RoadmapState::CHECK_INITIAL_POSITION:
-            if(checkRoadmap::CheckWoodLv1() && _roadmapFiles[0] != "") {
+            if(_callbackCheckInitialMap() && _roadmapFiles[0] != "") {
                 step = RoadmapState::EXECUTE_ROADMAP;
             } else {
                 step = RoadmapState::CHECK_ZAAP_POSITION;
             }
             break;
         case RoadmapState::CHECK_ZAAP_POSITION:
-            if(zaap::CheckZaapAstrub()) {
+            if(_callbackCheckInitialZaap()) {
                 step = RoadmapState::GO_TO_INITIAL_MAP;
             } else {
                 step = RoadmapState::GO_TO_ZAAP;
             }
             break;
         case RoadmapState::GO_TO_ZAAP:
-            File::LogFile("Going to initial Zaap ... ", true);
-            inputs::PressCtrlKey('8'); // Recall Poti.
+            GoToZaap();
             step = RoadmapState::GO_TO_INITIAL_MAP;
             break;
         case RoadmapState::GO_TO_INITIAL_MAP:
             if(_roadmapFiles[0] != "") {
-                ExecuteRoadMap(_roadmapFiles[0]/*"../../Telemetry/Wood/fromAstrubZaapToWoodLv1.csv"*/);
+                ExecuteRoadMap(_roadmapFiles[0]);
             }
             step = RoadmapState::EXECUTE_ROADMAP;
             break;
         case RoadmapState::EXECUTE_ROADMAP:
             for(int roadmapIndex = 1; roadmapIndex < _roadmapFiles.size(); ++roadmapIndex) {
-                if(E_OK != ExecuteRoadMap(_roadmapFiles[roadmapIndex]/*"../../Telemetry/Wood/astrubAshLv1.csv"*/)) {
+                if(E_OK != ExecuteRoadMap(_roadmapFiles[roadmapIndex])) {
                     //step = RoadmapState::GO_TO_ZAAP;
                     step = -1;
                 }
@@ -114,16 +123,10 @@ int Roadmap::ExecuteRoadMap(std::string name)
     std::vector<std::vector<std::pair<int, int> > > roadmap = File::ReadFileAndBuildMap(name);
 
     for(int ii = 0; ii < static_cast<int>(roadmap.size()); ++ii) {
-        //File::LogFile("map: " + std::to_string(ii), true);
-        //if(restart_roadmap_) {
-        //    return;
-        //}
+        File::LogFile("map: " + std::to_string(ii), true);
         if(E_OK != ClickIdentities(roadmap[ii])) {
             return E_KO;
         }
-        //if (restart_roadmap_) {
-        //    return;
-        //}
     }
 
     return E_OK;
@@ -139,28 +142,37 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
     int y = 0;
 
     for(int ii = 0; ii < map.size(); ++ii) {
-        //File::LogFile("ii: " + std::to_string(ii), true);
-        //if(!restart_roadmap_) {
-            ruletNumber = basicOperations::RuletaInput(0, 9) + 1;
+        ruletNumber = basicOperations::RuletaInput(0, 9) + 1;
 
+        if(ii == 0) { // Already changed map.
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+            std::this_thread::sleep_for(std::chrono::milliseconds(ruletNumber * 100));
+        } else {
             std::this_thread::sleep_for(std::chrono::seconds(8));
             std::this_thread::sleep_for(std::chrono::milliseconds(ruletNumber * 100));
+        }
 
-            if(check::IsFight()) {
-                Fight fight;
-                fight.Start();
-            }
+        if(check::IsFight()) {
+            Fight fight;
+            fight.Start();
+        }
 
-            if(_profession != Profession::LOWERING_PODS && check::AmIFull()) {
-                Roadmap goToBank(Profession::LOWERING_PODS, "",
-                    {"", "../../Telemetry/ZaapToBank/astrubBankTransaction.csv", "../../Telemetry/ZaapToBank/fromAstrubZaapToBank.csv"});
-                goToBank.Start();
-            }
+        if(_profession != Profession::LOWERING_PODS && check::AmIFull()) {
+            Roadmap goToBank(Profession::LOWERING_PODS, "", &zaap::CheckZaapAstrub, &zaap::CheckZaapAstrub,
+                {"", "../../Telemetry/ZaapToBank/astrubBankTransaction.csv", "../../Telemetry/ZaapToBank/fromAstrubZaapToBank.csv"});
+            goToBank.Start();
+        }
 
-            std::cout << "c: " <<  map.size() << "    " << map[ii].first << " . " << map[ii].second << std::endl;
+        //std::cout << "cord: " <<  map.size() << "    " << map[ii].first << " . " << map[ii].second << std::endl;
+        if(map[ii].first == INPUT_PATTERN_CHARACTER) {
+            inputs::PressKey(map[ii].second);
+        } else if(map[ii].first == INPUT_PATTERN_ESC) {
+            inputs::PressEscape();
+        } else if(map[ii].first == INPUT_PATTERN_CTRL) {
+            inputs::PressCtrlKey(map[ii].second);
+        } else { // normal coordenate value
             inputs::Click(map[ii].first, map[ii].second);
-
-        //}
+        }
     }
 
     // Change map
@@ -272,5 +284,49 @@ void Roadmap::SetPodsSet()
 
     std::this_thread::sleep_for(std::chrono::seconds(1));
     inputs::PressCtrlKey('3'); // Pods Set
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+}
+
+void Roadmap::ConvertResources()
+{
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    inputs::PressKey('i');
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
+    inputs::Click(INVENTARY_CONVERT_RESOURCES_X_1, INVENTARY_CONVERT_RESOURCES_Y_1);
+    inputs::Click(INVENTARY_CONVERT_RESOURCES_X_2, INVENTARY_CONVERT_RESOURCES_Y_2);
+    inputs::Click(INVENTARY_CONVERT_RESOURCES_X_3, INVENTARY_CONVERT_RESOURCES_Y_3);
+
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    inputs::KeyboardWrite("saco");
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
+    while(!check::IsEmptyResource()) {
+        inputs::DoubleClick(INVENTARY_CONVERT_RESOURCES_X_4, INVENTARY_CONVERT_RESOURCES_Y_4);
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
+
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    inputs::PressEscape();
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+}
+
+void Roadmap::GoToZaap()
+{
+    File::LogFile("Going to initial Zaap ... ", true);
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
+    if(!zaap::CheckZaapAstrub()) {
+        inputs::PressCtrlKey('8'); // Recall Poti.
+    }
+
+    std::this_thread::sleep_for(std::chrono::seconds(3));
+
+    if(zaap::CheckZaapAstrub() && _zaap != "Astrub") {  // Rebundant check.
+        zaap::ClickZaap(_zaap);
+    } else {
+        File::LogFile("Watch out! I'm not at Astrub zaap and I should be... ", true);
+    }
+
     std::this_thread::sleep_for(std::chrono::seconds(1));
 }

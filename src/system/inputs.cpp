@@ -145,7 +145,7 @@ void inputs::PressEscape()
     escape.ki.wVk = VK_ESCAPE;
     escape.ki.wScan = MapVirtualKey(VK_ESCAPE, 0);
     SendInput(1, &escape, sizeof(INPUT)); // Send KeyDown
-    escape.ki.dwFlags = KEYEVENTF_KEYUP | KEYEVENTF_EXTENDEDKEY;
+    escape.ki.dwFlags = KEYEVENTF_KEYUP; // | KEYEVENTF_EXTENDEDKEY;
     SendInput(1, &escape, sizeof(INPUT)); // Send KeyUp
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
 }
@@ -157,9 +157,17 @@ void inputs::PressEnter()
     enter.ki.wVk = VK_RETURN;
     enter.ki.wScan = MapVirtualKey(VK_RETURN, 0);
     SendInput(1, &enter, sizeof(INPUT)); // Send KeyDown
-    enter.ki.dwFlags = KEYEVENTF_KEYUP | KEYEVENTF_EXTENDEDKEY;
+    enter.ki.dwFlags = KEYEVENTF_KEYUP; // | KEYEVENTF_EXTENDEDKEY;
     SendInput(1, &enter, sizeof(INPUT)); // Send KeyUp
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
+}
+
+void inputs::KeyboardWrite(std::string s)
+{
+    for(char& c : s) {
+        PressKey(c);
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    }
 }
 
 bool inputs::ClickOnExe()
@@ -195,6 +203,24 @@ void inputs::Click(int x, int y)
     std::this_thread::sleep_for(std::chrono::milliseconds(10 * ruletNumber));
 }
 
+void inputs::DoubleClick(int x, int y)
+{
+    int ruletNumber = basicOperations::RuletaInput(10, 20);
+
+    // Press it!
+    SetCursorPos(x, y);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    mouse_event(MOUSEEVENTF_LEFTDOWN, x, y, 0, 0);
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    mouse_event(MOUSEEVENTF_LEFTUP, x, y, 0, 0);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    mouse_event(MOUSEEVENTF_LEFTDOWN, x, y, 0, 0);
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    mouse_event(MOUSEEVENTF_LEFTUP, x, y, 0, 0);
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(10 * ruletNumber));
+}
+
 void inputs::ChangeMap(int position)
 {
     //TODO: Alt + W atajo teclado
@@ -224,10 +250,10 @@ void inputs::ChangeMap(int position)
     inputs::Click(x, y);
 }
 
-void inputs::ChangeMenuBar(int changes, bool up)
+void inputs::ChangeMenuBar(int changes, bool down)
 {
     int key = VK_PRIOR;
-    if(up) {
+    if(down) {
         key = VK_NEXT;
     }
 

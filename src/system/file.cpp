@@ -6,6 +6,34 @@
 #include <iostream>
 #include <sstream>
 
+namespace { // anonymus namespace.
+    std::string trimLeadingWhitespace(const std::string& str) {
+        size_t firstNonSpace = str.find_first_not_of(" \t\n\r\f\v"); // Find the first non-whitespace character
+
+        if(firstNonSpace == std::string::npos) {
+            // String is all whitespace
+            return "";
+        }
+
+        std::string ret = str.substr(firstNonSpace);
+
+        size_t pos = ret.find(" ");
+        if(pos != std::string::npos) {
+            ret = str.substr(0, pos);
+        }
+
+        return ret;
+    }
+
+    bool isSingleCharacter(const std::string& str) {
+        if(str.length() == 1) {
+            return true;
+        }
+
+        return false;
+    }
+}
+
 std::vector<std::vector<std::pair<int, int> > > File::ReadFileAndBuildMap(const std::string &filePath)
 {
     auto isNumber = [](const std::string& str) -> bool { // Local function needed to parse strings.
@@ -37,25 +65,48 @@ std::vector<std::vector<std::pair<int, int> > > File::ReadFileAndBuildMap(const 
             std::stringstream str(line);
  
             while(std::getline(str, word, ',')) {
-                std::getline(str, word2, ',');
+                word = trimLeadingWhitespace(word);
 
-                if(word == "up" || (isNumber(word2) && (stoi(word2) <= UP_Y + ERROR_GET_COLOUR_QUITE)) ) { // CheckChangeMap
+                std::getline(str, word2, ',');
+                word2 = trimLeadingWhitespace(word2);
+
+                if(word == "up" || (isNumber(word2) && isNumber(word) && (stoi(word2) <= UP_Y + ERROR_GET_COLOUR_QUITE)) ) { // CheckChangeMap
                     coord.first  = UP_X;
                     coord.second = UP_Y;
                 } else if(word == "left" || (isNumber(word) && (stoi(word) <= LEFT_X + ERROR_GET_COLOUR_QUITE)) ) {
                     coord.first  = LEFT_X;
                     coord.second = LEFT_Y;
-                } else if(word == "down" || (isNumber(word2) && (stoi(word2) >= DOWN_Y - ERROR_GET_COLOUR_QUITE)) ) {
+                } else if(word == "down" || (isNumber(word2) && isNumber(word) && (stoi(word2) >= DOWN_Y - ERROR_GET_COLOUR_QUITE)) ) {
                     coord.first  = DOWN_X;
                     coord.second = DOWN_Y;
                 } else if(word == "right" || (isNumber(word) && (stoi(word) >= RIGHT_X - ERROR_GET_COLOUR_QUITE)) ) {
                     coord.first  = RIGHT_X;
                     coord.second = RIGHT_Y;
                 } else {
-                    //if(isNumber(word) && isNumber(word2)) {
+                    if(isNumber(word) && isNumber(word2)) {
                         coord.first = stoi(word);
                         coord.second = stoi(word2);
-                    //}
+                    } else {
+                        std::cout << "character: " << word << std::endl;
+                        if(isSingleCharacter(word)) {
+                            // An ugly way to translate the character I have in the .csv file into the coordenates vector.
+                            //  if I find a character in the .csv file, I build the coordenate vector<pair<int,int> > as:
+                            //   {INPUT_PATTERN_CHARACTER, character}.
+                            coord.first = INPUT_PATTERN_CHARACTER;
+                            coord.second = static_cast<int>(word[0]);
+                        } else {
+                            std::cout << "word: is NOT a single character!" << std::endl;
+                            if(word == "ESC") {
+                                coord.first = INPUT_PATTERN_ESC;
+                                coord.second = 0;
+                            } else if(word == "ctrl") {
+                                if(isSingleCharacter(word2)) {
+                                    coord.first = INPUT_PATTERN_CTRL;
+                                    coord.second = static_cast<int>(word2[0]);
+                                }
+                            }
+                        }
+                    }
                 }
                 row.push_back(coord);
                 std::cout <<  "coord.first: " << coord.first  << "  coord.second: " << coord.second << std::endl;

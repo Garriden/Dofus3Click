@@ -2,33 +2,26 @@
 #include "utils.hpp"
 #include "basicOperations.hpp"
 #include "system/file.hpp"
+#include "system/inputs.hpp"
 
-/*
-void ClickZaap(std::string zaap_file)
+void zaap::ClickZaap(std::string zaapName)
 {
-    int ruletNumber = Ruleta10();
-    Sleep(2 * SECONDS + ruletNumber * 100);
+    std::this_thread::sleep_for(std::chrono::seconds(8));
 
     // Press the Zaap
-    int x = ASTRUB_ZAAP_POS_X;
-    int y = ASTRUB_ZAAP_POS_Y;
-    SetCursorPos(x, y);
-    mouse_event(MOUSEEVENTF_LEFTDOWN, x, y, 0, 0);
-    Sleep(30);
-    mouse_event(MOUSEEVENTF_LEFTUP, x, y, 0, 0);
-    Sleep(6 * SECONDS + ruletNumber * 100);
+    inputs::Click(ASTRUB_ZAAP_POS_X, ASTRUB_ZAAP_POS_Y);
+
+    std::this_thread::sleep_for(std::chrono::seconds(2));
 
     // Write desired Zaap name
-    std::string zaap_name = GetTxtFile(zaap_file);
-    KeyboardWrite(zaap_name);
+    inputs::KeyboardWrite(zaapName);
 
-    Sleep(2 * SECONDS + ruletNumber * 50);
+    std::this_thread::sleep_for(std::chrono::seconds(2));
 
-    PressEnter();
+    inputs::PressEnter();
 
-    Sleep(3 * SECONDS + ruletNumber * 150);
+    std::this_thread::sleep_for(std::chrono::seconds(5));
 }
-*/
 
 bool zaap::CheckZaapAstrub()
 {
@@ -51,13 +44,13 @@ bool zaap::CheckZaapAstrub()
         (int(GetGValue(color2)) > I_AM_IN_ASTRUB_ZAAP_COLOR_GREEN_2 - ERROR_GET_COLOUR_SMALL) &&
         (int(GetBValue(color2)) < I_AM_IN_ASTRUB_ZAAP_COLOR_BLUE_2  + ERROR_GET_COLOUR_SMALL) &&
         (int(GetBValue(color2)) > I_AM_IN_ASTRUB_ZAAP_COLOR_BLUE_2  - ERROR_GET_COLOUR_SMALL)
-        &&
-        (int(GetRValue(color3)) < I_AM_IN_ASTRUB_ZAAP_COLOR_RED_3   + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetRValue(color3)) > I_AM_IN_ASTRUB_ZAAP_COLOR_RED_3   - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color3)) < I_AM_IN_ASTRUB_ZAAP_COLOR_GREEN_3 + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color3)) > I_AM_IN_ASTRUB_ZAAP_COLOR_GREEN_3 - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color3)) < I_AM_IN_ASTRUB_ZAAP_COLOR_BLUE_3  + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color3)) > I_AM_IN_ASTRUB_ZAAP_COLOR_BLUE_3  - ERROR_GET_COLOUR_SMALL)
+        //&&
+        //(int(GetRValue(color3)) < I_AM_IN_ASTRUB_ZAAP_COLOR_RED_3   + ERROR_GET_COLOUR_SMALL) &&
+        //(int(GetRValue(color3)) > I_AM_IN_ASTRUB_ZAAP_COLOR_RED_3   - ERROR_GET_COLOUR_SMALL) &&
+        //(int(GetGValue(color3)) < I_AM_IN_ASTRUB_ZAAP_COLOR_GREEN_3 + ERROR_GET_COLOUR_SMALL) &&
+        //(int(GetGValue(color3)) > I_AM_IN_ASTRUB_ZAAP_COLOR_GREEN_3 - ERROR_GET_COLOUR_SMALL) &&
+        //(int(GetBValue(color3)) < I_AM_IN_ASTRUB_ZAAP_COLOR_BLUE_3  + ERROR_GET_COLOUR_SMALL) &&
+        //(int(GetBValue(color3)) > I_AM_IN_ASTRUB_ZAAP_COLOR_BLUE_3  - ERROR_GET_COLOUR_SMALL)
         )
     {
         File::LogFile("I am in Astrub Zaap!", true);
@@ -69,45 +62,45 @@ bool zaap::CheckZaapAstrub()
     return ret;
 }
 
-/*
-bool CheckZaapEdge()
+
+bool zaap::CheckZaapLinde()
 {
-	bool ret = false;
-	//LogFile("CheckZaap Edge?");
+    bool ret = false;
+    File::LogFile("Is Linde Zaap ? ? ", true);
 
-	COLORREF color1 = GetColor(I_AM_IN_EDGE_ZAAP_POS_X_1, I_AM_IN_EDGE_ZAAP_POS_Y_1);
-	COLORREF color2 = GetColor(I_AM_IN_EDGE_ZAAP_POS_X_2, I_AM_IN_EDGE_ZAAP_POS_Y_2);
-	COLORREF color3 = GetColor(I_AM_IN_EDGE_ZAAP_POS_X_3, I_AM_IN_EDGE_ZAAP_POS_Y_3);
+    COLORREF color1 = basicOperations::GetColor(I_AM_IN_LINDE_ZAAP_POS_X_1, I_AM_IN_LINDE_ZAAP_POS_Y_1, true);
+    COLORREF color2 = basicOperations::GetColor(I_AM_IN_LINDE_ZAAP_POS_X_2, I_AM_IN_LINDE_ZAAP_POS_Y_2, true);
+    COLORREF color3 = basicOperations::GetColor(I_AM_IN_LINDE_ZAAP_POS_X_3, I_AM_IN_LINDE_ZAAP_POS_Y_3, true);
 
-	if ((int(GetRValue(color1)) < I_AM_IN_EDGE_ZAAP_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetRValue(color1)) > I_AM_IN_EDGE_ZAAP_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&
-		(int(GetGValue(color1)) < I_AM_IN_EDGE_ZAAP_COLOR_GREEN_1 + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetGValue(color1)) > I_AM_IN_EDGE_ZAAP_COLOR_GREEN_1 - ERROR_GET_COLOUR_SMALL) &&
-		(int(GetBValue(color1)) < I_AM_IN_EDGE_ZAAP_COLOR_BLUE_1  + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetBValue(color1)) > I_AM_IN_EDGE_ZAAP_COLOR_BLUE_1  - ERROR_GET_COLOUR_SMALL)
-		&&
-		(int(GetRValue(color2)) < I_AM_IN_EDGE_ZAAP_COLOR_RED_2   + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetRValue(color2)) > I_AM_IN_EDGE_ZAAP_COLOR_RED_2   - ERROR_GET_COLOUR_SMALL) &&
-		(int(GetGValue(color2)) < I_AM_IN_EDGE_ZAAP_COLOR_GREEN_2 + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetGValue(color2)) > I_AM_IN_EDGE_ZAAP_COLOR_GREEN_2 - ERROR_GET_COLOUR_SMALL) &&
-		(int(GetBValue(color2)) < I_AM_IN_EDGE_ZAAP_COLOR_BLUE_2  + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetBValue(color2)) > I_AM_IN_EDGE_ZAAP_COLOR_BLUE_2  - ERROR_GET_COLOUR_SMALL)
-		&&
-		(int(GetRValue(color3)) < I_AM_IN_EDGE_ZAAP_COLOR_RED_3   + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetRValue(color3)) > I_AM_IN_EDGE_ZAAP_COLOR_RED_3   - ERROR_GET_COLOUR_SMALL) &&
-		(int(GetGValue(color3)) < I_AM_IN_EDGE_ZAAP_COLOR_GREEN_3 + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetGValue(color3)) > I_AM_IN_EDGE_ZAAP_COLOR_GREEN_3 - ERROR_GET_COLOUR_SMALL) &&
-		(int(GetBValue(color3)) < I_AM_IN_EDGE_ZAAP_COLOR_BLUE_3  + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetBValue(color3)) > I_AM_IN_EDGE_ZAAP_COLOR_BLUE_3  - ERROR_GET_COLOUR_SMALL)
-		)
-	{
-		LogFile("I am in edge Zaap ! ALL OK!!");
-		ret = true;
-	}
+    if ((int(GetRValue(color1)) < I_AM_IN_LINDE_ZAAP_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color1)) > I_AM_IN_LINDE_ZAAP_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) < I_AM_IN_LINDE_ZAAP_COLOR_GREEN_1 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) > I_AM_IN_LINDE_ZAAP_COLOR_GREEN_1 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) < I_AM_IN_LINDE_ZAAP_COLOR_BLUE_1  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) > I_AM_IN_LINDE_ZAAP_COLOR_BLUE_1  - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(color2)) < I_AM_IN_LINDE_ZAAP_COLOR_RED_2   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color2)) > I_AM_IN_LINDE_ZAAP_COLOR_RED_2   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) < I_AM_IN_LINDE_ZAAP_COLOR_GREEN_2 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) > I_AM_IN_LINDE_ZAAP_COLOR_GREEN_2 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color2)) < I_AM_IN_LINDE_ZAAP_COLOR_BLUE_2  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color2)) > I_AM_IN_LINDE_ZAAP_COLOR_BLUE_2  - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(color3)) < I_AM_IN_LINDE_ZAAP_COLOR_RED_3   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color3)) > I_AM_IN_LINDE_ZAAP_COLOR_RED_3   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color3)) < I_AM_IN_LINDE_ZAAP_COLOR_GREEN_3 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color3)) > I_AM_IN_LINDE_ZAAP_COLOR_GREEN_3 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color3)) < I_AM_IN_LINDE_ZAAP_COLOR_BLUE_3  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color3)) > I_AM_IN_LINDE_ZAAP_COLOR_BLUE_3  - ERROR_GET_COLOUR_SMALL)
+        )
+    {
+        File::LogFile("I am in Linde Zaap!", true);
+        ret = true;
+    }
 
-	return ret;
+    return ret;
 }
-
+/*
 bool CheckZaapOtoCoast()
 {
 	bool ret = false;

@@ -51,7 +51,7 @@ void show::WoodMenu()
     system("TITLE Wood menu");
     std::cout << "===================================" << std::endl;
     std::cout << "1 = -lv.1  [ASTRUB]      (Astrub)" << std::endl;
-    std::cout << "2 = -lv.20 [AMAKNA]        (Edge)" << std::endl;
+    std::cout << "2 = -lv.20 [AMAKNA]       (Linde)" << std::endl;
     std::cout << "4 = -lv.70 [BOMBU]       (Plains)" << std::endl;
     std::cout << "8 = [OTOMAI | CENTER]     (Coast)" << std::endl;
     std::cout << "9 = [OTOMAI | ALL]        (Coast)" << std::endl;
@@ -84,7 +84,7 @@ void show::AlchemistMenu()
     system("TITLE Alchemist menu");
     std::cout << "===================================" << std::endl;
     std::cout << "1 = lv.1                   [ASTRUB]" << std::endl;
-    std::cout << "2 = lv.40                    [EDGE]" << std::endl;
+    std::cout << "2 = lv.40                   [LINDE]" << std::endl;
     std::cout << "3 = lv.80                 [BREEDER]" << std::endl;
     //std::cout << "4 = lv.120                [PANDALA]" << std::endl;
     std::cout << "5 = lv.140                   [MOON]" << std::endl;
