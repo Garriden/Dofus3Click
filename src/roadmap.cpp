@@ -163,7 +163,7 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
         ruletNumber = basicOperations::RuletaInput(0, 9) + 1;
 
         if(ii == 0) { // Already changed map.
-            std::this_thread::sleep_for(std::chrono::seconds(1));
+            //std::this_thread::sleep_for(std::chrono::seconds(1));
             std::this_thread::sleep_for(std::chrono::milliseconds(ruletNumber * 100));
         } else {
             std::this_thread::sleep_for(std::chrono::seconds(8));
@@ -204,6 +204,15 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
         for(int ii = 0; !mapChanged && ii < 500; ++ii) {
             if(check::IsBlackScreen()) {
                 mapChanged = true;
+
+                std::this_thread::sleep_for(std::chrono::seconds(1));
+
+                if(check::IsFight()) {
+                    Fight fight;
+                    fight.Start();
+                    mapChanged = false;
+                }
+
                 //File::LogFile("Backscreen detected! mapChanged", false);
             }
             std::this_thread::sleep_for(std::chrono::milliseconds(10));

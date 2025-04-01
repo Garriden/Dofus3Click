@@ -208,6 +208,22 @@
 #define I_AM_IN_LINDE_ZAAP_COLOR_GREEN_3                 (194)
 #define I_AM_IN_LINDE_ZAAP_COLOR_BLUE_3                  (109)
 
+#define I_AM_IN_PUERKAZOS_ZAAP_POS_X_1               (740)
+#define I_AM_IN_PUERKAZOS_ZAAP_POS_Y_1               (282)
+#define I_AM_IN_PUERKAZOS_ZAAP_COLOR_RED_1           (248)
+#define I_AM_IN_PUERKAZOS_ZAAP_COLOR_GREEN_1         (212)
+#define I_AM_IN_PUERKAZOS_ZAAP_COLOR_BLUE_1          (119)
+#define I_AM_IN_PUERKAZOS_ZAAP_POS_X_2               (1532)
+#define I_AM_IN_PUERKAZOS_ZAAP_POS_Y_2               (97)
+#define I_AM_IN_PUERKAZOS_ZAAP_COLOR_RED_2           (206)
+#define I_AM_IN_PUERKAZOS_ZAAP_COLOR_GREEN_2         (189)
+#define I_AM_IN_PUERKAZOS_ZAAP_COLOR_BLUE_2          (75)
+#define I_AM_IN_PUERKAZOS_ZAAP_POS_X_3               (458)
+#define I_AM_IN_PUERKAZOS_ZAAP_POS_Y_3               (567)
+#define I_AM_IN_PUERKAZOS_ZAAP_COLOR_RED_3           (154)
+#define I_AM_IN_PUERKAZOS_ZAAP_COLOR_GREEN_3         (150)
+#define I_AM_IN_PUERKAZOS_ZAAP_COLOR_BLUE_3          (21)
+
 //////////////////////////////////////////////////////////////
 // ROADMAPS CHECKS
 //////////////////////////////////////////////////////////////
@@ -228,23 +244,6 @@
 #define I_AM_IN_WOOD_LV1_COLOR_RED_3                 (110)
 #define I_AM_IN_WOOD_LV1_COLOR_GREEN_3               (104)
 #define I_AM_IN_WOOD_LV1_COLOR_BLUE_3                (63)
-
-// 6, 15
-//#define I_AM_IN_WOOD_LV20_POS_X_1                     ()
-//#define I_AM_IN_WOOD_LV20_POS_Y_1                     ()
-//#define I_AM_IN_WOOD_LV20_COLOR_RED_1                 ()
-//#define I_AM_IN_WOOD_LV20_COLOR_GREEN_1               ()
-//#define I_AM_IN_WOOD_LV20_COLOR_BLUE_1                ()
-//#define I_AM_IN_WOOD_LV20_POS_X_2                     ()
-//#define I_AM_IN_WOOD_LV20_POS_Y_2                     ()
-//#define I_AM_IN_WOOD_LV20_COLOR_RED_2                 ()
-//#define I_AM_IN_WOOD_LV20_COLOR_GREEN_2               ()
-//#define I_AM_IN_WOOD_LV20_COLOR_BLUE_2                ()
-//#define I_AM_IN_WOOD_LV20_POS_X_3                     ()
-//#define I_AM_IN_WOOD_LV20_POS_Y_3                     ()
-//#define I_AM_IN_WOOD_LV20_COLOR_RED_3                 ()
-//#define I_AM_IN_WOOD_LV20_COLOR_GREEN_3               ()
-//#define I_AM_IN_WOOD_LV20_COLOR_BLUE_3                ()
 
 
 
@@ -319,6 +318,12 @@
 
 
 
+
+
+
+
+
+
 #define I_AM_IN_OTO_COAST_ZAAP_POS_X_1                  (900)
 #define I_AM_IN_OTO_COAST_ZAAP_POS_Y_1                  (328)
 #define I_AM_IN_OTO_COAST_ZAAP_COLOR_RED_1              (16)
@@ -351,21 +356,7 @@
 #define I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_3               (126)
 #define I_AM_IN_KOALAK_ZAAP_COLOR_BLUE_3                (0)
 
-#define I_AM_IN_CANIA_PLAINS_ZAAP_POS_X_1               (740)
-#define I_AM_IN_CANIA_PLAINS_ZAAP_POS_Y_1               (282)
-#define I_AM_IN_CANIA_PLAINS_ZAAP_COLOR_RED_1           (248)
-#define I_AM_IN_CANIA_PLAINS_ZAAP_COLOR_GREEN_1         (212)
-#define I_AM_IN_CANIA_PLAINS_ZAAP_COLOR_BLUE_1          (119)
-#define I_AM_IN_CANIA_PLAINS_ZAAP_POS_X_2               (1532)
-#define I_AM_IN_CANIA_PLAINS_ZAAP_POS_Y_2               (97)
-#define I_AM_IN_CANIA_PLAINS_ZAAP_COLOR_RED_2           (206)
-#define I_AM_IN_CANIA_PLAINS_ZAAP_COLOR_GREEN_2         (189)
-#define I_AM_IN_CANIA_PLAINS_ZAAP_COLOR_BLUE_2          (75)
-#define I_AM_IN_CANIA_PLAINS_ZAAP_POS_X_3               (458)
-#define I_AM_IN_CANIA_PLAINS_ZAAP_POS_Y_3               (567)
-#define I_AM_IN_CANIA_PLAINS_ZAAP_COLOR_RED_3           (154)
-#define I_AM_IN_CANIA_PLAINS_ZAAP_COLOR_GREEN_3         (150)
-#define I_AM_IN_CANIA_PLAINS_ZAAP_COLOR_BLUE_3          (21)
+
 
 #define I_AM_IN_GOBBALL_ZAAP_POS_X_1                    (1129)
 #define I_AM_IN_GOBBALL_ZAAP_POS_Y_1                    (323)

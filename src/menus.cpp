@@ -47,5 +47,14 @@ void menu::Wood()
             roadmap.Start();
             break;
         }
+        case 4:
+        {
+            File::LogFile("lv.70 [BOMBU]        (llanura) . . . ", true);
+            Roadmap roadmap(Profession::WOOD, "puerka", &zaap::CheckZaapPuerkazos, &zaap::CheckZaapPuerkazos,
+                {"", "../../Telemetry/Wood/bombu1.csv", "../../Telemetry/Wood/bombu2.csv", 
+                     "../../Telemetry/Wood/bombu3.csv", "../../Telemetry/Wood/bombu4.csv"});
+            roadmap.Start();
+            break;
+        }
     }
 }

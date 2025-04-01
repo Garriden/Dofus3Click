@@ -27,10 +27,8 @@ namespace zaap {
     */
     //bool CheckZaapKoalak();
 
-    /*
-    * Check if I am in Cania plains Pig plains zaap.
-    */
-    //bool CheckZaapCaniaPlains();
+    // Check if I am in Cania (Pig plains, Puerkazos) zaap.
+    bool CheckZaapPuerkazos();
 
     /*
     * Check if I am in Gobball corner zaap.
