@@ -238,6 +238,10 @@ int Fight::FightStrategySM()
             ThrowSpellToEnemies(SpellsCtrlRow::ESCAPADITA, SpellsCtrlRow::SPELLS_CTRL_ROW);
         }
 
+        if(_turn % 3 == 0) {
+            ThrowSpellToMyself(SpellsRow::RECELO,  SpellsRow::SPELLS_ROW);
+        }
+
         if(check::IsFight()) { // if still my turn, pass
             std::this_thread::sleep_for(std::chrono::seconds(1));
             inputs::PressSpace();

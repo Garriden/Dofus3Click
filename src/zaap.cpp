@@ -77,13 +77,13 @@ bool zaap::CheckZaapAstrub()
         (int(GetGValue(color2)) > I_AM_IN_ASTRUB_ZAAP_COLOR_GREEN_2 - ERROR_GET_COLOUR_SMALL) &&
         (int(GetBValue(color2)) < I_AM_IN_ASTRUB_ZAAP_COLOR_BLUE_2  + ERROR_GET_COLOUR_SMALL) &&
         (int(GetBValue(color2)) > I_AM_IN_ASTRUB_ZAAP_COLOR_BLUE_2  - ERROR_GET_COLOUR_SMALL)
-        //&&
-        //(int(GetRValue(color3)) < I_AM_IN_ASTRUB_ZAAP_COLOR_RED_3   + ERROR_GET_COLOUR_SMALL) &&
-        //(int(GetRValue(color3)) > I_AM_IN_ASTRUB_ZAAP_COLOR_RED_3   - ERROR_GET_COLOUR_SMALL) &&
-        //(int(GetGValue(color3)) < I_AM_IN_ASTRUB_ZAAP_COLOR_GREEN_3 + ERROR_GET_COLOUR_SMALL) &&
-        //(int(GetGValue(color3)) > I_AM_IN_ASTRUB_ZAAP_COLOR_GREEN_3 - ERROR_GET_COLOUR_SMALL) &&
-        //(int(GetBValue(color3)) < I_AM_IN_ASTRUB_ZAAP_COLOR_BLUE_3  + ERROR_GET_COLOUR_SMALL) &&
-        //(int(GetBValue(color3)) > I_AM_IN_ASTRUB_ZAAP_COLOR_BLUE_3  - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(color3)) < I_AM_IN_ASTRUB_ZAAP_COLOR_RED_3   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color3)) > I_AM_IN_ASTRUB_ZAAP_COLOR_RED_3   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color3)) < I_AM_IN_ASTRUB_ZAAP_COLOR_GREEN_3 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color3)) > I_AM_IN_ASTRUB_ZAAP_COLOR_GREEN_3 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color3)) < I_AM_IN_ASTRUB_ZAAP_COLOR_BLUE_3  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color3)) > I_AM_IN_ASTRUB_ZAAP_COLOR_BLUE_3  - ERROR_GET_COLOUR_SMALL)
         )
     {
         File::LogFile("I am in Astrub Zaap!", true);

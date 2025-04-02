@@ -77,8 +77,8 @@ int main()
 
                 std::this_thread::sleep_for(std::chrono::seconds(2));
 
-                Roadmap roadmap(Profession::WOOD, "linde", nullptr, nullptr,
-                    {"", "../../Telemetry/Wood/formAmaknaCheLv20FinishToStart.csv"});
+                Roadmap roadmap(Profession::WOOD, "puerka", nullptr, nullptr,
+                    {"", "../../Telemetry/Wood/bombu3.csv"});
                 roadmap.Start();
                 
             break;

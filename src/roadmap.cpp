@@ -10,7 +10,9 @@
 
 Roadmap::Roadmap() :
     _profession{},
-    _zaap{""},
+    _zaap{},
+    _callbackCheckInitialMap{},
+    _callbackCheckInitialZaap{},
     _roadmapFiles{}
 {
     std::cout << "Roadmap constructor called" << std::endl;
@@ -46,6 +48,10 @@ int Roadmap::Start()
     int step = RoadmapState::SET_PODS_SET;
     if(_profession == Profession::LOWERING_PODS) {
         step = RoadmapState::CONVERT_RESOURCES;
+    }
+
+    if(_callbackCheckInitialMap == nullptr && _callbackCheckInitialZaap == nullptr) {
+        step = RoadmapState::EXECUTE_ROADMAP;
     }
 
     while(1) {
@@ -203,19 +209,22 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
     while(!mapChanged && retries < 10) {
         for(int ii = 0; !mapChanged && ii < 500; ++ii) {
             if(check::IsBlackScreen()) {
-                mapChanged = true;
 
-                std::this_thread::sleep_for(std::chrono::seconds(1));
+                std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-                if(check::IsFight()) {
-                    Fight fight;
-                    fight.Start();
-                    mapChanged = false;
+                if(!check::IsBlackScreen()) { // detect black screen + black fade off.
+                    mapChanged = true;
+                    File::LogFile("Backscreen transition detected!", false);
                 }
 
-                //File::LogFile("Backscreen detected! mapChanged", false);
             }
             std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        }
+
+        if(check::IsFight()) {
+            mapChanged = false;
+            Fight fight;
+            fight.Start();
         }
 
         if(!mapChanged) { // Invalid action, try again.
@@ -349,7 +358,7 @@ void Roadmap::GoToZaap()
 
     std::this_thread::sleep_for(std::chrono::seconds(3));
 
-    if(zaap::CheckZaapAstrub() && _zaap != "Astrub") {  // Rebundant check.
+    if(zaap::CheckZaapAstrub() && _zaap != "Astrub" && _zaap != "") {  // Rebundant check.
         zaap::ClickZaap(_zaap);
     } else {
         File::LogFile("Watch out! I'm not at Astrub zaap and I should be... ", true);
