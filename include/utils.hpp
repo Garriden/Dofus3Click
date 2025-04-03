@@ -108,7 +108,7 @@
 #define ACCEPT_RETO_POS_Y                                  (363)
 
 #define FIGTH_MENU_FRIEND_POS_X                            (750) // Depending of the enemies on a fight
-#define FIGTH_MENU_FRIEND_POS_Y                            (60)
+#define FIGTH_MENU_FRIEND_POS_Y                            (59)
 
 #define FIGTH_MENU_FRIEND_COLOR_RED                        (62)
 #define FIGTH_MENU_FRIEND_COLOR_GREEN                      (102)
@@ -133,13 +133,13 @@
 #define I_WON_THE_FIGHT_COLOR_BLUE_1                    (22)
 #define I_WON_THE_FIGHT_POS_X_2                         (880)
 #define I_WON_THE_FIGHT_POS_Y_2                         (494)
-#define I_WON_THE_FIGHT_COLOR_RED_2                     (219)
-#define I_WON_THE_FIGHT_COLOR_GREEN_2                   (168)
+#define I_WON_THE_FIGHT_COLOR_RED_2                     (214)
+#define I_WON_THE_FIGHT_COLOR_GREEN_2                   (163)
 #define I_WON_THE_FIGHT_COLOR_BLUE_2                    (17)
 #define I_WON_THE_FIGHT_POS_X_3                         (1048)
 #define I_WON_THE_FIGHT_POS_Y_3                         (495)
-#define I_WON_THE_FIGHT_COLOR_RED_3                     (212)
-#define I_WON_THE_FIGHT_COLOR_GREEN_3                   (159)
+#define I_WON_THE_FIGHT_COLOR_RED_3                     (210)
+#define I_WON_THE_FIGHT_COLOR_GREEN_3                   (157)
 #define I_WON_THE_FIGHT_COLOR_BLUE_3                    (16)
 
 #define I_LOST_THE_FIGHT_POS_X_1                        (1039)

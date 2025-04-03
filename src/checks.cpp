@@ -367,12 +367,12 @@ bool check::IWonTheFight()
         (int(GetBValue(color2)) < I_WON_THE_FIGHT_COLOR_BLUE_2  + ERROR_GET_COLOUR) &&
         (int(GetBValue(color2)) > I_WON_THE_FIGHT_COLOR_BLUE_2  - ERROR_GET_COLOUR)
         ||
-        (int(GetRValue(color3)) < I_WON_THE_FIGHT_COLOR_RED_3   + ERROR_GET_COLOUR_SMALLER) &&
-        (int(GetRValue(color3)) > I_WON_THE_FIGHT_COLOR_RED_3   - ERROR_GET_COLOUR_SMALLER) &&
-        (int(GetGValue(color3)) < I_WON_THE_FIGHT_COLOR_GREEN_3 + ERROR_GET_COLOUR_SMALLER) &&
-        (int(GetGValue(color3)) > I_WON_THE_FIGHT_COLOR_GREEN_3 - ERROR_GET_COLOUR_SMALLER) &&
-        (int(GetBValue(color3)) < I_WON_THE_FIGHT_COLOR_BLUE_3  + ERROR_GET_COLOUR_SMALLER) &&
-        (int(GetBValue(color3)) > I_WON_THE_FIGHT_COLOR_BLUE_3  - ERROR_GET_COLOUR_SMALLER)
+        (int(GetRValue(color3)) < I_WON_THE_FIGHT_COLOR_RED_3   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color3)) > I_WON_THE_FIGHT_COLOR_RED_3   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color3)) < I_WON_THE_FIGHT_COLOR_GREEN_3 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color3)) > I_WON_THE_FIGHT_COLOR_GREEN_3 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color3)) < I_WON_THE_FIGHT_COLOR_BLUE_3  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color3)) > I_WON_THE_FIGHT_COLOR_BLUE_3  - ERROR_GET_COLOUR_SMALL)
         )
     {
         File::LogFile("I won the fight!", true);

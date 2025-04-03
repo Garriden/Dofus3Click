@@ -153,11 +153,11 @@ void Fight::FindEnemiesPositions()
         )
         {
             its = 10; // if enemy found, keep iterating to find more enemies.
-            _enemiesXPositionInMenuFight.push_back(ii + 10); // When my turn, window gets slightly bigger.
+            _enemiesXPositionInMenuFight.push_back(ii + 11); // When my turn, window gets slightly bigger.
             //File::LogFile(("_enemiesXPositionInMenuFight: " + std::to_string(ii+10)).c_str(), true);
             ii += 60; // increment more or less where is the next enemy.
         }
-        ii += 20;
+        ii += 18;
     }
     File::LogFile(("Number of enemies: " + std::to_string(_enemiesXPositionInMenuFight.size())).c_str(), true);
 }
@@ -233,9 +233,10 @@ int Fight::FightStrategySM()
         ThrowSpellToEnemies(SpellsRow::LLAMILLA,    SpellsRow::SPELLS_ROW);
 
         if(_enemiesXPositionInMenuFight.size() == 1) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            ThrowSpellToEnemies(SpellsCtrlRow::ESCAPADITA, SpellsCtrlRow::SPELLS_CTRL_ROW);
             ThrowSpellToEnemies(SpellsCtrlRow::POMPA,      SpellsCtrlRow::SPELLS_CTRL_ROW);
             ThrowSpellToEnemies(SpellsCtrlRow::ESCARCHA,   SpellsCtrlRow::SPELLS_CTRL_ROW);
-            ThrowSpellToEnemies(SpellsCtrlRow::ESCAPADITA, SpellsCtrlRow::SPELLS_CTRL_ROW);
         }
 
         if(_turn % 3 == 0) {
@@ -243,9 +244,9 @@ int Fight::FightStrategySM()
         }
 
         if(check::IsFight()) { // if still my turn, pass
-            std::this_thread::sleep_for(std::chrono::seconds(1));
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
             inputs::PressSpace();
-            std::this_thread::sleep_for(std::chrono::seconds(1));
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
         }
 
         ++_turn;
@@ -254,9 +255,9 @@ int Fight::FightStrategySM()
 
     _turn = 0;
 
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
     inputs::PressEscape();
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
     return 0;
 }

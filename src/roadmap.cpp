@@ -206,20 +206,25 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
     // Wait for Black Screen
     bool mapChanged = false;
     int retries = 0;
+    int blackScreen = false;
     while(!mapChanged && retries < 10) {
         for(int ii = 0; !mapChanged && ii < 500; ++ii) {
-            if(check::IsBlackScreen()) {
-
-                std::this_thread::sleep_for(std::chrono::milliseconds(100));
-
+            if(!blackScreen) { // No black screen yet, keep trying until black screen detected.
+                if(check::IsBlackScreen()) {
+                    blackScreen = true;
+                    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+                }
+            } else { //blackScreen detected.
                 if(!check::IsBlackScreen()) { // detect black screen + black fade off.
                     mapChanged = true;
+                    blackScreen = false;
                     File::LogFile("Backscreen transition detected!", false);
                 }
-
             }
             std::this_thread::sleep_for(std::chrono::milliseconds(10));
         }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
         if(check::IsFight()) {
             mapChanged = false;
