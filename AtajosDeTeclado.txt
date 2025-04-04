@@ -1,3 +1,30 @@
+Screen resoluton:
+    1920x1080
+
+Anama launcher:
+    - Languange: Español.
+    - Rendmento confguracon baja.
+
+Opcones menu:
+    - Modo de vsualzacon: Ventana.
+    - Caldad del juego: Baja.
+    - Aura: Desactvar los dos tcs.
+    - Aparenca grafca de los mapas: Desactvar lso dos tcs.
+    - Desactvar musca.
+
+Enter game:
+Put menus correctly:
+    - chat menu on the left. More than the map change.
+    - mnmapa lttle bt up.
+    - xp bottom-left and more smaller.
+    - Objects menu. 2 rows.
+
+Opcones menu juego:
+    - nterfaz: Bloquear modulos nterfaz.
+
+
+
+
 
 Alt + W             Ir al Norte
 Alt + S             Ir al Sur
