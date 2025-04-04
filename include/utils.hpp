@@ -92,8 +92,8 @@
 // FIGHT
 ///////////////////////////////////
 
-#define IT_IS_MY_TURN_POS_X_1                              (1324)
-#define IT_IS_MY_TURN_POS_Y_1                              (912)
+#define IT_IS_MY_TURN_POS_X_1                              (1315)
+#define IT_IS_MY_TURN_POS_Y_1                              (917)
 #define IT_IS_MY_TURN_POS_X_2                              (1318)
 #define IT_IS_MY_TURN_POS_Y_2                              (915)
 #define IT_IS_MY_TURN_POS_X_3                              (1336)
@@ -103,6 +103,9 @@
 #define IT_IS_MY_TURN_COLOR_RED                            (236)
 #define IT_IS_MY_TURN_COLOR_GREEN                          (173)
 #define IT_IS_MY_TURN_COLOR_BLUE                           (85)
+#define IT_IS_NOT_MY_TURN_COLOR_RED                        (35)
+#define IT_IS_NOT_MY_TURN_COLOR_GREEN                      (38)
+#define IT_IS_NOT_MY_TURN_COLOR_BLUE                       (42)
 
 #define ACCEPT_RETO_POS_X                                  (186)
 #define ACCEPT_RETO_POS_Y                                  (363)
@@ -224,6 +227,23 @@
 #define I_AM_IN_PUERKAZOS_ZAAP_COLOR_GREEN_3             (167)
 #define I_AM_IN_PUERKAZOS_ZAAP_COLOR_BLUE_3              (21)
 
+#define I_AM_IN_OTO_COAST_ZAAP_POS_X_1                  (900)
+#define I_AM_IN_OTO_COAST_ZAAP_POS_Y_1                  (328)
+#define I_AM_IN_OTO_COAST_ZAAP_COLOR_RED_1              (16)
+#define I_AM_IN_OTO_COAST_ZAAP_COLOR_GREEN_1            (171)
+#define I_AM_IN_OTO_COAST_ZAAP_COLOR_BLUE_1             (171)
+#define I_AM_IN_OTO_COAST_ZAAP_POS_X_2                  (867)
+#define I_AM_IN_OTO_COAST_ZAAP_POS_Y_2                  (329)
+#define I_AM_IN_OTO_COAST_ZAAP_COLOR_RED_2              (192)
+#define I_AM_IN_OTO_COAST_ZAAP_COLOR_GREEN_2            (181)
+#define I_AM_IN_OTO_COAST_ZAAP_COLOR_BLUE_2             (124)
+#define I_AM_IN_OTO_COAST_ZAAP_POS_X_3                  (735)
+#define I_AM_IN_OTO_COAST_ZAAP_POS_Y_3                  (60)
+#define I_AM_IN_OTO_COAST_ZAAP_COLOR_RED_3              (129)
+#define I_AM_IN_OTO_COAST_ZAAP_COLOR_GREEN_3            (27)
+#define I_AM_IN_OTO_COAST_ZAAP_COLOR_BLUE_3             (21)
+
+
 //////////////////////////////////////////////////////////////
 // ROADMAPS CHECKS
 //////////////////////////////////////////////////////////////
@@ -245,9 +265,21 @@
 #define I_AM_IN_WOOD_LV1_COLOR_GREEN_3               (104)
 #define I_AM_IN_WOOD_LV1_COLOR_BLUE_3                (63)
 
-
-
-
+#define I_AM_IN_WOOD_OTO_COAST_POS_X_1                  (1183)
+#define I_AM_IN_WOOD_OTO_COAST_POS_Y_1                  (207)
+#define I_AM_IN_WOOD_OTO_COAST_COLOR_RED_1              (145)
+#define I_AM_IN_WOOD_OTO_COAST_COLOR_GREEN_1            (27)
+#define I_AM_IN_WOOD_OTO_COAST_COLOR_BLUE_1             (24)
+#define I_AM_IN_WOOD_OTO_COAST_POS_X_2                  (676)
+#define I_AM_IN_WOOD_OTO_COAST_POS_Y_2                  (532)
+#define I_AM_IN_WOOD_OTO_COAST_COLOR_RED_2              (254)
+#define I_AM_IN_WOOD_OTO_COAST_COLOR_GREEN_2            (185)
+#define I_AM_IN_WOOD_OTO_COAST_COLOR_BLUE_2             (70)
+#define I_AM_IN_WOOD_OTO_COAST_POS_X_3                  (667)
+#define I_AM_IN_WOOD_OTO_COAST_POS_Y_3                  (532)
+#define I_AM_IN_WOOD_OTO_COAST_COLOR_RED_3              (228)
+#define I_AM_IN_WOOD_OTO_COAST_COLOR_GREEN_3            (209)
+#define I_AM_IN_WOOD_OTO_COAST_COLOR_BLUE_3             (129)
 
 
 
@@ -324,21 +356,7 @@
 
 
 
-#define I_AM_IN_OTO_COAST_ZAAP_POS_X_1                  (900)
-#define I_AM_IN_OTO_COAST_ZAAP_POS_Y_1                  (328)
-#define I_AM_IN_OTO_COAST_ZAAP_COLOR_RED_1              (16)
-#define I_AM_IN_OTO_COAST_ZAAP_COLOR_GREEN_1            (171)
-#define I_AM_IN_OTO_COAST_ZAAP_COLOR_BLUE_1             (171)
-#define I_AM_IN_OTO_COAST_ZAAP_POS_X_2                  (867)
-#define I_AM_IN_OTO_COAST_ZAAP_POS_Y_2                  (329)
-#define I_AM_IN_OTO_COAST_ZAAP_COLOR_RED_2              (192)
-#define I_AM_IN_OTO_COAST_ZAAP_COLOR_GREEN_2            (181)
-#define I_AM_IN_OTO_COAST_ZAAP_COLOR_BLUE_2             (124)
-#define I_AM_IN_OTO_COAST_ZAAP_POS_X_3                  (735)
-#define I_AM_IN_OTO_COAST_ZAAP_POS_Y_3                  (60)
-#define I_AM_IN_OTO_COAST_ZAAP_COLOR_RED_3              (129)
-#define I_AM_IN_OTO_COAST_ZAAP_COLOR_GREEN_3            (27)
-#define I_AM_IN_OTO_COAST_ZAAP_COLOR_BLUE_3             (21)
+
 
 #define I_AM_IN_KOALAK_ZAAP_POS_X_1                     (930)
 #define I_AM_IN_KOALAK_ZAAP_POS_Y_1                     (362)
@@ -427,41 +445,7 @@
 #define I_AM_IN_SUFOKIAN_SHORELINE_ZAAP_COLOR_GREEN_3   (210)
 #define I_AM_IN_SUFOKIAN_SHORELINE_ZAAP_COLOR_BLUE_3    (191)
 
-#define REST_POS_X			                    		(873)
-#define REST_POS_Y		                    			(952)
-#define REST_POS_COLOR_RED				                (200)
-#define REST_POS_COLOR_GREEN                 			(200)
-#define REST_POS_COLOR_BLUE 			            	(200)
 
-#define INVO_SPELL_POS_7_X			                   	(1112)
-#define INVO_SPELL_POS_7_Y		                    	(1002)
-#define INVO_SPELL_POS_8_X			                   	(1158)
-#define INVO_SPELL_POS_8_Y		                    	(1002)
-
-
-
-#define IS_MERCANT_POS_X_1					            (693)
-#define IS_MERCANT_POS_Y_1					            (111)
-#define IS_MERCANT_COLOR_RED				            (105)
-#define IS_MERCANT_COLOR_GREEN				            (105)
-#define IS_MERCANT_COLOR_BLUE				            (105)
-#define IS_MERCANT_POS_X_2					            (704)
-#define IS_MERCANT_POS_Y_2					            (112)
-#define IS_MERCANT_POS_X_3					            (1528)
-#define IS_MERCANT_POS_Y_3					            (115)
-
-#define IS_MERCANT_MODE_POS_X_1					        (723)
-#define IS_MERCANT_MODE_POS_Y_1					        (465)
-#define IS_MERCANT_MODE_COLOR_RED				        (46)
-#define IS_MERCANT_MODE_COLOR_GREEN			            (52)
-#define IS_MERCANT_MODE_COLOR_BLUE				        (36)
-#define IS_MERCANT_MODE_POS_X_2					        (726)
-#define IS_MERCANT_MODE_POS_Y_2					        (599)
-#define IS_MERCANT_MODE_COLOR_RED_AUX			        (55)
-#define IS_MERCANT_MODE_COLOR_GREEN_AUX		            (62)
-#define IS_MERCANT_MODE_COLOR_BLUE_AUX	     	        (44)
-#define IS_MERCANT_MODE_POS_X_3					        (1199)
-#define IS_MERCANT_MODE_POS_Y_3					        (599)
 
 #define IS_ERROR_WINDOW_POS_X_1					        (815)
 #define IS_ERROR_WINDOW_POS_Y_1					        (492)

@@ -48,4 +48,6 @@ class Fight {
         void ThrowSpell(int spell, int who, int upperRow);
         void ThrowSpellToEnemies(int spell, int upperRow);
         void ThrowSpellToMyself(int spell, int upperRow);
+
+        void PassTurn();
 };

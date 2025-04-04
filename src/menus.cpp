@@ -51,8 +51,24 @@ void menu::Wood()
         {
             File::LogFile("lv.70 [BOMBU]        (llanura) . . . ", true);
             Roadmap roadmap(Profession::WOOD, "puerka", &zaap::CheckZaapPuerkazos, &zaap::CheckZaapPuerkazos,
-                {"", "../../Telemetry/Wood/bombu1.csv", "../../Telemetry/Wood/bombu2.csv", 
-                     "../../Telemetry/Wood/bombu3.csv", "../../Telemetry/Wood/bombu4.csv"});
+                {"", "../../Telemetry/Wood/bombu1.csv", "../../Telemetry/Wood/bombu2.csv",  "../../Telemetry/Wood/bombu3.csv",
+                     "../../Telemetry/Wood/bombu4.csv", "../../Telemetry/Wood/bombu5.csv"});
+            roadmap.Start();
+            break;
+        }
+        case 8:
+        {
+            File::LogFile("[OTOMAI]         (coast) . . . ", true);
+            Roadmap roadmap(Profession::WOOD, "costero", &checkRoadmap::CheckOtomaiCoast, &zaap::CheckZaapOtoCoast,
+                {"../../Telemetry/Wood/fromCoastToWoodOtomai.csv", "../../Telemetry/Wood/otomaiWoodCoast.csv", "../../Telemetry/Wood/fromOtomaiCenterToCoastInitial.csv"});
+            roadmap.Start();
+            break;
+        }
+        case 9:
+        {
+            File::LogFile("[OTOMAI]         (all) . . . ", true);
+            Roadmap roadmap(Profession::WOOD, "costero", &checkRoadmap::CheckOtomaiCoast, &zaap::CheckZaapOtoCoast,
+                {"../../Telemetry/Wood/fromCoastToWoodOtomai.csv", "../../Telemetry/Wood/otomaiWood.csv"});
             roadmap.Start();
             break;
         }

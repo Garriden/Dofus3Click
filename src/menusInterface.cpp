@@ -53,7 +53,7 @@ void show::WoodMenu()
     std::cout << "1 = -lv.1  [ASTRUB]      (Astrub)" << std::endl;
     std::cout << "2 = -lv.20 [AMAKNA]       (Linde)" << std::endl;
     std::cout << "4 = -lv.70 [BOMBU]       (Plains)" << std::endl;
-    std::cout << "8 = [OTOMAI | CENTER]     (Coast)" << std::endl;
+    std::cout << "8 = [OTOMAI | Coast]      (Coast)" << std::endl;
     std::cout << "9 = [OTOMAI | ALL]        (Coast)" << std::endl;
     std::cout << "10= [KOALAK]              (Breed)" << std::endl;
     std::cout << "99= Telemetry        " << std::endl;

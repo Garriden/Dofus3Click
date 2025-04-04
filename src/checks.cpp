@@ -4,7 +4,6 @@ bool check::IsFight()
 {
     bool ret = false;
 
-    //SetCursorPos(IT_IS_MY_TURN_POS_X_1, IT_IS_MY_TURN_POS_Y_1);
     COLORREF color1 = basicOperations::GetColor(IT_IS_MY_TURN_POS_X_3, IT_IS_MY_TURN_POS_Y_3, false);
     COLORREF color2 = basicOperations::GetColor(IT_IS_MY_TURN_POS_X_4, IT_IS_MY_TURN_POS_Y_4, false);
 
@@ -25,6 +24,35 @@ bool check::IsFight()
     {
         ret = true;
         //File::LogFile("It is my turn!", true);
+    }
+
+    return ret;
+}
+
+bool check::IsAlmostTheEndOfTheTurn()
+{
+    bool ret = false;
+
+    COLORREF color1 = basicOperations::GetColor(IT_IS_MY_TURN_POS_X_3, IT_IS_MY_TURN_POS_Y_3, false);
+    COLORREF color2 = basicOperations::GetColor(IT_IS_MY_TURN_POS_X_1, IT_IS_MY_TURN_POS_Y_1, false);
+
+    // color1 == organe, color2 != orange. 
+    if ((int(GetRValue(color1)) < IT_IS_MY_TURN_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color1)) > IT_IS_MY_TURN_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) < IT_IS_MY_TURN_COLOR_GREEN  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) > IT_IS_MY_TURN_COLOR_GREEN  - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) < IT_IS_MY_TURN_COLOR_BLUE   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) > IT_IS_MY_TURN_COLOR_BLUE   - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(color2)) < IT_IS_NOT_MY_TURN_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color2)) > IT_IS_NOT_MY_TURN_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) < IT_IS_NOT_MY_TURN_COLOR_GREEN  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) > IT_IS_NOT_MY_TURN_COLOR_GREEN  - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color2)) < IT_IS_NOT_MY_TURN_COLOR_BLUE   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color2)) > IT_IS_NOT_MY_TURN_COLOR_BLUE   - ERROR_GET_COLOUR_SMALL) )
+    {
+        ret = true;
+        //File::LogFile("It is almost end of a turn!", true);
     }
 
     return ret;

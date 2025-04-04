@@ -206,22 +206,22 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
     // Wait for Black Screen
     bool mapChanged = false;
     int retries = 0;
-    int blackScreen = false;
+    int blackScreenFlag = false;
     while(!mapChanged && retries < 10) {
-        for(int ii = 0; !mapChanged && ii < 500; ++ii) {
-            if(!blackScreen) { // No black screen yet, keep trying until black screen detected.
+        for(int ii = 0; !mapChanged && ii < 1000; ++ii) {
+            if(!blackScreenFlag) { // No black screen yet, keep trying until black screen detected.
                 if(check::IsBlackScreen()) {
-                    blackScreen = true;
+                    blackScreenFlag = true;
                     std::this_thread::sleep_for(std::chrono::milliseconds(500));
                 }
             } else { //blackScreen detected.
                 if(!check::IsBlackScreen()) { // detect black screen + black fade off.
                     mapChanged = true;
-                    blackScreen = false;
-                    File::LogFile("Backscreen transition detected!", false);
+                    blackScreenFlag = false;
+                    //File::LogFile("Backscreen transition detected!", false);
                 }
             }
-            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            std::this_thread::sleep_for(std::chrono::milliseconds(5));
         }
 
         std::this_thread::sleep_for(std::chrono::milliseconds(500));

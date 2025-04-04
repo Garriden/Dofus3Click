@@ -8,11 +8,11 @@ namespace check {
  * Given the colour a specific position, see if it is the unique color to check.
  */
 
-/*
- * Look if I am in a fight.
- * Check the pjs bar (Red/Blue).
- */
+// Look if I am in a fight (or if it is my turn). Check the turn hexa orange "bar".
 bool IsFight();
+
+// Look if I am in a fight (or if it is my turn). Check the turn hexa orange "bar" if it is already finished.
+bool IsAlmostTheEndOfTheTurn();
 
 // Check if the PODS bar its (almost) full.
 bool AmIFull();

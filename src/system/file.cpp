@@ -174,21 +174,39 @@ void File::LogFile(std::string message, bool date)
 {
     std::cout << " message: " <<  message << std::endl;
 
-    std::string s = std::to_string(GetDay())   + 
-                    std::to_string(GetMonth()) + 
-                    std::to_string(GetYear())  + 
-                    ".txt";
+    std::string day = std::to_string(GetDay());
+    if(day.length() < 2) {
+        day = '0' + day;
+    }
+
+    std::string month = std::to_string(GetMonth());
+    if(month.length() < 2) {
+        month = '0' + month;
+    }
+
+    std::string  year = std::to_string(GetYear());
+
+    std::string s = day + month + year + ".txt";
 
     std::string base = "";
     if(date) {
-        base = "[" +
-            std::to_string(GetHour()) + ":" +
-            std::to_string(GetMin())  + ":" +
-            std::to_string(GetSec()) + 
-            "] ";
+        std::string hour = std::to_string(GetHour());
+        if(hour.length() < 2) {
+            hour = '0' + hour;
+        }
+
+        std::string min = std::to_string(GetMin());
+        if(min.length() < 2) {
+            min = '0' + min;
+        }
+
+        std::string sec = std::to_string(GetSec());
+        if(sec.length() < 2) {
+            sec = '0' + sec;
+        }
+
+        base = "[" + hour + ":" + min + ":" + sec + "] ";
     }
 
-    //std::string read = File::ReadFile(s);
-
-    File::WriteFile(base /*+ read */ + message, s);
+    File::WriteFile(base + message, s);
 }

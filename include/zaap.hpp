@@ -17,10 +17,8 @@ namespace zaap {
     // Check if I am in Linde zaap.
     bool CheckZaapLinde();
 
-    /*
-    * Check if I am in Otomai Coast zaap.
-    */
-    //bool CheckZaapOtoCoast();
+    //Check if I am in Otomai Coast zaap.
+    bool CheckZaapOtoCoast();
 
     /*
     * Check if I am in Koalak breeders village zaap.
