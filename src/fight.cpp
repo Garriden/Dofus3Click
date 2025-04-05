@@ -159,9 +159,9 @@ void Fight::FindEnemiesPositions()
         )
         {
             its = 10; // if enemy found, keep iterating to find more enemies.
-            _enemiesXPositionInMenuFight.push_back(ii + 11); // When my turn, window gets slightly bigger.
+            _enemiesXPositionInMenuFight.push_back(ii + 10); // When my turn, window gets slightly bigger.
             //File::LogFile(("_enemiesXPositionInMenuFight: " + std::to_string(ii+10)).c_str(), true);
-            ii += 60; // increment more or less where is the next enemy.
+            ii += 58; // increment more or less where is the next enemy.
         }
         ii += 18;
     }
@@ -237,8 +237,6 @@ int Fight::FightStrategySM()
             ThrowSpellToMyself(SpellsRow::VIGIA,         SpellsRow::SPELLS_ROW);
         }
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(50));
-
         ThrowSpellToEnemies(SpellsCtrlRow::WEAPON,  SpellsRow::SPELLS_ROW); // weapon is just 'q'
         ThrowSpellToEnemies(SpellsRow::SILBO,       SpellsRow::SPELLS_ROW);
         ThrowSpellToEnemies(SpellsRow::BORRASCA,    SpellsRow::SPELLS_ROW);
@@ -292,7 +290,7 @@ void Fight::DefendMyself()
 {
     //std::this_thread::sleep_for(std::chrono::milliseconds(50));
     //ThrowSpellToMyself(SpellsCtrlRow::MURALLA, SpellsCtrlRow::SPELLS_CTRL_ROW);
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
     ThrowSpellToMyself(SpellsCtrlRow::ESCUDO, SpellsCtrlRow::SPELLS_CTRL_ROW);
     //std::this_thread::sleep_for(std::chrono::milliseconds(100));
     //ThrowSpellToMyself(SpellsCtrlRow::ATARAXIA, SpellsCtrlRow::SPELLS_CTRL_ROW);
@@ -332,8 +330,6 @@ void Fight::ThrowSpellToMyself(int spell, int upperRow)
 
 void Fight::PassTurn()
 {
-    File::LogFile("Passing turn...", true);
-
     int enemiesUpdated = false;
     if(!enemiesUpdated) { // if I still have time, check how many enemies are still alive.
         _enemiesXPositionInMenuFight.clear();
