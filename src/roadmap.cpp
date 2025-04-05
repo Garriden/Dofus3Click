@@ -105,7 +105,7 @@ int Roadmap::Start()
             for(int roadmapIndex = 1; roadmapIndex < _roadmapFiles.size(); ++roadmapIndex) {
                 roadmapExecution = ExecuteRoadMap(_roadmapFiles[roadmapIndex]);
                 if(roadmapExecution == E_KO) {
-                    step = -1;
+                    step = SET_PODS_SET; //-1;
                     break;
                 } else if(roadmapExecution == E_NEED_TO_RESTART) {
                     step = SET_PODS_SET;
@@ -117,8 +117,10 @@ int Roadmap::Start()
             if(roadmapExecution == E_OK) {
                 if(_profession == Profession::LOWERING_PODS) {
                     return E_NEED_TO_RESTART;
-                } else {
+                } else if(_callbackCheckInitialMap()) {
                     step = RoadmapState::EXECUTE_ROADMAP;
+                } else if(_callbackCheckInitialZaap()) {
+                    step = RoadmapState::GO_TO_INITIAL_MAP;
                 }
             }
 
@@ -156,7 +158,6 @@ int Roadmap::ExecuteRoadMap(std::string name)
     return E_OK;
 }
 
-
 int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
 {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -178,7 +179,10 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
 
         if(check::IsFight()) {
             Fight fight;
-            fight.Start();
+            if(E_KO == fight.Start()) {
+                File::LogFile("Fight LOST!", true);
+                return E_KO;
+            }
         }
 
         if(_profession != Profession::LOWERING_PODS && check::AmIFull()) {
@@ -229,7 +233,10 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
         if(check::IsFight()) {
             mapChanged = false;
             Fight fight;
-            fight.Start();
+            if(E_KO == fight.Start()) {
+                File::LogFile("Fight LOST!", true);
+                return E_KO;
+            }
         }
 
         if(!mapChanged) { // Invalid action, try again.
@@ -242,56 +249,7 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
         File::LogFile("Stuck! So many retries for invalid action...", true);
         return E_KO;
     }
-    //std::this_thread::sleep_for(std::chrono::seconds(1));
-
-
-    //IsFight();
-
-    //if(AmITalkingWithNPJ() || IsMercant() || IsErrorWindow()) {
-    //    PressEscape();
-    //    std::this_thread::sleep_for(std::chrono::seconds(7));
-    //}
-
-    //if(IsMainMenuWindow()) {
-    //    PressEscape();
-    //}
-/*
-    if(lowering_pods_ || (!CheckPods() && !restart_roadmap_)) {
-        //LogFile("Change maaaaap");
-        Sleep(17 * SECONDS + ruletNumber * 100);
-
-        IsFight();
-
-        if (IsMercantMode()) {
-            PressEscape();
-            std::this_thread::sleep_for(std::chrono::seconds(2));
-        }
-        ruletNumber = Ruleta10();
-
-        x = (map[map.size() - 1].first)  - (ruletNumber / 4);
-        y = (map[map.size() - 1].second) - (ruletNumber / 2);
-
-        // Don't hit treasure hunt window 
-        if((x < 355) && ((y > 200) && (y < 250))) {
-            y = 300;
-        }
-
-        // Don't hit office level up window 
-        if((x < 355) && ((y > 570) && (y < 715))) {
-            y = 750;
-        }
-
-        SetCursorPos(x, y);
-        Sleep(ruletNumber * 10);
-
-        mouse_event(MOUSEEVENTF_LEFTDOWN, x, y, 0, 0);
-        Sleep(ruletNumber);
-        mouse_event(MOUSEEVENTF_LEFTUP, x, y, 0, 0);
-
-        Sleep(3 * SECONDS + ruletNumber * 100);
-        
-    }
-    */
+   
     return E_OK;
 }
 

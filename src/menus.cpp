@@ -72,5 +72,14 @@ void menu::Wood()
             roadmap.Start();
             break;
         }
+        case 10:
+        {
+            File::LogFile("[KOALAKS]      (ganaderos) . . . ", true);
+            Roadmap roadmap(Profession::WOOD, "ganaderos", &zaap::CheckZaapKoalak, &zaap::CheckZaapKoalak,
+                {"../../Telemetry/Wood/fromBreedToWoodKoalak.csv", "../../Telemetry/Wood/koalak.csv", 
+                 "../../Telemetry/Wood/kaliptusMiddle.csv", "../../Telemetry/Wood/fromBreedToWoodKoalak.csv"});
+            roadmap.Start();
+            break;
+        }
     }
 }

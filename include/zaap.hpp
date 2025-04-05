@@ -17,16 +17,14 @@ namespace zaap {
     // Check if I am in Linde zaap.
     bool CheckZaapLinde();
 
+    // Check if I am in Cania (Pig plains, Puerkazos) zaap.
+    bool CheckZaapPuerkazos();
+
     //Check if I am in Otomai Coast zaap.
     bool CheckZaapOtoCoast();
 
-    /*
-    * Check if I am in Koalak breeders village zaap.
-    */
-    //bool CheckZaapKoalak();
-
-    // Check if I am in Cania (Pig plains, Puerkazos) zaap.
-    bool CheckZaapPuerkazos();
+    // Check if I am in Koalak breeders village zaap.
+    bool CheckZaapKoalak();
 
     /*
     * Check if I am in Gobball corner zaap.

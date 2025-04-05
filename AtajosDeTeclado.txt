@@ -21,6 +21,9 @@ Put menus correctly:
 
 Opcones menu juego:
     - nterfaz: Bloquear modulos nterfaz.
+Combate:
+    - Mostrar jugadores muertos.
+    - Ocultar invocaciones.
 
 
 
@@ -33,8 +36,8 @@ Alt + D             Ir al Este
 
 
 
-Shift + D           Transparencia
-D                   Burbuja Monstruos y NPCs
+X                   Transparencia
+Z                   Burbuja Monstruos y NPCs
 Y                   Elementos interactivos
 
 

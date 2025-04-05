@@ -3,6 +3,9 @@
 int basicOperations::RuletaInput(int min, int max)
 {
     int ret = 0;
+    if(min == max) {
+        max = min + 1;
+    }
     std::mt19937 rng(static_cast<unsigned int>(std::chrono::steady_clock::now().time_since_epoch().count()));
     ret = (rng()) % (abs(max - min));
     return (min + ret);

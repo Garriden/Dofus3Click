@@ -192,13 +192,13 @@ bool inputs::ClickOnExe()
 
 void inputs::Click(int x, int y)
 {
-    int ruletNumber = basicOperations::RuletaInput(10, 20);
+    int ruletNumber = basicOperations::RuletaInput(1, 5);
 
     // Press it!
     SetCursorPos(x, y);
-    std::this_thread::sleep_for(std::chrono::milliseconds(200));
+    std::this_thread::sleep_for(std::chrono::milliseconds(150));
     mouse_event(MOUSEEVENTF_LEFTDOWN, x, y, 0, 0);
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
     mouse_event(MOUSEEVENTF_LEFTUP, x, y, 0, 0);
 
     std::this_thread::sleep_for(std::chrono::milliseconds(10 * ruletNumber));

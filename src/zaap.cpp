@@ -6,15 +6,24 @@
 
 void zaap::ClickZaap(std::string zaapName)
 {
-    std::this_thread::sleep_for(std::chrono::seconds(8));
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+
+    // Press the Zaap
+    inputs::Click(ASTRUB_ZAAP_POS_X, ASTRUB_ZAAP_POS_Y);
+
+    std::this_thread::sleep_for(std::chrono::seconds(6));
 
     int retriesClickZaap = 0;
-    while(!CheckZaapInterface() && retriesClickZaap++ < 10) {
+    while(!CheckZaapInterface() && retriesClickZaap++ < 15) {
+        inputs::PressEscape();
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        inputs::PressEscape();
     
         // Press the Zaap
-        inputs::Click(ASTRUB_ZAAP_POS_X - retriesClickZaap, ASTRUB_ZAAP_POS_Y + retriesClickZaap);
+        inputs::Click(ASTRUB_ZAAP_POS_X + retriesClickZaap*4, ASTRUB_ZAAP_POS_Y + retriesClickZaap*6);
 
-        std::this_thread::sleep_for(std::chrono::seconds(2));
+
+        std::this_thread::sleep_for(std::chrono::seconds(3));
     }
 
     // Click Zaap tab.
@@ -133,82 +142,6 @@ bool zaap::CheckZaapLinde()
     return ret;
 }
 
-bool zaap::CheckZaapOtoCoast()
-{
-    bool ret = false;
-    //File::LogFile("CheckZaap Otomai Coast?", false);
-
-    COLORREF color1 = basicOperations::GetColor(I_AM_IN_OTO_COAST_ZAAP_POS_X_1, I_AM_IN_OTO_COAST_ZAAP_POS_Y_1, true);
-    COLORREF color2 = basicOperations::GetColor(I_AM_IN_OTO_COAST_ZAAP_POS_X_2, I_AM_IN_OTO_COAST_ZAAP_POS_Y_2, true);
-    COLORREF color3 = basicOperations::GetColor(I_AM_IN_OTO_COAST_ZAAP_POS_X_3, I_AM_IN_OTO_COAST_ZAAP_POS_Y_3, true);
-
-    if ((int(GetRValue(color1)) < I_AM_IN_OTO_COAST_ZAAP_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetRValue(color1)) > I_AM_IN_OTO_COAST_ZAAP_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color1)) < I_AM_IN_OTO_COAST_ZAAP_COLOR_GREEN_1 + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color1)) > I_AM_IN_OTO_COAST_ZAAP_COLOR_GREEN_1 - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color1)) < I_AM_IN_OTO_COAST_ZAAP_COLOR_BLUE_1  + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color1)) > I_AM_IN_OTO_COAST_ZAAP_COLOR_BLUE_1  - ERROR_GET_COLOUR_SMALL)
-        &&
-        (int(GetRValue(color2)) < I_AM_IN_OTO_COAST_ZAAP_COLOR_RED_2   + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetRValue(color2)) > I_AM_IN_OTO_COAST_ZAAP_COLOR_RED_2   - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color2)) < I_AM_IN_OTO_COAST_ZAAP_COLOR_GREEN_2 + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color2)) > I_AM_IN_OTO_COAST_ZAAP_COLOR_GREEN_2 - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color2)) < I_AM_IN_OTO_COAST_ZAAP_COLOR_BLUE_2  + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color2)) > I_AM_IN_OTO_COAST_ZAAP_COLOR_BLUE_2  - ERROR_GET_COLOUR_SMALL)
-        &&
-        (int(GetRValue(color3)) < I_AM_IN_OTO_COAST_ZAAP_COLOR_RED_3   + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetRValue(color3)) > I_AM_IN_OTO_COAST_ZAAP_COLOR_RED_3   - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color3)) < I_AM_IN_OTO_COAST_ZAAP_COLOR_GREEN_3 + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color3)) > I_AM_IN_OTO_COAST_ZAAP_COLOR_GREEN_3 - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color3)) < I_AM_IN_OTO_COAST_ZAAP_COLOR_BLUE_3  + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color3)) > I_AM_IN_OTO_COAST_ZAAP_COLOR_BLUE_3  - ERROR_GET_COLOUR_SMALL)
-        )
-    {
-        File::LogFile("I'm in Otomai Coast Zaap ! ALL OK!!", true);
-        ret = true;
-    }
-
-    return ret;
-}
-/*
-bool CheckZaapKoalak()
-{
-	bool ret = false;
-	//LogFile("CheckZaap Koalak Breeder Village?");
-
-	COLORREF color1 = GetColor(I_AM_IN_KOALAK_ZAAP_POS_X_1, I_AM_IN_KOALAK_ZAAP_POS_Y_1);
-	COLORREF color2 = GetColor(I_AM_IN_KOALAK_ZAAP_POS_X_2, I_AM_IN_KOALAK_ZAAP_POS_Y_2);
-	COLORREF color3 = GetColor(I_AM_IN_KOALAK_ZAAP_POS_X_3, I_AM_IN_KOALAK_ZAAP_POS_Y_3);
-
-	if ((int(GetRValue(color1)) < I_AM_IN_KOALAK_ZAAP_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetRValue(color1)) > I_AM_IN_KOALAK_ZAAP_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&
-		(int(GetGValue(color1)) < I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_1 + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetGValue(color1)) > I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_1 - ERROR_GET_COLOUR_SMALL) &&
-		(int(GetBValue(color1)) < I_AM_IN_KOALAK_ZAAP_COLOR_BLUE_1  + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetBValue(color1)) > I_AM_IN_KOALAK_ZAAP_COLOR_BLUE_1  - ERROR_GET_COLOUR_SMALL)
-		&&
-		(int(GetRValue(color2)) < I_AM_IN_KOALAK_ZAAP_COLOR_RED_2   + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetRValue(color2)) > I_AM_IN_KOALAK_ZAAP_COLOR_RED_2   - ERROR_GET_COLOUR_SMALL) &&
-		(int(GetGValue(color2)) < I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_2 + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetGValue(color2)) > I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_2 - ERROR_GET_COLOUR_SMALL) &&
-		(int(GetBValue(color2)) < I_AM_IN_KOALAK_ZAAP_COLOR_BLUE_2  + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetBValue(color2)) > I_AM_IN_KOALAK_ZAAP_COLOR_BLUE_2  - ERROR_GET_COLOUR_SMALL)
-		&&
-		(int(GetRValue(color3)) < I_AM_IN_KOALAK_ZAAP_COLOR_RED_3   + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetRValue(color3)) > I_AM_IN_KOALAK_ZAAP_COLOR_RED_3   - ERROR_GET_COLOUR_SMALL) &&
-		(int(GetGValue(color3)) < I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_3 + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetGValue(color3)) > I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_3 - ERROR_GET_COLOUR_SMALL) &&
-		(int(GetBValue(color3)) < I_AM_IN_KOALAK_ZAAP_COLOR_BLUE_3  + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetBValue(color3)) > I_AM_IN_KOALAK_ZAAP_COLOR_BLUE_3  - ERROR_GET_COLOUR_SMALL)
-		)
-	{
-		LogFile("I'm in Koalak Zaap ! ALL OK!!");
-		ret = true;
-	}
-
-	return ret;
-}
-*/
 bool zaap::CheckZaapPuerkazos()
 {
     bool ret = false;
@@ -246,6 +179,82 @@ bool zaap::CheckZaapPuerkazos()
 
     return ret;
 }
+
+bool zaap::CheckZaapOtoCoast()
+{
+    bool ret = false;
+    //File::LogFile("CheckZaap Otomai Coast?", false);
+
+    COLORREF color1 = basicOperations::GetColor(I_AM_IN_OTO_COAST_ZAAP_POS_X_1, I_AM_IN_OTO_COAST_ZAAP_POS_Y_1, true);
+    COLORREF color2 = basicOperations::GetColor(I_AM_IN_OTO_COAST_ZAAP_POS_X_2, I_AM_IN_OTO_COAST_ZAAP_POS_Y_2, true);
+    COLORREF color3 = basicOperations::GetColor(I_AM_IN_OTO_COAST_ZAAP_POS_X_3, I_AM_IN_OTO_COAST_ZAAP_POS_Y_3, true);
+
+    if ((int(GetRValue(color1)) < I_AM_IN_OTO_COAST_ZAAP_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color1)) > I_AM_IN_OTO_COAST_ZAAP_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) < I_AM_IN_OTO_COAST_ZAAP_COLOR_GREEN_1 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) > I_AM_IN_OTO_COAST_ZAAP_COLOR_GREEN_1 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) < I_AM_IN_OTO_COAST_ZAAP_COLOR_BLUE_1  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) > I_AM_IN_OTO_COAST_ZAAP_COLOR_BLUE_1  - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(color2)) < I_AM_IN_OTO_COAST_ZAAP_COLOR_RED_2   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color2)) > I_AM_IN_OTO_COAST_ZAAP_COLOR_RED_2   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) < I_AM_IN_OTO_COAST_ZAAP_COLOR_GREEN_2 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) > I_AM_IN_OTO_COAST_ZAAP_COLOR_GREEN_2 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color2)) < I_AM_IN_OTO_COAST_ZAAP_COLOR_BLUE_2  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color2)) > I_AM_IN_OTO_COAST_ZAAP_COLOR_BLUE_2  - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(color3)) < I_AM_IN_OTO_COAST_ZAAP_COLOR_RED_3   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color3)) > I_AM_IN_OTO_COAST_ZAAP_COLOR_RED_3   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color3)) < I_AM_IN_OTO_COAST_ZAAP_COLOR_GREEN_3 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color3)) > I_AM_IN_OTO_COAST_ZAAP_COLOR_GREEN_3 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color3)) < I_AM_IN_OTO_COAST_ZAAP_COLOR_BLUE_3  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color3)) > I_AM_IN_OTO_COAST_ZAAP_COLOR_BLUE_3  - ERROR_GET_COLOUR_SMALL)
+        )
+    {
+        File::LogFile("I'm in Otomai Coast Zaap ! ALL OK!!", true);
+        ret = true;
+    }
+
+    return ret;
+}
+
+bool zaap::CheckZaapKoalak()
+{
+    bool ret = false;
+
+    COLORREF color1 = basicOperations::GetColor(I_AM_IN_KOALAK_ZAAP_POS_X_1, I_AM_IN_KOALAK_ZAAP_POS_Y_1, true);
+    COLORREF color2 = basicOperations::GetColor(I_AM_IN_KOALAK_ZAAP_POS_X_2, I_AM_IN_KOALAK_ZAAP_POS_Y_2, true);
+    COLORREF color3 = basicOperations::GetColor(I_AM_IN_KOALAK_ZAAP_POS_X_3, I_AM_IN_KOALAK_ZAAP_POS_Y_3, true);
+
+    if ((int(GetRValue(color1)) < I_AM_IN_KOALAK_ZAAP_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color1)) > I_AM_IN_KOALAK_ZAAP_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) < I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_1 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) > I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_1 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) < I_AM_IN_KOALAK_ZAAP_COLOR_BLUE_1  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) > I_AM_IN_KOALAK_ZAAP_COLOR_BLUE_1  - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(color2)) < I_AM_IN_KOALAK_ZAAP_COLOR_RED_2   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color2)) > I_AM_IN_KOALAK_ZAAP_COLOR_RED_2   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) < I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_2 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) > I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_2 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color2)) < I_AM_IN_KOALAK_ZAAP_COLOR_BLUE_2  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color2)) > I_AM_IN_KOALAK_ZAAP_COLOR_BLUE_2  - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(color3)) < I_AM_IN_KOALAK_ZAAP_COLOR_RED_3   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color3)) > I_AM_IN_KOALAK_ZAAP_COLOR_RED_3   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color3)) < I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_3 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color3)) > I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_3 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color3)) < I_AM_IN_KOALAK_ZAAP_COLOR_BLUE_3  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color3)) > I_AM_IN_KOALAK_ZAAP_COLOR_BLUE_3  - ERROR_GET_COLOUR_SMALL)
+        )
+    {
+        File::LogFile("I'm in Koalak Zaap !", true);
+        ret = true;
+    }
+
+    return ret;
+}
+
 /*
 bool CheckZaapGobball()
 {

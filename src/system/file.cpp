@@ -109,7 +109,7 @@ std::vector<std::vector<std::pair<int, int> > > File::ReadFileAndBuildMap(const 
                     }
                 }
                 row.push_back(coord);
-                std::cout <<  "coord.first: " << coord.first  << "  coord.second: " << coord.second << std::endl;
+                //std::cout <<  "coord.first: " << coord.first  << "  coord.second: " << coord.second << std::endl;
             }
             ret.push_back(row);
         }

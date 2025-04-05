@@ -1,34 +1,31 @@
-- Migrate to Dofus 3.
- . UML classes (namespaces)
-
 - Documentate 
-  . default Dofus settings. Positions. KeyAtajos.
-  . How code works.
+  . How code works. UML classes
 
 
 Programming:
-	. Check change map "Accion imposible"
-
-	. State Machine.
-
-	. Threads ?
-	. Thread checks.
+    . Threads ?
+       . Thread checks.
 
 Game:
-	. Calibrate: up, down, right, left
+    . If the monster is in front of the tree?
 
+- Finish all other professions.
 
+- LookForTrouble enemies training.
 
-	. If the tree is not in there?
-
-	. When my pods are full.
-
-	. Go to bank.
-
-	. Battles Scarecows.
-
+- Daily missions.
 
 - DOPEULS ?
 
+- Feed pets ?
+
 - Tresure search.
-  . Igame recognition?
+  . In game recognition?
+
+
+# In game recognition.
+    - words
+      . Treasure search.
+      . Sell things in mercadillo.
+
+    - Fight enemies.

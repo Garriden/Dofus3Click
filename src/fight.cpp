@@ -27,7 +27,7 @@ Fight::~Fight()
     std::cout << "Fight mode OFF" << std::endl;
 }
 
-void Fight::Start()
+int Fight::Start()
 {
     int step = FightPreparationState::FIGHT_SET;
 
@@ -54,8 +54,11 @@ void Fight::Start()
             step = FightPreparationState::START_FIGHT_STRATEGY;
             break;
         case FightPreparationState::START_FIGHT_STRATEGY:
-            FightStrategySM();
-            step = FightPreparationState::AFTER_FIGHT_SET;
+            if(E_OK == FightStrategySM()) {
+                step = FightPreparationState::AFTER_FIGHT_SET;
+            } else {
+                step = -1;
+            }
             break;
         case FightPreparationState::AFTER_FIGHT_SET:
             AfterFightSet();
@@ -67,10 +70,13 @@ void Fight::Start()
             break;
         case FightPreparationState::WAIT_UNTIL_HEALED:
             AfterFightHeal(); // Wait until healed.
-            step = -1;
+            step = RETURN_E_OK;
+            break;
+        case FightPreparationState::RETURN_E_OK:
+            return E_OK;
             break;
         default:
-            return;
+            return E_KO;
             break;
         }
     }
@@ -205,14 +211,12 @@ int Fight::FightStrategySM()
     File::LogFile("FightStarted ! ", true);
     while(!check::IsFightFinished()) {
 
-        //int enemiesUpdated = false;
         while(!check::IsFight()) { // Wait for my turn.
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
-            //if(!enemiesUpdated) { // if I still have time, check how many enemies are still alive.
-            //    _enemiesXPositionInMenuFight.clear();
-            //    FindEnemiesPositions();
-            //    enemiesUpdated = true;
-            //}
+            if(check::IsFightFinished()) {
+                File::LogFile("Fight finished !!!!!!!!! while waiting for my turn to arrive", true);
+                break;
+            }
         }
 
         File::LogFile(("turn: " + std::to_string(_turn)).c_str(), true);
@@ -225,7 +229,7 @@ int Fight::FightStrategySM()
         if(_turn % 3 == 0) {
             DefendMyself();
         } 
-        if(_turn % 8 == 3) {
+        if(_turn % 4 == 3) {
             ThrowSpellToMyself(SpellsCtrlRow::BASTION,   SpellsCtrlRow::SPELLS_CTRL_ROW);
         } 
         if(_turn % 8 == 7) {
@@ -253,7 +257,9 @@ int Fight::FightStrategySM()
             ThrowSpellToEnemies(SpellsRow::NATURAL,        SpellsRow::SPELLS_ROW);
         }
 
-        if(_turn % 3 == 0) {
+        RandomMovePj(10); // Move randomly the Pj!
+
+        if(_turn % 3 == 2 && _enemiesXPositionInMenuFight.size() != 1) {
             ThrowSpellToMyself(SpellsRow::RECELO,  SpellsRow::SPELLS_ROW);
         }
 
@@ -270,7 +276,16 @@ int Fight::FightStrategySM()
     inputs::PressEscape();
     std::this_thread::sleep_for(std::chrono::milliseconds(800));
 
-    return 0;
+    if(check::AmIDefeated()) {
+        //if(ghost) // TODO
+        return E_KO;
+    } else if(check::AmILevelUp()) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+        inputs::Click(I_AM_LEVEL_UP_POS_X_4, I_AM_LEVEL_UP_POS_Y_4);
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+    }
+
+    return E_OK;
 }
 
 void Fight::DefendMyself()
@@ -310,11 +325,15 @@ void Fight::ThrowSpellToEnemies(int spell, int upperRow)
 
 void Fight::ThrowSpellToMyself(int spell, int upperRow)
 {
-    ThrowSpell(spell, _myXPositionInMenuFight, upperRow);
+    if(check::IsFight()) { // if still on fight or my turn.
+        ThrowSpell(spell, _myXPositionInMenuFight, upperRow);
+    }
 }
 
 void Fight::PassTurn()
 {
+    File::LogFile("Passing turn...", true);
+
     int enemiesUpdated = false;
     if(!enemiesUpdated) { // if I still have time, check how many enemies are still alive.
         _enemiesXPositionInMenuFight.clear();
@@ -326,5 +345,18 @@ void Fight::PassTurn()
     if(check::IsFight()) { // if still my turn...
         inputs::PressSpace();
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    }
+}
+
+void Fight::RandomMovePj(int moves)
+{
+    for (int ii = 0; ii < moves; ++ii) {
+        if(check::IsAlmostTheEndOfTheTurn()) {
+            PassTurn();
+        } else if(check::IsFight()) { // if still on fight or my turn.
+            int ruletNumberPosX = basicOperations::RuletaInput(FIGHT_X_LIMIT_MIN, FIGHT_X_LIMIT_MAX);
+            int ruletNumberPosY = basicOperations::RuletaInput(FIGHT_Y_LIMIT_MIN, FIGHT_Y_LIMIT_MAX);
+            inputs::Click(ruletNumberPosX, ruletNumberPosY);
+        }
     }
 }

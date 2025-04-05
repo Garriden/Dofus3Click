@@ -98,10 +98,8 @@ bool IsBlackScreen();
  */
 bool IsBlack(int x, int y);
 
-/*
- * Check if it is showed the levelUp window.
- */
-//bool AmILevelUp();
+// Check if the levelUp window its shown.
+bool AmILevelUp();
 
 /*
  * Check if it is showed the dead window.

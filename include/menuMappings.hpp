@@ -42,7 +42,7 @@ enum SpellsCtrlRow {
     ESCARCHA        = 7 +'0',
     POMPA           = 8 +'0',
     ESCAPADITA      = 9 +'0',
-    ESTRATO         = 10 +'0',
+    ESTRATO         = 0 +'0',
     DOMINIO         = 11,
     WEAPON          = 'q',
     SPELLS_CTRL_ROW = false

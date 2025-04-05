@@ -7,7 +7,7 @@ class Fight {
         Fight(int turn);
         ~Fight();
 
-        void Start();
+        int Start();
 
     private:
         void FightSet();
@@ -34,7 +34,8 @@ class Fight {
             CHECK_FIGHT_ENDED           = 6,
             AFTER_FIGHT_SET             = 7,
             AFTER_FIGHT_SIT             = 8,
-            WAIT_UNTIL_HEALED           = 9
+            WAIT_UNTIL_HEALED           = 9,
+            RETURN_E_OK                 = 10
         };
 
         int FightStrategySM();
@@ -48,6 +49,9 @@ class Fight {
         void ThrowSpell(int spell, int who, int upperRow);
         void ThrowSpellToEnemies(int spell, int upperRow);
         void ThrowSpellToMyself(int spell, int upperRow);
+
+        // Click "moves" times in a random pixel around the center of the screen. To the Pj to move before ending the turn.
+        void RandomMovePj(int moves);
 
         void PassTurn();
 };

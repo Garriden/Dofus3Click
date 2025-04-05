@@ -72,14 +72,16 @@ int main()
             case 99: //debug
                 //inputs::ClickOnExe();
 
-                zaap::CheckZaapOtoCoast();
+                check::AmIDefeated();
 
-                //std::this_thread::sleep_for(std::chrono::seconds(2));
+                check::IsFight();
 
-                //if(check::IsFight()) {
-                //    Fight fight(0);
-                //    fight.Start();
-                //}
+                std::this_thread::sleep_for(std::chrono::seconds(2));
+
+                if(check::IsFight()) {
+                    Fight fight(0);
+                    fight.Start();
+                }
 
                 //std::this_thread::sleep_for(std::chrono::seconds(2));
 

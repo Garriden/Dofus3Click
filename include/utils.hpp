@@ -76,6 +76,17 @@
 #define IS_ORANGE_CAC_WEAPON_COLOR_GREEN                          (140) // 128-150
 #define IS_ORANGE_CAC_WEAPON_COLOR_BLUE                           (60)  // 46 - 68
 
+#define IS_SIT_POS_X_1                                            (733)
+#define IS_SIT_POS_Y_1                                            (1008)
+#define IS_SIT_COLOR_RED_1                                        (105)
+#define IS_SIT_COLOR_GREEN_1                                      (66)
+#define IS_SIT_COLOR_BLUE_1                                       (41)
+#define IS_SIT_POS_X_2                                            (727)
+#define IS_SIT_POS_Y_2                                            (1012)
+#define IS_SIT_COLOR_RED_2                                        (180)
+#define IS_SIT_COLOR_GREEN_2                                      (114)
+#define IS_SIT_COLOR_BLUE_2                                       (69)
+
 #define SWITCH_BOTTOM_MENU_POS_X_1                                (1217)
 #define SWITCH_BOTTOM_MENU_POS_Y_1                                (997)
 
@@ -124,6 +135,11 @@
 #define FIGTH_MENU_ENEMY_COLOR_GREEN                       (80)
 #define FIGTH_MENU_ENEMY_COLOR_BLUE                        (84)
 
+#define FIGHT_X_LIMIT_MIN                                  (600)
+#define FIGHT_X_LIMIT_MAX                                  (1300)
+#define FIGHT_Y_LIMIT_MIN                                  (250)
+#define FIGHT_Y_LIMIT_MAX                                  (700)
+
 
 ///////////////////////////////////
 // AFTER FIGHT
@@ -155,12 +171,6 @@
 #define I_LOST_THE_FIGHT_COLOR_RED_2                    (165)
 #define I_LOST_THE_FIGHT_COLOR_GREEN_2                  (81)
 #define I_LOST_THE_FIGHT_COLOR_BLUE_2                   (68)
-
-
-
-
-
-
 
 
 //////////////////////////////////////////////////////////////
@@ -243,6 +253,22 @@
 #define I_AM_IN_OTO_COAST_ZAAP_COLOR_GREEN_3            (27)
 #define I_AM_IN_OTO_COAST_ZAAP_COLOR_BLUE_3             (21)
 
+#define I_AM_IN_KOALAK_ZAAP_POS_X_1                     (930)
+#define I_AM_IN_KOALAK_ZAAP_POS_Y_1                     (362)
+#define I_AM_IN_KOALAK_ZAAP_COLOR_RED_1                 (246)
+#define I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_1               (231)
+#define I_AM_IN_KOALAK_ZAAP_COLOR_BLUE_1                (164)
+#define I_AM_IN_KOALAK_ZAAP_POS_X_2                     (932)
+#define I_AM_IN_KOALAK_ZAAP_POS_Y_2                     (339)
+#define I_AM_IN_KOALAK_ZAAP_COLOR_RED_2                 (101)
+#define I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_2               (127)
+#define I_AM_IN_KOALAK_ZAAP_COLOR_BLUE_2                (0)
+#define I_AM_IN_KOALAK_ZAAP_POS_X_3                     (1265)
+#define I_AM_IN_KOALAK_ZAAP_POS_Y_3                     (126)
+#define I_AM_IN_KOALAK_ZAAP_COLOR_RED_3                 (118)
+#define I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_3               (131)
+#define I_AM_IN_KOALAK_ZAAP_COLOR_BLUE_3                (0)
+
 
 //////////////////////////////////////////////////////////////
 // ROADMAPS CHECKS
@@ -292,6 +318,11 @@
 #define HEALTH_COLOR_RED                                (166)
 #define HEALTH_COLOR_GREEN                              (28)
 #define HEALTH_COLOR_BLUE                               (47)
+#define HEALTH_POS_X_2                                  (537)
+#define HEALTH_POS_Y_2                                  (969)
+#define HEALTH_COLOR_RED_2                              (179)
+#define HEALTH_COLOR_GREEN_2                            (50)
+#define HEALTH_COLOR_BLUE_2                             (72)
 
 #define CHECK_PODS_POS_X                                (1856)
 #define CHECK_PODS_POS_Y                                (1007)
@@ -308,6 +339,11 @@
 #define PRIVATE_MODE_POS_COLOR_RED_1                    (212) // red dot
 #define PRIVATE_MODE_POS_COLOR_GREEN_1                  (0)
 #define PRIVATE_MODE_POS_COLOR_BLUE_1                   (0)
+
+
+
+
+
 
 
 
@@ -358,21 +394,7 @@
 
 
 
-#define I_AM_IN_KOALAK_ZAAP_POS_X_1                     (930)
-#define I_AM_IN_KOALAK_ZAAP_POS_Y_1                     (362)
-#define I_AM_IN_KOALAK_ZAAP_COLOR_RED_1                 (236)
-#define I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_1               (221)
-#define I_AM_IN_KOALAK_ZAAP_COLOR_BLUE_1                (155)
-#define I_AM_IN_KOALAK_ZAAP_POS_X_2                     (932)
-#define I_AM_IN_KOALAK_ZAAP_POS_Y_2                     (339)
-#define I_AM_IN_KOALAK_ZAAP_COLOR_RED_2                 (101)
-#define I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_2               (127)
-#define I_AM_IN_KOALAK_ZAAP_COLOR_BLUE_2                (0)
-#define I_AM_IN_KOALAK_ZAAP_POS_X_3                     (1265)
-#define I_AM_IN_KOALAK_ZAAP_POS_Y_3                     (126)
-#define I_AM_IN_KOALAK_ZAAP_COLOR_RED_3                 (111)
-#define I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_3               (126)
-#define I_AM_IN_KOALAK_ZAAP_COLOR_BLUE_3                (0)
+
 
 
 
