@@ -111,12 +111,13 @@
 #define IT_IS_MY_TURN_POS_Y_3                              (904)
 #define IT_IS_MY_TURN_POS_X_4                              (1334)
 #define IT_IS_MY_TURN_POS_Y_4                              (905)
+#define IT_IS_MY_TURN_BOTTOM_POS_X_1                       (1328)
+#define IT_IS_MY_TURN_BOTTOM_POS_Y_1                       (994)
+#define IT_IS_MY_TURN_BOTTOM_POS_X_2                       (1336)
+#define IT_IS_MY_TURN_BOTTOM_POS_Y_2                       (999)
 #define IT_IS_MY_TURN_COLOR_RED                            (236)
 #define IT_IS_MY_TURN_COLOR_GREEN                          (173)
 #define IT_IS_MY_TURN_COLOR_BLUE                           (85)
-#define IT_IS_NOT_MY_TURN_COLOR_RED                        (35)
-#define IT_IS_NOT_MY_TURN_COLOR_GREEN                      (38)
-#define IT_IS_NOT_MY_TURN_COLOR_BLUE                       (42)
 
 #define ACCEPT_RETO_POS_X                                  (186)
 #define ACCEPT_RETO_POS_Y                                  (363)
@@ -171,6 +172,17 @@
 #define I_LOST_THE_FIGHT_COLOR_RED_2                    (165)
 #define I_LOST_THE_FIGHT_COLOR_GREEN_2                  (81)
 #define I_LOST_THE_FIGHT_COLOR_BLUE_2                   (68)
+
+#define LOW_ENERGY_BOX_POS_X_1                        (1045)
+#define LOW_ENERGY_BOX_POS_Y_1                        (480)
+#define LOW_ENERGY_BOX_COLOR_RED_1                    (82)
+#define LOW_ENERGY_BOX_COLOR_GREEN_1                  (82)
+#define LOW_ENERGY_BOX_COLOR_BLUE_1                   (114)
+#define LOW_ENERGY_BOX_POS_X_2                        (1037)
+#define LOW_ENERGY_BOX_POS_Y_2                        (509)
+#define LOW_ENERGY_BOX_COLOR_RED_2                    (27)
+#define LOW_ENERGY_BOX_COLOR_GREEN_2                  (29)
+#define LOW_ENERGY_BOX_COLOR_BLUE_2                   (50)
 
 
 //////////////////////////////////////////////////////////////
@@ -324,10 +336,12 @@
 #define HEALTH_COLOR_GREEN_2                            (50)
 #define HEALTH_COLOR_BLUE_2                             (72)
 
-#define CHECK_PODS_POS_X                                (1856)
-#define CHECK_PODS_POS_Y                                (1007)
-#define CHECK_PODS_COLOR_RED                            (228)
-#define CHECK_PODS_COLOR_GREEN                          (242)
+#define CHECK_PODS_POS_X_1                              (1856)
+#define CHECK_PODS_POS_Y_1                              (1007)
+#define CHECK_PODS_POS_X_2                              (1860)
+#define CHECK_PODS_POS_Y_2                              (1008)
+#define CHECK_PODS_COLOR_RED                            (232)
+#define CHECK_PODS_COLOR_GREEN                          (250)
 #define CHECK_PODS_COLOR_BLUE                           (75)
 
 #define PRIVATE_MODE_POS_X_1                            (18)

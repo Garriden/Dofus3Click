@@ -192,7 +192,7 @@ bool inputs::ClickOnExe()
 
 void inputs::Click(int x, int y)
 {
-    int ruletNumber = basicOperations::RuletaInput(1, 5);
+    int ruletNumber = basicOperations::RuletaInput(10, 15);
 
     // Press it!
     SetCursorPos(x, y);
