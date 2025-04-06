@@ -19,7 +19,7 @@ Fight::Fight(int turn) :
     _myXPositionInMenuFight(0),
     _enemiesXPositionInMenuFight{}
 {
-    std::cout << "Fight mode ON 2" << std::endl;
+    std::cout << "Fight mode ON" << std::endl;
 }
 
 Fight::~Fight()
@@ -165,7 +165,7 @@ void Fight::FindEnemiesPositions()
         }
         ii += 18;
     }
-    File::LogFile(("Number of enemies: " + std::to_string(_enemiesXPositionInMenuFight.size())).c_str(), true);
+    //File::LogFile(("Number of enemies: " + std::to_string(_enemiesXPositionInMenuFight.size())).c_str(), true);
 }
 
 void Fight::ReadyToFight()
@@ -260,10 +260,8 @@ int Fight::FightStrategySM()
         if(_turn % 3 == 2 && _enemiesXPositionInMenuFight.size() != 1) {
             ThrowSpellToMyself(SpellsRow::RECELO,  SpellsRow::SPELLS_ROW);
         }
-
-        if(check::IsFight()) { // if still my turn, pass
-            PassTurn();
-        }
+        
+        PassTurn();
 
         ++_turn;
     }
@@ -275,8 +273,13 @@ int Fight::FightStrategySM()
     std::this_thread::sleep_for(std::chrono::milliseconds(800));
 
     if(check::AmIDefeated()) {
-        //if(ghost) // TODO
         return E_KO;
+    } else if(check::IsFenixBox()) { // fenix - ghost
+        inputs::Click(FENIX_BOX_CLICK_POS_X_1, FENIX_BOX_CLICK_POS_Y_1);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        inputs::Click(FENIX_BOX_CLICK_POS_X_2, FENIX_BOX_CLICK_POS_Y_2);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        // Start roadmap ghost.
     } else if(check::AmILevelUp()) {
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
         inputs::Click(I_AM_LEVEL_UP_POS_X_4, I_AM_LEVEL_UP_POS_Y_4);

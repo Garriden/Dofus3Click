@@ -101,7 +101,7 @@ bool check::IsAlmostTheEndOfTheTurn()
 
     if(IsFight() && !iscolorFarestOrange) {
         ret = true;
-        File::LogFile("It is almost end of a turn!", true);
+        //File::LogFile("It is almost end of a turn!", true);
     }
     //File::LogFile("---", true);
     return ret;
@@ -143,19 +143,19 @@ bool check::HaveIHealth()
     COLORREF colorHealth  = basicOperations::GetColor(HEALTH_POS_X, HEALTH_POS_Y, false);
     COLORREF colorHealth2 = basicOperations::GetColor(HEALTH_POS_X_2, HEALTH_POS_Y_2, false);
 
-    if(((int(GetRValue(colorHealth)) < HEALTH_COLOR_RED   + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetRValue(colorHealth)) > HEALTH_COLOR_RED   - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(colorHealth)) < HEALTH_COLOR_GREEN + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(colorHealth)) > HEALTH_COLOR_GREEN - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(colorHealth)) < HEALTH_COLOR_BLUE  + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(colorHealth)) > HEALTH_COLOR_BLUE  - ERROR_GET_COLOUR_SMALL))
+    if(((int(GetRValue(colorHealth)) < HEALTH_COLOR_RED   + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetRValue(colorHealth)) > HEALTH_COLOR_RED   - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(colorHealth)) < HEALTH_COLOR_GREEN + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(colorHealth)) > HEALTH_COLOR_GREEN - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(colorHealth)) < HEALTH_COLOR_BLUE  + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(colorHealth)) > HEALTH_COLOR_BLUE  - ERROR_GET_COLOUR_QUITE))
         ||
-       ((int(GetRValue(colorHealth2)) < HEALTH_COLOR_RED_2   + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetRValue(colorHealth2)) > HEALTH_COLOR_RED_2   - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(colorHealth2)) < HEALTH_COLOR_GREEN_2 + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(colorHealth2)) > HEALTH_COLOR_GREEN_2 - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(colorHealth2)) < HEALTH_COLOR_BLUE_2  + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(colorHealth2)) > HEALTH_COLOR_BLUE_2  - ERROR_GET_COLOUR_SMALL))
+       ((int(GetRValue(colorHealth2)) < HEALTH_COLOR_RED_2   + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetRValue(colorHealth2)) > HEALTH_COLOR_RED_2   - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(colorHealth2)) < HEALTH_COLOR_GREEN_2 + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(colorHealth2)) > HEALTH_COLOR_GREEN_2 - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(colorHealth2)) < HEALTH_COLOR_BLUE_2  + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(colorHealth2)) > HEALTH_COLOR_BLUE_2  - ERROR_GET_COLOUR_QUITE))
         )
     {
         ret = true;
@@ -452,6 +452,44 @@ bool check::AmIDefeated()
     return ret;
 }
 
+bool check::IsFenixBox()
+{
+    bool ret = false;
+
+    COLORREF color1 = basicOperations::GetColor(FENIX_BOX_POS_X_1, FENIX_BOX_POS_Y_1, true);
+    COLORREF color2 = basicOperations::GetColor(FENIX_BOX_POS_X_2, FENIX_BOX_POS_Y_2, true);
+    COLORREF color3 = basicOperations::GetColor(FENIX_BOX_POS_X_3, FENIX_BOX_POS_Y_3, true);
+
+    // It is the desired color 
+    if( (int(GetRValue(color1)) < FENIX_BOX_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color1)) > FENIX_BOX_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) < FENIX_BOX_COLOR_GREEN_1 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) > FENIX_BOX_COLOR_GREEN_1 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) < FENIX_BOX_COLOR_BLUE_1  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) > FENIX_BOX_COLOR_BLUE_1  - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(color2)) < FENIX_BOX_COLOR_RED_2   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color2)) > FENIX_BOX_COLOR_RED_2   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) < FENIX_BOX_COLOR_GREEN_2 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) > FENIX_BOX_COLOR_GREEN_2 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color2)) < FENIX_BOX_COLOR_BLUE_2  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color2)) > FENIX_BOX_COLOR_BLUE_2  - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(color3)) < FENIX_BOX_COLOR_RED_3   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color3)) > FENIX_BOX_COLOR_RED_3   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color3)) < FENIX_BOX_COLOR_GREEN_3 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color3)) > FENIX_BOX_COLOR_GREEN_3 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color3)) < FENIX_BOX_COLOR_BLUE_3  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color3)) > FENIX_BOX_COLOR_BLUE_3  - ERROR_GET_COLOUR_SMALL)
+        )
+    {
+        File::LogFile("I Am defeated!", true);
+        ret = true;
+    }
+
+    return ret;
+}
+
 bool check::IWonTheFight()
 {
     bool ret = false;
@@ -493,7 +531,7 @@ bool check::IWonTheFight()
 
 bool check::IsFightFinished()
 {
-    return IWonTheFight() || AmIDefeated();
+    return IWonTheFight() || AmIDefeated() || IsFenixBox();
 }
 
 bool check::IsBlack(int x, int y)
@@ -748,4 +786,25 @@ bool check::IsEmptyResource()
     }
 
     return ret;
+}
+
+
+bool check::WaitMapToChange()
+{
+    int blackScreenFlag = false;
+    for(int ii = 0; ii < 500; ++ii) {
+        if(!blackScreenFlag) { // No black screen yet, keep trying until black screen detected.
+            if(IsBlackScreen()) {
+                blackScreenFlag = true;
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            }
+        } else { //blackScreen detected.
+            if(!IsBlackScreen()) { // detect black screen + black fade off.
+                //File::LogFile("Backscreen transition detected!", false);
+                return true;
+            }
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(5));
+    }
+    return false;
 }

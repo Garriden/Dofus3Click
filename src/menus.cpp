@@ -13,9 +13,8 @@
 void menu::Wood()
 {
     show::WoodMenu();
-    //Wood wood();
 
-    int in, x, y;
+    int in;
     std::cin >> in;
 
     if(!inputs::ClickOnExe()) {
@@ -34,7 +33,6 @@ void menu::Wood()
             Roadmap roadmap(Profession::WOOD, "Astrub", &checkRoadmap::CheckWoodLv1, &zaap::CheckZaapAstrub,
                 {"../../Telemetry/Wood/fromAstrubZaapToWoodLv1.csv", "../../Telemetry/Wood/astrubAshLv1.csv"});
             roadmap.Start();
-            //Astrub();
             break;
         }
         case 2:
@@ -82,4 +80,76 @@ void menu::Wood()
             break;
         }
     }
+}
+
+void menu::FindEnemiesMenu()
+{
+    show::FindEnemiesMenu();
+
+    int in;
+    std::cin >> in;
+
+    if(!inputs::ClickOnExe()) {
+        File::LogFile("! Error Cannot find Dofus exe!", true);
+        return;
+    }
+
+    switch(in) 
+    {
+        case 0:
+        default:
+            break;
+        case 1:
+        {
+            File::LogFile("1  = Jabatos               (Astrub)", true);
+            Roadmap roadmap(Profession::TRAIN, "astrub", &zaap::CheckZaapAstrub, &zaap::CheckZaapAstrub,
+                {"../../Telemetry/Train/astrub.csv", ""});
+            roadmap.Start();
+            break;
+        }
+        case 2:
+        {
+            File::LogFile("2  = Abraknidos             (Linde)", true);
+            Roadmap roadmap(Profession::TRAIN, "linde", &zaap::CheckZaapLinde, &zaap::CheckZaapLinde,
+                {"../../Telemetry/Train/linde.csv", ""});
+            roadmap.Start();
+            break;
+        }
+        case 4:
+        {
+            File::LogFile("4  = Cochinillos           (Puerka)", true);
+            Roadmap roadmap(Profession::TRAIN, "puerka", &zaap::CheckZaapPuerkazos, &zaap::CheckZaapPuerkazos,
+                {"../../Telemetry/Train/puerka.csv", ""});
+            roadmap.Start();
+            break;
+        }
+        case 6:
+        {
+            File::LogFile("6  = Cocodrilos         (Ganaderos)", true);
+            Roadmap roadmap(Profession::TRAIN, "ganaderos", &zaap::CheckZaapKoalak, &zaap::CheckZaapKoalak,
+                {"../../Telemetry/Train/cocodrilos.csv", ""});
+            roadmap.Start();
+            break;
+        }
+        case 10:
+        {
+            File::LogFile("10 = Kokokos                 (Moon)", true);
+            Roadmap roadmap(Profession::TRAIN, "moon", &zaap::CheckZaapMoon, &zaap::CheckZaapMoon,
+                {"../../Telemetry/Train/moon.csv", ""});
+            roadmap.Start();
+            break;
+        }
+        case 20:
+        {
+            File::LogFile("20 = Jalamuts               (Burgo)", true);
+            Roadmap roadmap(Profession::TRAIN, "burgo", &zaap::CheckZaapBurgo, &zaap::CheckZaapBurgo,
+                {"../../Telemetry/Train/burgo.csv", ""});
+            roadmap.Start();
+            break;
+        }
+
+        
+
+    }
+
 }

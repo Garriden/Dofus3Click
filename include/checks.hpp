@@ -78,6 +78,9 @@ bool IsPrivateMode();
  */
 bool AmIDefeated();
 
+// Cjeck if after fight, I don't have enery and appears the fenix box.
+bool IsFenixBox();
+
 /*
  * Look if the fight it is already finished. If I won it
  * Checking if it is visible the postFight Victory window.
@@ -127,5 +130,8 @@ bool IsSpellsMenu();
 
 // Check if the first position in the inventary is empty.
 bool IsEmptyResource();
+
+// Active check for some seconds if the blackScreen transition apprears when changing maps.
+bool WaitMapToChange();
 
 }

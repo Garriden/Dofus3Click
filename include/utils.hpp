@@ -10,12 +10,10 @@
 #include <sstream>
 #include <TlHelp32.h> 
 
-#define SECONDS (1000)
-
 #define LIMIT_CELL_Y_MIN                                (80)
-#define LIMIT_CELL_Y_MAX                                (880)
-#define LIMIT_CELL_X_MIN                                (400)
-#define LIMIT_CELL_X_MAX                                (1515)
+#define LIMIT_CELL_Y_MAX                                (850)
+#define LIMIT_CELL_X_MIN                                (405)
+#define LIMIT_CELL_X_MAX                                (1470)
 
 #define UP                                              (0)
 #define DOWN                                            (1)
@@ -184,6 +182,25 @@
 #define LOW_ENERGY_BOX_COLOR_GREEN_2                  (29)
 #define LOW_ENERGY_BOX_COLOR_BLUE_2                   (50)
 
+#define FENIX_BOX_POS_X_1                             (1115)
+#define FENIX_BOX_POS_Y_1                             (425)
+#define FENIX_BOX_COLOR_RED_1                         (82)
+#define FENIX_BOX_COLOR_GREEN_1                       (82)
+#define FENIX_BOX_COLOR_BLUE_1                        (114)
+#define FENIX_BOX_POS_X_2                             (1157)
+#define FENIX_BOX_POS_Y_2                             (469)
+#define FENIX_BOX_COLOR_RED_2                         (27)
+#define FENIX_BOX_COLOR_GREEN_2                       (29)
+#define FENIX_BOX_COLOR_BLUE_2                        (50)
+#define FENIX_BOX_POS_X_3                             (811)
+#define FENIX_BOX_POS_Y_3                             (510)
+#define FENIX_BOX_COLOR_RED_3                         (187)
+#define FENIX_BOX_COLOR_GREEN_3                       (86)
+#define FENIX_BOX_COLOR_BLUE_3                        (29)
+#define FENIX_BOX_CLICK_POS_X_1                       (971)
+#define FENIX_BOX_CLICK_POS_Y_1                       (636)
+#define FENIX_BOX_CLICK_POS_X_2                       (985)
+#define FENIX_BOX_CLICK_POS_Y_2                       (605)
 
 //////////////////////////////////////////////////////////////
 // ZAAPS CHECKS
@@ -281,6 +298,37 @@
 #define I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_3               (131)
 #define I_AM_IN_KOALAK_ZAAP_COLOR_BLUE_3                (0)
 
+#define I_AM_IN_MOON_ZAAP_POS_X_1                       (1700)
+#define I_AM_IN_MOON_ZAAP_POS_Y_1                       (171)
+#define I_AM_IN_MOON_ZAAP_COLOR_RED_1                   (93)
+#define I_AM_IN_MOON_ZAAP_COLOR_GREEN_1                 (141)
+#define I_AM_IN_MOON_ZAAP_COLOR_BLUE_1                  (112)
+#define I_AM_IN_MOON_ZAAP_POS_X_2                       (1239)
+#define I_AM_IN_MOON_ZAAP_POS_Y_2                       (850)
+#define I_AM_IN_MOON_ZAAP_COLOR_RED_2                   (83)
+#define I_AM_IN_MOON_ZAAP_COLOR_GREEN_2                 (181)
+#define I_AM_IN_MOON_ZAAP_COLOR_BLUE_2                  (161)
+#define I_AM_IN_MOON_ZAAP_POS_X_3                       (366)
+#define I_AM_IN_MOON_ZAAP_POS_Y_3                       (40)
+#define I_AM_IN_MOON_ZAAP_COLOR_RED_3                   (156)
+#define I_AM_IN_MOON_ZAAP_COLOR_GREEN_3                 (165)
+#define I_AM_IN_MOON_ZAAP_COLOR_BLUE_3                  (32)
+
+#define I_AM_IN_BURGO_ZAAP_POS_X_1                     (1526)
+#define I_AM_IN_BURGO_ZAAP_POS_Y_1                     (245)
+#define I_AM_IN_BURGO_ZAAP_COLOR_RED_1                 (211)
+#define I_AM_IN_BURGO_ZAAP_COLOR_GREEN_1               (230)
+#define I_AM_IN_BURGO_ZAAP_COLOR_BLUE_1                (234)
+#define I_AM_IN_BURGO_ZAAP_POS_X_2                     (1523)
+#define I_AM_IN_BURGO_ZAAP_POS_Y_2                     (200)
+#define I_AM_IN_BURGO_ZAAP_COLOR_RED_2                 (245)
+#define I_AM_IN_BURGO_ZAAP_COLOR_GREEN_2               (247)
+#define I_AM_IN_BURGO_ZAAP_COLOR_BLUE_2                (250)
+#define I_AM_IN_BURGO_ZAAP_POS_X_3                     (504)
+#define I_AM_IN_BURGO_ZAAP_POS_Y_3                     (93)
+#define I_AM_IN_BURGO_ZAAP_COLOR_RED_3                 (111)
+#define I_AM_IN_BURGO_ZAAP_COLOR_GREEN_3               (134)
+#define I_AM_IN_BURGO_ZAAP_COLOR_BLUE_3                (101)
 
 //////////////////////////////////////////////////////////////
 // ROADMAPS CHECKS
@@ -449,21 +497,9 @@
 #define I_AM_IN_CANIA_MASSIF_ZAAP_COLOR_GREEN_3         (175)
 #define I_AM_IN_CANIA_MASSIF_ZAAP_COLOR_BLUE_3          (42)
 
-#define I_AM_IN_MOON_ZAAP_POS_X_1                       (583)
-#define I_AM_IN_MOON_ZAAP_POS_Y_1                       (98)
-#define I_AM_IN_MOON_ZAAP_COLOR_RED_1                   (163)
-#define I_AM_IN_MOON_ZAAP_COLOR_GREEN_1                 (146)
-#define I_AM_IN_MOON_ZAAP_COLOR_BLUE_1                  (86)
-#define I_AM_IN_MOON_ZAAP_POS_X_2                       (1304)
-#define I_AM_IN_MOON_ZAAP_POS_Y_2                       (72)
-#define I_AM_IN_MOON_ZAAP_COLOR_RED_2                   (126)
-#define I_AM_IN_MOON_ZAAP_COLOR_GREEN_2                 (137)
-#define I_AM_IN_MOON_ZAAP_COLOR_BLUE_2                  (30)
-#define I_AM_IN_MOON_ZAAP_POS_X_3                       (1471)
-#define I_AM_IN_MOON_ZAAP_POS_Y_3                       (736)
-#define I_AM_IN_MOON_ZAAP_COLOR_RED_3                   (167)
-#define I_AM_IN_MOON_ZAAP_COLOR_GREEN_3                 (195)
-#define I_AM_IN_MOON_ZAAP_COLOR_BLUE_3                  (141)
+
+
+
 
 #define I_AM_IN_SUFOKIAN_SHORELINE_ZAAP_POS_X_1         (1077)
 #define I_AM_IN_SUFOKIAN_SHORELINE_ZAAP_POS_Y_1         (314)

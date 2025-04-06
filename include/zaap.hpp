@@ -26,6 +26,12 @@ namespace zaap {
     // Check if I am in Koalak breeders village zaap.
     bool CheckZaapKoalak();
 
+    // Check if I am in Burgo(Frigost) zaap.
+    bool CheckZaapBurgo();
+
+    // Check if I am in Moon island zaap.
+    bool CheckZaapMoon();
+
     /*
     * Check if I am in Gobball corner zaap.
     */

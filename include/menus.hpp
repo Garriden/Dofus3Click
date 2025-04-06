@@ -2,4 +2,5 @@
 
 namespace menu {
     void Wood();
+    void FindEnemiesMenu();
 }

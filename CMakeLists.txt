@@ -27,6 +27,7 @@ set(HEADERS
     menuMappings.hpp
     menus.hpp
     menusInterface.hpp
+    train.hpp
     zaap.hpp
     system/inputs.hpp
     system/file.hpp
@@ -44,6 +45,7 @@ set(SOURCES
     menusInterface.cpp
     menus.cpp
     roadmap.cpp
+    train.cpp
     zaap.cpp
     system/inputs.cpp
     system/file.cpp

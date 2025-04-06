@@ -7,17 +7,16 @@ void show::MainMenu()
 {
     system("TITLE Click Bot");
     File::LogFile("===================================", true);
-    std::cout << "1 = DEBUG points" << std::endl;
-    std::cout << "2 = FARMER" << std::endl;
-    std::cout << "3 = WOOD" << std::endl;
-    std::cout << "4 = MINERAL" << std::endl;
-    std::cout << "5 = ALCHEMIST" << std::endl;
-    std::cout << "6 = FISHERMAN" << std::endl;
-    std::cout << "9 = Daily missions" << std::endl;
-    std::cout << "10= FindEnemies" << std::endl;
+    std::cout << "1  = DEBUG points" << std::endl;
+    std::cout << "2  = FARMER" << std::endl;
+    std::cout << "3  = WOOD" << std::endl;
+    std::cout << "4  = MINERAL" << std::endl;
+    std::cout << "5  = ALCHEMIST" << std::endl;
+    std::cout << "6  = FISHERMAN" << std::endl;
+    std::cout << "9  = Daily missions" << std::endl;
+    std::cout << "10 = Find enemies" << std::endl;
+    std::cout << "11 = Find enemies here" << std::endl;
     std::cout << "-----------------------------------" << std::endl;
-    std::cout << "70= I am playing in a slow PC" << std::endl;
-    std::cout << "71= I will play as ENU" << std::endl;
     std::cout << "99= DEBUG" << std::endl;
     std::cout << "0 = EXIT" << std::endl;
     std::cout << "===================================" << std::endl;
@@ -50,14 +49,13 @@ void show::WoodMenu()
 {
     system("TITLE Wood menu");
     std::cout << "===================================" << std::endl;
-    std::cout << "1 = -lv.1  [ASTRUB]      (Astrub)" << std::endl;
-    std::cout << "2 = -lv.20 [AMAKNA]       (Linde)" << std::endl;
-    std::cout << "4 = -lv.70 [BOMBU]       (Plains)" << std::endl;
-    std::cout << "8 = [OTOMAI | Coast]      (Coast)" << std::endl;
-    std::cout << "9 = [OTOMAI | ALL]        (Coast)" << std::endl;
-    std::cout << "10= [KOALAK]              (Breed)" << std::endl;
-    std::cout << "99= Telemetry        " << std::endl;
-    std::cout << "0 = Back to main menu" << std::endl;
+    std::cout << "1  = lv.1  [ASTRUB]        (Astrub)" << std::endl;
+    std::cout << "2  = lv.20 [AMAKNA]         (Linde)" << std::endl;
+    std::cout << "4  = lv.70 [BOMBU]        (Llanura)" << std::endl;
+    std::cout << "8  = [OTOMAI | Coast]     (Costero)" << std::endl;
+    std::cout << "9  = [OTOMAI | ALL]       (Costero)" << std::endl;
+    std::cout << "10 = [KOALAK]           (Ganaderos)" << std::endl;
+    std::cout << "0  = Back to main menu"              << std::endl;
     std::cout << "===================================" << std::endl;
 }
 
@@ -74,7 +72,7 @@ void show::FarmerMenu()
 {
     system("TITLE Farmer menu");
     std::cout << "===================================" << std::endl;
-    std::cout << "1  = lv.40  [WHE / BAR]   [GOBBALL]" << std::endl;
+    std::cout << "1  = lv.40  [WHE / BAR]   (GOBBALL)" << std::endl;
     std::cout << "0  = Back to main menu" << std::endl;
     std::cout << "===================================" << std::endl;
 }
@@ -83,11 +81,11 @@ void show::AlchemistMenu()
 {
     system("TITLE Alchemist menu");
     std::cout << "===================================" << std::endl;
-    std::cout << "1 = lv.1                   [ASTRUB]" << std::endl;
-    std::cout << "2 = lv.40                   [LINDE]" << std::endl;
-    std::cout << "3 = lv.80                 [BREEDER]" << std::endl;
+    std::cout << "1 = lv.1                   (Astrub)" << std::endl;
+    std::cout << "2 = lv.40                   (Linde)" << std::endl;
+    std::cout << "3 = lv.80               (Ganaderos)" << std::endl;
     //std::cout << "4 = lv.120                [PANDALA]" << std::endl;
-    std::cout << "5 = lv.140                   [MOON]" << std::endl;
+    std::cout << "5 = lv.140                   (Moon)" << std::endl;
     std::cout << "0 = Back to main menu" << std::endl;
     std::cout << "===================================" << std::endl;
 }
@@ -97,7 +95,7 @@ void show::FishermanMenu()
     system("TITLE Fisherman menu");
     std::cout << "===================================" << std::endl;
     //std::cout << "1 = lv.1                   [ASTRUB]" << std::endl;
-    std::cout << "2 = lv.20      [SUFOKIAN SHORELINE]" << std::endl;
+    std::cout << "2 = lv.20      (SUFOKIAN SHORELINE)" << std::endl;
     //std::cout << "3 = lv.80                 [BREEDER]" << std::endl;
     //std::cout << "4 = lv.120                [PANDALA]" << std::endl;
     std::cout << "0 = Back to main menu" << std::endl;
@@ -108,13 +106,12 @@ void show::FindEnemiesMenu()
 {
     system("TITLE Find enemies menu");
     std::cout << "===================================" << std::endl;
-    std::cout << "1  = Sequential                    " << std::endl;
-    std::cout << "2  = Sequential +    Hunting       " << std::endl;
-    std::cout << "3  = Focus                         " << std::endl;
-    std::cout << "4  = Focus +         Hunting       " << std::endl;
-    std::cout << "5  = Invos + Focus                 " << std::endl;
-    std::cout << "6  = Invos + Focus + Hunting       " << std::endl;
-    std::cout << "0  = Back to main menu" << std::endl;
+    std::cout << "1  = Jabatos               (Astrub)" << std::endl;
+    std::cout << "2  = Abraknidos             (Linde)" << std::endl;
+    std::cout << "4  = Cochinillos           (Puerka)" << std::endl;
+    std::cout << "6  = Cocodrilos         (Ganaderos)" << std::endl;
+    std::cout << "10 = Kokokos                 (Moon)" << std::endl;
+    std::cout << "20 = Jalamuts               (Burgo)" << std::endl;
     std::cout << "===================================" << std::endl;
 }
 
