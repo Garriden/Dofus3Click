@@ -30,7 +30,7 @@ void menu::Wood()
         case 1:
         {
             File::LogFile("lv.1  [ASTRUB] . . . ", true);
-            Roadmap roadmap(Profession::WOOD, "Astrub", &checkRoadmap::CheckWoodLv1, &zaap::CheckZaapAstrub,
+            Roadmap roadmap(Profession::WOOD, "astrub", &checkRoadmap::CheckWoodLv1, &zaap::CheckZaapAstrub,
                 {"../../Telemetry/Wood/fromAstrubZaapToWoodLv1.csv", "../../Telemetry/Wood/astrubAshLv1.csv"});
             roadmap.Start();
             break;
@@ -102,48 +102,49 @@ void menu::FindEnemiesMenu()
         case 1:
         {
             File::LogFile("1  = Jabatos               (Astrub)", true);
-            Roadmap roadmap(Profession::TRAIN, "astrub", &zaap::CheckZaapAstrub, &zaap::CheckZaapAstrub,
-                {"../../Telemetry/Train/astrub.csv", ""});
+            Roadmap roadmap(Profession::TRAIN, "astrub", nullptr, &zaap::CheckZaapAstrub, {"../../Telemetry/Train/astrub.csv", ""});
             roadmap.Start();
             break;
         }
         case 2:
         {
             File::LogFile("2  = Abraknidos             (Linde)", true);
-            Roadmap roadmap(Profession::TRAIN, "linde", &zaap::CheckZaapLinde, &zaap::CheckZaapLinde,
-                {"../../Telemetry/Train/linde.csv", ""});
+            Roadmap roadmap(Profession::TRAIN, "linde", nullptr, &zaap::CheckZaapLinde, {"../../Telemetry/Train/linde.csv", ""});
             roadmap.Start();
             break;
         }
         case 4:
         {
             File::LogFile("4  = Cochinillos           (Puerka)", true);
-            Roadmap roadmap(Profession::TRAIN, "puerka", &zaap::CheckZaapPuerkazos, &zaap::CheckZaapPuerkazos,
-                {"../../Telemetry/Train/puerka.csv", ""});
+            Roadmap roadmap(Profession::TRAIN, "puerka", nullptr, &zaap::CheckZaapPuerkazos, {"../../Telemetry/Train/puerka.csv", ""});
             roadmap.Start();
             break;
         }
         case 6:
         {
             File::LogFile("6  = Cocodrilos         (Ganaderos)", true);
-            Roadmap roadmap(Profession::TRAIN, "ganaderos", &zaap::CheckZaapKoalak, &zaap::CheckZaapKoalak,
-                {"../../Telemetry/Train/cocodrilos.csv", ""});
+            Roadmap roadmap(Profession::TRAIN, "ganaderos", nullptr, &zaap::CheckZaapKoalak, {"../../Telemetry/Train/cocodrilos.csv", ""});
             roadmap.Start();
             break;
         }
         case 10:
         {
             File::LogFile("10 = Kokokos                 (Moon)", true);
-            Roadmap roadmap(Profession::TRAIN, "moon", &zaap::CheckZaapMoon, &zaap::CheckZaapMoon,
-                {"../../Telemetry/Train/moon.csv", ""});
+            Roadmap roadmap(Profession::TRAIN, "moon", nullptr, &zaap::CheckZaapMoon, {"../../Telemetry/Train/moon.csv", ""});
+            roadmap.Start();
+            break;
+        }
+        case 15:
+        {
+            File::LogFile("15 = Trools               (Rocosas)", true);
+            Roadmap roadmap(Profession::TRAIN, "rocosas", nullptr, &zaap::CheckZaapRocosas, {"../../Telemetry/Train/rocosas.csv", ""});
             roadmap.Start();
             break;
         }
         case 20:
         {
             File::LogFile("20 = Jalamuts               (Burgo)", true);
-            Roadmap roadmap(Profession::TRAIN, "burgo", &zaap::CheckZaapBurgo, &zaap::CheckZaapBurgo,
-                {"../../Telemetry/Train/burgo.csv", ""});
+            Roadmap roadmap(Profession::TRAIN, "burgo", nullptr, &zaap::CheckZaapBurgo, {"../../Telemetry/Train/burgo.csv", ""});
             roadmap.Start();
             break;
         }

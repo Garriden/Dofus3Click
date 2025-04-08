@@ -4,7 +4,7 @@
 class Fight {
     public:
         Fight();
-        Fight(int turn);
+        Fight(int hunter);
         ~Fight();
 
         int Start();
@@ -23,6 +23,7 @@ class Fight {
         int _turn;
         int _myXPositionInMenuFight;
         std::vector<int> _enemiesXPositionInMenuFight;
+        bool _hunter;
 
         enum FightPreparationState {
             FIGHT_SET                   = 0,

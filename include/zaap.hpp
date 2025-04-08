@@ -32,6 +32,9 @@ namespace zaap {
     // Check if I am in Moon island zaap.
     bool CheckZaapMoon();
 
+    // Check if I am in Llanuras Rocosas zaap.
+    bool CheckZaapRocosas();
+
     /*
     * Check if I am in Gobball corner zaap.
     */

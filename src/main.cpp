@@ -83,16 +83,17 @@ int main()
             case 99: //debug
                 //inputs::ClickOnExe();
 
-                check::AmIDefeated();
+                //check::AmIDefeated();
+                zaap::CheckZaapAstrub();
 
-                check::IsFight();
+                //check::IsFight();
 
-                std::this_thread::sleep_for(std::chrono::seconds(2));
+                //std::this_thread::sleep_for(std::chrono::seconds(2));
 
-                if(check::IsFight()) {
-                    Fight fight(0);
-                    fight.Start();
-                }
+                //if(check::IsFight()) {
+                //    Fight fight(0);
+                //    fight.Start();
+                //}
 
                 //std::this_thread::sleep_for(std::chrono::seconds(2));
 

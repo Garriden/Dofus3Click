@@ -110,7 +110,8 @@ void show::FindEnemiesMenu()
     std::cout << "2  = Abraknidos             (Linde)" << std::endl;
     std::cout << "4  = Cochinillos           (Puerka)" << std::endl;
     std::cout << "6  = Cocodrilos         (Ganaderos)" << std::endl;
-    std::cout << "10 = Kokokos                 (Moon)" << std::endl;
+    std::cout << "10 = Kokokos                X(Moon)" << std::endl;
+    std::cout << "15 = Trools              X(Rocosas)" << std::endl;
     std::cout << "20 = Jalamuts               (Burgo)" << std::endl;
     std::cout << "===================================" << std::endl;
 }

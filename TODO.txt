@@ -13,6 +13,10 @@ Game:
 
 - LookForTrouble enemies training.
 
+- Inheritance Strategy fights.
+- Invos?
+- Grodoko - Troloko pacifista
+
 - Daily missions.
 
 - Roadmap inheritance.

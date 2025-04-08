@@ -4,6 +4,7 @@
 #include "checks.hpp"
 #include "system/inputs.hpp"
 #include "system/file.hpp"
+#include "roadmap.hpp"
 
 Train::Train()
 {
@@ -17,16 +18,15 @@ Train::~Train()
 
 int Train::IterateBetweenMaps()
 {
-    //int ret = E_KO;
+    int ret = E_KO;
 
-    IterateCells();
-    inputs::ChangeMap(RIGHT);
-    IterateCells();
-    inputs::ChangeMap(DOWN);
-    IterateCells();
-    inputs::ChangeMap(LEFT);
-    IterateCells();
-    inputs::ChangeMap(UP);
+    for(int cardinalPoint = 0; cardinalPoint < 4; ++cardinalPoint) { // RIGHT, DOWN, LEFT, UP
+        if(IterateCells() != E_OK) {
+            return ret;
+        }
+
+        inputs::ChangeMap(cardinalPoint);
+    }
 
     File::LogFile("Map iteration OK!", true);
 
@@ -59,10 +59,17 @@ int Train::IterateCells()
 
                 std::this_thread::sleep_for(std::chrono::seconds(8));
 
+
                 if(check::IsFight()) {
-                    Fight fight(0);
-                    fight.Start();
+                    Fight fight(true);
+                    int fightReturn = fight.Start();
+                    if(E_OK != fightReturn) {
+                        File::LogFile("Fight NOT ended well for me...", true);
+                        return fightReturn;
+                    }
                 }
+
+
 
                 xxAvoid -= 2;
                 yy -= 88;

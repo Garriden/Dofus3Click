@@ -9,7 +9,8 @@ enum Profession {
     FISHER        = 2,
     MINERAL       = 3,
     LOWERING_PODS = 4,
-    TRAIN         = 5
+    TRAIN         = 5,
+    GHOST         = 6
 };
 
 class Roadmap {
@@ -40,7 +41,8 @@ class Roadmap {
             GO_TO_ZAAP                  = 5,
             GO_TO_INITIAL_MAP           = 6,
             EXECUTE_ROADMAP             = 7,
-            TRAIN_MODE                  = 8
+            TRAIN_MODE                  = 8,
+            END_ROADMAP_OK              = 9
         };
 
         /*

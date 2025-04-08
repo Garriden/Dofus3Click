@@ -72,15 +72,14 @@ int Roadmap::Start()
             step = RoadmapState::CHECK_INITIAL_POSITION;
             break;
         case RoadmapState::CHECK_INITIAL_POSITION:
-            if(_callbackCheckInitialMap() == _callbackCheckInitialZaap()) {
+            if(_callbackCheckInitialMap == nullptr || _callbackCheckInitialMap() == _callbackCheckInitialZaap()) {
                 step = RoadmapState::CHECK_ZAAP_POSITION;
-                break;
-            }
-
-            if(_callbackCheckInitialMap() && _roadmapFiles[0] != "") {
-                step = RoadmapState::EXECUTE_ROADMAP;
             } else {
-                step = RoadmapState::CHECK_ZAAP_POSITION;
+                if(_callbackCheckInitialMap != nullptr && _callbackCheckInitialMap() && _roadmapFiles[0] != "") {
+                    step = RoadmapState::EXECUTE_ROADMAP;
+                } else {
+                    step = RoadmapState::CHECK_ZAAP_POSITION;
+                }
             }
             break;
         case RoadmapState::CHECK_ZAAP_POSITION:
@@ -121,8 +120,10 @@ int Roadmap::Start()
             }
 
             if(roadmapExecution == E_OK) {
-                if(_profession == Profession::LOWERING_PODS) {
+                if(Profession::LOWERING_PODS == _profession) {
                     return E_NEED_TO_RESTART;
+                } else if(Profession::GHOST == _profession) {
+                    step = RoadmapState::END_ROADMAP_OK;
                 } else if(_callbackCheckInitialMap()) {
                     step = RoadmapState::EXECUTE_ROADMAP;
                 } else if(_callbackCheckInitialZaap()) {
@@ -135,11 +136,18 @@ int Roadmap::Start()
         case RoadmapState::TRAIN_MODE:
         {
             Train train;
-            train.IterateBetweenMaps();
+            if(train.IterateBetweenMaps() == E_IM_A_GHOST) {
+                std::string ghostRoadmap = "../../Telemetry/Ghost/" + _zaap + ".csv";
+                Roadmap roadmap(Profession::GHOST, _zaap, nullptr, nullptr, {ghostRoadmap, ghostRoadmap});
+                roadmap.Start();
 
-            step = RoadmapState::TRAIN_MODE;
+                step = RoadmapState::SET_PODS_SET;
+            } else {
+                step = RoadmapState::TRAIN_MODE;
+            }
             break;
         }
+        case RoadmapState::END_ROADMAP_OK:
         default:
             return E_KO;
             break;
@@ -185,9 +193,15 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
 
         if(check::IsFight()) {
             Fight fight;
-            if(E_KO == fight.Start()) {
+            int fightReturn = fight.Start();
+
+            if(E_KO == fightReturn) {
                 File::LogFile("Fight LOST!", true);
                 return E_KO;
+            } else if(E_IM_A_GHOST == fightReturn) { // I'm a Ghost
+                File::LogFile("I'm a Ghost... Starting roadmap to fenix", true);
+                Roadmap roadmap(Profession::GHOST, _zaap, nullptr, nullptr, {"../../Telemetry/Ghost/astrub.csv", ""});
+                roadmap.Start();
             }
         }
 
@@ -218,6 +232,9 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
     int retries = 0;
     while(!mapChanged && retries++ < 10) {
         mapChanged = check::WaitMapToChange();
+        if(!mapChanged) {
+            inputs::Click(map[map.size()-1].first, map[map.size()-1].second);
+        }
     }
 
     if(retries >= 10) {
@@ -228,11 +245,16 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
     if(check::IsFight()) {
-        mapChanged = false;
         Fight fight;
-        if(E_KO == fight.Start()) {
+        int fightReturn = fight.Start();
+
+        if(E_KO == fightReturn) {
             File::LogFile("Fight LOST!", true);
             return E_KO;
+        } else if(E_IM_A_GHOST == fightReturn) { // I'm a Ghost
+            File::LogFile("I'm a Ghost... Starting roadmap to fenix", true);
+            Roadmap roadmap(Profession::GHOST, _zaap, nullptr, nullptr, {"../../Telemetry/Ghost/astrub.csv", ""});
+            roadmap.Start();
         }
     }
 
@@ -313,13 +335,21 @@ void Roadmap::GoToZaap()
 
     std::this_thread::sleep_for(std::chrono::seconds(3));
 
-    if(zaap::CheckZaapAstrub() && _zaap != "Astrub" && _zaap != "") {  // Rebundant check.
+    if(zaap::CheckZaapAstrub() && _zaap == "astrub") {
+        return;
+    } else if(zaap::CheckZaapAstrub() && _zaap != "astrub") {
         zaap::ClickZaap(_zaap);
-    } else {
+    } else { // not in Astrub ?
         for(int ii = 0; !zaap::CheckZaapAstrub() && ii < 20; ++ii) {
-            File::LogFile("Watch out! I'm not at Astrub zaap and I should be... ", true);
+            if(zaap::CheckZaapInterface()) {
+                File::LogFile("I'm at Astrub zaap ZaapInterface ", true);
+                inputs::PressEscape();
+                break;
+            } else {
+                File::LogFile("Watch out! I'm not at Astrub zaap and I should be... ", true);
             
-            std::this_thread::sleep_for(std::chrono::seconds(60));
+                std::this_thread::sleep_for(std::chrono::seconds(60));
+            }
         }
         inputs::PressCtrlKey('8'); // Recall Poti.
         std::this_thread::sleep_for(std::chrono::seconds(10));
