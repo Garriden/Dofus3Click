@@ -2,6 +2,7 @@
 #include "menuMappings.hpp"
 #include "basicOperations.hpp"
 #include "checks.hpp"
+#include "zaap.hpp"
 #include "system/inputs.hpp"
 #include "system/file.hpp"
 #include <string>
@@ -240,7 +241,7 @@ int Fight::FightStrategySM()
         } 
         if(_turn % 8 == 7) {
             ThrowSpellToMyself(SpellsCtrlRow::BARRICADA, SpellsCtrlRow::SPELLS_CTRL_ROW);
-            ThrowSpellToMyself(SpellsRow::VIGIA,         SpellsRow::SPELLS_ROW);
+            //ThrowSpellToMyself(SpellsRow::VIGIA,         SpellsRow::SPELLS_ROW);
         }
 
         ThrowSpellToEnemies(SpellsCtrlRow::WEAPON,  SpellsRow::SPELLS_ROW); // weapon is just 'q'
@@ -254,12 +255,6 @@ int Fight::FightStrategySM()
 
         if(_enemiesXPositionInMenuFight.size() == 1) {
             ThrowSpellToEnemies(SpellsCtrlRow::ESTRATO,   SpellsCtrlRow::SPELLS_CTRL_ROW);
-            
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
-            if(!check::IsRecallPoti()) {
-                ThrowSpellToEnemies(SpellsCtrlRow::POMPA,      SpellsCtrlRow::SPELLS_CTRL_ROW);
-            }
-
             ThrowSpellToEnemies(SpellsCtrlRow::ESCAPADITA, SpellsCtrlRow::SPELLS_CTRL_ROW);
             ThrowSpellToEnemies(SpellsCtrlRow::ESCARCHA,   SpellsCtrlRow::SPELLS_CTRL_ROW);
             ThrowSpellToEnemies(SpellsRow::NATURAL,        SpellsRow::SPELLS_ROW);
@@ -269,6 +264,11 @@ int Fight::FightStrategySM()
 
         if(_turn % 3 == 2 && _enemiesXPositionInMenuFight.size() != 1) {
             ThrowSpellToMyself(SpellsRow::RECELO,  SpellsRow::SPELLS_ROW);
+        }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        if(!check::IsRecallPoti()) {
+            ThrowSpellToEnemies(SpellsCtrlRow::POMPA,      SpellsCtrlRow::SPELLS_CTRL_ROW);
         }
 
         if(check::IsFight()) {
@@ -295,13 +295,18 @@ int Fight::FightStrategySM()
         return E_KO;
     } else if(check::AmILevelUp()) {
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-        inputs::Click(I_AM_LEVEL_UP_POS_X_4, I_AM_LEVEL_UP_POS_Y_4);
+        //inputs::Click(I_AM_LEVEL_UP_POS_X_4, I_AM_LEVEL_UP_POS_Y_4);
+        inputs::PressEscape();
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     }
 
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     inputs::PressEscape();
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+    if(zaap::CheckZaapAstrub()) {
+        return E_KO;
+    }
 
     return E_OK;
 }

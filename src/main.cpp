@@ -84,7 +84,9 @@ int main()
                 //inputs::ClickOnExe();
 
                 //check::AmIDefeated();
-                zaap::CheckZaapAstrub();
+                //zaap::CheckZaapAstrub();
+
+                check::AmILevelUp();
 
                 //check::IsFight();
 

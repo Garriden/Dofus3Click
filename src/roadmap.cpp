@@ -337,6 +337,8 @@ void Roadmap::GoToZaap()
 
     if(zaap::CheckZaapAstrub() && _zaap == "astrub") {
         return;
+    } else if(zaap::CheckZaapAstrub() && _zaap == "") {
+        return;
     } else if(zaap::CheckZaapAstrub() && _zaap != "astrub") {
         zaap::ClickZaap(_zaap);
     } else { // not in Astrub ?

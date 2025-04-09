@@ -418,7 +418,7 @@ bool check::IWonTheFight()
 
 bool check::IsFightFinished()
 {
-    return IWonTheFight() || IsFenixBox() || AmIDefeated();
+    return IWonTheFight() || IsFenixBox() || AmIDefeated() || AmILevelUp();
 }
 
 bool check::IsBlack(int x, int y)

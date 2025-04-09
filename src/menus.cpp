@@ -115,7 +115,7 @@ void menu::FindEnemiesMenu()
         }
         case 4:
         {
-            File::LogFile("4  = Cochinillos           (Puerka)", true);
+            File::LogFile("4  = Robocops              (Puerka)", true);
             Roadmap roadmap(Profession::TRAIN, "puerka", nullptr, &zaap::CheckZaapPuerkazos, {"../../Telemetry/Train/puerka.csv", ""});
             roadmap.Start();
             break;
