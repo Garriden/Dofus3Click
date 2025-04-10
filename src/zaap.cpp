@@ -72,9 +72,9 @@ bool zaap::CheckZaapAstrub()
 {
     bool ret = false;
 
-    COLORREF color1 = basicOperations::GetColor(I_AM_IN_ASTRUB_ZAAP_POS_X_1, I_AM_IN_ASTRUB_ZAAP_POS_Y_1, true);
-    COLORREF color2 = basicOperations::GetColor(I_AM_IN_ASTRUB_ZAAP_POS_X_2, I_AM_IN_ASTRUB_ZAAP_POS_Y_2, true);
-    COLORREF color3 = basicOperations::GetColor(I_AM_IN_ASTRUB_ZAAP_POS_X_3, I_AM_IN_ASTRUB_ZAAP_POS_Y_3, true);
+    COLORREF color1 = basicOperations::GetColor(I_AM_IN_ASTRUB_ZAAP_POS_X_1, I_AM_IN_ASTRUB_ZAAP_POS_Y_1, false);
+    COLORREF color2 = basicOperations::GetColor(I_AM_IN_ASTRUB_ZAAP_POS_X_2, I_AM_IN_ASTRUB_ZAAP_POS_Y_2, false);
+    COLORREF color3 = basicOperations::GetColor(I_AM_IN_ASTRUB_ZAAP_POS_X_3, I_AM_IN_ASTRUB_ZAAP_POS_Y_3, false);
 
     if ((int(GetRValue(color1)) < I_AM_IN_ASTRUB_ZAAP_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
         (int(GetRValue(color1)) > I_AM_IN_ASTRUB_ZAAP_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&

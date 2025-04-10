@@ -59,7 +59,6 @@ int Train::IterateCells()
 
                 std::this_thread::sleep_for(std::chrono::seconds(8));
 
-
                 if(check::IsFight()) {
                     Fight fight(true);
                     int fightReturn = fight.Start();
@@ -67,12 +66,11 @@ int Train::IterateCells()
                         File::LogFile("Fight NOT ended well for me...", true);
                         return fightReturn;
                     }
+                    xx -= 88;
                 }
 
-
-
                 xxAvoid -= 2;
-                yy -= 88;
+                yy -= (88+88);
             }
 
         }
