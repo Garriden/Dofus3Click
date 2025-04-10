@@ -2,6 +2,7 @@
 #include "menuMappings.hpp"
 #include "basicOperations.hpp"
 #include "checks.hpp"
+#include "zaap.hpp"
 #include "system/inputs.hpp"
 #include "system/file.hpp"
 #include <string>
@@ -9,17 +10,19 @@
 Fight::Fight() :
     _turn(0),
     _myXPositionInMenuFight(0),
-    _enemiesXPositionInMenuFight{}
+    _enemiesXPositionInMenuFight{},
+    _hunter(false)
 {
     std::cout << "Fight mode ON" << std::endl;
 }
 
-Fight::Fight(int turn) :
-    _turn(turn),
+Fight::Fight(int hunter) :
+    _turn(0),
     _myXPositionInMenuFight(0),
-    _enemiesXPositionInMenuFight{}
+    _enemiesXPositionInMenuFight{},
+    _hunter(hunter)
 {
-    std::cout << "Fight mode ON 2" << std::endl;
+    std::cout << "Fight mode ON, hunter:" << hunter << std::endl;
 }
 
 Fight::~Fight()
@@ -92,7 +95,11 @@ void Fight::FightSet()
     inputs::ChangeMenuBar(5, false);
 
     std::this_thread::sleep_for(std::chrono::seconds(1));
-    inputs::PressCtrlKey('5'); // Fight Set
+    if(_hunter) {
+        inputs::PressCtrlKey('6'); // Hunter Set
+    } else {
+        inputs::PressCtrlKey('5'); // Berserk Set
+    }
     std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 
@@ -165,7 +172,7 @@ void Fight::FindEnemiesPositions()
         }
         ii += 18;
     }
-    File::LogFile(("Number of enemies: " + std::to_string(_enemiesXPositionInMenuFight.size())).c_str(), true);
+    //File::LogFile(("Number of enemies: " + std::to_string(_enemiesXPositionInMenuFight.size())).c_str(), true);
 }
 
 void Fight::ReadyToFight()
@@ -234,7 +241,7 @@ int Fight::FightStrategySM()
         } 
         if(_turn % 8 == 7) {
             ThrowSpellToMyself(SpellsCtrlRow::BARRICADA, SpellsCtrlRow::SPELLS_CTRL_ROW);
-            ThrowSpellToMyself(SpellsRow::VIGIA,         SpellsRow::SPELLS_ROW);
+            //ThrowSpellToMyself(SpellsRow::VIGIA,         SpellsRow::SPELLS_ROW);
         }
 
         ThrowSpellToEnemies(SpellsCtrlRow::WEAPON,  SpellsRow::SPELLS_ROW); // weapon is just 'q'
@@ -248,9 +255,7 @@ int Fight::FightStrategySM()
 
         if(_enemiesXPositionInMenuFight.size() == 1) {
             ThrowSpellToEnemies(SpellsCtrlRow::ESTRATO,   SpellsCtrlRow::SPELLS_CTRL_ROW);
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
             ThrowSpellToEnemies(SpellsCtrlRow::ESCAPADITA, SpellsCtrlRow::SPELLS_CTRL_ROW);
-            ThrowSpellToEnemies(SpellsCtrlRow::POMPA,      SpellsCtrlRow::SPELLS_CTRL_ROW);
             ThrowSpellToEnemies(SpellsCtrlRow::ESCARCHA,   SpellsCtrlRow::SPELLS_CTRL_ROW);
             ThrowSpellToEnemies(SpellsRow::NATURAL,        SpellsRow::SPELLS_ROW);
         }
@@ -261,7 +266,12 @@ int Fight::FightStrategySM()
             ThrowSpellToMyself(SpellsRow::RECELO,  SpellsRow::SPELLS_ROW);
         }
 
-        if(check::IsFight()) { // if still my turn, pass
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        if(!check::IsRecallPoti()) {
+            ThrowSpellToEnemies(SpellsCtrlRow::POMPA,      SpellsCtrlRow::SPELLS_CTRL_ROW);
+        }
+
+        if(check::IsFight()) {
             PassTurn();
         }
 
@@ -270,17 +280,32 @@ int Fight::FightStrategySM()
 
     _turn = 0;
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
-    inputs::PressEscape();
-    std::this_thread::sleep_for(std::chrono::milliseconds(800));
+    if(check::IsFenixBox()) { // fenix - ghost
+        inputs::Click(FENIX_BOX_CLICK_POS_X_1, FENIX_BOX_CLICK_POS_Y_1);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        inputs::Click(FENIX_BOX_CLICK_POS_X_2, FENIX_BOX_CLICK_POS_Y_2);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        inputs::PressEscape();
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
-    if(check::AmIDefeated()) {
-        //if(ghost) // TODO
+        // Start roadmap ghost.
+        return E_IM_A_GHOST;
+
+    } else if(check::AmIDefeated()) {
         return E_KO;
     } else if(check::AmILevelUp()) {
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-        inputs::Click(I_AM_LEVEL_UP_POS_X_4, I_AM_LEVEL_UP_POS_Y_4);
+        //inputs::Click(I_AM_LEVEL_UP_POS_X_4, I_AM_LEVEL_UP_POS_Y_4);
+        inputs::PressEscape();
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+    }
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    inputs::PressEscape();
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+    if(zaap::CheckZaapAstrub()) {
+        return E_KO;
     }
 
     return E_OK;

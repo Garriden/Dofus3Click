@@ -7,6 +7,7 @@
 #include "checks.hpp"
 #include "checksRoadmap.hpp"
 #include "zaap.hpp"
+#include "train.hpp"
 
 Roadmap::Roadmap() :
     _profession{},
@@ -71,15 +72,14 @@ int Roadmap::Start()
             step = RoadmapState::CHECK_INITIAL_POSITION;
             break;
         case RoadmapState::CHECK_INITIAL_POSITION:
-            if(_callbackCheckInitialMap() == _callbackCheckInitialZaap()) {
+            if(_callbackCheckInitialMap == nullptr || _callbackCheckInitialMap() == _callbackCheckInitialZaap()) {
                 step = RoadmapState::CHECK_ZAAP_POSITION;
-                break;
-            }
-
-            if(_callbackCheckInitialMap() && _roadmapFiles[0] != "") {
-                step = RoadmapState::EXECUTE_ROADMAP;
             } else {
-                step = RoadmapState::CHECK_ZAAP_POSITION;
+                if(_callbackCheckInitialMap != nullptr && _callbackCheckInitialMap() && _roadmapFiles[0] != "") {
+                    step = RoadmapState::EXECUTE_ROADMAP;
+                } else {
+                    step = RoadmapState::CHECK_ZAAP_POSITION;
+                }
             }
             break;
         case RoadmapState::CHECK_ZAAP_POSITION:
@@ -97,7 +97,12 @@ int Roadmap::Start()
             if(_roadmapFiles[0] != "") {
                 ExecuteRoadMap(_roadmapFiles[0]);
             }
-            step = RoadmapState::EXECUTE_ROADMAP;
+
+            if(_profession == Profession::TRAIN) {
+                step = RoadmapState::TRAIN_MODE;
+            } else {
+                step = RoadmapState::EXECUTE_ROADMAP;
+            }
             break;
         case RoadmapState::EXECUTE_ROADMAP:
         {
@@ -115,8 +120,10 @@ int Roadmap::Start()
             }
 
             if(roadmapExecution == E_OK) {
-                if(_profession == Profession::LOWERING_PODS) {
+                if(Profession::LOWERING_PODS == _profession) {
                     return E_NEED_TO_RESTART;
+                } else if(Profession::GHOST == _profession) {
+                    step = RoadmapState::END_ROADMAP_OK;
                 } else if(_callbackCheckInitialMap()) {
                     step = RoadmapState::EXECUTE_ROADMAP;
                 } else if(_callbackCheckInitialZaap()) {
@@ -126,14 +133,21 @@ int Roadmap::Start()
 
             break;
         }
-        /*case RoadmapState::AFTER_FIGHT_SET:
-            //AfterFightSet();
-            step = RoadmapState::AFTER_FIGHT_SIT;
+        case RoadmapState::TRAIN_MODE:
+        {
+            Train train;
+            if(train.IterateBetweenMaps() == E_IM_A_GHOST) {
+                std::string ghostRoadmap = "../../Telemetry/Ghost/" + _zaap + ".csv";
+                Roadmap roadmap(Profession::GHOST, _zaap, nullptr, nullptr, {ghostRoadmap, ghostRoadmap});
+                roadmap.Start();
+
+                step = RoadmapState::SET_PODS_SET;
+            } else {
+                step = RoadmapState::TRAIN_MODE;
+            }
             break;
-        case RoadmapState::AFTER_FIGHT_SIT:
-            //AfterFightSit();
-            step = -1;
-            break;*/
+        }
+        case RoadmapState::END_ROADMAP_OK:
         default:
             return E_KO;
             break;
@@ -179,9 +193,15 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
 
         if(check::IsFight()) {
             Fight fight;
-            if(E_KO == fight.Start()) {
+            int fightReturn = fight.Start();
+
+            if(E_KO == fightReturn) {
                 File::LogFile("Fight LOST!", true);
                 return E_KO;
+            } else if(E_IM_A_GHOST == fightReturn) { // I'm a Ghost
+                File::LogFile("I'm a Ghost... Starting roadmap to fenix", true);
+                Roadmap roadmap(Profession::GHOST, _zaap, nullptr, nullptr, {"../../Telemetry/Ghost/astrub.csv", ""});
+                roadmap.Start();
             }
         }
 
@@ -210,46 +230,40 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
     // Wait for Black Screen
     bool mapChanged = false;
     int retries = 0;
-    int blackScreenFlag = false;
-    while(!mapChanged && retries < 10) {
-        for(int ii = 0; !mapChanged && ii < 1000; ++ii) {
-            if(!blackScreenFlag) { // No black screen yet, keep trying until black screen detected.
-                if(check::IsBlackScreen()) {
-                    blackScreenFlag = true;
-                    std::this_thread::sleep_for(std::chrono::milliseconds(500));
-                }
-            } else { //blackScreen detected.
-                if(!check::IsBlackScreen()) { // detect black screen + black fade off.
-                    mapChanged = true;
-                    blackScreenFlag = false;
-                    //File::LogFile("Backscreen transition detected!", false);
-                }
-            }
-            std::this_thread::sleep_for(std::chrono::milliseconds(5));
-        }
-
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
-
-        if(check::IsFight()) {
-            mapChanged = false;
-            Fight fight;
-            if(E_KO == fight.Start()) {
-                File::LogFile("Fight LOST!", true);
-                return E_KO;
-            }
-        }
-
-        if(!mapChanged) { // Invalid action, try again.
-            File::LogFile(" NO! mapChanged... Clicking again...", true);
-            inputs::Click(map[map.size()-1].first, map[map.size()-1].second + retries);
-            ++retries;
+    while(!mapChanged && retries++ < 10) {
+        mapChanged = check::WaitMapToChange();
+        if(!mapChanged) {
+            inputs::Click(map[map.size()-1].first, map[map.size()-1].second);
         }
     }
+
     if(retries >= 10) {
         File::LogFile("Stuck! So many retries for invalid action...", true);
         return E_KO;
     }
-   
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
+    if(check::IsFight()) {
+        Fight fight;
+        int fightReturn = fight.Start();
+
+        if(E_KO == fightReturn) {
+            File::LogFile("Fight LOST!", true);
+            return E_KO;
+        } else if(E_IM_A_GHOST == fightReturn) { // I'm a Ghost
+            File::LogFile("I'm a Ghost... Starting roadmap to fenix", true);
+            Roadmap roadmap(Profession::GHOST, _zaap, nullptr, nullptr, {"../../Telemetry/Ghost/astrub.csv", ""});
+            roadmap.Start();
+        }
+    }
+
+    if(!mapChanged) { // Invalid action, try again.
+        File::LogFile(" NO! mapChanged... Clicking again...", true);
+        inputs::Click(map[map.size()-1].first, map[map.size()-1].second + retries);
+        ++retries;
+    }
+
     return E_OK;
 }
 
@@ -321,10 +335,27 @@ void Roadmap::GoToZaap()
 
     std::this_thread::sleep_for(std::chrono::seconds(3));
 
-    if(zaap::CheckZaapAstrub() && _zaap != "Astrub" && _zaap != "") {  // Rebundant check.
+    if(zaap::CheckZaapAstrub() && _zaap == "astrub") {
+        return;
+    } else if(zaap::CheckZaapAstrub() && _zaap == "") {
+        return;
+    } else if(zaap::CheckZaapAstrub() && _zaap != "astrub") {
         zaap::ClickZaap(_zaap);
-    } else {
-        File::LogFile("Watch out! I'm not at Astrub zaap and I should be... ", true);
+    } else { // not in Astrub ?
+        for(int ii = 0; !zaap::CheckZaapAstrub() && ii < 20; ++ii) {
+            if(zaap::CheckZaapInterface()) {
+                File::LogFile("I'm at Astrub zaap ZaapInterface ", true);
+                inputs::PressEscape();
+                break;
+            } else {
+                File::LogFile("Watch out! I'm not at Astrub zaap and I should be... ", true);
+            
+                std::this_thread::sleep_for(std::chrono::seconds(60));
+            }
+        }
+        inputs::PressCtrlKey('8'); // Recall Poti.
+        std::this_thread::sleep_for(std::chrono::seconds(10));
+        zaap::ClickZaap(_zaap);
     }
 
     std::this_thread::sleep_for(std::chrono::seconds(1));

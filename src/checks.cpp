@@ -101,7 +101,7 @@ bool check::IsAlmostTheEndOfTheTurn()
 
     if(IsFight() && !iscolorFarestOrange) {
         ret = true;
-        File::LogFile("It is almost end of a turn!", true);
+        //File::LogFile("It is almost end of a turn!", true);
     }
     //File::LogFile("---", true);
     return ret;
@@ -143,19 +143,19 @@ bool check::HaveIHealth()
     COLORREF colorHealth  = basicOperations::GetColor(HEALTH_POS_X, HEALTH_POS_Y, false);
     COLORREF colorHealth2 = basicOperations::GetColor(HEALTH_POS_X_2, HEALTH_POS_Y_2, false);
 
-    if(((int(GetRValue(colorHealth)) < HEALTH_COLOR_RED   + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetRValue(colorHealth)) > HEALTH_COLOR_RED   - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(colorHealth)) < HEALTH_COLOR_GREEN + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(colorHealth)) > HEALTH_COLOR_GREEN - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(colorHealth)) < HEALTH_COLOR_BLUE  + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(colorHealth)) > HEALTH_COLOR_BLUE  - ERROR_GET_COLOUR_SMALL))
+    if(((int(GetRValue(colorHealth)) < HEALTH_COLOR_RED   + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetRValue(colorHealth)) > HEALTH_COLOR_RED   - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(colorHealth)) < HEALTH_COLOR_GREEN + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(colorHealth)) > HEALTH_COLOR_GREEN - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(colorHealth)) < HEALTH_COLOR_BLUE  + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(colorHealth)) > HEALTH_COLOR_BLUE  - ERROR_GET_COLOUR_QUITE))
         ||
-       ((int(GetRValue(colorHealth2)) < HEALTH_COLOR_RED_2   + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetRValue(colorHealth2)) > HEALTH_COLOR_RED_2   - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(colorHealth2)) < HEALTH_COLOR_GREEN_2 + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(colorHealth2)) > HEALTH_COLOR_GREEN_2 - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(colorHealth2)) < HEALTH_COLOR_BLUE_2  + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(colorHealth2)) > HEALTH_COLOR_BLUE_2  - ERROR_GET_COLOUR_SMALL))
+       ((int(GetRValue(colorHealth2)) < HEALTH_COLOR_RED_2   + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetRValue(colorHealth2)) > HEALTH_COLOR_RED_2   - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(colorHealth2)) < HEALTH_COLOR_GREEN_2 + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(colorHealth2)) > HEALTH_COLOR_GREEN_2 - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(colorHealth2)) < HEALTH_COLOR_BLUE_2  + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(colorHealth2)) > HEALTH_COLOR_BLUE_2  - ERROR_GET_COLOUR_QUITE))
         )
     {
         ret = true;
@@ -186,67 +186,36 @@ bool check::IsPrivateMode()
     return ret;
 }
 
+bool check::IsRecallPoti()
+{
+    bool ret = false;
+
+    COLORREF color1 = basicOperations::GetColor(RECALL_POTI_POS_X_1, RECALL_POTI_POS_Y_1, false);
+    COLORREF color2 = basicOperations::GetColor(RECALL_POTI_POS_X_2, RECALL_POTI_POS_Y_2, false);
+
+    if ((int(GetRValue(color1)) < RECALL_POTI_COLOR_RED_1   + ERROR_GET_COLOUR) &&
+        (int(GetRValue(color1)) > RECALL_POTI_COLOR_RED_1   - ERROR_GET_COLOUR) &&
+        (int(GetGValue(color1)) < RECALL_POTI_COLOR_GREEN_1 + ERROR_GET_COLOUR) &&
+        (int(GetGValue(color1)) > RECALL_POTI_COLOR_GREEN_1 - ERROR_GET_COLOUR) &&
+        (int(GetBValue(color1)) < RECALL_POTI_COLOR_BLUE_1  + ERROR_GET_COLOUR) &&
+        (int(GetBValue(color1)) > RECALL_POTI_COLOR_BLUE_1  - ERROR_GET_COLOUR)
+        &&
+        (int(GetRValue(color2)) < RECALL_POTI_COLOR_RED_2   + ERROR_GET_COLOUR) &&
+        (int(GetRValue(color2)) > RECALL_POTI_COLOR_RED_2   - ERROR_GET_COLOUR) &&
+        (int(GetGValue(color2)) < RECALL_POTI_COLOR_GREEN_2 + ERROR_GET_COLOUR) &&
+        (int(GetGValue(color2)) > RECALL_POTI_COLOR_GREEN_2 - ERROR_GET_COLOUR) &&
+        (int(GetBValue(color2)) < RECALL_POTI_COLOR_BLUE_2  + ERROR_GET_COLOUR) &&
+        (int(GetBValue(color2)) > RECALL_POTI_COLOR_BLUE_2  - ERROR_GET_COLOUR)
+        )
+    {
+        ret = true;
+        //File::LogFile("Recall Poti found!", true);
+    }
+
+    return ret;
+}
+
 /*
-bool IsMimilk(COLORREF color)
-{
-    bool ret = false;
-
-    // It is the desiRED  color
-    if ((int(GetRValue(color)) < INVENTARY_CONSUMABLES_MIMILK_COLOR_RED    + ERROR_GET_COLOUR) &&
-        (int(GetRValue(color)) > INVENTARY_CONSUMABLES_MIMILK_COLOR_RED    - ERROR_GET_COLOUR) &&
-        (int(GetGValue(color)) < INVENTARY_CONSUMABLES_MIMILK_COLOR_GREEN + ERROR_GET_COLOUR) &&
-        (int(GetGValue(color)) > INVENTARY_CONSUMABLES_MIMILK_COLOR_GREEN - ERROR_GET_COLOUR) &&
-        (int(GetBValue(color)) < INVENTARY_CONSUMABLES_MIMILK_COLOR_BLUE  + ERROR_GET_COLOUR) &&
-        (int(GetBValue(color)) > INVENTARY_CONSUMABLES_MIMILK_COLOR_BLUE  - ERROR_GET_COLOUR)
-        )
-    {
-        ret = true;
-        LogFile("Mimilk found!");
-    }
-
-    return ret;
-}
-
-bool IsRecallPoti(COLORREF color)
-{
-    bool ret = false;
-
-    // It is the desiRED color 
-    if ((int(GetRValue(color)) < INVENTARY_CONSUMABLES_RECALL_POTI_COLOR_RED   + ERROR_GET_COLOUR) &&
-        (int(GetRValue(color)) > INVENTARY_CONSUMABLES_RECALL_POTI_COLOR_RED   - ERROR_GET_COLOUR) &&
-        (int(GetGValue(color)) < INVENTARY_CONSUMABLES_RECALL_POTI_COLOR_GREEN + ERROR_GET_COLOUR) &&
-        (int(GetGValue(color)) > INVENTARY_CONSUMABLES_RECALL_POTI_COLOR_GREEN - ERROR_GET_COLOUR) &&
-        (int(GetBValue(color)) < INVENTARY_CONSUMABLES_RECALL_POTI_COLOR_BLUE  + ERROR_GET_COLOUR) &&
-        (int(GetBValue(color)) > INVENTARY_CONSUMABLES_RECALL_POTI_COLOR_BLUE  - ERROR_GET_COLOUR)
-        )
-    {
-        ret = true;
-        LogFile("Recall Poti found!");
-    }
-
-    return ret;
-}
-
-bool IsBrakPoti(COLORREF color)
-{
-    bool ret = false;
-
-    // It is the desired color
-    if ((int(GetRValue(color)) < INVENTARY_CONSUMABLES_BRAK_POTI_COLOR_RED   + ERROR_GET_COLOUR) &&
-        (int(GetRValue(color)) > INVENTARY_CONSUMABLES_BRAK_POTI_COLOR_RED   - ERROR_GET_COLOUR) &&
-        (int(GetGValue(color)) < INVENTARY_CONSUMABLES_BRAK_POTI_COLOR_GREEN + ERROR_GET_COLOUR) &&
-        (int(GetGValue(color)) > INVENTARY_CONSUMABLES_BRAK_POTI_COLOR_GREEN - ERROR_GET_COLOUR) &&
-        (int(GetBValue(color)) < INVENTARY_CONSUMABLES_BRAK_POTI_COLOR_BLUE  + ERROR_GET_COLOUR) &&
-        (int(GetBValue(color)) > INVENTARY_CONSUMABLES_BRAK_POTI_COLOR_BLUE  - ERROR_GET_COLOUR)
-        )
-    {
-        ret = true;
-        LogFile("Brak Poti found!");
-    }
-
-    return ret;
-}
-
 bool IsErrorWindow()
 {
     bool ret = false;
@@ -285,126 +254,44 @@ bool IsErrorWindow()
 
     return ret;
 }
-
-bool IsMainMenuWindow()
+*/
+bool check::IsMenuPrincipalBox()
 {
     bool ret = false;
-    //LogFile("is the error window? ");
 
-    COLORREF color1 = GetColor(IS_MAIN_MENU_WINDOW_POS_X_1, IS_MAIN_MENU_WINDOW_POS_Y_1);
-    COLORREF color2 = GetColor(IS_MAIN_MENU_WINDOW_POS_X_2, IS_MAIN_MENU_WINDOW_POS_Y_2);
-    COLORREF color3 = GetColor(IS_MAIN_MENU_WINDOW_POS_X_3, IS_MAIN_MENU_WINDOW_POS_Y_3);
+    COLORREF color1 = basicOperations::GetColor(IS_MENU_PRINCIPAL_POS_X_1, IS_MENU_PRINCIPAL_POS_Y_1, false);
+    COLORREF color2 = basicOperations::GetColor(IS_MENU_PRINCIPAL_POS_X_2, IS_MENU_PRINCIPAL_POS_Y_2, false);
+    COLORREF color3 = basicOperations::GetColor(IS_MENU_PRINCIPAL_POS_X_3, IS_MENU_PRINCIPAL_POS_Y_3, false);
 
-    // It is the desiRED   color 
-    if ((int(GetRValue(color1)) < IS_MAIN_MENU_WINDOW_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetRValue(color1)) > IS_MAIN_MENU_WINDOW_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color1)) < IS_MAIN_MENU_WINDOW_COLOR_GREEN_1 + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color1)) > IS_MAIN_MENU_WINDOW_COLOR_GREEN_1 - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color1)) < IS_MAIN_MENU_WINDOW_COLOR_BLUE_1  + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color1)) > IS_MAIN_MENU_WINDOW_COLOR_BLUE_1  - ERROR_GET_COLOUR_SMALL)
+    if ((int(GetRValue(color1)) < IS_MENU_PRINCIPAL_RED_1   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color1)) > IS_MENU_PRINCIPAL_RED_1   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) < IS_MENU_PRINCIPAL_GREEN_1 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) > IS_MENU_PRINCIPAL_GREEN_1 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) < IS_MENU_PRINCIPAL_BLUE_1  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) > IS_MENU_PRINCIPAL_BLUE_1  - ERROR_GET_COLOUR_SMALL)
         &&
-        (int(GetRValue(color2)) < IS_MAIN_MENU_WINDOW_COLOR_RED_2   + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetRValue(color2)) > IS_MAIN_MENU_WINDOW_COLOR_RED_2   - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color2)) < IS_MAIN_MENU_WINDOW_COLOR_GREEN_2 + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color2)) > IS_MAIN_MENU_WINDOW_COLOR_GREEN_2 - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color2)) < IS_MAIN_MENU_WINDOW_COLOR_BLUE_2  + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color2)) > IS_MAIN_MENU_WINDOW_COLOR_BLUE_2  - ERROR_GET_COLOUR_SMALL)
+        (int(GetRValue(color2)) < IS_MENU_PRINCIPAL_RED_2   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color2)) > IS_MENU_PRINCIPAL_RED_2   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) < IS_MENU_PRINCIPAL_GREEN_2 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) > IS_MENU_PRINCIPAL_GREEN_2 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color2)) < IS_MENU_PRINCIPAL_BLUE_2  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color2)) > IS_MENU_PRINCIPAL_BLUE_2  - ERROR_GET_COLOUR_SMALL)
         &&
-        (int(GetRValue(color3)) < IS_MAIN_MENU_WINDOW_COLOR_RED_3   + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetRValue(color3)) > IS_MAIN_MENU_WINDOW_COLOR_RED_3   - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color3)) < IS_MAIN_MENU_WINDOW_COLOR_GREEN_3 + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color3)) > IS_MAIN_MENU_WINDOW_COLOR_GREEN_3 - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color3)) < IS_MAIN_MENU_WINDOW_COLOR_BLUE_3  + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color3)) > IS_MAIN_MENU_WINDOW_COLOR_BLUE_3  - ERROR_GET_COLOUR_SMALL)
+        (int(GetRValue(color3)) < IS_MENU_PRINCIPAL_RED_3   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color3)) > IS_MENU_PRINCIPAL_RED_3   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color3)) < IS_MENU_PRINCIPAL_GREEN_3 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color3)) > IS_MENU_PRINCIPAL_GREEN_3 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color3)) < IS_MENU_PRINCIPAL_BLUE_3  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color3)) > IS_MENU_PRINCIPAL_BLUE_3  - ERROR_GET_COLOUR_SMALL)
         )
     {
-        LogFile("Is the MAIN_MENU window! YES");
+        File::LogFile("Is the menu principal window!", true);
         ret = true;
     }
 
     return ret;
  }
 
-bool IsRedCellPreFight(COLORREF color)
-{
-    bool ret = false;
-
-    // It is the desiRED   color 
-    if ((int(GetRValue(color)) < PRE_FIGHT_RED_POSITION_COLOR_RED   + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetRValue(color)) > PRE_FIGHT_RED_POSITION_COLOR_RED   - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color)) < PRE_FIGHT_RED_POSITION_COLOR_GREEN + ERROR_GET_COLOUR) &&
-        (int(GetGValue(color)) > PRE_FIGHT_RED_POSITION_COLOR_GREEN - ERROR_GET_COLOUR) &&
-        (int(GetBValue(color)) < PRE_FIGHT_RED_POSITION_COLOR_BLUE  + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color)) > PRE_FIGHT_RED_POSITION_COLOR_BLUE  - ERROR_GET_COLOUR_SMALL)
-        )
-    {
-        //LogFile("RED   CELL!: ");
-        ret = true;
-    }
-
-    return ret;
-}
-
-bool IsTheObjectBarActive()
-{
-    //std::cout << "is the IsTheObjectBarActive? :" << std::endl;
-
-    bool ret = false;
-
-    COLORREF color1 = GetColor(REST_POS_X, REST_POS_Y);
-
-    Sleep(200);
-
-    // It is the desiRED   color 
-    if ((int(GetRValue(color1)) < REST_POS_COLOR_RED   + ERROR_GET_COLOUR) && (int(GetRValue(color1)) > REST_POS_COLOR_RED   - ERROR_GET_COLOUR) &&
-        (int(GetGValue(color1)) < REST_POS_COLOR_GREEN + ERROR_GET_COLOUR) && (int(GetGValue(color1)) > REST_POS_COLOR_GREEN - ERROR_GET_COLOUR) &&
-        (int(GetBValue(color1)) < REST_POS_COLOR_BLUE  + ERROR_GET_COLOUR) && (int(GetBValue(color1)) > REST_POS_COLOR_BLUE  - ERROR_GET_COLOUR))
-    {
-        LogFile("Object bar active!");
-        ret = true;
-    }
-
-    return ret;
-}
-
-bool IsTheFightFinished()
-{
-    bool ret = false;
-
-    COLORREF color1 = GetColor(IS_THE_FIGHT_FINISHED_POS_X_1, IS_THE_FIGHT_FINISHED_POS_Y_1);
-    COLORREF color2 = GetColor(IS_THE_FIGHT_FINISHED_POS_X_2, IS_THE_FIGHT_FINISHED_POS_Y_2);
-    COLORREF color3 = GetColor(IS_THE_FIGHT_FINISHED_POS_X_3, IS_THE_FIGHT_FINISHED_POS_Y_3);
-
-    // It is the desiRED   color 
-    if ((int(GetRValue(color1)) < IS_THE_FIGHT_FINISHED_COLOR_RED_1   + ERROR_GET_COLOUR) &&
-        (int(GetRValue(color1)) > IS_THE_FIGHT_FINISHED_COLOR_RED_1   - ERROR_GET_COLOUR) &&
-        (int(GetGValue(color1)) < IS_THE_FIGHT_FINISHED_COLOR_GREEN_1 + ERROR_GET_COLOUR) &&
-        (int(GetGValue(color1)) > IS_THE_FIGHT_FINISHED_COLOR_GREEN_1 - ERROR_GET_COLOUR) &&
-        (int(GetBValue(color1)) < IS_THE_FIGHT_FINISHED_COLOR_BLUE_1  + ERROR_GET_COLOUR) &&
-        (int(GetBValue(color1)) > IS_THE_FIGHT_FINISHED_COLOR_BLUE_1  - ERROR_GET_COLOUR)
-        &&
-        (int(GetRValue(color2)) < IS_THE_FIGHT_FINISHED_COLOR_RED_2   + ERROR_GET_COLOUR) &&
-        (int(GetRValue(color2)) > IS_THE_FIGHT_FINISHED_COLOR_RED_2   - ERROR_GET_COLOUR) &&
-        (int(GetGValue(color2)) < IS_THE_FIGHT_FINISHED_COLOR_GREEN_2 + ERROR_GET_COLOUR) &&
-        (int(GetGValue(color2)) > IS_THE_FIGHT_FINISHED_COLOR_GREEN_2 - ERROR_GET_COLOUR) &&
-        (int(GetBValue(color2)) < IS_THE_FIGHT_FINISHED_COLOR_BLUE_2  + ERROR_GET_COLOUR) &&
-        (int(GetBValue(color2)) > IS_THE_FIGHT_FINISHED_COLOR_BLUE_2  - ERROR_GET_COLOUR)
-        &&
-        (int(GetRValue(color3)) < IS_THE_FIGHT_FINISHED_COLOR_RED_3   + ERROR_GET_COLOUR) &&
-        (int(GetRValue(color3)) > IS_THE_FIGHT_FINISHED_COLOR_RED_3   - ERROR_GET_COLOUR) &&
-        (int(GetGValue(color3)) < IS_THE_FIGHT_FINISHED_COLOR_GREEN_3 + ERROR_GET_COLOUR) &&
-        (int(GetGValue(color3)) > IS_THE_FIGHT_FINISHED_COLOR_GREEN_3 - ERROR_GET_COLOUR) &&
-        (int(GetBValue(color3)) < IS_THE_FIGHT_FINISHED_COLOR_BLUE_3  + ERROR_GET_COLOUR) &&
-        (int(GetBValue(color3)) > IS_THE_FIGHT_FINISHED_COLOR_BLUE_3  - ERROR_GET_COLOUR)
-        )
-    {
-        ret = true;
-        //LogFile("Fight finished.");
-    }
-
-    return ret;
-}
-*/
 bool check::AmIDefeated()
 {
     bool ret = false;
@@ -452,6 +339,44 @@ bool check::AmIDefeated()
     return ret;
 }
 
+bool check::IsFenixBox()
+{
+    bool ret = false;
+
+    COLORREF color1 = basicOperations::GetColor(FENIX_BOX_POS_X_1, FENIX_BOX_POS_Y_1, false);
+    COLORREF color2 = basicOperations::GetColor(FENIX_BOX_POS_X_2, FENIX_BOX_POS_Y_2, false);
+    COLORREF color3 = basicOperations::GetColor(FENIX_BOX_POS_X_3, FENIX_BOX_POS_Y_3, false);
+
+    // It is the desired color 
+    if( (int(GetRValue(color1)) < FENIX_BOX_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color1)) > FENIX_BOX_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) < FENIX_BOX_COLOR_GREEN_1 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) > FENIX_BOX_COLOR_GREEN_1 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) < FENIX_BOX_COLOR_BLUE_1  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) > FENIX_BOX_COLOR_BLUE_1  - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(color2)) < FENIX_BOX_COLOR_RED_2   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color2)) > FENIX_BOX_COLOR_RED_2   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) < FENIX_BOX_COLOR_GREEN_2 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) > FENIX_BOX_COLOR_GREEN_2 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color2)) < FENIX_BOX_COLOR_BLUE_2  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color2)) > FENIX_BOX_COLOR_BLUE_2  - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(color3)) < FENIX_BOX_COLOR_RED_3   + ERROR_GET_COLOUR) &&
+        (int(GetRValue(color3)) > FENIX_BOX_COLOR_RED_3   - ERROR_GET_COLOUR) &&
+        (int(GetGValue(color3)) < FENIX_BOX_COLOR_GREEN_3 + ERROR_GET_COLOUR) &&
+        (int(GetGValue(color3)) > FENIX_BOX_COLOR_GREEN_3 - ERROR_GET_COLOUR) &&
+        (int(GetBValue(color3)) < FENIX_BOX_COLOR_BLUE_3  + ERROR_GET_COLOUR) &&
+        (int(GetBValue(color3)) > FENIX_BOX_COLOR_BLUE_3  - ERROR_GET_COLOUR)
+        )
+    {
+        File::LogFile("I Am a ghost, Fenix message!", true);
+        ret = true;
+    }
+
+    return ret;
+}
+
 bool check::IWonTheFight()
 {
     bool ret = false;
@@ -493,7 +418,7 @@ bool check::IWonTheFight()
 
 bool check::IsFightFinished()
 {
-    return IWonTheFight() || AmIDefeated();
+    return IWonTheFight() || IsFenixBox() || AmIDefeated() || AmILevelUp();
 }
 
 bool check::IsBlack(int x, int y)
@@ -575,44 +500,6 @@ bool check::AmILevelUp()
     return ret;
 }
 /*
-bool AmIDead()
-{
-    //LogFile("Am I dead? ");
-
-    bool ret = false;
-
-    COLORREF color1 = GetColor(AM_I_DEAD_POS_X_1, AM_I_DEAD_POS_Y_1);
-    COLORREF color2 = GetColor(AM_I_DEAD_POS_X_2, AM_I_DEAD_POS_Y_2);
-    COLORREF color3 = GetColor(AM_I_DEAD_POS_X_3, AM_I_DEAD_POS_Y_3);
-
-    // It is the desiRED   color 
-    if ((int(GetRValue(color1)) < AM_I_DEAD_COLOR_RED_1   + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetRValue(color1)) > AM_I_DEAD_COLOR_RED_1   - ERROR_GET_COLOUR_QUITE) &&
-        (int(GetGValue(color1)) < AM_I_DEAD_COLOR_GREEN_1 + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetGValue(color1)) > AM_I_DEAD_COLOR_GREEN_1 - ERROR_GET_COLOUR_QUITE) &&
-        (int(GetBValue(color1)) < AM_I_DEAD_COLOR_BLUE_1  + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetBValue(color1)) > AM_I_DEAD_COLOR_BLUE_1  - ERROR_GET_COLOUR_QUITE)
-        &&
-        (int(GetRValue(color2)) < AM_I_DEAD_COLOR_RED_2   + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetRValue(color2)) > AM_I_DEAD_COLOR_RED_2   - ERROR_GET_COLOUR_QUITE) &&
-        (int(GetGValue(color2)) < AM_I_DEAD_COLOR_GREEN_2 + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetGValue(color2)) > AM_I_DEAD_COLOR_GREEN_2 - ERROR_GET_COLOUR_QUITE) &&
-        (int(GetBValue(color2)) < AM_I_DEAD_COLOR_BLUE_2  + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetBValue(color2)) > AM_I_DEAD_COLOR_BLUE_2  - ERROR_GET_COLOUR_QUITE)
-        &&
-        (int(GetRValue(color3)) < AM_I_DEAD_COLOR_RED_3   + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetRValue(color3)) > AM_I_DEAD_COLOR_RED_3   - ERROR_GET_COLOUR_QUITE) &&
-        (int(GetGValue(color3)) < AM_I_DEAD_COLOR_GREEN_3 + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetGValue(color3)) > AM_I_DEAD_COLOR_GREEN_3 - ERROR_GET_COLOUR_QUITE) &&
-        (int(GetBValue(color3)) < AM_I_DEAD_COLOR_BLUE_3  + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetBValue(color3)) > AM_I_DEAD_COLOR_BLUE_3  - ERROR_GET_COLOUR_QUITE))
-    {
-        LogFile(" Yeah...     am ded");
-        ret = true;
-    }
-
-    return ret;
-}
 
 bool AmITalkingWithNPJ()
 {
@@ -748,4 +635,25 @@ bool check::IsEmptyResource()
     }
 
     return ret;
+}
+
+
+bool check::WaitMapToChange()
+{
+    int blackScreenFlag = false;
+    for(int ii = 0; ii < 500; ++ii) {
+        if(!blackScreenFlag) { // No black screen yet, keep trying until black screen detected.
+            if(IsBlackScreen()) {
+                blackScreenFlag = true;
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            }
+        } else { //blackScreen detected.
+            if(!IsBlackScreen()) { // detect black screen + black fade off.
+                //File::LogFile("Backscreen transition detected!", false);
+                return true;
+            }
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(5));
+    }
+    return false;
 }

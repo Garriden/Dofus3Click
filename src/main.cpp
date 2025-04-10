@@ -1,6 +1,7 @@
 #include "system/inputs.hpp"
 #include "menusInterface.hpp"
 #include "menus.hpp"
+#include "train.hpp"
 
 
 #include "checks.hpp"
@@ -14,12 +15,10 @@
 
 int main()
 {
-    std::cout << "holaaaaaaa" << std::endl;
-
-    // Activeting the console in the other screen.
+    // Activating the console in the other screen.
     AllocConsole();
     HWND consoleWindow = GetConsoleWindow();
-    if (consoleWindow != NULL) {
+    if(consoleWindow != NULL) {
         SetWindowPos(consoleWindow, 0, -600, -300, 600, 1000, 0);
     }
     
@@ -32,7 +31,7 @@ int main()
         switch(in) {
             case 0:
             default:
-                return 0; //system("exit");
+                return 0;
                 break;
             case 1:
                 inputs::DebugPoints();
@@ -56,8 +55,20 @@ int main()
                 //DailyMissionsMenu();
                 break;
             case 10:
-                //FindEnemiesMenu();
+            {
+                menu::FindEnemiesMenu();
                 break;
+            }
+            case 11: // Find enemies directly.
+            {
+                inputs::ClickOnExe();
+
+                while(1) {
+                    Train train;
+                    train.IterateBetweenMaps();
+                }
+                break;
+            }
             case 70:
                 //LogFile("Slow PC.");
                 //#undef SECONDS
@@ -72,16 +83,19 @@ int main()
             case 99: //debug
                 //inputs::ClickOnExe();
 
-                check::AmIDefeated();
+                //check::AmIDefeated();
+                //zaap::CheckZaapAstrub();
 
-                check::IsFight();
+                check::AmILevelUp();
 
-                std::this_thread::sleep_for(std::chrono::seconds(2));
+                //check::IsFight();
 
-                if(check::IsFight()) {
-                    Fight fight(0);
-                    fight.Start();
-                }
+                //std::this_thread::sleep_for(std::chrono::seconds(2));
+
+                //if(check::IsFight()) {
+                //    Fight fight(0);
+                //    fight.Start();
+                //}
 
                 //std::this_thread::sleep_for(std::chrono::seconds(2));
 

@@ -1,4 +1,5 @@
 #include "zaap.hpp"
+#include "checks.hpp"
 #include "utils.hpp"
 #include "basicOperations.hpp"
 #include "system/file.hpp"
@@ -16,8 +17,10 @@ void zaap::ClickZaap(std::string zaapName)
     int retriesClickZaap = 0;
     while(!CheckZaapInterface() && retriesClickZaap++ < 15) {
         inputs::PressEscape();
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
-        inputs::PressEscape();
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+        if(check::IsMenuPrincipalBox()) {
+            inputs::PressEscape();
+        }
     
         // Press the Zaap
         inputs::Click(ASTRUB_ZAAP_POS_X + retriesClickZaap*4, ASTRUB_ZAAP_POS_Y + retriesClickZaap*6);
@@ -69,9 +72,9 @@ bool zaap::CheckZaapAstrub()
 {
     bool ret = false;
 
-    COLORREF color1 = basicOperations::GetColor(I_AM_IN_ASTRUB_ZAAP_POS_X_1, I_AM_IN_ASTRUB_ZAAP_POS_Y_1, true);
-    COLORREF color2 = basicOperations::GetColor(I_AM_IN_ASTRUB_ZAAP_POS_X_2, I_AM_IN_ASTRUB_ZAAP_POS_Y_2, true);
-    COLORREF color3 = basicOperations::GetColor(I_AM_IN_ASTRUB_ZAAP_POS_X_3, I_AM_IN_ASTRUB_ZAAP_POS_Y_3, true);
+    COLORREF color1 = basicOperations::GetColor(I_AM_IN_ASTRUB_ZAAP_POS_X_1, I_AM_IN_ASTRUB_ZAAP_POS_Y_1, false);
+    COLORREF color2 = basicOperations::GetColor(I_AM_IN_ASTRUB_ZAAP_POS_X_2, I_AM_IN_ASTRUB_ZAAP_POS_Y_2, false);
+    COLORREF color3 = basicOperations::GetColor(I_AM_IN_ASTRUB_ZAAP_POS_X_3, I_AM_IN_ASTRUB_ZAAP_POS_Y_3, false);
 
     if ((int(GetRValue(color1)) < I_AM_IN_ASTRUB_ZAAP_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
         (int(GetRValue(color1)) > I_AM_IN_ASTRUB_ZAAP_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&
@@ -255,6 +258,119 @@ bool zaap::CheckZaapKoalak()
     return ret;
 }
 
+bool zaap::CheckZaapMoon()
+{
+    bool ret = false;
+
+    COLORREF color1 = basicOperations::GetColor(I_AM_IN_MOON_ZAAP_POS_X_1, I_AM_IN_MOON_ZAAP_POS_Y_1, true);
+    COLORREF color2 = basicOperations::GetColor(I_AM_IN_MOON_ZAAP_POS_X_2, I_AM_IN_MOON_ZAAP_POS_Y_2, true);
+    COLORREF color3 = basicOperations::GetColor(I_AM_IN_MOON_ZAAP_POS_X_3, I_AM_IN_MOON_ZAAP_POS_Y_3, true);
+
+    if ((int(GetRValue(color1)) < I_AM_IN_MOON_ZAAP_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color1)) > I_AM_IN_MOON_ZAAP_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) < I_AM_IN_MOON_ZAAP_COLOR_GREEN_1 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) > I_AM_IN_MOON_ZAAP_COLOR_GREEN_1 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) < I_AM_IN_MOON_ZAAP_COLOR_BLUE_1  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) > I_AM_IN_MOON_ZAAP_COLOR_BLUE_1  - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(color2)) < I_AM_IN_MOON_ZAAP_COLOR_RED_2   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color2)) > I_AM_IN_MOON_ZAAP_COLOR_RED_2 -   ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) < I_AM_IN_MOON_ZAAP_COLOR_GREEN_2 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) > I_AM_IN_MOON_ZAAP_COLOR_GREEN_2 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color2)) < I_AM_IN_MOON_ZAAP_COLOR_BLUE_2  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color2)) > I_AM_IN_MOON_ZAAP_COLOR_BLUE_2  - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(color3)) < I_AM_IN_MOON_ZAAP_COLOR_RED_3   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color3)) > I_AM_IN_MOON_ZAAP_COLOR_RED_3   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color3)) < I_AM_IN_MOON_ZAAP_COLOR_GREEN_3 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color3)) > I_AM_IN_MOON_ZAAP_COLOR_GREEN_3 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color3)) < I_AM_IN_MOON_ZAAP_COLOR_BLUE_3  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color3)) > I_AM_IN_MOON_ZAAP_COLOR_BLUE_3  - ERROR_GET_COLOUR_SMALL)
+        )
+    {
+        File::LogFile("I'm in MOON Zaap!", true);
+        ret = true;
+    }
+
+    return ret;
+}
+
+bool zaap::CheckZaapRocosas()
+{
+    bool ret = false;
+
+    COLORREF color1 = basicOperations::GetColor(I_AM_IN_ROCOSAS_ZAAP_POS_X_1, I_AM_IN_ROCOSAS_ZAAP_POS_Y_1, true);
+    COLORREF color2 = basicOperations::GetColor(I_AM_IN_ROCOSAS_ZAAP_POS_X_2, I_AM_IN_ROCOSAS_ZAAP_POS_Y_2, true);
+    COLORREF color3 = basicOperations::GetColor(I_AM_IN_ROCOSAS_ZAAP_POS_X_3, I_AM_IN_ROCOSAS_ZAAP_POS_Y_3, true);
+
+    if ((int(GetRValue(color1)) < I_AM_IN_ROCOSAS_ZAAP_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color1)) > I_AM_IN_ROCOSAS_ZAAP_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) < I_AM_IN_ROCOSAS_ZAAP_COLOR_GREEN_1 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) > I_AM_IN_ROCOSAS_ZAAP_COLOR_GREEN_1 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) < I_AM_IN_ROCOSAS_ZAAP_COLOR_BLUE_1  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) > I_AM_IN_ROCOSAS_ZAAP_COLOR_BLUE_1  - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(color2)) < I_AM_IN_ROCOSAS_ZAAP_COLOR_RED_2   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color2)) > I_AM_IN_ROCOSAS_ZAAP_COLOR_RED_2   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) < I_AM_IN_ROCOSAS_ZAAP_COLOR_GREEN_2 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) > I_AM_IN_ROCOSAS_ZAAP_COLOR_GREEN_2 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color2)) < I_AM_IN_ROCOSAS_ZAAP_COLOR_BLUE_2  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color2)) > I_AM_IN_ROCOSAS_ZAAP_COLOR_BLUE_2  - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(color3)) < I_AM_IN_ROCOSAS_ZAAP_COLOR_RED_3   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color3)) > I_AM_IN_ROCOSAS_ZAAP_COLOR_RED_3   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color3)) < I_AM_IN_ROCOSAS_ZAAP_COLOR_GREEN_3 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color3)) > I_AM_IN_ROCOSAS_ZAAP_COLOR_GREEN_3 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color3)) < I_AM_IN_ROCOSAS_ZAAP_COLOR_BLUE_3  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color3)) > I_AM_IN_ROCOSAS_ZAAP_COLOR_BLUE_3  - ERROR_GET_COLOUR_SMALL)
+        )
+    {
+        File::LogFile("I'm in Llanuras Rocosas Zaap !", true);
+        ret = true;
+    }
+
+    return ret;
+}
+
+bool zaap::CheckZaapBurgo()
+{
+    bool ret = false;
+
+    COLORREF color1 = basicOperations::GetColor(I_AM_IN_BURGO_ZAAP_POS_X_1, I_AM_IN_BURGO_ZAAP_POS_Y_1, true);
+    COLORREF color2 = basicOperations::GetColor(I_AM_IN_BURGO_ZAAP_POS_X_2, I_AM_IN_BURGO_ZAAP_POS_Y_2, true);
+    COLORREF color3 = basicOperations::GetColor(I_AM_IN_BURGO_ZAAP_POS_X_3, I_AM_IN_BURGO_ZAAP_POS_Y_3, true);
+
+    if ((int(GetRValue(color1)) < I_AM_IN_BURGO_ZAAP_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color1)) > I_AM_IN_BURGO_ZAAP_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) < I_AM_IN_BURGO_ZAAP_COLOR_GREEN_1 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) > I_AM_IN_BURGO_ZAAP_COLOR_GREEN_1 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) < I_AM_IN_BURGO_ZAAP_COLOR_BLUE_1  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) > I_AM_IN_BURGO_ZAAP_COLOR_BLUE_1  - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(color2)) < I_AM_IN_BURGO_ZAAP_COLOR_RED_2   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color2)) > I_AM_IN_BURGO_ZAAP_COLOR_RED_2   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) < I_AM_IN_BURGO_ZAAP_COLOR_GREEN_2 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) > I_AM_IN_BURGO_ZAAP_COLOR_GREEN_2 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color2)) < I_AM_IN_BURGO_ZAAP_COLOR_BLUE_2  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color2)) > I_AM_IN_BURGO_ZAAP_COLOR_BLUE_2  - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(color3)) < I_AM_IN_BURGO_ZAAP_COLOR_RED_3   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color3)) > I_AM_IN_BURGO_ZAAP_COLOR_RED_3   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color3)) < I_AM_IN_BURGO_ZAAP_COLOR_GREEN_3 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color3)) > I_AM_IN_BURGO_ZAAP_COLOR_GREEN_3 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color3)) < I_AM_IN_BURGO_ZAAP_COLOR_BLUE_3  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color3)) > I_AM_IN_BURGO_ZAAP_COLOR_BLUE_3  - ERROR_GET_COLOUR_SMALL)
+        )
+    {
+        File::LogFile("I'm in Burgo (frigost) Zaap !", true);
+        ret = true;
+    }
+
+    return ret;
+}
+
+
+
 /*
 bool CheckZaapGobball()
 {
@@ -340,42 +456,6 @@ bool CheckZaapCaniaMassif()
 	return ret;
 }
 
-bool CheckZaapMoon()
-{
-	bool ret = false;
-
-	COLORREF color1 = GetColor(I_AM_IN_MOON_ZAAP_POS_X_1, I_AM_IN_MOON_ZAAP_POS_Y_1);
-	COLORREF color2 = GetColor(I_AM_IN_MOON_ZAAP_POS_X_2, I_AM_IN_MOON_ZAAP_POS_Y_2);
-	COLORREF color3 = GetColor(I_AM_IN_MOON_ZAAP_POS_X_3, I_AM_IN_MOON_ZAAP_POS_Y_3);
-
-	if ((int(GetRValue(color1)) < I_AM_IN_MOON_ZAAP_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetRValue(color1)) > I_AM_IN_MOON_ZAAP_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&
-		(int(GetGValue(color1)) < I_AM_IN_MOON_ZAAP_COLOR_GREEN_1 + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetGValue(color1)) > I_AM_IN_MOON_ZAAP_COLOR_GREEN_1 - ERROR_GET_COLOUR_SMALL) &&
-		(int(GetBValue(color1)) < I_AM_IN_MOON_ZAAP_COLOR_BLUE_1  + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetBValue(color1)) > I_AM_IN_MOON_ZAAP_COLOR_BLUE_1  - ERROR_GET_COLOUR_SMALL)
-		&&
-		(int(GetRValue(color2)) < I_AM_IN_MOON_ZAAP_COLOR_RED_2   + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetRValue(color2)) > I_AM_IN_MOON_ZAAP_COLOR_RED_2 -   ERROR_GET_COLOUR_SMALL) &&
-		(int(GetGValue(color2)) < I_AM_IN_MOON_ZAAP_COLOR_GREEN_2 + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetGValue(color2)) > I_AM_IN_MOON_ZAAP_COLOR_GREEN_2 - ERROR_GET_COLOUR_SMALL) &&
-		(int(GetBValue(color2)) < I_AM_IN_MOON_ZAAP_COLOR_BLUE_2  + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetBValue(color2)) > I_AM_IN_MOON_ZAAP_COLOR_BLUE_2  - ERROR_GET_COLOUR_SMALL)
-		&&
-		(int(GetRValue(color3)) < I_AM_IN_MOON_ZAAP_COLOR_RED_3   + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetRValue(color3)) > I_AM_IN_MOON_ZAAP_COLOR_RED_3   - ERROR_GET_COLOUR_SMALL) &&
-		(int(GetGValue(color3)) < I_AM_IN_MOON_ZAAP_COLOR_GREEN_3 + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetGValue(color3)) > I_AM_IN_MOON_ZAAP_COLOR_GREEN_3 - ERROR_GET_COLOUR_SMALL) &&
-		(int(GetBValue(color3)) < I_AM_IN_MOON_ZAAP_COLOR_BLUE_3  + ERROR_GET_COLOUR_SMALL) &&
-		(int(GetBValue(color3)) > I_AM_IN_MOON_ZAAP_COLOR_BLUE_3  - ERROR_GET_COLOUR_SMALL)
-		)
-	{
-		LogFile("I'm in MOON Zaap ! ALL OK!!");
-		ret = true;
-	}
-
-	return ret;
-}
 
 bool CheckZaapSufokianShoreline()
 {

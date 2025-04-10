@@ -3,6 +3,7 @@
 #include "utils.hpp"
 #include "basicOperations.hpp"
 #include "menusInterface.hpp"
+#include "checks.hpp"
 
 #include <windows.h>
 #include <chrono>
@@ -16,19 +17,19 @@ namespace {
         bool ret = false;
 
         /* It is the desiRED  color */
-        if(((int(GetRValue(color)) < DOFUS_EXE_POS_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
-            (int(GetRValue(color)) > DOFUS_EXE_POS_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&
-            (int(GetGValue(color)) < DOFUS_EXE_POS_COLOR_GREEN_1 + ERROR_GET_COLOUR_SMALL) &&
-            (int(GetGValue(color)) > DOFUS_EXE_POS_COLOR_GREEN_1 - ERROR_GET_COLOUR_SMALL) &&
-            (int(GetBValue(color)) < DOFUS_EXE_POS_COLOR_BLUE_1  + ERROR_GET_COLOUR_SMALL) &&
-            (int(GetBValue(color)) > DOFUS_EXE_POS_COLOR_BLUE_1  - ERROR_GET_COLOUR_SMALL))
+        if(((int(GetRValue(color)) < DOFUS_EXE_POS_COLOR_RED_1   + ERROR_GET_COLOUR) &&
+            (int(GetRValue(color)) > DOFUS_EXE_POS_COLOR_RED_1   - ERROR_GET_COLOUR) &&
+            (int(GetGValue(color)) < DOFUS_EXE_POS_COLOR_GREEN_1 + ERROR_GET_COLOUR) &&
+            (int(GetGValue(color)) > DOFUS_EXE_POS_COLOR_GREEN_1 - ERROR_GET_COLOUR) &&
+            (int(GetBValue(color)) < DOFUS_EXE_POS_COLOR_BLUE_1  + ERROR_GET_COLOUR) &&
+            (int(GetBValue(color)) > DOFUS_EXE_POS_COLOR_BLUE_1  - ERROR_GET_COLOUR))
             ||
-            ((int(GetRValue(color)) < DOFUS_EXE_POS_COLOR_RED_2   + ERROR_GET_COLOUR_SMALL) &&
-            (int(GetRValue(color)) > DOFUS_EXE_POS_COLOR_RED_2   - ERROR_GET_COLOUR_SMALL) &&
-            (int(GetGValue(color)) < DOFUS_EXE_POS_COLOR_GREEN_2 + ERROR_GET_COLOUR_SMALL) &&
-            (int(GetGValue(color)) > DOFUS_EXE_POS_COLOR_GREEN_2 - ERROR_GET_COLOUR_SMALL) &&
-            (int(GetBValue(color)) < DOFUS_EXE_POS_COLOR_BLUE_2  + ERROR_GET_COLOUR_SMALL) &&
-            (int(GetBValue(color)) > DOFUS_EXE_POS_COLOR_BLUE_2  - ERROR_GET_COLOUR_SMALL)) )
+            ((int(GetRValue(color)) < DOFUS_EXE_POS_COLOR_RED_2  + ERROR_GET_COLOUR) &&
+            (int(GetRValue(color)) > DOFUS_EXE_POS_COLOR_RED_2   - ERROR_GET_COLOUR) &&
+            (int(GetGValue(color)) < DOFUS_EXE_POS_COLOR_GREEN_2 + ERROR_GET_COLOUR) &&
+            (int(GetGValue(color)) > DOFUS_EXE_POS_COLOR_GREEN_2 - ERROR_GET_COLOUR) &&
+            (int(GetBValue(color)) < DOFUS_EXE_POS_COLOR_BLUE_2  + ERROR_GET_COLOUR) &&
+            (int(GetBValue(color)) > DOFUS_EXE_POS_COLOR_BLUE_2  - ERROR_GET_COLOUR)) )
         {
             ret = true;
             File::LogFile("DofusExe found!", true);
@@ -192,11 +193,11 @@ bool inputs::ClickOnExe()
 
 void inputs::Click(int x, int y)
 {
-    int ruletNumber = basicOperations::RuletaInput(10, 15);
+    int ruletNumber = basicOperations::RuletaInput(5, 10);
 
     // Press it!
     SetCursorPos(x, y);
-    std::this_thread::sleep_for(std::chrono::milliseconds(150));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
     mouse_event(MOUSEEVENTF_LEFTDOWN, x, y, 0, 0);
     std::this_thread::sleep_for(std::chrono::milliseconds(50));
     mouse_event(MOUSEEVENTF_LEFTUP, x, y, 0, 0);
@@ -224,7 +225,6 @@ void inputs::DoubleClick(int x, int y)
 
 void inputs::ChangeMap(int position)
 {
-    //TODO: Alt + W atajo teclado
     int x = 0, y = 0;
     switch (position)
     {
@@ -249,6 +249,10 @@ void inputs::ChangeMap(int position)
     }
 
     inputs::Click(x, y);
+
+    check::WaitMapToChange();
+
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 
 void inputs::ChangeMenuBar(int changes, bool down)
