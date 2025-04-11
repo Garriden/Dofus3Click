@@ -327,7 +327,7 @@ void inputs::RecordTelemetry()
             }     
 
             if(GetAsyncKeyState(VK_LBUTTON) < 0) { // Click
-                std::cout << "Click!" << std::endl;
+                //std::cout << "Click!" << std::endl;
                 GetCursorPos(&cursor);
                 Coord.push_back(std::make_pair(cursor.x, cursor.y));
                 ++pos;
@@ -348,17 +348,18 @@ void inputs::RecordTelemetry()
                 std::this_thread::sleep_for(std::chrono::milliseconds(500));
                 Coord.push_back(std::make_pair(-5, -5));
             } else if(GetAsyncKeyState(VK_SPACE)) {
-                std::cout << std::endl; 
-                File::LogFile("\r\nCoord: ", false);
+                //File::LogFile("\r\nCoord: ", false);
                 for (int ii = 0; ii < static_cast<int>(Coord.size()); ++ii) {
-                    File::LogFile( std::to_string(Coord[ii].first) + "," + std::to_string(Coord[ii].second), false);
-                    std::cout << "{" << Coord[ii].first << "," << Coord[ii].second << "}" << std::endl;
+                    //File::LogFile( std::to_string(Coord[ii].first) + "," + std::to_string(Coord[ii].second), false);
+                    std::cout << Coord[ii].first << "," << Coord[ii].second;
                     if (ii < static_cast<int>(Coord.size()) - 1) {
                         std::cout << ", ";
-                        File::LogFile(", ", false);
+                        //File::LogFile(", ", false);
+                    } else {
+                        std::cout << std::endl;
                     }
                 }
-
+ 
                 Coord.clear();
 
                 ++territory;

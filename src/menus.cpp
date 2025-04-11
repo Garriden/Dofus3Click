@@ -148,7 +148,7 @@ void menu::Alchemist()
         {
             File::LogFile("22= lv.40                  (rincon)", true);
             Roadmap roadmap(Profession::ALCHEMIST, "rincon", &zaap::CheckZaapRincon, &zaap::CheckZaapRincon,
-                {"", "../../Telemetry/Alch/AlchemistEdgelv40.csv"});
+                {"", "../../Telemetry/Alch/rinconSalvias.csv"});
             roadmap.Start();
             break;
         }

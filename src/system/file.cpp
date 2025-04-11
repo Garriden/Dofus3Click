@@ -172,7 +172,7 @@ void File::DeleteLocalFile(const std::string &filePath)
 
 void File::LogFile(std::string message, bool date)
 {
-    std::cout <<  message << std::endl;
+    std::cout << message << std::endl;
 
     std::string day = std::to_string(GetDay());
     if(day.length() < 2) {
