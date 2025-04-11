@@ -72,7 +72,7 @@ void show::FarmerMenu()
 {
     system("TITLE Farmer menu");
     std::cout << "===================================" << std::endl;
-    std::cout << "1  = lv.40  [WHE / BAR]   (GOBBALL)" << std::endl;
+    std::cout << "1  = lv.40  [WHE / BAR]    (rincon)" << std::endl;
     std::cout << "0  = Back to main menu" << std::endl;
     std::cout << "===================================" << std::endl;
 }
@@ -83,9 +83,10 @@ void show::AlchemistMenu()
     std::cout << "===================================" << std::endl;
     std::cout << "1 = lv.1                   (Astrub)" << std::endl;
     std::cout << "2 = lv.40                   (Linde)" << std::endl;
+    std::cout << "22= lv.40                  (rincon)" << std::endl;
     std::cout << "3 = lv.80               (Ganaderos)" << std::endl;
     //std::cout << "4 = lv.120                [PANDALA]" << std::endl;
-    std::cout << "5 = lv.140                   (Moon)" << std::endl;
+    std::cout << "5 = lv.140                  X(Moon)" << std::endl;
     std::cout << "0 = Back to main menu" << std::endl;
     std::cout << "===================================" << std::endl;
 }

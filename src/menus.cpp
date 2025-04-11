@@ -10,6 +10,35 @@
 #include <thread>
 #include <chrono>
 
+void menu::Farmer()
+{
+    show::FarmerMenu();
+
+    int in;
+    std::cin >> in;
+
+    if(!inputs::ClickOnExe()) {
+        File::LogFile("! Error Cannot find Dofus exe!", true);
+        return;
+    }
+
+    switch(in) 
+    {
+        case 0:
+        default:
+            break;
+        case 1:
+        {
+            File::LogFile("1  = lv.40  [WHE / BAR]    (rincon)", true);
+            Roadmap roadmap(Profession::FARMER, "rincon", nullptr, &zaap::CheckZaapRincon,
+                {"", "../../Telemetry/Farmer/gobball_lv40.csv"});
+            roadmap.Start();
+            break;
+        }
+
+    }
+}
+
 void menu::Wood()
 {
     show::WoodMenu();
@@ -79,6 +108,68 @@ void menu::Wood()
             roadmap.Start();
             break;
         }
+    }
+}
+
+void menu::Alchemist()
+{
+    show::AlchemistMenu();
+
+    int in;
+    std::cin >> in;
+
+    if(!inputs::ClickOnExe()) {
+        File::LogFile("! Error Cannot find Dofus exe!", true);
+        return;
+    }
+
+    switch(in) 
+    {
+        case 0:
+        default:
+            break;
+        case 1:
+        {
+            File::LogFile("1 = lv.1                   (Astrub)", true);
+            Roadmap roadmap(Profession::ALCHEMIST, "astrub", &zaap::CheckZaapAstrub, &zaap::CheckZaapAstrub,
+                {"", "../../Telemetry/Alch/AlchemistAstrub4_-11.csv", "../../Telemetry/Alch/AlchemistAstrubDownToZaap.csv"});
+            roadmap.Start();
+            break;
+        }
+        case 2:
+        {
+            File::LogFile("2 = lv.40                   (Linde)", true);
+            Roadmap roadmap(Profession::ALCHEMIST, "linde", &zaap::CheckZaapLinde, &zaap::CheckZaapLinde,
+                {"", "../../Telemetry/Alch/AlchemistEdgelv40.csv", /*"../../Telemetry/Alch/amaknaAlchTaller.csv",*/ "../../Telemetry/Alch/AlchemistEdgelv40AfterTaller.csv"});
+            roadmap.Start();
+            break;
+        }
+        case 22:
+        {
+            File::LogFile("22= lv.40                  (rincon)", true);
+            Roadmap roadmap(Profession::ALCHEMIST, "rincon", &zaap::CheckZaapRincon, &zaap::CheckZaapRincon,
+                {"", "../../Telemetry/Alch/AlchemistEdgelv40.csv"});
+            roadmap.Start();
+            break;
+        }
+        case 3:
+        {
+            File::LogFile("3 = lv.80               (Ganaderos)", true);
+            Roadmap roadmap(Profession::ALCHEMIST, "ganaderos", &zaap::CheckZaapKoalak, &zaap::CheckZaapKoalak,
+                {"", "../../Telemetry/Alch/AlchemistBreederlv80.csv"});
+            roadmap.Start();
+            break;
+        }
+        case 5:
+        {
+            File::LogFile("5 = lv.140                   (Moon)", true);
+            Roadmap roadmap(Profession::ALCHEMIST, "moon", &zaap::CheckZaapMoon, &zaap::CheckZaapMoon,
+                {"", "../../Telemetry/Alch/Alch/AlchemistMoonlv140.csv"});
+            roadmap.Start();
+            break;
+        }
+        
+
     }
 }
 

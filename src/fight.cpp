@@ -65,7 +65,7 @@ int Fight::Start()
             step = WAIT_UNTIL_HEALED;
             break;
         case FightPreparationState::WAIT_UNTIL_HEALED:
-            AfterFightHeal(); // Wait until healed.
+            //AfterFightHeal(); // Wait until healed.
             step = RETURN_E_OK;
             break;
         case FightPreparationState::RETURN_E_OK:
