@@ -32,6 +32,9 @@ set(HEADERS
     system/inputs.hpp
     system/file.hpp
     system/actualTime.hpp
+    fightStrategy/fightStrategy.hpp
+    fightStrategy/professionMobStrategy.hpp
+    fightStrategy/fecaAgiBruteStrategy.hpp
 )
 
 # Source files (relative to "src" directory)
@@ -50,6 +53,9 @@ set(SOURCES
     system/inputs.cpp
     system/file.cpp
     system/actualTime.cpp
+    fightStrategy/fightStrategy.cpp
+    fightStrategy/professionMobStrategy.cpp
+    fightStrategy/fecaAgiBruteStrategy.cpp
 )
 
 # Compiler definitions
