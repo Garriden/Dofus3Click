@@ -2,9 +2,11 @@
 #include "fight.hpp"
 #include "basicOperations.hpp"
 #include "checks.hpp"
+#include "roadmap.hpp"
 #include "system/inputs.hpp"
 #include "system/file.hpp"
-#include "roadmap.hpp"
+
+#include "fightStrategy/fecaAgiBruteStrategy.hpp"
 
 Train::Train()
 {
@@ -60,7 +62,7 @@ int Train::IterateCells()
                 std::this_thread::sleep_for(std::chrono::seconds(8));
 
                 if(check::IsFight()) {
-                    Fight fight(true);
+                    Fight fight(true, std::make_unique<FecaAgiBruteStrategy>());
                     int fightReturn = fight.Start();
                     if(E_OK != fightReturn) {
                         File::LogFile("Fight NOT ended well for me...", true);

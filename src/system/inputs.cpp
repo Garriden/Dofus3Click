@@ -381,3 +381,60 @@ void inputs::ClickPrivateMode()
     Click(PRIVATE_MODE_POS_X_3, PRIVATE_MODE_POS_Y_3);
     std::this_thread::sleep_for(std::chrono::milliseconds(200));
 }
+
+int inputs::FindMyPosition()
+{
+    int ret = 0;
+    int ii = FIGTH_MENU_FRIEND_POS_X;
+    int its = 50;
+    bool found = false;
+    while(!found && its --> 0) {
+        SetCursorPos(ii, FIGTH_MENU_FRIEND_POS_Y);
+        COLORREF color1 = basicOperations::GetColor(ii, FIGTH_MENU_FRIEND_POS_Y, false);
+
+        if(
+        (int(GetRValue(color1)) < FIGTH_MENU_FRIEND_COLOR_RED    + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetRValue(color1)) > FIGTH_MENU_FRIEND_COLOR_RED    - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color1)) < FIGTH_MENU_FRIEND_COLOR_GREEN  + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color1)) > FIGTH_MENU_FRIEND_COLOR_GREEN  - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color1)) < FIGTH_MENU_FRIEND_COLOR_BLUE   + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color1)) > FIGTH_MENU_FRIEND_COLOR_BLUE   - ERROR_GET_COLOUR_QUITE)
+        )
+        {
+            ret = ii + 10; // When my turn, window gets slightly bigger.
+            //File::LogFile(("My X position in fight menu: " + std::to_string(_myXPositionInMenuFight)).c_str(1), true);
+            found = true;
+        }
+        ii += 10;
+    }
+    return ret;
+}
+
+std::vector<int> inputs::FindEnemiesPositions()
+{
+    std::vector<int> ret(0);
+    int ii = FIGTH_MENU_FRIEND_POS_X;
+    int its = 50;
+    while(its --> 0) {
+        SetCursorPos(ii, FIGTH_MENU_FRIEND_POS_Y);
+        COLORREF color1 = basicOperations::GetColor(ii, FIGTH_MENU_FRIEND_POS_Y, false);
+
+        if(
+        (int(GetRValue(color1)) < FIGTH_MENU_ENEMY_COLOR_RED    + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetRValue(color1)) > FIGTH_MENU_ENEMY_COLOR_RED    - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color1)) < FIGTH_MENU_ENEMY_COLOR_GREEN  + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color1)) > FIGTH_MENU_ENEMY_COLOR_GREEN  - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color1)) < FIGTH_MENU_ENEMY_COLOR_BLUE   + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color1)) > FIGTH_MENU_ENEMY_COLOR_BLUE   - ERROR_GET_COLOUR_QUITE)
+        )
+        {
+            its = 10; // if enemy found, keep iterating to find more enemies.
+            ret.push_back(ii + 10); // When my turn, window gets slightly bigger.
+            //File::LogFile(("_enemiesXPositionInMenuFight: " + std::to_string(ii+10)).c_str(), true);
+            ii += 58; // increment more or less where is the next enemy.
+        }
+        ii += 18;
+    }
+    //File::LogFile(("Number of enemies: " + std::to_string(_enemiesXPositionInMenuFight.size())).c_str(), true);
+    return ret;
+}
