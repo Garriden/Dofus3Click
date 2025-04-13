@@ -125,6 +125,8 @@ void Fight::AfterFightSet()
     //inputs::ChangeMenuBar(5, false);
 
     std::this_thread::sleep_for(std::chrono::seconds(1));
+    inputs::PressCtrlKey('4'); // Koli Set hack
+    std::this_thread::sleep_for(std::chrono::seconds(5));
     inputs::PressCtrlKey('3'); // Pods Set
     std::this_thread::sleep_for(std::chrono::seconds(1));
 }
@@ -132,7 +134,7 @@ void Fight::AfterFightSet()
 void Fight::AfterFightSit()
 {
     std::this_thread::sleep_for(std::chrono::seconds(1));
-    inputs::PressCtrlKey('2'); // Fight Set
+    inputs::PressCtrlKey('2'); // Sit
     std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 

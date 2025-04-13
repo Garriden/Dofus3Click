@@ -21,6 +21,7 @@
 #define UP                                              (3)
 
 #define UP_X                                            (800)
+#define UP_X_2                                          (1300)
 #define UP_Y                                            (30)
 #define DOWN_X                                          (989)
 #define DOWN_Y                                          (908)
@@ -362,6 +363,39 @@
 #define I_AM_IN_BURGO_ZAAP_COLOR_GREEN_3                   (134)
 #define I_AM_IN_BURGO_ZAAP_COLOR_BLUE_3                    (101)
 
+#define I_AM_IN_GOLFO_ZAAP_POS_X_1                         (716)
+#define I_AM_IN_GOLFO_ZAAP_POS_Y_1                         (890)
+#define I_AM_IN_GOLFO_ZAAP_COLOR_RED_1                     (88)
+#define I_AM_IN_GOLFO_ZAAP_COLOR_GREEN_1                   (218)
+#define I_AM_IN_GOLFO_ZAAP_COLOR_BLUE_1                    (193)
+#define I_AM_IN_GOLFO_ZAAP_POS_X_2                         (1150)
+#define I_AM_IN_GOLFO_ZAAP_POS_Y_2                         (865)
+#define I_AM_IN_GOLFO_ZAAP_COLOR_RED_2                     (192)
+#define I_AM_IN_GOLFO_ZAAP_COLOR_GREEN_2                   (236)
+#define I_AM_IN_GOLFO_ZAAP_COLOR_BLUE_2                    (155)
+#define I_AM_IN_GOLFO_ZAAP_POS_X_3                         (1537)
+#define I_AM_IN_GOLFO_ZAAP_POS_Y_3                         (69)
+#define I_AM_IN_GOLFO_ZAAP_COLOR_RED_3                     (254)
+#define I_AM_IN_GOLFO_ZAAP_COLOR_GREEN_3                   (206)
+#define I_AM_IN_GOLFO_ZAAP_COLOR_BLUE_3                    (47)
+
+#define I_AM_IN_SUFOKIA_ZAAP_POS_X_1                       (1501)
+#define I_AM_IN_SUFOKIA_ZAAP_POS_Y_1                       (57)
+#define I_AM_IN_SUFOKIA_ZAAP_COLOR_RED_1                   (31)
+#define I_AM_IN_SUFOKIA_ZAAP_COLOR_GREEN_1                 (115)
+#define I_AM_IN_SUFOKIA_ZAAP_COLOR_BLUE_1                  (182)
+#define I_AM_IN_SUFOKIA_ZAAP_POS_X_2                       (369)
+#define I_AM_IN_SUFOKIA_ZAAP_POS_Y_2                       (98)
+#define I_AM_IN_SUFOKIA_ZAAP_COLOR_RED_2                   (44)
+#define I_AM_IN_SUFOKIA_ZAAP_COLOR_GREEN_2                 (175)
+#define I_AM_IN_SUFOKIA_ZAAP_COLOR_BLUE_2                  (234)
+#define I_AM_IN_SUFOKIA_ZAAP_POS_X_3                       (1280)
+#define I_AM_IN_SUFOKIA_ZAAP_POS_Y_3                       (104)
+#define I_AM_IN_SUFOKIA_ZAAP_COLOR_RED_3                   (49)
+#define I_AM_IN_SUFOKIA_ZAAP_COLOR_GREEN_3                 (66)
+#define I_AM_IN_SUFOKIA_ZAAP_COLOR_BLUE_3                  (57)
+
+
 //////////////////////////////////////////////////////////////
 // ROADMAPS CHECKS
 //////////////////////////////////////////////////////////////
@@ -399,6 +433,39 @@
 #define I_AM_IN_WOOD_OTO_COAST_COLOR_GREEN_3               (209)
 #define I_AM_IN_WOOD_OTO_COAST_COLOR_BLUE_3                (129)
 
+// 
+#define I_AM_IN_KOALAK_LAKE_POS_X_1                        (1056)
+#define I_AM_IN_KOALAK_LAKE_POS_Y_1                        (48)
+#define I_AM_IN_KOALAK_LAKE_COLOR_RED_1                    (64)
+#define I_AM_IN_KOALAK_LAKE_COLOR_GREEN_1                  (159)
+#define I_AM_IN_KOALAK_LAKE_COLOR_BLUE_1                   (95)
+#define I_AM_IN_KOALAK_LAKE_POS_X_2                        (681)
+#define I_AM_IN_KOALAK_LAKE_POS_Y_2                        (851)
+#define I_AM_IN_KOALAK_LAKE_COLOR_RED_2                    (91)
+#define I_AM_IN_KOALAK_LAKE_COLOR_GREEN_2                  (72)
+#define I_AM_IN_KOALAK_LAKE_COLOR_BLUE_2                   (32)
+#define I_AM_IN_KOALAK_LAKE_POS_X_3                        (1528)
+#define I_AM_IN_KOALAK_LAKE_POS_Y_3                        (80)
+#define I_AM_IN_KOALAK_LAKE_COLOR_RED_3                    (229)
+#define I_AM_IN_KOALAK_LAKE_COLOR_GREEN_3                  (78)
+#define I_AM_IN_KOALAK_LAKE_COLOR_BLUE_3                   (38)
+
+// -3, 9
+#define I_AM_IN_TIRITH_POS_X_1                             (1186)
+#define I_AM_IN_TIRITH_POS_Y_1                             (334)
+#define I_AM_IN_TIRITH_COLOR_RED_1                         (33)
+#define I_AM_IN_TIRITH_COLOR_GREEN_1                       (54)
+#define I_AM_IN_TIRITH_COLOR_BLUE_1                        (29)
+#define I_AM_IN_TIRITH_POS_X_2                             (535)
+#define I_AM_IN_TIRITH_POS_Y_2                             (626)
+#define I_AM_IN_TIRITH_COLOR_RED_2                         (236)
+#define I_AM_IN_TIRITH_COLOR_GREEN_2                       (139)
+#define I_AM_IN_TIRITH_COLOR_BLUE_2                        (0)
+#define I_AM_IN_TIRITH_POS_X_3                             (514)
+#define I_AM_IN_TIRITH_POS_Y_3                             (377)
+#define I_AM_IN_TIRITH_COLOR_RED_3                         (29)
+#define I_AM_IN_TIRITH_COLOR_GREEN_3                       (23)
+#define I_AM_IN_TIRITH_COLOR_BLUE_3                        (8)
 
 
 //////////////////////////////////////////////////////////////

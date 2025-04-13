@@ -43,16 +43,16 @@ int main()
                 menu::Wood();
                 break;
             case 4:
-                //MineralMenu();
+                menu::Mineral();
                 break;
             case 5:
                 menu::Alchemist();
                 break;
             case 6:
-                //FishermanMenu();
+                menu::Fisherman();
                 break;
             case 9:
-                //DailyMissionsMenu();
+                menu::DailyMissions();
                 break;
             case 10:
             {
@@ -99,8 +99,8 @@ int main()
 
                 //std::this_thread::sleep_for(std::chrono::seconds(2));
 
-                Roadmap roadmap(Profession::WOOD, "astrub", nullptr, nullptr,
-                    {"", /*"../../Telemetry/test.csv",*/ "../../Telemetry/Alch/AlchemistEdgelv40AfterTaller.csv"});
+                Roadmap roadmap(Profession::WOOD, "golfo", nullptr, nullptr,
+                    {"", "../../Telemetry/test.csv", /*"../../Telemetry/Fisher/Ganaderoslv80_2.csv"*/});
                 roadmap.Start();
                 
             break;

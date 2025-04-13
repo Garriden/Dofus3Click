@@ -11,7 +11,8 @@ enum Profession {
     FISHER        = 4,
     LOWERING_PODS = 5,
     TRAIN         = 6,
-    GHOST         = 7
+    GHOST         = 7,
+    MISSIONS      = 8
 };
 
 class Roadmap {

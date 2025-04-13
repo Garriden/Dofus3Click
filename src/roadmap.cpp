@@ -75,7 +75,7 @@ int Roadmap::Start()
             if(_callbackCheckInitialMap == nullptr || _callbackCheckInitialMap() == _callbackCheckInitialZaap()) {
                 step = RoadmapState::CHECK_ZAAP_POSITION;
             } else {
-                if(_callbackCheckInitialMap != nullptr && _callbackCheckInitialMap() && _roadmapFiles[0] != "") {
+                if(_callbackCheckInitialMap != nullptr && _callbackCheckInitialMap()) {
                     step = RoadmapState::EXECUTE_ROADMAP;
                 } else {
                     step = RoadmapState::CHECK_ZAAP_POSITION;
@@ -233,7 +233,13 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
     while(!mapChanged && retries++ < 10) {
         mapChanged = check::WaitMapToChange();
         if(!mapChanged) {
-            inputs::Click(map[map.size()-1].first, map[map.size()-1].second);
+            int x = map[map.size()-1].first;
+            int y = map[map.size()-1].second;
+            if(x < LEFT_X + ERROR_GET_COLOUR_QUITE) { // Could be stuck clicking on a menu window.
+                y += retries * 30;
+            }
+
+            inputs::Click(x, y);
         }
     }
 

@@ -111,6 +111,36 @@ void menu::Wood()
     }
 }
 
+
+void menu::Mineral()
+{
+    show::MineralMenu();
+
+    int in;
+    std::cin >> in;
+
+    if(!inputs::ClickOnExe()) {
+        File::LogFile("! Error Cannot find Dofus exe!", true);
+        return;
+    }
+
+    switch(in) 
+    {
+        case 0:
+        default:
+            break;
+        case 1:
+        {
+            File::LogFile("1  = lv.1  [TIRITH]          [-3,9]", true);
+            Roadmap roadmap(Profession::MINERAL, "linde", &checkRoadmap::CheckTirith, &zaap::CheckZaapLinde,
+                {"../../Telemetry/Mineral/FromEdgeZaapToTirith.csv", "../../Telemetry/Mineral/Tirith.csv", "../../Telemetry/Mineral/FromTirithToEdgeZaap.csv"});
+            roadmap.Start();
+            break;
+        }
+
+    }
+}
+
 void menu::Alchemist()
 {
     show::AlchemistMenu();
@@ -168,6 +198,91 @@ void menu::Alchemist()
             roadmap.Start();
             break;
         }
+
+    }
+}
+
+void menu::Fisherman()
+{
+    show::FishermanMenu();
+
+    int in;
+    std::cin >> in;
+
+    if(!inputs::ClickOnExe()) {
+        File::LogFile("! Error Cannot find Dofus exe!", true);
+        return;
+    }
+
+    switch(in) 
+    {
+        case 0:
+        default:
+            break;
+        case 1:
+        {
+            break;
+        }
+        case 2:
+        {
+            File::LogFile("2 = lv.20           (Golfo Sufokia)", true);
+            Roadmap roadmap(Profession::FISHER, "golfo", &zaap::CheckZaapGolfo, &zaap::CheckZaapGolfo,
+                {"", "../../Telemetry/Fisher/SufokianShorelinelv40_1.csv", "../../Telemetry/Fisher/SufokianShorelinelv40_2.csv",
+                     "../../Telemetry/Fisher/SufokianShorelinelv40_3.csv", "../../Telemetry/Fisher/SufokianShorelinelv40_4.csv"});
+            roadmap.Start();
+            break;
+        }
+        case 4:
+        {
+            File::LogFile("4 = lv.80-120          (Ganaderos)", true);
+            Roadmap roadmap(Profession::FISHER, "ganaderos", &checkRoadmap::CheckKoalaksLagos, &zaap::CheckZaapKoalak,
+                {"../../Telemetry/Fisher/fromGanaderosTolv80Fish.csv", "../../Telemetry/Fisher/Ganaderoslv80_1.csv", "../../Telemetry/Fisher/Ganaderoslv80_2.csv"});
+            roadmap.Start();
+            break;
+        }
+
+
+    }
+}
+
+void menu::DailyMissions()
+{
+    show::DailyMissions();
+
+    int in;
+    std::cin >> in;
+
+    if(!inputs::ClickOnExe()) {
+        File::LogFile("! Error Cannot find Dofus exe!", true);
+        return;
+    }
+
+    switch(in) 
+    {
+        case 0:
+        default:
+            break;
+        case 1:
+        {
+            break;
+        }
+        case 10:
+        {
+            File::LogFile("10= [FRIGOST] Fight Club [16kk] (5min) (week)", true);
+            Roadmap roadmap(Profession::MISSIONS, "burgo", &zaap::CheckZaapBurgo, &zaap::CheckZaapBurgo,
+                {"", "../../Telemetry/Missions/Frigost/FightClub.csv", "../../Telemetry/Missions/Frigost/FightClubAfter.csv"});
+            roadmap.Start();
+            break;
+        }
+        case 50:
+        {
+            File::LogFile("10= [FRIGOST] Fight Club [16kk] (5min) (week)", true);
+            Roadmap roadmap(Profession::MISSIONS, "sufokia", &zaap::CheckZaapBurgo, &zaap::CheckZaapBurgo,
+                {"", "../../Telemetry/Missions/Frigost/FightClub.csv", "../../Telemetry/Missions/Frigost/FightClubAfter.csv"});
+            roadmap.Start();
+            break;
+        }
+
         
 
     }

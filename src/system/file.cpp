@@ -73,12 +73,18 @@ std::vector<std::vector<std::pair<int, int> > > File::ReadFileAndBuildMap(const 
                 if(word == "up" || (isNumber(word2) && isNumber(word) && (stoi(word2) <= UP_Y + ERROR_GET_COLOUR_QUITE)) ) { // CheckChangeMap
                     coord.first  = UP_X;
                     coord.second = UP_Y;
+                    if(isNumber(word) && stoi(word) > (UP_X+UP_X_2)/2 ) { // UP maybe has to way and I need to go the UP/Right way.
+                        coord.first = UP_X_2;
+                    }
                 } else if(word == "left" || (isNumber(word) && (stoi(word) <= LEFT_X + ERROR_GET_COLOUR_QUITE)) ) {
                     coord.first  = LEFT_X;
                     coord.second = LEFT_Y;
                 } else if(word == "down" || (isNumber(word2) && isNumber(word) && (stoi(word2) >= DOWN_Y - ERROR_GET_COLOUR_QUITE)) ) {
                     coord.first  = DOWN_X;
                     coord.second = DOWN_Y;
+                    if(isNumber(word) && stoi(word) > (UP_X+UP_X_2)/2 ) { // DOWN maybe has to way and I need to go the UP/Right way.
+                        coord.first = UP_X_2;
+                    }
                 } else if(word == "right" || (isNumber(word) && (stoi(word) >= RIGHT_X - ERROR_GET_COLOUR_QUITE)) ) {
                     coord.first  = RIGHT_X;
                     coord.second = RIGHT_Y;
@@ -118,6 +124,10 @@ std::vector<std::vector<std::pair<int, int> > > File::ReadFileAndBuildMap(const 
         std::cout << "File doesnt exist: " << filePath << " / " << error.message() << std::endl;
         std::cout << "Creating new file..." << std::endl;
         std::filesystem::create_directories(path);
+    }
+
+    if(ret.size() == 0) {
+        File::LogFile("Careful, empty file ? ", true);
     }
 
     return ret;

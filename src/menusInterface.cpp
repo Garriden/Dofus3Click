@@ -38,11 +38,13 @@ void show::MenuDebugPoints()
 void show::DailyMissions()
 {
     system("TITLE Daily missions");
-    std::cout << "===================================" << std::endl;
+    std::cout << "==============================================" << std::endl;
     std::cout << "0 = All of them" << std::endl;
     std::cout << "1 = All of them + week" << std::endl;
-    std::cout << "2 = Fight Club [16kk] (5min) (week)" << std::endl;
-    std::cout << "===================================" << std::endl;
+    std::cout << "5 = [ANKAMA]  Capitan    [0kk]  (5min) (daily)" << std::endl;
+    std::cout << "10= [FRIGOST] Fight Club [16kk] (5min) (week) " << std::endl;
+    std::cout << "50= [SUFOKIA] Fight Club [16kk] (5min) (week) " << std::endl;
+    std::cout << "==============================================" << std::endl;
 }
 
 void show::WoodMenu()
@@ -96,8 +98,8 @@ void show::FishermanMenu()
     system("TITLE Fisherman menu");
     std::cout << "===================================" << std::endl;
     //std::cout << "1 = lv.1                   [ASTRUB]" << std::endl;
-    std::cout << "2 = lv.20      (SUFOKIAN SHORELINE)" << std::endl;
-    //std::cout << "3 = lv.80                 [BREEDER]" << std::endl;
+    std::cout << "2 = lv.20           (Golfo Sufokia)" << std::endl;
+    std::cout << "4 = lv.80-120           (Ganaderos)" << std::endl;
     //std::cout << "4 = lv.120                [PANDALA]" << std::endl;
     std::cout << "0 = Back to main menu" << std::endl;
     std::cout << "===================================" << std::endl;

@@ -29,6 +29,12 @@ namespace zaap {
     // Check if I am in Burgo(Frigost) zaap.
     bool CheckZaapBurgo();
 
+    // Check if I am in Golfo(Sufokia) zaap.
+    bool CheckZaapGolfo();
+
+    // Check if I am in Sufokia zaap.
+    bool CheckZaapSufokia();
+
     // Check if I am in Moon island zaap.
     bool CheckZaapMoon();
 
