@@ -75,6 +75,7 @@ void show::FarmerMenu()
     system("TITLE Farmer menu");
     std::cout << "===================================" << std::endl;
     std::cout << "1  = lv.40  [WHE / BAR]    (rincon)" << std::endl;
+    std::cout << "8  = lv.200 [FROSTIZZ]      (burgo)" << std::endl;
     std::cout << "0  = Back to main menu" << std::endl;
     std::cout << "===================================" << std::endl;
 }

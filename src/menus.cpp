@@ -35,6 +35,14 @@ void menu::Farmer()
             roadmap.Start();
             break;
         }
+        case 8:
+        {
+            File::LogFile("8  = lv.200 [FROSTIZZ]      (burgo)", true);
+            Roadmap roadmap(Profession::FARMER, "burgo", nullptr, &zaap::CheckZaapBurgo,
+                {"", "../../Telemetry/Farmer/fromBurgoToWestDoor.csv", "../../Telemetry/Farmer/FrostizzWest.csv", "../../Telemetry/Farmer/fromSouthDoorToBurgo.csv"});
+            roadmap.Start();
+            break;
+        }
 
     }
 }
