@@ -467,6 +467,23 @@
 #define I_AM_IN_TIRITH_COLOR_GREEN_3                       (23)
 #define I_AM_IN_TIRITH_COLOR_BLUE_3                        (8)
 
+// -75, -49
+#define I_AM_IN_ALAMO_POS_X_1                             (605)
+#define I_AM_IN_ALAMO_POS_Y_1                             (125)
+#define I_AM_IN_ALAMO_COLOR_RED_1                         (83)
+#define I_AM_IN_ALAMO_COLOR_GREEN_1                       (81)
+#define I_AM_IN_ALAMO_COLOR_BLUE_1                        (66)
+#define I_AM_IN_ALAMO_POS_X_2                             (556)
+#define I_AM_IN_ALAMO_POS_Y_2                             (127)
+#define I_AM_IN_ALAMO_COLOR_RED_2                         (191)
+#define I_AM_IN_ALAMO_COLOR_GREEN_2                       (181)
+#define I_AM_IN_ALAMO_COLOR_BLUE_2                        (161)
+#define I_AM_IN_ALAMO_POS_X_3                             (432)
+#define I_AM_IN_ALAMO_POS_Y_3                             (649)
+#define I_AM_IN_ALAMO_COLOR_RED_3                         (49)
+#define I_AM_IN_ALAMO_COLOR_GREEN_3                       (97)
+#define I_AM_IN_ALAMO_COLOR_BLUE_3                        (133)
+
 
 //////////////////////////////////////////////////////////////
 // INTERFACE WORLD CHECKS

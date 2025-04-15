@@ -18,21 +18,6 @@ class FightStrategy {
         int _myXPositionInMenuFight;
         std::vector<int> _enemiesXPositionInMenuFight;
 
-        enum FightPreparationState {
-            FIGHT_SET                   = 0,
-            CHANGE_SPELLS_MENU          = 1,
-            FIND_MY_POSITION_MENU       = 2,
-            FIND_ENEMY_POSITIONS_MENU   = 3,
-            READY_TO_FIGHT              = 4,
-            START_FIGHT_STRATEGY        = 5,
-            CHECK_FIGHT_ENDED           = 6,
-            AFTER_FIGHT_SET             = 7,
-            AFTER_FIGHT_SIT             = 8,
-            WAIT_UNTIL_HEALED           = 9,
-            RETURN_E_OK                 = 10
-        };
-
-        
         void DefendMyself();
 
         /**

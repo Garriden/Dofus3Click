@@ -22,6 +22,9 @@ int ProfessionMobStrategy::Execute()
 
         File::LogFile(("turn: " + std::to_string(_turn)).c_str(), true);
 
+        RandomMovePj(1); // Random Click. Dofus bug ?
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
         if(_turn % 4 == 0) {
             ThrowSpellToMyself(SpellsCtrlRow::BASTION,   SpellsCtrlRow::SPELLS_CTRL_ROW);
         } else if(_turn % 4 == 1) {

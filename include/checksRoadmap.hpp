@@ -16,4 +16,7 @@ namespace checkRoadmap {
 
     // Look if I am in Tirith [-3, 9]
     bool CheckTirith();
+
+    // Look if I am in Alamo wood Frigost [-75, -49]
+    bool CheckAlamo();
 }

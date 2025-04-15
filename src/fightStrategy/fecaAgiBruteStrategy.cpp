@@ -22,6 +22,9 @@ int FecaAgiBruteStrategy::Execute()
 
         File::LogFile(("turn: " + std::to_string(_turn)).c_str(), true);
 
+        RandomMovePj(1); // Random Click. Dofus bug ?
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
         ThrowSpellToMyself(SpellsCtrlRow::ATARAXIA, SpellsCtrlRow::SPELLS_CTRL_ROW);
         
         if(_turn % 4 == 0) {

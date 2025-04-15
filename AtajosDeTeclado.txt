@@ -20,9 +20,8 @@ Put menus correctly:
     - Objects menu. 2 rows.
 
 Opcones menu juego:
-    - nterfaz: Bloquear modulos nterfaz.
+    - Interfaz: Bloquear modulos interfaz.
 Combate:
-    - Mostrar jugadores muertos.
     - Ocultar invocaciones.
 
 
@@ -39,6 +38,8 @@ Alt + D             Ir al Este
 X                   Transparencia
 Z                   Burbuja Monstruos y NPCs
 Y                   Elementos interactivos
+
+Somewhat but Space  Activar ventana de chat
 
 
 Q                   Ataque cuerpo a cuerpo

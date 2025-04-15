@@ -57,6 +57,8 @@ void show::WoodMenu()
     std::cout << "8  = [OTOMAI | Coast]     (Costero)" << std::endl;
     std::cout << "9  = [OTOMAI | ALL]       (Costero)" << std::endl;
     std::cout << "10 = [KOALAK]           (Ganaderos)" << std::endl;
+    std::cout << "20 = [FRIGOST]              (Burgo)" << std::endl;
+    std::cout << "25 = [FRIGOST]         (Sepultados)" << std::endl;
     std::cout << "0  = Back to main menu"              << std::endl;
     std::cout << "===================================" << std::endl;
 }

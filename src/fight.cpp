@@ -37,11 +37,11 @@ Fight::~Fight()
 
 int Fight::Start()
 {
-    int step = FightPreparationState::FIGHT_SET;
+    int step = FightPreparationState::PUT_FIGHT_SET;
 
     while(1) {
         switch(step) {
-        case FightPreparationState::FIGHT_SET:
+        case FightPreparationState::PUT_FIGHT_SET:
             FightSet();
             step = FightPreparationState::CHANGE_SPELLS_MENU;
             break;
@@ -81,20 +81,34 @@ int Fight::Start()
 
 void Fight::FightSet()
 {
-    std::this_thread::sleep_for(std::chrono::seconds(2));
+    std::this_thread::sleep_for(std::chrono::seconds(1));
     Fight::ChangeObjectsMenu();
-    std::this_thread::sleep_for(std::chrono::seconds(2));
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
     inputs::ChangeMenuBar(5, false);
 
     std::this_thread::sleep_for(std::chrono::seconds(1));
     if(_hunter) {
-        inputs::PressCtrlKey('6'); // Hunter Set
+        inputs::PressCtrlKey(Set::HUNTER);
     } else {
-        inputs::PressCtrlKey('5'); // Berserk Set
+        inputs::PressCtrlKey(Set::BERSERK);
     }
     std::this_thread::sleep_for(std::chrono::seconds(1));
 }
+
+void Fight::ProspecSet()
+{
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    Fight::ChangeObjectsMenu();
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
+    inputs::ChangeMenuBar(5, false);
+
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    inputs::PressCtrlKey(Set::PROSPEC);
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+}
+
 
 // Todo: sned to inputs
 void Fight::ChangeObjectsMenu()
@@ -125,16 +139,14 @@ void Fight::AfterFightSet()
     //inputs::ChangeMenuBar(5, false);
 
     std::this_thread::sleep_for(std::chrono::seconds(1));
-    inputs::PressCtrlKey('4'); // Koli Set hack
-    std::this_thread::sleep_for(std::chrono::seconds(5));
-    inputs::PressCtrlKey('3'); // Pods Set
+    inputs::PressCtrlKey(Set::PODS);
     std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 
 void Fight::AfterFightSit()
 {
     std::this_thread::sleep_for(std::chrono::seconds(1));
-    inputs::PressCtrlKey('2'); // Sit
+    inputs::PressCtrlKey(Set::SIT);
     std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 
@@ -152,6 +164,7 @@ int Fight::CallFightStrategy()
             _currentStrategy = std::move( std::make_unique<FecaAgiBruteStrategy>() );
         } else {
             _currentStrategy = std::move( std::make_unique<ProfessionMobStrategy>() );
+            ProspecSet();
         }
     }
 
