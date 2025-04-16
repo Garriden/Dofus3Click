@@ -109,6 +109,9 @@ namespace inputs {
     */
     void Click(int x, int y);
 
+    // Similar as Click but With the Shift key also pressed.
+    void ShiftClick(int x, int y);
+
     // Similar as Click but DoubleClick.
     void DoubleClick(int x, int y);
 
@@ -136,4 +139,14 @@ namespace inputs {
 
     // Change to private mode.
     void ClickPrivateMode();
+
+    ////////////////////
+    // Fight related
+    ////////////////////
+
+    // return the X coordenate of the menu window where I am located.
+    int FindMyPosition();
+
+    // return the X coordenates of the menu window where the enemies are located.
+    std::vector<int> FindEnemiesPositions();
 }

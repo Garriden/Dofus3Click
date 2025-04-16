@@ -30,12 +30,8 @@ bool IsPrivateMode();
  */
 //bool IsMimilk(COLORREF color);
 
-/*
- * Given a color, Check if the Consumable is a Recall Potion.
- *
- * in: color, the color of a given pixel.
- */
-//bool IsRecallPoti(COLORREF color);
+// Check if the position ctrl + 8 is a recall poti.
+bool IsRecallPoti();
 
 /*
  * Given a color, Check if the Consumable is a Bark Potion.
@@ -44,39 +40,20 @@ bool IsPrivateMode();
  */
 //bool IsBrakPoti(COLORREF color);
 
-/*
- * Check if I am viewing an error window.
- */
-//bool IsErrorWindow();
+// Check if I am viewing the attention window.
+bool IsAttentionBox();
 
-/*
- * Check if is the main menu window, which it appears when I press Escape.
- */
-//bool IsMainMenuWindow();
-
-/*
- * Given a color, Check if I am on a red cell when preparing the fight.
- *
- * in: color, the color of a given pixel.
- */
-//bool IsRedCellPreFight(COLORREF color);
-
-/*
- * Check if I see the rest or sit emote in the first cell of the bar ovjects.
- */
-//bool IsTheObjectBarActive();
-
-/*
- * Look if the fight it is already finished. If I won it.
- * Checking if it is visible the postFight success window.
- */
-//bool IsTheFightFinished();
+// Check if is the menu principal box, which it appears when I press Escape.
+bool IsMenuPrincipalBox();
 
 /*
  * Look if the fight it is already finished. If I lost it
  * Checking if it is visible the postFight defeated window.
  */
 bool AmIDefeated();
+
+// Check if after fight, I don't have enery and appears the fenix box.
+bool IsFenixBox();
 
 /*
  * Look if the fight it is already finished. If I won it
@@ -127,5 +104,8 @@ bool IsSpellsMenu();
 
 // Check if the first position in the inventary is empty.
 bool IsEmptyResource();
+
+// Active check for some seconds if the blackScreen transition apprears when changing maps.
+bool WaitMapToChange();
 
 }

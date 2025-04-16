@@ -27,10 +27,14 @@ set(HEADERS
     menuMappings.hpp
     menus.hpp
     menusInterface.hpp
+    train.hpp
     zaap.hpp
     system/inputs.hpp
     system/file.hpp
     system/actualTime.hpp
+    fightStrategy/fightStrategy.hpp
+    fightStrategy/professionMobStrategy.hpp
+    fightStrategy/fecaAgiBruteStrategy.hpp
 )
 
 # Source files (relative to "src" directory)
@@ -44,10 +48,14 @@ set(SOURCES
     menusInterface.cpp
     menus.cpp
     roadmap.cpp
+    train.cpp
     zaap.cpp
     system/inputs.cpp
     system/file.cpp
     system/actualTime.cpp
+    fightStrategy/fightStrategy.cpp
+    fightStrategy/professionMobStrategy.cpp
+    fightStrategy/fecaAgiBruteStrategy.cpp
 )
 
 # Compiler definitions

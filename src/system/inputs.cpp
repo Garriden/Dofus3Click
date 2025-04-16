@@ -3,6 +3,7 @@
 #include "utils.hpp"
 #include "basicOperations.hpp"
 #include "menusInterface.hpp"
+#include "checks.hpp"
 
 #include <windows.h>
 #include <chrono>
@@ -15,20 +16,19 @@ namespace {
     {
         bool ret = false;
 
-        /* It is the desiRED  color */
-        if(((int(GetRValue(color)) < DOFUS_EXE_POS_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
-            (int(GetRValue(color)) > DOFUS_EXE_POS_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&
-            (int(GetGValue(color)) < DOFUS_EXE_POS_COLOR_GREEN_1 + ERROR_GET_COLOUR_SMALL) &&
-            (int(GetGValue(color)) > DOFUS_EXE_POS_COLOR_GREEN_1 - ERROR_GET_COLOUR_SMALL) &&
-            (int(GetBValue(color)) < DOFUS_EXE_POS_COLOR_BLUE_1  + ERROR_GET_COLOUR_SMALL) &&
-            (int(GetBValue(color)) > DOFUS_EXE_POS_COLOR_BLUE_1  - ERROR_GET_COLOUR_SMALL))
+        if(((int(GetRValue(color)) < DOFUS_EXE_POS_COLOR_RED_1   + ERROR_GET_COLOUR) &&
+            (int(GetRValue(color)) > DOFUS_EXE_POS_COLOR_RED_1   - ERROR_GET_COLOUR) &&
+            (int(GetGValue(color)) < DOFUS_EXE_POS_COLOR_GREEN_1 + ERROR_GET_COLOUR) &&
+            (int(GetGValue(color)) > DOFUS_EXE_POS_COLOR_GREEN_1 - ERROR_GET_COLOUR) &&
+            (int(GetBValue(color)) < DOFUS_EXE_POS_COLOR_BLUE_1  + ERROR_GET_COLOUR) &&
+            (int(GetBValue(color)) > DOFUS_EXE_POS_COLOR_BLUE_1  - ERROR_GET_COLOUR))
             ||
-            ((int(GetRValue(color)) < DOFUS_EXE_POS_COLOR_RED_2   + ERROR_GET_COLOUR_SMALL) &&
-            (int(GetRValue(color)) > DOFUS_EXE_POS_COLOR_RED_2   - ERROR_GET_COLOUR_SMALL) &&
-            (int(GetGValue(color)) < DOFUS_EXE_POS_COLOR_GREEN_2 + ERROR_GET_COLOUR_SMALL) &&
-            (int(GetGValue(color)) > DOFUS_EXE_POS_COLOR_GREEN_2 - ERROR_GET_COLOUR_SMALL) &&
-            (int(GetBValue(color)) < DOFUS_EXE_POS_COLOR_BLUE_2  + ERROR_GET_COLOUR_SMALL) &&
-            (int(GetBValue(color)) > DOFUS_EXE_POS_COLOR_BLUE_2  - ERROR_GET_COLOUR_SMALL)) )
+            ((int(GetRValue(color)) < DOFUS_EXE_POS_COLOR_RED_2  + ERROR_GET_COLOUR) &&
+            (int(GetRValue(color)) > DOFUS_EXE_POS_COLOR_RED_2   - ERROR_GET_COLOUR) &&
+            (int(GetGValue(color)) < DOFUS_EXE_POS_COLOR_GREEN_2 + ERROR_GET_COLOUR) &&
+            (int(GetGValue(color)) > DOFUS_EXE_POS_COLOR_GREEN_2 - ERROR_GET_COLOUR) &&
+            (int(GetBValue(color)) < DOFUS_EXE_POS_COLOR_BLUE_2  + ERROR_GET_COLOUR) &&
+            (int(GetBValue(color)) > DOFUS_EXE_POS_COLOR_BLUE_2  - ERROR_GET_COLOUR)) )
         {
             ret = true;
             File::LogFile("DofusExe found!", true);
@@ -177,7 +177,7 @@ bool inputs::ClickOnExe()
     int y = DOFUS_EXE_POS_Y_1;
     COLORREF color;
 
-    for(int ii = 0; ii < 200; ii += 2) {
+    for(int ii = 0; ii < 500; ++ii) {
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
         color = basicOperations::GetColor(x+ii, y, false);
 
@@ -192,11 +192,11 @@ bool inputs::ClickOnExe()
 
 void inputs::Click(int x, int y)
 {
-    int ruletNumber = basicOperations::RuletaInput(10, 15);
+    int ruletNumber = basicOperations::RuletaInput(5, 10);
 
     // Press it!
     SetCursorPos(x, y);
-    std::this_thread::sleep_for(std::chrono::milliseconds(150));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
     mouse_event(MOUSEEVENTF_LEFTDOWN, x, y, 0, 0);
     std::this_thread::sleep_for(std::chrono::milliseconds(50));
     mouse_event(MOUSEEVENTF_LEFTUP, x, y, 0, 0);
@@ -204,9 +204,58 @@ void inputs::Click(int x, int y)
     std::this_thread::sleep_for(std::chrono::milliseconds(10 * ruletNumber));
 }
 
+void inputs::ShiftClick(int x, int y)
+{
+    File::LogFile("ShiftClick", true);
+
+    SHORT key;
+    UINT mappedkey;
+    INPUT ip;
+    ip.ki.dwFlags = 0;
+    ip.type = INPUT_KEYBOARD;
+    ip.ki.wScan = 0;
+    ip.ki.time = 0;
+    ip.ki.dwExtraInfo = 0;
+
+    // Press the "Shift" key
+    ip.ki.wVk = VK_SHIFT;
+    ip.ki.wScan = MapVirtualKey(VK_SHIFT, 0);
+    ip.ki.dwFlags = 0; // 0 for key press
+    ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
+    SendInput(1, &ip, sizeof(INPUT));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+    // Mouse.
+    //Click(x,y);
+    //SetCursorPos(x, y);
+    //std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    //ip.ki.dwFlags |= MOUSEEVENTF_LEFTDOWN;
+    //mouse_event(ip.ki.dwFlags, x, y, 0, 0);
+    //std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    //ip.ki.dwFlags |= MOUSEEVENTF_LEFTUP;
+    //mouse_event(ip.ki.dwFlags, x, y, 0, 0);
+    ip.type = INPUT_MOUSE;
+    SetCursorPos(x, y);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    ip.ki.dwFlags = MOUSEEVENTF_LEFTDOWN;
+    mouse_event(ip.ki.dwFlags, x, y, 0, 0);
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    ip.ki.dwFlags = MOUSEEVENTF_LEFTUP;
+    mouse_event(ip.ki.dwFlags, x, y, 0, 0);
+
+    // Release the "Shift" key
+    ip.type = INPUT_KEYBOARD;
+    ip.ki.wVk = VK_SHIFT;
+    ip.ki.wScan = MapVirtualKey(VK_SHIFT, 0);
+    ip.ki.dwFlags = KEYEVENTF_KEYUP;
+    ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
+    SendInput(1, &ip, sizeof(INPUT));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+}
+
 void inputs::DoubleClick(int x, int y)
 {
-    int ruletNumber = basicOperations::RuletaInput(10, 20);
+    int ruletNumber = basicOperations::RuletaInput(5, 10);
 
     // Press it!
     SetCursorPos(x, y);
@@ -224,7 +273,6 @@ void inputs::DoubleClick(int x, int y)
 
 void inputs::ChangeMap(int position)
 {
-    //TODO: Alt + W atajo teclado
     int x = 0, y = 0;
     switch (position)
     {
@@ -249,6 +297,10 @@ void inputs::ChangeMap(int position)
     }
 
     inputs::Click(x, y);
+
+    check::WaitMapToChange();
+
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 
 void inputs::ChangeMenuBar(int changes, bool down)
@@ -261,7 +313,7 @@ void inputs::ChangeMenuBar(int changes, bool down)
     for (int ii = 0; ii < changes; ++ii) {
         PressSpecialKey(key);
     }
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    std::this_thread::sleep_for(std::chrono::milliseconds(300));
 }
 
 void inputs::ClickSwitchBottomMenu()
@@ -323,7 +375,7 @@ void inputs::RecordTelemetry()
             }     
 
             if(GetAsyncKeyState(VK_LBUTTON) < 0) { // Click
-                std::cout << "Click!" << std::endl;
+                //std::cout << "Click!" << std::endl;
                 GetCursorPos(&cursor);
                 Coord.push_back(std::make_pair(cursor.x, cursor.y));
                 ++pos;
@@ -344,17 +396,18 @@ void inputs::RecordTelemetry()
                 std::this_thread::sleep_for(std::chrono::milliseconds(500));
                 Coord.push_back(std::make_pair(-5, -5));
             } else if(GetAsyncKeyState(VK_SPACE)) {
-                std::cout << std::endl; 
-                File::LogFile("\r\nCoord: ", false);
+                //File::LogFile("\r\nCoord: ", false);
                 for (int ii = 0; ii < static_cast<int>(Coord.size()); ++ii) {
-                    File::LogFile( std::to_string(Coord[ii].first) + "," + std::to_string(Coord[ii].second), false);
-                    std::cout << "{" << Coord[ii].first << "," << Coord[ii].second << "}" << std::endl;
+                    //File::LogFile( std::to_string(Coord[ii].first) + "," + std::to_string(Coord[ii].second), false);
+                    std::cout << Coord[ii].first << "," << Coord[ii].second;
                     if (ii < static_cast<int>(Coord.size()) - 1) {
                         std::cout << ", ";
-                        File::LogFile(", ", false);
+                        //File::LogFile(", ", false);
+                    } else {
+                        std::cout << std::endl;
                     }
                 }
-
+ 
                 Coord.clear();
 
                 ++territory;
@@ -376,4 +429,61 @@ void inputs::ClickPrivateMode()
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
     Click(PRIVATE_MODE_POS_X_3, PRIVATE_MODE_POS_Y_3);
     std::this_thread::sleep_for(std::chrono::milliseconds(200));
+}
+
+int inputs::FindMyPosition()
+{
+    int ret = 0;
+    int ii = FIGTH_MENU_FRIEND_POS_X;
+    int its = 50;
+    bool found = false;
+    while(!found && its --> 0) {
+        SetCursorPos(ii, FIGTH_MENU_FRIEND_POS_Y);
+        COLORREF color1 = basicOperations::GetColor(ii, FIGTH_MENU_FRIEND_POS_Y, false);
+
+        if(
+        (int(GetRValue(color1)) < FIGTH_MENU_FRIEND_COLOR_RED    + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetRValue(color1)) > FIGTH_MENU_FRIEND_COLOR_RED    - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color1)) < FIGTH_MENU_FRIEND_COLOR_GREEN  + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color1)) > FIGTH_MENU_FRIEND_COLOR_GREEN  - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color1)) < FIGTH_MENU_FRIEND_COLOR_BLUE   + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color1)) > FIGTH_MENU_FRIEND_COLOR_BLUE   - ERROR_GET_COLOUR_QUITE)
+        )
+        {
+            ret = ii + 10; // When my turn, window gets slightly bigger.
+            //File::LogFile(("My X position in fight menu: " + std::to_string(_myXPositionInMenuFight)).c_str(1), true);
+            found = true;
+        }
+        ii += 10;
+    }
+    return ret;
+}
+
+std::vector<int> inputs::FindEnemiesPositions()
+{
+    std::vector<int> ret(0);
+    int ii = FIGTH_MENU_FRIEND_POS_X;
+    int its = 50;
+    while(its --> 0) {
+        SetCursorPos(ii, FIGTH_MENU_FRIEND_POS_Y);
+        COLORREF color1 = basicOperations::GetColor(ii, FIGTH_MENU_FRIEND_POS_Y, false);
+
+        if(
+        (int(GetRValue(color1)) < FIGTH_MENU_ENEMY_COLOR_RED    + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetRValue(color1)) > FIGTH_MENU_ENEMY_COLOR_RED    - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color1)) < FIGTH_MENU_ENEMY_COLOR_GREEN  + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color1)) > FIGTH_MENU_ENEMY_COLOR_GREEN  - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color1)) < FIGTH_MENU_ENEMY_COLOR_BLUE   + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color1)) > FIGTH_MENU_ENEMY_COLOR_BLUE   - ERROR_GET_COLOUR_QUITE)
+        )
+        {
+            its = 10; // if enemy found, keep iterating to find more enemies.
+            ret.push_back(ii + 10); // When my turn, window gets slightly bigger.
+            //File::LogFile(("_enemiesXPositionInMenuFight: " + std::to_string(ii+10)).c_str(), true);
+            ii += 58; // increment more or less where is the next enemy.
+        }
+        ii += 18;
+    }
+    //File::LogFile(("Number of enemies: " + std::to_string(_enemiesXPositionInMenuFight.size())).c_str(), true);
+    return ret;
 }

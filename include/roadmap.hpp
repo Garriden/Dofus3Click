@@ -6,9 +6,13 @@
 enum Profession {
     WOOD          = 0,
     FARMER        = 1,
-    FISHER        = 2,
-    MINERAL       = 3,
-    LOWERING_PODS = 4
+    MINERAL       = 2,
+    ALCHEMIST     = 3,
+    FISHER        = 4,
+    LOWERING_PODS = 5,
+    TRAIN         = 6,
+    GHOST         = 7,
+    MISSIONS      = 8
 };
 
 class Roadmap {
@@ -39,9 +43,8 @@ class Roadmap {
             GO_TO_ZAAP                  = 5,
             GO_TO_INITIAL_MAP           = 6,
             EXECUTE_ROADMAP             = 7,
-            PREPARE_TO_FIGHT            = 8,
-            STORE_IT_TO_THE_ASTRUB_BANK = 9,
-            RETURN_TO_ASTRUB_ZAAP       = 10
+            TRAIN_MODE                  = 8,
+            END_ROADMAP_OK              = 9
         };
 
         /*
@@ -69,40 +72,7 @@ class Roadmap {
         void ChangeSpellsMenu();
         void SetPodsSet();
         void ConvertResources();
+
         // Go to default zaap (Astrub), and then, transport to the desired zaap.
         void GoToZaap();
-
-        /*
-        * Open the consumables inventory and keeps pressing (unfolding bags of resources),
-        *  until it is detected a Mimilk or a Recall Potion.
-        */
-        //void OpenAllBags();
-
-        /*
-        * From to Zaap Astrub, go to the bank and save all resources.
-        */
-        //void SaveItInTheBank();
-
-        /*
-        * Retun true if I was full and I lowered pods, false otherwise.
-        */
-        //bool CheckPods();
-
-        /*
-        * If I am a Ghost, execute the roadmap to the closer fenix.
-        */
-        //void GhostRoadmap();
-
-        /*
-        * Old Roadmaps
-        */
-        //void MineralIronTirihRoadMap();
-        //void WoodKoalakRoadMap();
-        //void YewOtomaiRoadMap();
-        //void OtomaiCenterRoadMap();
-        //void YewOtomaiRightRoadMap();
-        //void YewOtomaiLeftRoadMap();
-        //void OtomaiFromLeftToCenterRoadMap();
-        //void OtomaiFromCenterToLeftRoadMap();
-        //void WoodAstrubRoadMap();
 };
