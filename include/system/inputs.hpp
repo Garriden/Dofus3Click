@@ -109,6 +109,9 @@ namespace inputs {
     */
     void Click(int x, int y);
 
+    // Similar as Click but With the Shift key also pressed.
+    void ShiftClick(int x, int y);
+
     // Similar as Click but DoubleClick.
     void DoubleClick(int x, int y);
 

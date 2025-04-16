@@ -23,7 +23,8 @@ int Train::IterateBetweenMaps()
     int ret = E_KO;
 
     for(int cardinalPoint = 0; cardinalPoint < 4; ++cardinalPoint) { // RIGHT, DOWN, LEFT, UP
-        if(IterateCells() != E_OK) {
+        ret = IterateCells();
+        if(E_OK != ret) {
             return ret;
         }
 
@@ -32,7 +33,7 @@ int Train::IterateBetweenMaps()
 
     File::LogFile("Map iteration OK!", true);
 
-    return E_OK;
+    return ret;
 }
 
 int Train::IterateCells()

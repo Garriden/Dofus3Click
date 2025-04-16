@@ -37,11 +37,11 @@ Fight::~Fight()
 
 int Fight::Start()
 {
-    int step = FightPreparationState::FIGHT_SET;
+    int step = FightPreparationState::PUT_FIGHT_SET;
 
     while(1) {
         switch(step) {
-        case FightPreparationState::FIGHT_SET:
+        case FightPreparationState::PUT_FIGHT_SET:
             FightSet();
             step = FightPreparationState::CHANGE_SPELLS_MENU;
             break;
@@ -50,12 +50,17 @@ int Fight::Start()
             step = FightPreparationState::START_FIGHT_STRATEGY;
             break;
         case FightPreparationState::START_FIGHT_STRATEGY:
-            if(E_OK == CallFightStrategy()) {
+        {
+            int fightReturn = CallFightStrategy();
+            if(E_OK == fightReturn) {
                 step = FightPreparationState::AFTER_FIGHT_SET;
+            } else if(E_IM_A_GHOST == fightReturn) { // I'm a Ghost
+                step = FightPreparationState::RETURN_E_IM_A_GHOST;
             } else {
                 step = -1;
             }
             break;
+        }
         case FightPreparationState::AFTER_FIGHT_SET:
             AfterFightSet();
             step = FightPreparationState::AFTER_FIGHT_SIT;
@@ -65,11 +70,14 @@ int Fight::Start()
             step = WAIT_UNTIL_HEALED;
             break;
         case FightPreparationState::WAIT_UNTIL_HEALED:
-            AfterFightHeal(); // Wait until healed.
+            //AfterFightHeal(); // Wait until healed.
             step = RETURN_E_OK;
             break;
         case FightPreparationState::RETURN_E_OK:
             return E_OK;
+            break;
+        case FightPreparationState::RETURN_E_IM_A_GHOST:
+            return E_IM_A_GHOST;
             break;
         default:
             return E_KO;
@@ -81,20 +89,34 @@ int Fight::Start()
 
 void Fight::FightSet()
 {
-    std::this_thread::sleep_for(std::chrono::seconds(2));
+    std::this_thread::sleep_for(std::chrono::seconds(1));
     Fight::ChangeObjectsMenu();
-    std::this_thread::sleep_for(std::chrono::seconds(2));
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
     inputs::ChangeMenuBar(5, false);
 
     std::this_thread::sleep_for(std::chrono::seconds(1));
     if(_hunter) {
-        inputs::PressCtrlKey('6'); // Hunter Set
+        inputs::PressCtrlKey(Set::HUNTER);
     } else {
-        inputs::PressCtrlKey('5'); // Berserk Set
+        inputs::PressCtrlKey(Set::BERSERK);
     }
     std::this_thread::sleep_for(std::chrono::seconds(1));
 }
+
+void Fight::ProspecSet()
+{
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    Fight::ChangeObjectsMenu();
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
+    inputs::ChangeMenuBar(5, false);
+
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    inputs::PressCtrlKey(Set::PROSPEC);
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+}
+
 
 // Todo: sned to inputs
 void Fight::ChangeObjectsMenu()
@@ -125,14 +147,14 @@ void Fight::AfterFightSet()
     //inputs::ChangeMenuBar(5, false);
 
     std::this_thread::sleep_for(std::chrono::seconds(1));
-    inputs::PressCtrlKey('3'); // Pods Set
+    inputs::PressCtrlKey(Set::PODS);
     std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 
 void Fight::AfterFightSit()
 {
     std::this_thread::sleep_for(std::chrono::seconds(1));
-    inputs::PressCtrlKey('2'); // Fight Set
+    inputs::PressCtrlKey(Set::SIT);
     std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 
@@ -150,6 +172,7 @@ int Fight::CallFightStrategy()
             _currentStrategy = std::move( std::make_unique<FecaAgiBruteStrategy>() );
         } else {
             _currentStrategy = std::move( std::make_unique<ProfessionMobStrategy>() );
+            ProspecSet();
         }
     }
 

@@ -6,11 +6,13 @@
 enum Profession {
     WOOD          = 0,
     FARMER        = 1,
-    FISHER        = 2,
-    MINERAL       = 3,
-    LOWERING_PODS = 4,
-    TRAIN         = 5,
-    GHOST         = 6
+    MINERAL       = 2,
+    ALCHEMIST     = 3,
+    FISHER        = 4,
+    LOWERING_PODS = 5,
+    TRAIN         = 6,
+    GHOST         = 7,
+    MISSIONS      = 8
 };
 
 class Roadmap {

@@ -37,22 +37,22 @@ int main()
                 inputs::DebugPoints();
                 break;
             case 2:
-                //FarmerMenu();
+                menu::Farmer();
                 break;
             case 3:
                 menu::Wood();
                 break;
             case 4:
-                //MineralMenu();
+                menu::Mineral();
                 break;
             case 5:
-                //AlchemistMenu();
+                menu::Alchemist();
                 break;
             case 6:
-                //FishermanMenu();
+                menu::Fisherman();
                 break;
             case 9:
-                //DailyMissionsMenu();
+                menu::DailyMissions();
                 break;
             case 10:
             {
@@ -99,9 +99,9 @@ int main()
 
                 //std::this_thread::sleep_for(std::chrono::seconds(2));
 
-                //Roadmap roadmap(Profession::WOOD, "puerka", nullptr, nullptr,
-                //    {"", "../../Telemetry/Wood/bombu3.csv"});
-                //roadmap.Start();
+                Roadmap roadmap(Profession::WOOD, "golfo", nullptr, nullptr,
+                    {"", "../../Telemetry/test.csv", /*"../../Telemetry/Fisher/Ganaderoslv80_2.csv"*/});
+                roadmap.Start();
                 
             break;
         }

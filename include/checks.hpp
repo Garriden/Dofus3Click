@@ -40,25 +40,11 @@ bool IsRecallPoti();
  */
 //bool IsBrakPoti(COLORREF color);
 
-/*
- * Check if I am viewing an error window.
- */
-//bool IsErrorWindow();
+// Check if I am viewing the attention window.
+bool IsAttentionBox();
 
 // Check if is the menu principal box, which it appears when I press Escape.
 bool IsMenuPrincipalBox();
-
-/*
- * Given a color, Check if I am on a red cell when preparing the fight.
- *
- * in: color, the color of a given pixel.
- */
-//bool IsRedCellPreFight(COLORREF color);
-
-/*
- * Check if I see the rest or sit emote in the first cell of the bar ovjects.
- */
-//bool IsTheObjectBarActive();
 
 /*
  * Look if the fight it is already finished. If I lost it

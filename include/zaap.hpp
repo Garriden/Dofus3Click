@@ -29,11 +29,20 @@ namespace zaap {
     // Check if I am in Burgo(Frigost) zaap.
     bool CheckZaapBurgo();
 
+    // Check if I am in Golfo(Sufokia) zaap.
+    bool CheckZaapGolfo();
+
+    // Check if I am in Sufokia zaap.
+    bool CheckZaapSufokia();
+
     // Check if I am in Moon island zaap.
     bool CheckZaapMoon();
 
     // Check if I am in Llanuras Rocosas zaap.
     bool CheckZaapRocosas();
+
+    // Check if I am in Rincon zaap.
+    bool CheckZaapRincon();
 
     /*
     * Check if I am in Gobball corner zaap.
