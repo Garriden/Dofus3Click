@@ -126,9 +126,8 @@ int FightStrategy::AfterFight()
 
     } else if(check::AmIDefeated()) {
         return E_KO;
-    } else if(check::AmILevelUp()) {
+    } else if(check::AmILevelUp() || check::IsAttentionBox()) {
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-        //inputs::Click(I_AM_LEVEL_UP_POS_X_4, I_AM_LEVEL_UP_POS_Y_4);
         inputs::PressEscape();
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     }

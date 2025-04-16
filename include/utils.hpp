@@ -557,6 +557,22 @@
 #define IS_MENU_PRINCIPAL_GREEN_3                          (61)
 #define IS_MENU_PRINCIPAL_BLUE_3                           (88)
 
+#define IS_ATTENTION_BOX_POS_X_1                            (1068)
+#define IS_ATTENTION_BOX_POS_Y_1                            (478)
+#define IS_ATTENTION_BOX_RED_1                              (82)
+#define IS_ATTENTION_BOX_GREEN_1                            (82)
+#define IS_ATTENTION_BOX_BLUE_1                             (114)
+#define IS_ATTENTION_BOX_POS_X_2                            (1074)
+#define IS_ATTENTION_BOX_POS_Y_2                            (502)
+#define IS_ATTENTION_BOX_RED_2                              (27)
+#define IS_ATTENTION_BOX_GREEN_2                            (29)
+#define IS_ATTENTION_BOX_BLUE_2                             (50)
+#define IS_ATTENTION_BOX_POS_X_3                            (1075)
+#define IS_ATTENTION_BOX_POS_Y_3                            (571)
+#define IS_ATTENTION_BOX_RED_3                              (58)
+#define IS_ATTENTION_BOX_GREEN_3                            (61)
+#define IS_ATTENTION_BOX_BLUE_3                             (88)
+
 
 ///////////////////////////////////
 // RESOURCES
@@ -604,4 +620,4 @@
 #define E_OK                                               (0)
 #define E_KO                                               (-1)
 #define E_NEED_TO_RESTART                                  (-10)
-#define E_IM_A_GHOST                                       (-1)
+#define E_IM_A_GHOST                                       (-11)

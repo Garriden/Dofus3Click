@@ -22,23 +22,20 @@ int FecaAgiBruteStrategy::Execute()
 
         File::LogFile(("turn: " + std::to_string(_turn)).c_str(), true);
 
-        RandomMovePj(1); // Random Click. Dofus bug ?
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        //RandomMovePj(1); // Random Click.
+        //std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
-        ThrowSpellToMyself(SpellsCtrlRow::ATARAXIA, SpellsCtrlRow::SPELLS_CTRL_ROW);
-        
+        //ThrowSpellToMyself(SpellsCtrlRow::ATARAXIA, SpellsCtrlRow::SPELLS_CTRL_ROW);
+
         if(_turn % 4 == 0) {
             ThrowSpellToMyself(SpellsCtrlRow::MURALLA, SpellsCtrlRow::SPELLS_CTRL_ROW);
         }
+
         if(_turn % 3 == 0) {
             ThrowSpellToMyself(SpellsCtrlRow::ESCUDO, SpellsCtrlRow::SPELLS_CTRL_ROW);
-        } 
-        if(_turn % 4 == 3) {
+        } else if(_turn % 4 == 3) {
             ThrowSpellToMyself(SpellsCtrlRow::BASTION,   SpellsCtrlRow::SPELLS_CTRL_ROW);
-        } 
-        if(_turn % 8 == 7) {
             ThrowSpellToMyself(SpellsCtrlRow::BARRICADA, SpellsCtrlRow::SPELLS_CTRL_ROW);
-            //ThrowSpellToMyself(SpellsRow::VIGIA,         SpellsRow::SPELLS_ROW);
         }
 
         ThrowSpellToEnemies(SpellsCtrlRow::WEAPON,  SpellsRow::SPELLS_ROW); // weapon is just 'q'
@@ -73,5 +70,5 @@ int FecaAgiBruteStrategy::Execute()
         ++_turn;
     }
 
-    return AfterFight();;
+    return AfterFight();
 }

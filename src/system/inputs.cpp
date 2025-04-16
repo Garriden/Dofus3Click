@@ -16,7 +16,6 @@ namespace {
     {
         bool ret = false;
 
-        /* It is the desiRED  color */
         if(((int(GetRValue(color)) < DOFUS_EXE_POS_COLOR_RED_1   + ERROR_GET_COLOUR) &&
             (int(GetRValue(color)) > DOFUS_EXE_POS_COLOR_RED_1   - ERROR_GET_COLOUR) &&
             (int(GetGValue(color)) < DOFUS_EXE_POS_COLOR_GREEN_1 + ERROR_GET_COLOUR) &&
@@ -178,7 +177,7 @@ bool inputs::ClickOnExe()
     int y = DOFUS_EXE_POS_Y_1;
     COLORREF color;
 
-    for(int ii = 0; ii < 200; ii += 2) {
+    for(int ii = 0; ii < 500; ++ii) {
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
         color = basicOperations::GetColor(x+ii, y, false);
 
@@ -205,9 +204,58 @@ void inputs::Click(int x, int y)
     std::this_thread::sleep_for(std::chrono::milliseconds(10 * ruletNumber));
 }
 
+void inputs::ShiftClick(int x, int y)
+{
+    File::LogFile("ShiftClick", true);
+
+    SHORT key;
+    UINT mappedkey;
+    INPUT ip;
+    ip.ki.dwFlags = 0;
+    ip.type = INPUT_KEYBOARD;
+    ip.ki.wScan = 0;
+    ip.ki.time = 0;
+    ip.ki.dwExtraInfo = 0;
+
+    // Press the "Shift" key
+    ip.ki.wVk = VK_SHIFT;
+    ip.ki.wScan = MapVirtualKey(VK_SHIFT, 0);
+    ip.ki.dwFlags = 0; // 0 for key press
+    ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
+    SendInput(1, &ip, sizeof(INPUT));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+    // Mouse.
+    //Click(x,y);
+    //SetCursorPos(x, y);
+    //std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    //ip.ki.dwFlags |= MOUSEEVENTF_LEFTDOWN;
+    //mouse_event(ip.ki.dwFlags, x, y, 0, 0);
+    //std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    //ip.ki.dwFlags |= MOUSEEVENTF_LEFTUP;
+    //mouse_event(ip.ki.dwFlags, x, y, 0, 0);
+    ip.type = INPUT_MOUSE;
+    SetCursorPos(x, y);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    ip.ki.dwFlags = MOUSEEVENTF_LEFTDOWN;
+    mouse_event(ip.ki.dwFlags, x, y, 0, 0);
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    ip.ki.dwFlags = MOUSEEVENTF_LEFTUP;
+    mouse_event(ip.ki.dwFlags, x, y, 0, 0);
+
+    // Release the "Shift" key
+    ip.type = INPUT_KEYBOARD;
+    ip.ki.wVk = VK_SHIFT;
+    ip.ki.wScan = MapVirtualKey(VK_SHIFT, 0);
+    ip.ki.dwFlags = KEYEVENTF_KEYUP;
+    ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
+    SendInput(1, &ip, sizeof(INPUT));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+}
+
 void inputs::DoubleClick(int x, int y)
 {
-    int ruletNumber = basicOperations::RuletaInput(10, 20);
+    int ruletNumber = basicOperations::RuletaInput(5, 10);
 
     // Press it!
     SetCursorPos(x, y);
@@ -265,7 +313,7 @@ void inputs::ChangeMenuBar(int changes, bool down)
     for (int ii = 0; ii < changes; ++ii) {
         PressSpecialKey(key);
     }
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    std::this_thread::sleep_for(std::chrono::milliseconds(300));
 }
 
 void inputs::ClickSwitchBottomMenu()

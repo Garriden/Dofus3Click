@@ -35,7 +35,8 @@ class Fight {
             AFTER_FIGHT_SET             = 4,
             AFTER_FIGHT_SIT             = 5,
             WAIT_UNTIL_HEALED           = 6,
-            RETURN_E_OK                 = 7
+            RETURN_E_OK                 = 7,
+            RETURN_E_IM_A_GHOST         = 8
         };
 
         enum Set {

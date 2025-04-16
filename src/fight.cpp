@@ -50,12 +50,17 @@ int Fight::Start()
             step = FightPreparationState::START_FIGHT_STRATEGY;
             break;
         case FightPreparationState::START_FIGHT_STRATEGY:
-            if(E_OK == CallFightStrategy()) {
+        {
+            int fightReturn = CallFightStrategy();
+            if(E_OK == fightReturn) {
                 step = FightPreparationState::AFTER_FIGHT_SET;
+            } else if(E_IM_A_GHOST == fightReturn) { // I'm a Ghost
+                step = FightPreparationState::RETURN_E_IM_A_GHOST;
             } else {
                 step = -1;
             }
             break;
+        }
         case FightPreparationState::AFTER_FIGHT_SET:
             AfterFightSet();
             step = FightPreparationState::AFTER_FIGHT_SIT;
@@ -70,6 +75,9 @@ int Fight::Start()
             break;
         case FightPreparationState::RETURN_E_OK:
             return E_OK;
+            break;
+        case FightPreparationState::RETURN_E_IM_A_GHOST:
+            return E_IM_A_GHOST;
             break;
         default:
             return E_KO;

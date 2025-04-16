@@ -185,7 +185,7 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
     for(int ii = 0; ii < map.size(); ++ii) {
         ruletNumber = basicOperations::RuletaInput(2, 3);
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(ruletNumber * 1000));
+        std::this_thread::sleep_for(std::chrono::milliseconds(ruletNumber * 100));
         if(ii != 0) { // NOT already changed map.
             std::this_thread::sleep_for(std::chrono::seconds(8));
         }
@@ -202,6 +202,7 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
                 std::string ghostRoadmap = "../../Telemetry/Ghost/" + _zaap + ".csv";
                 Roadmap roadmap(Profession::GHOST, _zaap, nullptr, nullptr, {ghostRoadmap, ghostRoadmap});
                 roadmap.Start();
+                return E_NEED_TO_RESTART;
             }
         }
 
@@ -263,6 +264,7 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
             std::string ghostRoadmap = "../../Telemetry/Ghost/" + _zaap + ".csv";
             Roadmap roadmap(Profession::GHOST, _zaap, nullptr, nullptr, {ghostRoadmap, ghostRoadmap});
             roadmap.Start();
+            return E_NEED_TO_RESTART;
         }
     }
 
@@ -342,6 +344,15 @@ void Roadmap::GoToZaap()
     }
 
     std::this_thread::sleep_for(std::chrono::seconds(3));
+
+    if(check::IsAttentionBox()) {
+        inputs::PressEscape();
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+        if(check::IsMenuPrincipalBox()) {
+            inputs::PressEscape();
+            std::this_thread::sleep_for(std::chrono::seconds(2));
+        }
+    }
 
     if(zaap::CheckZaapAstrub() && _zaap == "astrub") {
         return;

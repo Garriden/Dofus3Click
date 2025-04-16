@@ -215,46 +215,43 @@ bool check::IsRecallPoti()
     return ret;
 }
 
-/*
-bool IsErrorWindow()
+bool check::IsAttentionBox()
 {
     bool ret = false;
-    //LogFile("is the error window? ");
 
-    COLORREF color1 = GetColor(IS_ERROR_WINDOW_POS_X_1, IS_ERROR_WINDOW_POS_Y_1);
-    COLORREF color2 = GetColor(IS_ERROR_WINDOW_POS_X_2, IS_ERROR_WINDOW_POS_Y_2);
-    COLORREF color3 = GetColor(IS_ERROR_WINDOW_POS_X_3, IS_ERROR_WINDOW_POS_Y_3);
+    COLORREF color1 = basicOperations::GetColor(IS_ATTENTION_BOX_POS_X_1, IS_ATTENTION_BOX_POS_Y_1, false);
+    COLORREF color2 = basicOperations::GetColor(IS_ATTENTION_BOX_POS_X_2, IS_ATTENTION_BOX_POS_Y_2, false);
+    COLORREF color3 = basicOperations::GetColor(IS_ATTENTION_BOX_POS_X_3, IS_ATTENTION_BOX_POS_Y_3, false);
 
-    // It is the desiRED   color 
-    if ((int(GetRValue(color1)) < IS_ERROR_WINDOW_COLOR_RED   + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetRValue(color1)) > IS_ERROR_WINDOW_COLOR_RED   - ERROR_GET_COLOUR_QUITE) &&
-        (int(GetGValue(color1)) < IS_ERROR_WINDOW_COLOR_GREEN + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetGValue(color1)) > IS_ERROR_WINDOW_COLOR_GREEN - ERROR_GET_COLOUR_QUITE) &&
-        (int(GetBValue(color1)) < IS_ERROR_WINDOW_COLOR_BLUE  + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetBValue(color1)) > IS_ERROR_WINDOW_COLOR_BLUE  - ERROR_GET_COLOUR_QUITE)
+    if ((int(GetRValue(color1)) < IS_ATTENTION_BOX_RED_1   + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetRValue(color1)) > IS_ATTENTION_BOX_RED_1   - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color1)) < IS_ATTENTION_BOX_GREEN_1 + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color1)) > IS_ATTENTION_BOX_GREEN_1 - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color1)) < IS_ATTENTION_BOX_BLUE_1  + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color1)) > IS_ATTENTION_BOX_BLUE_1  - ERROR_GET_COLOUR_QUITE)
         &&
-        (int(GetRValue(color2)) < IS_ERROR_WINDOW_COLOR_RED   + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetRValue(color2)) > IS_ERROR_WINDOW_COLOR_RED   - ERROR_GET_COLOUR_QUITE) &&
-        (int(GetGValue(color2)) < IS_ERROR_WINDOW_COLOR_GREEN + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetGValue(color2)) > IS_ERROR_WINDOW_COLOR_GREEN - ERROR_GET_COLOUR_QUITE) &&
-        (int(GetBValue(color2)) < IS_ERROR_WINDOW_COLOR_BLUE  + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetBValue(color2)) > IS_ERROR_WINDOW_COLOR_BLUE  - ERROR_GET_COLOUR_QUITE)
+        (int(GetRValue(color2)) < IS_ATTENTION_BOX_RED_2   + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetRValue(color2)) > IS_ATTENTION_BOX_RED_2   - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color2)) < IS_ATTENTION_BOX_GREEN_2 + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color2)) > IS_ATTENTION_BOX_GREEN_2 - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color2)) < IS_ATTENTION_BOX_BLUE_2  + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color2)) > IS_ATTENTION_BOX_BLUE_2  - ERROR_GET_COLOUR_QUITE)
         &&
-        (int(GetRValue(color3)) < IS_ERROR_WINDOW_COLOR_RED   + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetRValue(color3)) > IS_ERROR_WINDOW_COLOR_RED   - ERROR_GET_COLOUR_QUITE) &&
-        (int(GetGValue(color3)) < IS_ERROR_WINDOW_COLOR_GREEN + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetGValue(color3)) > IS_ERROR_WINDOW_COLOR_GREEN - ERROR_GET_COLOUR_QUITE) &&
-        (int(GetBValue(color3)) < IS_ERROR_WINDOW_COLOR_BLUE  + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetBValue(color3)) > IS_ERROR_WINDOW_COLOR_BLUE  - ERROR_GET_COLOUR_QUITE)
+        (int(GetRValue(color3)) < IS_ATTENTION_BOX_RED_3   + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetRValue(color3)) > IS_ATTENTION_BOX_RED_3   - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color3)) < IS_ATTENTION_BOX_GREEN_3 + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color3)) > IS_ATTENTION_BOX_GREEN_3 - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color3)) < IS_ATTENTION_BOX_BLUE_3  + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color3)) > IS_ATTENTION_BOX_BLUE_3  - ERROR_GET_COLOUR_QUITE)
         )
     {
-        LogFile("Is the error window! YES");
+        File::LogFile("Is the Attention box window!", true);
         ret = true;
     }
 
     return ret;
 }
-*/
+
 bool check::IsMenuPrincipalBox()
 {
     bool ret = false;
@@ -418,7 +415,7 @@ bool check::IWonTheFight()
 
 bool check::IsFightFinished()
 {
-    return IWonTheFight() || IsFenixBox() || AmIDefeated() || AmILevelUp();
+    return IWonTheFight() || IsFenixBox() || AmIDefeated() || AmILevelUp() || IsAttentionBox();
 }
 
 bool check::IsBlack(int x, int y)
