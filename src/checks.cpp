@@ -424,7 +424,6 @@ bool check::IsBlack(int x, int y)
 
     COLORREF color = basicOperations::GetColor(x, y, false);
 
-    // It is the desiRED   color
     if ((int(GetRValue(color)) < BLACK_COLOR_RED   + ERROR_GET_COLOUR_SMALL) &&
         (int(GetGValue(color)) < BLACK_COLOR_GREEN + ERROR_GET_COLOUR_SMALL) &&
         (int(GetBValue(color)) < BLACK_COLOR_BLUE  + ERROR_GET_COLOUR_SMALL))
@@ -440,10 +439,6 @@ bool check::IsBlackScreen()
 {
     return  check::IsBlack(BLACK_SCREEN_POS_X_1, BLACK_SCREEN_POS_Y_1) &&
             check::IsBlack(BLACK_SCREEN_POS_X_2, BLACK_SCREEN_POS_Y_2) &&
-            check::IsBlack(BLACK_SCREEN_POS_X_3, BLACK_SCREEN_POS_Y_3) &&
-            check::IsBlack(BLACK_SCREEN_POS_X_3, BLACK_SCREEN_POS_Y_4) &&
-            check::IsBlack(BLACK_SCREEN_POS_X_3, BLACK_SCREEN_POS_Y_5) &&
-            check::IsBlack(BLACK_SCREEN_POS_X_3, BLACK_SCREEN_POS_Y_6) &&
             check::IsBlack(BLACK_SCREEN_POS_X_3, BLACK_SCREEN_POS_Y_7) &&
             check::IsBlack(BLACK_SCREEN_POS_X_4, BLACK_SCREEN_POS_Y_8);
 }
@@ -638,7 +633,7 @@ bool check::IsEmptyResource()
 bool check::WaitMapToChange()
 {
     int blackScreenFlag = false;
-    for(int ii = 0; ii < 500; ++ii) {
+    for(int ii = 0; ii < 700; ++ii) {
         if(!blackScreenFlag) { // No black screen yet, keep trying until black screen detected.
             if(IsBlackScreen()) {
                 blackScreenFlag = true;
@@ -650,7 +645,7 @@ bool check::WaitMapToChange()
                 return true;
             }
         }
-        std::this_thread::sleep_for(std::chrono::milliseconds(5));
+        std::this_thread::sleep_for(std::chrono::milliseconds(2));
     }
     return false;
 }

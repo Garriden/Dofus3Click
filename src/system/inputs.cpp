@@ -126,6 +126,49 @@ void inputs::PressCtrlKey(int keyParam)
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
 }
 
+
+void inputs::PressShiftKey(int keyParam)
+{
+    SHORT key;
+    UINT mappedkey;
+    INPUT ip;
+
+    ip.ki.dwFlags = 0;
+    ip.type = INPUT_KEYBOARD;
+    ip.ki.wScan = 0;
+    ip.ki.time = 0;
+    ip.ki.dwExtraInfo = 0;
+
+    // Press the "Ctrl" key
+    ip.ki.wVk = VK_LSHIFT;
+    ip.ki.wScan = MapVirtualKey(VK_LSHIFT, 0);
+    ip.ki.dwFlags = 0; // 0 for key press
+    ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
+    SendInput(1, &ip, sizeof(INPUT));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+    // Press the key
+    key = VkKeyScan(keyParam);
+    mappedkey = MapVirtualKey(LOBYTE(key), 0);
+    ip.ki.dwFlags = KEYEVENTF_SCANCODE;
+    ip.ki.wScan = mappedkey;
+    SendInput(1, &ip, sizeof(INPUT));
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
+
+    // Release the key
+    ip.ki.dwFlags = KEYEVENTF_SCANCODE | KEYEVENTF_KEYUP;
+    SendInput(1, &ip, sizeof(INPUT));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+    // Release the "Ctrl" key
+    ip.ki.wVk = VK_LSHIFT;
+    ip.ki.wScan = MapVirtualKey(VK_LSHIFT, 0);
+    ip.ki.dwFlags = KEYEVENTF_KEYUP;
+    ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
+    SendInput(1, &ip, sizeof(INPUT));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+}
+
 void inputs::PressSpace()
 {
     INPUT space = { 0 };
@@ -206,8 +249,6 @@ void inputs::Click(int x, int y)
 
 void inputs::ShiftClick(int x, int y)
 {
-    File::LogFile("ShiftClick", true);
-
     SHORT key;
     UINT mappedkey;
     INPUT ip;
@@ -218,12 +259,12 @@ void inputs::ShiftClick(int x, int y)
     ip.ki.dwExtraInfo = 0;
 
     // Press the "Shift" key
-    ip.ki.wVk = VK_SHIFT;
-    ip.ki.wScan = MapVirtualKey(VK_SHIFT, 0);
+    ip.ki.wVk = VK_LSHIFT;
+    ip.ki.wScan = MapVirtualKey(VK_LSHIFT, 0);
     ip.ki.dwFlags = 0; // 0 for key press
-    ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
+    //ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
     SendInput(1, &ip, sizeof(INPUT));
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
 
     // Mouse.
     //Click(x,y);
@@ -242,15 +283,16 @@ void inputs::ShiftClick(int x, int y)
     std::this_thread::sleep_for(std::chrono::milliseconds(50));
     ip.ki.dwFlags = MOUSEEVENTF_LEFTUP;
     mouse_event(ip.ki.dwFlags, x, y, 0, 0);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
     // Release the "Shift" key
     ip.type = INPUT_KEYBOARD;
-    ip.ki.wVk = VK_SHIFT;
-    ip.ki.wScan = MapVirtualKey(VK_SHIFT, 0);
+    ip.ki.wVk = VK_LSHIFT;
+    ip.ki.wScan = MapVirtualKey(VK_LSHIFT, 0);
     ip.ki.dwFlags = KEYEVENTF_KEYUP;
-    ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
+    //ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
     SendInput(1, &ip, sizeof(INPUT));
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    std::this_thread::sleep_for(std::chrono::milliseconds(10));
 }
 
 void inputs::DoubleClick(int x, int y)

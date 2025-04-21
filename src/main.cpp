@@ -25,7 +25,8 @@ int main()
     //AskPj();
     while(true) {
         show::MainMenu();
-        inputs::PressCtrlKey(0); // Reset Ctrl.
+        inputs::PressCtrlKey(0);  // Reset Ctrl.
+        inputs::PressShiftKey(0); // Reset Shift.
         int in;
         std::cin >> in;
         switch(in) {
@@ -86,11 +87,9 @@ int main()
                 //check::AmIDefeated();
                 //zaap::CheckZaapAstrub();
 
-                check::AmILevelUp();
+                std::this_thread::sleep_for(std::chrono::seconds(3));
 
-                //check::IsFight();
-
-                //std::this_thread::sleep_for(std::chrono::seconds(2));
+                inputs::ShiftClick(1000, 300);
 
                 //if(check::IsFight()) {
                 //    Fight fight(0);
@@ -99,9 +98,9 @@ int main()
 
                 //std::this_thread::sleep_for(std::chrono::seconds(2));
 
-                Roadmap roadmap(Profession::WOOD, "golfo", nullptr, nullptr,
-                    {"", "../../Telemetry/test.csv", /*"../../Telemetry/Fisher/Ganaderoslv80_2.csv"*/});
-                roadmap.Start();
+                //Roadmap roadmap(Profession::WOOD, "golfo", nullptr, nullptr,
+                //    {"", "../../Telemetry/test.csv", /*"../../Telemetry/Fisher/Ganaderoslv80_2.csv"*/});
+                //roadmap.Start();
                 
             break;
         }

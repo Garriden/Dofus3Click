@@ -178,17 +178,11 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
 {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-    int ruletNumber = 1;
     int x = 0;
     int y = 0;
 
     for(int ii = 0; ii < map.size(); ++ii) {
-        ruletNumber = basicOperations::RuletaInput(2, 3);
-
-        std::this_thread::sleep_for(std::chrono::milliseconds(ruletNumber * 100));
-        if(ii != 0) { // NOT already changed map.
-            std::this_thread::sleep_for(std::chrono::seconds(8));
-        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
         if(check::IsFight()) {
             Fight fight;
@@ -220,8 +214,19 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
         } else if(map[ii].first == INPUT_PATTERN_CTRL) {
             inputs::PressCtrlKey(map[ii].second);
         } else { // normal coordenate value
-            //inputs::ShiftClick(map[ii].first, map[ii].second);
-            inputs::Click(map[ii].first, map[ii].second);
+            if(map.size() == 1) { //Check if change map has only one coordenada.
+                inputs::Click(map[ii].first, map[ii].second);
+            } else if((ii < map.size() - 1) && (map[ii].first >= (RIGHT_X - ERROR_GET_COLOUR_QUITE) ||
+                                                map[ii].first <= (LEFT_X + ERROR_GET_COLOUR_QUITE)  ||
+                                                map[ii].second >= (DOWN_Y - ERROR_GET_COLOUR_QUITE) ||
+                                                map[ii].second <= (UP_Y + ERROR_GET_COLOUR_QUITE)))
+            {
+                    File::LogFile("Careful, changeMap coordenate is not the last value!", true);
+                    inputs::ShiftClick(map[ii].first, map[ii].second);
+                    std::this_thread::sleep_for(std::chrono::seconds(20));
+            } else { // normal coordenada, stack clicks.
+                inputs::ShiftClick(map[ii].first, map[ii].second);
+            }
         }
     }
 
@@ -232,7 +237,7 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
     // Wait for Black Screen
     bool mapChanged = false;
     int retries = 0;
-    while(!mapChanged && retries++ < 10) {
+    while(!mapChanged && !check::IsFight() && retries++ < 10) {
         mapChanged = check::WaitMapToChange();
         if(!mapChanged) {
             int x = map[map.size()-1].first;
@@ -241,7 +246,7 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
                 y += retries * 30;
             }
 
-            inputs::Click(x, y);
+            inputs::ShiftClick(x, y);
         }
     }
 
@@ -250,7 +255,7 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
         return E_KO;
     }
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
     if(check::IsFight()) {
         Fight fight;
@@ -268,11 +273,11 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
         }
     }
 
-    if(!mapChanged) { // Invalid action, try again.
-        File::LogFile(" NO! mapChanged... Clicking again...", true);
-        inputs::Click(map[map.size()-1].first, map[map.size()-1].second + retries);
-        ++retries;
-    }
+    //if(!mapChanged) { // Invalid action, try again.
+    //    File::LogFile(" NO! mapChanged... Clicking again...", true);
+    //    inputs::Click(map[map.size()-1].first, map[map.size()-1].second + retries);
+    //    ++retries;
+    //}
 
     return E_OK;
 }

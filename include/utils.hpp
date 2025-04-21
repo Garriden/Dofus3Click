@@ -137,8 +137,8 @@
 
 #define FIGHT_X_LIMIT_MIN                                  (600)
 #define FIGHT_X_LIMIT_MAX                                  (1300)
-#define FIGHT_Y_LIMIT_MIN                                  (250)
-#define FIGHT_Y_LIMIT_MAX                                  (700)
+#define FIGHT_Y_LIMIT_MIN                                  (225)
+#define FIGHT_Y_LIMIT_MAX                                  (725)
 
 
 ///////////////////////////////////

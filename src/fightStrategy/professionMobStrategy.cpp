@@ -42,14 +42,13 @@ int ProfessionMobStrategy::Execute()
         ThrowSpellToEnemies(SpellsRow::NATURAL,     SpellsRow::SPELLS_ROW);
         ThrowSpellToEnemies(SpellsRow::RECELO,      SpellsRow::SPELLS_ROW);
 
-        RandomMovePj(12); // Move randomly the Pj!
+        RandomMovePj(30); // Move randomly the Pj!
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        if(!check::IsRecallPoti()) {
-            ThrowSpellToEnemies(SpellsRow::MOON,        SpellsRow::SPELLS_ROW);
-            ThrowSpellToEnemies(SpellsRow::NATURAL,     SpellsRow::SPELLS_ROW);
-        }
+        ThrowSpellToEnemies(SpellsRow::MOON,        SpellsRow::SPELLS_ROW);
+        ThrowSpellToEnemies(SpellsRow::NATURAL,     SpellsRow::SPELLS_ROW);
+        ThrowSpellToEnemies(SpellsRow::SILBO,       SpellsRow::SPELLS_ROW);
 
+        ThrowSpellToMyself(SpellsRow::ESCALOFRIO,       SpellsRow::SPELLS_ROW);
         ThrowSpellToMyself(SpellsCtrlRow::BARRICADA,    SpellsCtrlRow::SPELLS_CTRL_ROW);
         ThrowSpellToMyself(SpellsRow::VIGIA,            SpellsRow::SPELLS_ROW);
 

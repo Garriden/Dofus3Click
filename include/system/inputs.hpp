@@ -29,6 +29,13 @@ namespace inputs {
     void PressCtrlKey(int keyParam);
 
     /*
+    * Simulates a key pressing + Shift key pressing.
+    *
+    * in: keyParam, key desired to press, besides the Shift key.
+    */
+    void PressShiftKey(int keyParam);
+
+    /*
     * Simulates a key pressing, keeps it pressed.
     *
     * in: keyParam, key desired to press.
