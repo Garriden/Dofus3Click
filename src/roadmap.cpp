@@ -215,7 +215,8 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
             inputs::PressCtrlKey(map[ii].second);
         } else { // normal coordenate value
             if(map.size() == 1) { //Check if change map has only one coordenada.
-                inputs::Click(map[ii].first, map[ii].second);
+                inputs::ShiftClick(map[ii].first, map[ii].second); // To avoid clicking mobs.
+                //inputs::Click(map[ii].first, map[ii].second);
             } else if((ii < map.size() - 1) && (map[ii].first >= (RIGHT_X - ERROR_GET_COLOUR_QUITE) ||
                                                 map[ii].first <= (LEFT_X + ERROR_GET_COLOUR_QUITE)  ||
                                                 map[ii].second >= (DOWN_Y - ERROR_GET_COLOUR_QUITE) ||
@@ -242,11 +243,17 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
         if(!mapChanged) {
             int x = map[map.size()-1].first;
             int y = map[map.size()-1].second;
-            if(x < LEFT_X + ERROR_GET_COLOUR_QUITE) { // Could be stuck clicking on a menu window.
+            if(x <= LEFT_X + ERROR_GET_COLOUR_QUITE || x >= RIGHT_X - ERROR_GET_COLOUR_QUITE) { // Could be stuck clicking on a menu window.
                 y += retries * 30;
+            } else if(y >= DOWN_Y - ERROR_GET_COLOUR_QUITE || y <= UP_Y + ERROR_GET_COLOUR_QUITE) {
+                x -= retries * 40;
             }
 
-            inputs::ShiftClick(x, y);
+            if(retries < 3) {
+                inputs::ShiftClick(x, y);
+            } else {
+                inputs::Click(x, y);
+            }
         }
     }
 
@@ -261,7 +268,10 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
         Fight fight;
         int fightReturn = fight.Start();
 
-        if(E_KO == fightReturn) {
+        if(E_KO_MAP_NOT_CHANGED == fightReturn) {
+            File::LogFile(" NO! mapChanged... Clicking again...", true);
+            inputs::Click(map[map.size()-1].first, map[map.size()-1].second); // Change map.
+        } else if(E_KO == fightReturn) {
             File::LogFile("Fight LOST!", true);
             return E_KO;
         } else if(E_IM_A_GHOST == fightReturn) { // I'm a Ghost

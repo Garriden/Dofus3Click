@@ -632,6 +632,7 @@ bool check::IsEmptyResource()
 
 bool check::WaitMapToChange()
 {
+    //File::LogFile("WaitMapToChange.", true);
     int blackScreenFlag = false;
     for(int ii = 0; ii < 700; ++ii) {
         if(!blackScreenFlag) { // No black screen yet, keep trying until black screen detected.

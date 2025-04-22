@@ -123,7 +123,6 @@ int FightStrategy::AfterFight()
 
         // Start roadmap ghost.
         return E_IM_A_GHOST;
-
     } else if(check::AmIDefeated()) {
         return E_KO;
     } else if(check::AmILevelUp() || check::IsAttentionBox()) {
@@ -131,6 +130,10 @@ int FightStrategy::AfterFight()
         inputs::PressEscape();
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     }
+
+    //if(!check::WaitMapToChange()) {
+    //    return E_KO_MAP_NOT_CHANGED;
+    //}
 
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     inputs::PressEscape();

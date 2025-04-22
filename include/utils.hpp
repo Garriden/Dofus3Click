@@ -363,6 +363,22 @@
 #define I_AM_IN_BURGO_ZAAP_COLOR_GREEN_3                   (134)
 #define I_AM_IN_BURGO_ZAAP_COLOR_BLUE_3                    (101)
 
+#define I_AM_IN_SEPULTADOS_ZAAP_POS_X_1                    (966)
+#define I_AM_IN_SEPULTADOS_ZAAP_POS_Y_1                    (311)
+#define I_AM_IN_SEPULTADOS_ZAAP_COLOR_RED_1                (150)
+#define I_AM_IN_SEPULTADOS_ZAAP_COLOR_GREEN_1              (136)
+#define I_AM_IN_SEPULTADOS_ZAAP_COLOR_BLUE_1               (108)
+#define I_AM_IN_SEPULTADOS_ZAAP_POS_X_2                    (976)
+#define I_AM_IN_SEPULTADOS_ZAAP_POS_Y_2                    (338)
+#define I_AM_IN_SEPULTADOS_ZAAP_COLOR_RED_2                (83)
+#define I_AM_IN_SEPULTADOS_ZAAP_COLOR_GREEN_2              (87)
+#define I_AM_IN_SEPULTADOS_ZAAP_COLOR_BLUE_2               (68)
+#define I_AM_IN_SEPULTADOS_ZAAP_POS_X_3                    (1002)
+#define I_AM_IN_SEPULTADOS_ZAAP_POS_Y_3                    (315)
+#define I_AM_IN_SEPULTADOS_ZAAP_COLOR_RED_3                (94)
+#define I_AM_IN_SEPULTADOS_ZAAP_COLOR_GREEN_3              (117)
+#define I_AM_IN_SEPULTADOS_ZAAP_COLOR_BLUE_3               (86)
+
 #define I_AM_IN_GOLFO_ZAAP_POS_X_1                         (716)
 #define I_AM_IN_GOLFO_ZAAP_POS_Y_1                         (890)
 #define I_AM_IN_GOLFO_ZAAP_COLOR_RED_1                     (88)
@@ -619,5 +635,7 @@
 
 #define E_OK                                               (0)
 #define E_KO                                               (-1)
+
+#define E_KO_MAP_NOT_CHANGED                               (-30)
 #define E_NEED_TO_RESTART                                  (-10)
 #define E_IM_A_GHOST                                       (-11)

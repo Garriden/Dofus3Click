@@ -123,15 +123,15 @@ void menu::Wood()
                 {"../../Telemetry/Wood/Frigost/fromBurgoToAlamo.csv", "../../Telemetry/Wood/Frigost/Alamo1.csv"});
             roadmap.Start();
             break;
-        }/*
+        }
         case 25:
         {
             File::LogFile("[FRIGOST]         (Sepultados) . . . ", true);
-            Roadmap roadmap(Profession::WOOD, "sepultados", &zaap::CheckZaapSepultados, &zaap::CheckZaapSepultados,
+            Roadmap roadmap(Profession::WOOD, "sepultados", &zaap::CheckZaapSeputados, &zaap::CheckZaapSeputados,
                 {"", "../../Telemetry/Wood/Frigost/AlamoSepultado.csv"});
             roadmap.Start();
             break;
-        }*/
+        }
     }
 }
 
