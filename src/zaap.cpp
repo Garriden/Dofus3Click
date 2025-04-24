@@ -41,7 +41,8 @@ void zaap::ClickZaap(std::string zaapName)
     inputs::KeyboardWrite(zaapName);
     std::this_thread::sleep_for(std::chrono::seconds(1));
 
-    inputs::PressEnter();
+    //inputs::PressEnter();
+    inputs::Click(ZAAP_INTERFACE_TELEPORT_POS_X, ZAAP_INTERFACE_TELEPORT_POS_Y);
     std::this_thread::sleep_for(std::chrono::seconds(5));
 }
 

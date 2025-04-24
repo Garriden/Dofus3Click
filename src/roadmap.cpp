@@ -347,6 +347,8 @@ void Roadmap::ConvertResources()
     std::this_thread::sleep_for(std::chrono::seconds(1));
     inputs::PressEscape();
     std::this_thread::sleep_for(std::chrono::seconds(1));
+    inputs::PressEscape();
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 
 void Roadmap::GoToZaap()

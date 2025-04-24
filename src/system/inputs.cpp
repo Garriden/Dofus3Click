@@ -366,17 +366,23 @@ void inputs::ClickSwitchBottomMenu()
 void inputs::DebugPoints()
 {
     show::MenuDebugPoints();
-    while (true) {
-        if (GetAsyncKeyState(VK_LCONTROL)) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(500));
-            POINT cursorPos;
-            GetCursorPos(&cursorPos);
-            std::cout << "Mouse X = " << cursorPos.x << std::endl;
-            std::cout << "Mouse Y = " << cursorPos.y << std::endl;
-            COLORREF color = basicOperations::GetColor(cursorPos.x, cursorPos.y, true);
-        } else if(GetAsyncKeyState(VK_LSHIFT)) {
+    int x;
+    std::cin >> x;
+    while(true) {
+        if(x == 1) {
+            if(GetAsyncKeyState(VK_LCONTROL)) {
+                //std::cout << "Ctrl pressed" << std::endl;
+                std::this_thread::sleep_for(std::chrono::milliseconds(100));
+                POINT cursorPos;
+                GetCursorPos(&cursorPos);
+                std::cout << "Mouse X = " << cursorPos.x << std::endl;
+                std::cout << "Mouse Y = " << cursorPos.y << std::endl;
+                COLORREF color = basicOperations::GetColor(cursorPos.x, cursorPos.y, true);
+            }
+        } else if(x == 2) {
             RecordTelemetry();
         }
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
 }
 
@@ -469,7 +475,7 @@ void inputs::ClickPrivateMode()
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
     Click(PRIVATE_MODE_POS_X_2, PRIVATE_MODE_POS_Y_2);
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
-    Click(PRIVATE_MODE_POS_X_3, PRIVATE_MODE_POS_Y_3);
+    //Click(PRIVATE_MODE_POS_X_3, PRIVATE_MODE_POS_Y_3);
     std::this_thread::sleep_for(std::chrono::milliseconds(200));
 }
 

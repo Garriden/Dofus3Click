@@ -26,8 +26,8 @@ void show::MenuDebugPoints()
 {
     system("TITLE Debug points");
     std::cout << "===================================" << std::endl;
-    std::cout << "press CTRL  to get a point" << std::endl;
-    std::cout << "press SHIFT to record telemetry" << std::endl;
+    std::cout << "1: press CTRL  to get a point" << std::endl;
+    std::cout << "2: to record telemetry" << std::endl;
     std::cout << "  - Click to save the point" << std::endl;
     std::cout << "  - SPACE to change map (subvector)" << std::endl;
     std::cout << "  - ESC   to end the telemetry" << std::endl;

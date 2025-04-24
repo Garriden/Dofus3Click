@@ -69,6 +69,7 @@ void FightStrategy::PassTurn()
 
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
         if(check::IsFight()) { // if still my turn...
+            //File::LogFile("Passing turn...", true);
             inputs::PressSpace();
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
         }
