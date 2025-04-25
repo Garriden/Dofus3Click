@@ -469,6 +469,23 @@
 #define I_AM_IN_KOALAK_LAKE_COLOR_GREEN_3                  (78)
 #define I_AM_IN_KOALAK_LAKE_COLOR_BLUE_3                   (38)
 
+// -11, 1
+#define I_AM_IN_KOALAK_WOOD_POS_X_1                        (787)
+#define I_AM_IN_KOALAK_WOOD_POS_Y_1                        (318)
+#define I_AM_IN_KOALAK_WOOD_COLOR_RED_1                    (208)
+#define I_AM_IN_KOALAK_WOOD_COLOR_GREEN_1                  (178)
+#define I_AM_IN_KOALAK_WOOD_COLOR_BLUE_1                   (42)
+#define I_AM_IN_KOALAK_WOOD_POS_X_2                        (822)
+#define I_AM_IN_KOALAK_WOOD_POS_Y_2                        (292)
+#define I_AM_IN_KOALAK_WOOD_COLOR_RED_2                    (79)
+#define I_AM_IN_KOALAK_WOOD_COLOR_GREEN_2                  (98)
+#define I_AM_IN_KOALAK_WOOD_COLOR_BLUE_2                   (0)
+#define I_AM_IN_KOALAK_WOOD_POS_X_3                        (864)
+#define I_AM_IN_KOALAK_WOOD_POS_Y_3                        (272)
+#define I_AM_IN_KOALAK_WOOD_COLOR_RED_3                    (171)
+#define I_AM_IN_KOALAK_WOOD_COLOR_GREEN_3                  (184)
+#define I_AM_IN_KOALAK_WOOD_COLOR_BLUE_3                   (0)
+
 // -3, 9
 #define I_AM_IN_TIRITH_POS_X_1                             (1186)
 #define I_AM_IN_TIRITH_POS_Y_1                             (334)

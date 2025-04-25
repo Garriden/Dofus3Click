@@ -145,9 +145,10 @@ void Fight::ChangeSpellsMenu()
 void Fight::AfterFightSet()
 {
     std::this_thread::sleep_for(std::chrono::seconds(15));
-    inputs::Click(RIGHT_X - 20, UP_Y + 20); // random click.
+    inputs::PressCtrlKey(0); // Reset Ctrl key.
+    //inputs::Click(RIGHT_X - 20, UP_Y + 20); // random click.
 
-    std::this_thread::sleep_for(std::chrono::seconds(5));
+    std::this_thread::sleep_for(std::chrono::seconds(2));
     Fight::ChangeObjectsMenu();
     std::this_thread::sleep_for(std::chrono::seconds(2));
 

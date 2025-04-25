@@ -47,7 +47,7 @@ Roadmap::~Roadmap()
 int Roadmap::Start()
 {
     int step = RoadmapState::SET_PODS_SET;
-    if(_profession == Profession::LOWERING_PODS) {
+    if( Profession::LOWERING_PODS == _profession) {
         step = RoadmapState::CONVERT_RESOURCES;
     }
 
@@ -225,6 +225,9 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
                     File::LogFile("Careful, changeMap coordenate is not the last value!", true);
                     inputs::ShiftClick(map[ii].first, map[ii].second);
                     std::this_thread::sleep_for(std::chrono::seconds(20));
+            } else if(Profession::LOWERING_PODS == _profession || Profession::GHOST == _profession) {
+                std::this_thread::sleep_for(std::chrono::seconds(4));
+                inputs::Click(map[ii].first, map[ii].second);
             } else { // normal coordenada, stack clicks.
                 inputs::ShiftClick(map[ii].first, map[ii].second);
             }
@@ -341,14 +344,18 @@ void Roadmap::ConvertResources()
 
     while(!check::IsEmptyResource()) {
         inputs::DoubleClick(INVENTARY_CONVERT_RESOURCES_X_4, INVENTARY_CONVERT_RESOURCES_Y_4);
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::this_thread::sleep_for(std::chrono::seconds(2));
     }
 
     std::this_thread::sleep_for(std::chrono::seconds(1));
     inputs::PressEscape();
     std::this_thread::sleep_for(std::chrono::seconds(1));
     inputs::PressEscape();
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+    if(check::IsMenuPrincipalBox()) {
+        inputs::PressEscape();
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+    }
 }
 
 void Roadmap::GoToZaap()

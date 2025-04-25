@@ -110,9 +110,9 @@ void menu::Wood()
         case 10:
         {
             File::LogFile("[KOALAKS]      (ganaderos) . . . ", true);
-            Roadmap roadmap(Profession::WOOD, "ganaderos", &zaap::CheckZaapKoalak, &zaap::CheckZaapKoalak,
+            Roadmap roadmap(Profession::WOOD, "ganaderos", &checkRoadmap::CheckKoalaksWood, &zaap::CheckZaapKoalak,
                 {"../../Telemetry/Wood/fromBreedToWoodKoalak.csv", "../../Telemetry/Wood/koalak.csv", 
-                 "../../Telemetry/Wood/kaliptusMiddle.csv", "../../Telemetry/Wood/fromBreedToWoodKoalak.csv"});
+                 "../../Telemetry/Wood/kaliptusMiddle.csv"});
             roadmap.Start();
             break;
         }
