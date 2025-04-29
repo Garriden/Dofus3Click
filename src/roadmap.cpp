@@ -225,7 +225,9 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
                     File::LogFile("Careful, changeMap coordenate is not the last value!", true);
                     inputs::ShiftClick(map[ii].first, map[ii].second);
                     std::this_thread::sleep_for(std::chrono::seconds(20));
-            } else if(Profession::LOWERING_PODS == _profession || Profession::GHOST == _profession) {
+            } else if(Profession::LOWERING_PODS == _profession || Profession::GHOST == _profession ||
+                      Profession::TRAIN == _profession         || Profession::MISSIONS == _profession)
+            {
                 std::this_thread::sleep_for(std::chrono::seconds(4));
                 inputs::Click(map[ii].first, map[ii].second);
             } else { // normal coordenada, stack clicks.
@@ -260,7 +262,7 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
         }
     }
 
-    if(retries >= 10) {
+    if(retries >= 6) {
         File::LogFile("Stuck! So many retries for invalid action...", true);
         return E_KO;
     }
@@ -342,7 +344,8 @@ void Roadmap::ConvertResources()
     inputs::KeyboardWrite("saco");
     std::this_thread::sleep_for(std::chrono::seconds(1));
 
-    while(!check::IsEmptyResource()) {
+    int retires = 0;
+    while(!check::IsEmptyResource() && ++retires < 20) {
         inputs::DoubleClick(INVENTARY_CONVERT_RESOURCES_X_4, INVENTARY_CONVERT_RESOURCES_Y_4);
         std::this_thread::sleep_for(std::chrono::seconds(2));
     }
@@ -371,11 +374,20 @@ void Roadmap::GoToZaap()
 
     if(check::IsAttentionBox()) {
         inputs::PressEscape();
+        File::LogFile("I'm at message box", true);
         std::this_thread::sleep_for(std::chrono::seconds(2));
-        if(check::IsMenuPrincipalBox()) {
-            inputs::PressEscape();
-            std::this_thread::sleep_for(std::chrono::seconds(2));
-        }
+
+    }
+
+    if(zaap::CheckZaapInterface()) {
+        File::LogFile("I'm at Astrub zaap ZaapInterface ", true);
+        inputs::PressEscape();
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+    }
+
+    if(check::IsMenuPrincipalBox()) {
+        inputs::PressEscape();
+        std::this_thread::sleep_for(std::chrono::seconds(2));
     }
 
     if(zaap::CheckZaapAstrub() && _zaap == "astrub") {
@@ -387,13 +399,14 @@ void Roadmap::GoToZaap()
     } else { // not in Astrub ?
         for(int ii = 0; !zaap::CheckZaapAstrub() && ii < 20; ++ii) {
             if(zaap::CheckZaapInterface()) {
-                File::LogFile("I'm at Astrub zaap ZaapInterface ", true);
                 inputs::PressEscape();
                 break;
+            } else if(check::IsMenuPrincipalBox()) {
+                inputs::PressEscape();
+                std::this_thread::sleep_for(std::chrono::seconds(2));
             } else {
                 File::LogFile("Watch out! I'm not at Astrub zaap and I should be... ", true);
-            
-                std::this_thread::sleep_for(std::chrono::seconds(60));
+                std::this_thread::sleep_for(std::chrono::seconds(30));
             }
         }
         inputs::PressCtrlKey('8'); // Recall Poti.
