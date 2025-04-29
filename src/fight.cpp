@@ -54,6 +54,10 @@ int Fight::Start()
             int fightReturn = CallFightStrategy();
             if(E_OK == fightReturn) {
                 step = FightPreparationState::AFTER_FIGHT_SET;
+            } else if(E_KO_MAP_NOT_CHANGED == fightReturn) {
+                AfterFightSet();
+                return E_KO_MAP_NOT_CHANGED;
+                break;
             } else if(E_IM_A_GHOST == fightReturn) { // I'm a Ghost
                 step = FightPreparationState::RETURN_E_IM_A_GHOST;
             } else {
@@ -140,7 +144,11 @@ void Fight::ChangeSpellsMenu()
 
 void Fight::AfterFightSet()
 {
-    std::this_thread::sleep_for(std::chrono::seconds(10));
+    std::this_thread::sleep_for(std::chrono::seconds(15));
+    inputs::PressCtrlKey(0); // Reset Ctrl key.
+    //inputs::Click(RIGHT_X - 20, UP_Y + 20); // random click.
+
+    std::this_thread::sleep_for(std::chrono::seconds(2));
     Fight::ChangeObjectsMenu();
     std::this_thread::sleep_for(std::chrono::seconds(2));
 

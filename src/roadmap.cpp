@@ -47,7 +47,7 @@ Roadmap::~Roadmap()
 int Roadmap::Start()
 {
     int step = RoadmapState::SET_PODS_SET;
-    if(_profession == Profession::LOWERING_PODS) {
+    if( Profession::LOWERING_PODS == _profession) {
         step = RoadmapState::CONVERT_RESOURCES;
     }
 
@@ -178,17 +178,11 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
 {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-    int ruletNumber = 1;
     int x = 0;
     int y = 0;
 
     for(int ii = 0; ii < map.size(); ++ii) {
-        ruletNumber = basicOperations::RuletaInput(2, 3);
-
-        std::this_thread::sleep_for(std::chrono::milliseconds(ruletNumber * 100));
-        if(ii != 0) { // NOT already changed map.
-            std::this_thread::sleep_for(std::chrono::seconds(8));
-        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
         if(check::IsFight()) {
             Fight fight;
@@ -220,8 +214,25 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
         } else if(map[ii].first == INPUT_PATTERN_CTRL) {
             inputs::PressCtrlKey(map[ii].second);
         } else { // normal coordenate value
-            //inputs::ShiftClick(map[ii].first, map[ii].second);
-            inputs::Click(map[ii].first, map[ii].second);
+            if(map.size() == 1) { //Check if change map has only one coordenada.
+                inputs::ShiftClick(map[ii].first, map[ii].second); // To avoid clicking mobs.
+                //inputs::Click(map[ii].first, map[ii].second);
+            } else if((ii < map.size() - 1) && (map[ii].first >= (RIGHT_X - ERROR_GET_COLOUR_QUITE) ||
+                                                map[ii].first <= (LEFT_X + ERROR_GET_COLOUR_QUITE)  ||
+                                                map[ii].second >= (DOWN_Y - ERROR_GET_COLOUR_QUITE) ||
+                                                map[ii].second <= (UP_Y + ERROR_GET_COLOUR_QUITE)))
+            {
+                    File::LogFile("Careful, changeMap coordenate is not the last value!", true);
+                    inputs::ShiftClick(map[ii].first, map[ii].second);
+                    std::this_thread::sleep_for(std::chrono::seconds(20));
+            } else if(Profession::LOWERING_PODS == _profession || Profession::GHOST == _profession ||
+                      Profession::TRAIN == _profession         || Profession::MISSIONS == _profession)
+            {
+                std::this_thread::sleep_for(std::chrono::seconds(4));
+                inputs::Click(map[ii].first, map[ii].second);
+            } else { // normal coordenada, stack clicks.
+                inputs::ShiftClick(map[ii].first, map[ii].second);
+            }
         }
     }
 
@@ -232,31 +243,40 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
     // Wait for Black Screen
     bool mapChanged = false;
     int retries = 0;
-    while(!mapChanged && retries++ < 10) {
+    while(!mapChanged && !check::IsFight() && retries++ < 10) {
         mapChanged = check::WaitMapToChange();
         if(!mapChanged) {
             int x = map[map.size()-1].first;
             int y = map[map.size()-1].second;
-            if(x < LEFT_X + ERROR_GET_COLOUR_QUITE) { // Could be stuck clicking on a menu window.
+            if(x <= LEFT_X + ERROR_GET_COLOUR_QUITE || x >= RIGHT_X - ERROR_GET_COLOUR_QUITE) { // Could be stuck clicking on a menu window.
                 y += retries * 30;
+            } else if(y >= DOWN_Y - ERROR_GET_COLOUR_QUITE || y <= UP_Y + ERROR_GET_COLOUR_QUITE) {
+                x -= retries * 40;
             }
 
-            inputs::Click(x, y);
+            if(retries < 3) {
+                inputs::ShiftClick(x, y);
+            } else {
+                inputs::Click(x, y);
+            }
         }
     }
 
-    if(retries >= 10) {
+    if(retries >= 6) {
         File::LogFile("Stuck! So many retries for invalid action...", true);
         return E_KO;
     }
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
     if(check::IsFight()) {
         Fight fight;
         int fightReturn = fight.Start();
 
-        if(E_KO == fightReturn) {
+        if(E_KO_MAP_NOT_CHANGED == fightReturn) {
+            File::LogFile(" NO! mapChanged... Clicking again...", true);
+            inputs::Click(map[map.size()-1].first, map[map.size()-1].second); // Change map.
+        } else if(E_KO == fightReturn) {
             File::LogFile("Fight LOST!", true);
             return E_KO;
         } else if(E_IM_A_GHOST == fightReturn) { // I'm a Ghost
@@ -268,11 +288,11 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
         }
     }
 
-    if(!mapChanged) { // Invalid action, try again.
-        File::LogFile(" NO! mapChanged... Clicking again...", true);
-        inputs::Click(map[map.size()-1].first, map[map.size()-1].second + retries);
-        ++retries;
-    }
+    //if(!mapChanged) { // Invalid action, try again.
+    //    File::LogFile(" NO! mapChanged... Clicking again...", true);
+    //    inputs::Click(map[map.size()-1].first, map[map.size()-1].second + retries);
+    //    ++retries;
+    //}
 
     return E_OK;
 }
@@ -324,14 +344,21 @@ void Roadmap::ConvertResources()
     inputs::KeyboardWrite("saco");
     std::this_thread::sleep_for(std::chrono::seconds(1));
 
-    while(!check::IsEmptyResource()) {
+    int retires = 0;
+    while(!check::IsEmptyResource() && ++retires < 20) {
         inputs::DoubleClick(INVENTARY_CONVERT_RESOURCES_X_4, INVENTARY_CONVERT_RESOURCES_Y_4);
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::this_thread::sleep_for(std::chrono::seconds(2));
     }
 
     std::this_thread::sleep_for(std::chrono::seconds(1));
     inputs::PressEscape();
     std::this_thread::sleep_for(std::chrono::seconds(1));
+    inputs::PressEscape();
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+    if(check::IsMenuPrincipalBox()) {
+        inputs::PressEscape();
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+    }
 }
 
 void Roadmap::GoToZaap()
@@ -347,11 +374,20 @@ void Roadmap::GoToZaap()
 
     if(check::IsAttentionBox()) {
         inputs::PressEscape();
+        File::LogFile("I'm at message box", true);
         std::this_thread::sleep_for(std::chrono::seconds(2));
-        if(check::IsMenuPrincipalBox()) {
-            inputs::PressEscape();
-            std::this_thread::sleep_for(std::chrono::seconds(2));
-        }
+
+    }
+
+    if(zaap::CheckZaapInterface()) {
+        File::LogFile("I'm at Astrub zaap ZaapInterface ", true);
+        inputs::PressEscape();
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+    }
+
+    if(check::IsMenuPrincipalBox()) {
+        inputs::PressEscape();
+        std::this_thread::sleep_for(std::chrono::seconds(2));
     }
 
     if(zaap::CheckZaapAstrub() && _zaap == "astrub") {
@@ -363,13 +399,14 @@ void Roadmap::GoToZaap()
     } else { // not in Astrub ?
         for(int ii = 0; !zaap::CheckZaapAstrub() && ii < 20; ++ii) {
             if(zaap::CheckZaapInterface()) {
-                File::LogFile("I'm at Astrub zaap ZaapInterface ", true);
                 inputs::PressEscape();
                 break;
+            } else if(check::IsMenuPrincipalBox()) {
+                inputs::PressEscape();
+                std::this_thread::sleep_for(std::chrono::seconds(2));
             } else {
                 File::LogFile("Watch out! I'm not at Astrub zaap and I should be... ", true);
-            
-                std::this_thread::sleep_for(std::chrono::seconds(60));
+                std::this_thread::sleep_for(std::chrono::seconds(30));
             }
         }
         inputs::PressCtrlKey('8'); // Recall Poti.

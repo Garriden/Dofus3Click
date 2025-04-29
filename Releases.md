@@ -1,3 +1,7 @@
+# Release 1.2:
+ - Migrate to Dofus 3.1
+ - Roadmaps improved with ShiftClick.
+
 # Release 1.1:
  - All professions.
  - Train (Find enemies).

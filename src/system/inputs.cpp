@@ -126,6 +126,49 @@ void inputs::PressCtrlKey(int keyParam)
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
 }
 
+
+void inputs::PressShiftKey(int keyParam)
+{
+    SHORT key;
+    UINT mappedkey;
+    INPUT ip;
+
+    ip.ki.dwFlags = 0;
+    ip.type = INPUT_KEYBOARD;
+    ip.ki.wScan = 0;
+    ip.ki.time = 0;
+    ip.ki.dwExtraInfo = 0;
+
+    // Press the "Ctrl" key
+    ip.ki.wVk = VK_LSHIFT;
+    ip.ki.wScan = MapVirtualKey(VK_LSHIFT, 0);
+    ip.ki.dwFlags = 0; // 0 for key press
+    ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
+    SendInput(1, &ip, sizeof(INPUT));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+    // Press the key
+    key = VkKeyScan(keyParam);
+    mappedkey = MapVirtualKey(LOBYTE(key), 0);
+    ip.ki.dwFlags = KEYEVENTF_SCANCODE;
+    ip.ki.wScan = mappedkey;
+    SendInput(1, &ip, sizeof(INPUT));
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
+
+    // Release the key
+    ip.ki.dwFlags = KEYEVENTF_SCANCODE | KEYEVENTF_KEYUP;
+    SendInput(1, &ip, sizeof(INPUT));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+    // Release the "Ctrl" key
+    ip.ki.wVk = VK_LSHIFT;
+    ip.ki.wScan = MapVirtualKey(VK_LSHIFT, 0);
+    ip.ki.dwFlags = KEYEVENTF_KEYUP;
+    ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
+    SendInput(1, &ip, sizeof(INPUT));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+}
+
 void inputs::PressSpace()
 {
     INPUT space = { 0 };
@@ -206,8 +249,6 @@ void inputs::Click(int x, int y)
 
 void inputs::ShiftClick(int x, int y)
 {
-    File::LogFile("ShiftClick", true);
-
     SHORT key;
     UINT mappedkey;
     INPUT ip;
@@ -218,12 +259,12 @@ void inputs::ShiftClick(int x, int y)
     ip.ki.dwExtraInfo = 0;
 
     // Press the "Shift" key
-    ip.ki.wVk = VK_SHIFT;
-    ip.ki.wScan = MapVirtualKey(VK_SHIFT, 0);
+    ip.ki.wVk = VK_LSHIFT;
+    ip.ki.wScan = MapVirtualKey(VK_LSHIFT, 0);
     ip.ki.dwFlags = 0; // 0 for key press
-    ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
+    //ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
     SendInput(1, &ip, sizeof(INPUT));
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
 
     // Mouse.
     //Click(x,y);
@@ -242,15 +283,16 @@ void inputs::ShiftClick(int x, int y)
     std::this_thread::sleep_for(std::chrono::milliseconds(50));
     ip.ki.dwFlags = MOUSEEVENTF_LEFTUP;
     mouse_event(ip.ki.dwFlags, x, y, 0, 0);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
     // Release the "Shift" key
     ip.type = INPUT_KEYBOARD;
-    ip.ki.wVk = VK_SHIFT;
-    ip.ki.wScan = MapVirtualKey(VK_SHIFT, 0);
+    ip.ki.wVk = VK_LSHIFT;
+    ip.ki.wScan = MapVirtualKey(VK_LSHIFT, 0);
     ip.ki.dwFlags = KEYEVENTF_KEYUP;
-    ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
+    //ip.ki.dwFlags |= KEYEVENTF_EXTENDEDKEY;
     SendInput(1, &ip, sizeof(INPUT));
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    std::this_thread::sleep_for(std::chrono::milliseconds(10));
 }
 
 void inputs::DoubleClick(int x, int y)
@@ -324,17 +366,23 @@ void inputs::ClickSwitchBottomMenu()
 void inputs::DebugPoints()
 {
     show::MenuDebugPoints();
-    while (true) {
-        if (GetAsyncKeyState(VK_LCONTROL)) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(500));
-            POINT cursorPos;
-            GetCursorPos(&cursorPos);
-            std::cout << "Mouse X = " << cursorPos.x << std::endl;
-            std::cout << "Mouse Y = " << cursorPos.y << std::endl;
-            COLORREF color = basicOperations::GetColor(cursorPos.x, cursorPos.y, true);
-        } else if(GetAsyncKeyState(VK_LSHIFT)) {
+    int x;
+    std::cin >> x;
+    while(true) {
+        if(x == 1) {
+            if(GetAsyncKeyState(VK_LCONTROL)) {
+                //std::cout << "Ctrl pressed" << std::endl;
+                std::this_thread::sleep_for(std::chrono::milliseconds(100));
+                POINT cursorPos;
+                GetCursorPos(&cursorPos);
+                std::cout << "Mouse X = " << cursorPos.x << std::endl;
+                std::cout << "Mouse Y = " << cursorPos.y << std::endl;
+                COLORREF color = basicOperations::GetColor(cursorPos.x, cursorPos.y, true);
+            }
+        } else if(x == 2) {
             RecordTelemetry();
         }
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
 }
 
@@ -427,7 +475,7 @@ void inputs::ClickPrivateMode()
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
     Click(PRIVATE_MODE_POS_X_2, PRIVATE_MODE_POS_Y_2);
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
-    Click(PRIVATE_MODE_POS_X_3, PRIVATE_MODE_POS_Y_3);
+    //Click(PRIVATE_MODE_POS_X_3, PRIVATE_MODE_POS_Y_3);
     std::this_thread::sleep_for(std::chrono::milliseconds(200));
 }
 

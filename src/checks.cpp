@@ -2,45 +2,38 @@
 
 bool check::IsFight()
 {
+    //File::LogFile("Check fight(turn)", true);
     bool ret = false;
 
-    COLORREF color1  = basicOperations::GetColor(IT_IS_MY_TURN_POS_X_3, IT_IS_MY_TURN_POS_Y_3, false);
-    COLORREF color2  = basicOperations::GetColor(IT_IS_MY_TURN_POS_X_4, IT_IS_MY_TURN_POS_Y_4, false);
-    COLORREF color11 = basicOperations::GetColor(IT_IS_MY_TURN_BOTTOM_POS_X_1, IT_IS_MY_TURN_BOTTOM_POS_Y_1, false);
-    COLORREF color22 = basicOperations::GetColor(IT_IS_MY_TURN_BOTTOM_POS_X_2, IT_IS_MY_TURN_BOTTOM_POS_Y_2, false);
+    COLORREF color1  = basicOperations::GetColor(IT_IS_MY_TURN_POS_X_2, IT_IS_MY_TURN_POS_Y_2, false);
+    COLORREF color2  = basicOperations::GetColor(IT_IS_MY_TURN_POS_X_3, IT_IS_MY_TURN_POS_Y_3, false);
+    COLORREF color3  = basicOperations::GetColor(IT_IS_MY_TURN_POS_X_4, IT_IS_MY_TURN_POS_Y_4, false);
 
-    // It is the desiRED  color 
-    if ((int(GetRValue(color1)) < IT_IS_MY_TURN_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetRValue(color1)) > IT_IS_MY_TURN_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color1)) < IT_IS_MY_TURN_COLOR_GREEN  + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color1)) > IT_IS_MY_TURN_COLOR_GREEN  - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color1)) < IT_IS_MY_TURN_COLOR_BLUE   + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color1)) > IT_IS_MY_TURN_COLOR_BLUE   - ERROR_GET_COLOUR_SMALL)
-        &&
-        (int(GetRValue(color2)) < IT_IS_MY_TURN_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetRValue(color2)) > IT_IS_MY_TURN_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color2)) < IT_IS_MY_TURN_COLOR_GREEN  + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color2)) > IT_IS_MY_TURN_COLOR_GREEN  - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color2)) < IT_IS_MY_TURN_COLOR_BLUE   + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color2)) > IT_IS_MY_TURN_COLOR_BLUE   - ERROR_GET_COLOUR_SMALL) 
-        ||
-        (int(GetRValue(color11)) < IT_IS_MY_TURN_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetRValue(color11)) > IT_IS_MY_TURN_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color11)) < IT_IS_MY_TURN_COLOR_GREEN  + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color11)) > IT_IS_MY_TURN_COLOR_GREEN  - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color11)) < IT_IS_MY_TURN_COLOR_BLUE   + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color11)) > IT_IS_MY_TURN_COLOR_BLUE   - ERROR_GET_COLOUR_SMALL)
-        &&
-        (int(GetRValue(color22)) < IT_IS_MY_TURN_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetRValue(color22)) > IT_IS_MY_TURN_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color22)) < IT_IS_MY_TURN_COLOR_GREEN  + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color22)) > IT_IS_MY_TURN_COLOR_GREEN  - ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color22)) < IT_IS_MY_TURN_COLOR_BLUE   + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color22)) > IT_IS_MY_TURN_COLOR_BLUE   - ERROR_GET_COLOUR_SMALL) 
+    if((int(GetRValue(color1)) < IT_IS_MY_TURN_GREEN_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
+       (int(GetRValue(color1)) > IT_IS_MY_TURN_GREEN_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
+       (int(GetGValue(color1)) < IT_IS_MY_TURN_GREEN_COLOR_GREEN  + ERROR_GET_COLOUR_SMALL) &&
+       (int(GetGValue(color1)) > IT_IS_MY_TURN_GREEN_COLOR_GREEN  - ERROR_GET_COLOUR_SMALL) &&
+       (int(GetBValue(color1)) < IT_IS_MY_TURN_GREEN_COLOR_BLUE   + ERROR_GET_COLOUR_SMALL) &&
+       (int(GetBValue(color1)) > IT_IS_MY_TURN_GREEN_COLOR_BLUE   - ERROR_GET_COLOUR_SMALL)
+       &&
+       (int(GetRValue(color2)) < IT_IS_MY_TURN_GREEN_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
+       (int(GetRValue(color2)) > IT_IS_MY_TURN_GREEN_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
+       (int(GetGValue(color2)) < IT_IS_MY_TURN_GREEN_COLOR_GREEN  + ERROR_GET_COLOUR_SMALL) &&
+       (int(GetGValue(color2)) > IT_IS_MY_TURN_GREEN_COLOR_GREEN  - ERROR_GET_COLOUR_SMALL) &&
+       (int(GetBValue(color2)) < IT_IS_MY_TURN_GREEN_COLOR_BLUE   + ERROR_GET_COLOUR_SMALL) &&
+       (int(GetBValue(color2)) > IT_IS_MY_TURN_GREEN_COLOR_BLUE   - ERROR_GET_COLOUR_SMALL) 
+       &&
+       (int(GetRValue(color3)) < IT_IS_MY_TURN_GREEN_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
+       (int(GetRValue(color3)) > IT_IS_MY_TURN_GREEN_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
+       (int(GetGValue(color3)) < IT_IS_MY_TURN_GREEN_COLOR_GREEN  + ERROR_GET_COLOUR_SMALL) &&
+       (int(GetGValue(color3)) > IT_IS_MY_TURN_GREEN_COLOR_GREEN  - ERROR_GET_COLOUR_SMALL) &&
+       (int(GetBValue(color3)) < IT_IS_MY_TURN_GREEN_COLOR_BLUE   + ERROR_GET_COLOUR_SMALL) &&
+       (int(GetBValue(color3)) > IT_IS_MY_TURN_GREEN_COLOR_BLUE   - ERROR_GET_COLOUR_SMALL)  
+       || IsAlmostTheEndOfTheTurn()
         )
     {
         ret = true;
-        //File::LogFile("It is my turn!", true);
+        //File::LogFile("It is my turn! Fight!", true);
     }
 
     return ret;
@@ -50,60 +43,26 @@ bool check::IsAlmostTheEndOfTheTurn()
 {
     bool ret = false;
 
-    //COLORREF color1 = basicOperations::GetColor(IT_IS_MY_TURN_POS_X_4, IT_IS_MY_TURN_POS_Y_4, false);
-    //COLORREF color2 = basicOperations::GetColor(IT_IS_MY_TURN_POS_X_3, IT_IS_MY_TURN_POS_Y_3, false);
     COLORREF colorFarest = basicOperations::GetColor(IT_IS_MY_TURN_POS_X_1, IT_IS_MY_TURN_POS_Y_1, false);
 
-    //bool isColor1Orange = false;
-    //bool isColor2Orange = false;
-    //bool isColor3Orange = false;
-    bool iscolorFarestOrange = false;
-/*
-    // color1 == organe, colorbase != orange. 
-    if((int(GetRValue(color1)) < IT_IS_MY_TURN_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
-       (int(GetRValue(color1)) > IT_IS_MY_TURN_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
-       (int(GetGValue(color1)) < IT_IS_MY_TURN_COLOR_GREEN  + ERROR_GET_COLOUR_SMALL) &&
-       (int(GetGValue(color1)) > IT_IS_MY_TURN_COLOR_GREEN  - ERROR_GET_COLOUR_SMALL) &&
-       (int(GetBValue(color1)) < IT_IS_MY_TURN_COLOR_BLUE   + ERROR_GET_COLOUR_SMALL) &&
-       (int(GetBValue(color1)) > IT_IS_MY_TURN_COLOR_BLUE   - ERROR_GET_COLOUR_SMALL)) 
+    if((int(GetRValue(colorFarest)) < IT_IS_MY_TURN_RED_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
+       (int(GetRValue(colorFarest)) > IT_IS_MY_TURN_RED_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
+       (int(GetGValue(colorFarest)) < IT_IS_MY_TURN_RED_COLOR_GREEN  + ERROR_GET_COLOUR_QUITE) &&
+       (int(GetGValue(colorFarest)) > IT_IS_MY_TURN_RED_COLOR_GREEN  - ERROR_GET_COLOUR_QUITE) &&
+       (int(GetBValue(colorFarest)) < IT_IS_MY_TURN_RED_COLOR_BLUE   + ERROR_GET_COLOUR_QUITE) &&
+       (int(GetBValue(colorFarest)) > IT_IS_MY_TURN_RED_COLOR_BLUE   - ERROR_GET_COLOUR_QUITE)
+        ||
+       (int(GetRValue(colorFarest)) < IT_IS_MY_TURN_YELLOW_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
+       (int(GetRValue(colorFarest)) > IT_IS_MY_TURN_YELLOW_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
+       (int(GetGValue(colorFarest)) < IT_IS_MY_TURN_YELLOW_COLOR_GREEN  + ERROR_GET_COLOUR_QUITE) &&
+       (int(GetGValue(colorFarest)) > IT_IS_MY_TURN_YELLOW_COLOR_GREEN  - ERROR_GET_COLOUR_QUITE) &&
+       (int(GetBValue(colorFarest)) < IT_IS_MY_TURN_YELLOW_COLOR_BLUE   + ERROR_GET_COLOUR_QUITE) &&
+       (int(GetBValue(colorFarest)) > IT_IS_MY_TURN_YELLOW_COLOR_BLUE   - ERROR_GET_COLOUR_QUITE) )
        {
-            isColor1Orange = true;
-            //File::LogFile("Color1 is Orange", true);
-       } else {
-            //File::LogFile("Color1 is NOT Orange", true);
-        }
-
-    if((int(GetRValue(color2)) < IT_IS_MY_TURN_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
-       (int(GetRValue(color2)) > IT_IS_MY_TURN_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
-       (int(GetGValue(color2)) < IT_IS_MY_TURN_COLOR_GREEN  + ERROR_GET_COLOUR_SMALL) &&
-       (int(GetGValue(color2)) > IT_IS_MY_TURN_COLOR_GREEN  - ERROR_GET_COLOUR_SMALL) &&
-       (int(GetBValue(color2)) < IT_IS_MY_TURN_COLOR_BLUE   + ERROR_GET_COLOUR_SMALL) &&
-       (int(GetBValue(color2)) > IT_IS_MY_TURN_COLOR_BLUE   - ERROR_GET_COLOUR_SMALL)) 
-       {
-            isColor2Orange = true;
-            //File::LogFile("Color2 is Orange", true);
-       } else {
-            //File::LogFile("Color2 is NOT Orange", true);
+           ret = true;
+           //File::LogFile("Almost end of turn!", true);
        }
-    */
-    if((int(GetRValue(colorFarest)) < IT_IS_MY_TURN_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
-       (int(GetRValue(colorFarest)) > IT_IS_MY_TURN_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
-       (int(GetGValue(colorFarest)) < IT_IS_MY_TURN_COLOR_GREEN  + ERROR_GET_COLOUR_SMALL) &&
-       (int(GetGValue(colorFarest)) > IT_IS_MY_TURN_COLOR_GREEN  - ERROR_GET_COLOUR_SMALL) &&
-       (int(GetBValue(colorFarest)) < IT_IS_MY_TURN_COLOR_BLUE   + ERROR_GET_COLOUR_SMALL) &&
-       (int(GetBValue(colorFarest)) > IT_IS_MY_TURN_COLOR_BLUE   - ERROR_GET_COLOUR_SMALL) )
-        {
-            iscolorFarestOrange = true;
-            //File::LogFile("colorFarest is Orange", true);
-        } else {
-            //File::LogFile("colorFarest is NOT Orange", true);
-        }
 
-    if(IsFight() && !iscolorFarestOrange) {
-        ret = true;
-        //File::LogFile("It is almost end of a turn!", true);
-    }
-    //File::LogFile("---", true);
     return ret;
 }
 
@@ -114,20 +73,20 @@ bool check::AmIFull()
     COLORREF color  = basicOperations::GetColor(CHECK_PODS_POS_X_1, CHECK_PODS_POS_Y_1, false);
     COLORREF color2 = basicOperations::GetColor(CHECK_PODS_POS_X_2, CHECK_PODS_POS_Y_2, false);
 
-    if ((int(GetRValue(color)) < CHECK_PODS_COLOR_RED   + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetRValue(color)) > CHECK_PODS_COLOR_RED   - ERROR_GET_COLOUR_QUITE) &&
-        (int(GetGValue(color)) < CHECK_PODS_COLOR_GREEN + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetGValue(color)) > CHECK_PODS_COLOR_GREEN - ERROR_GET_COLOUR_QUITE) &&
-        (int(GetBValue(color)) < CHECK_PODS_COLOR_BLUE  + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetBValue(color)) > CHECK_PODS_COLOR_BLUE  - ERROR_GET_COLOUR_QUITE)
-        ||
-        (int(GetRValue(color2)) < CHECK_PODS_COLOR_RED   + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetRValue(color2)) > CHECK_PODS_COLOR_RED   - ERROR_GET_COLOUR_QUITE) &&
-        (int(GetGValue(color2)) < CHECK_PODS_COLOR_GREEN + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetGValue(color2)) > CHECK_PODS_COLOR_GREEN - ERROR_GET_COLOUR_QUITE) &&
-        (int(GetBValue(color2)) < CHECK_PODS_COLOR_BLUE  + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetBValue(color2)) > CHECK_PODS_COLOR_BLUE  - ERROR_GET_COLOUR_QUITE)
-        )
+    if((int(GetRValue(color)) < CHECK_PODS_COLOR_RED   + ERROR_GET_COLOUR_QUITE) &&
+       (int(GetRValue(color)) > CHECK_PODS_COLOR_RED   - ERROR_GET_COLOUR_QUITE) &&
+       (int(GetGValue(color)) < CHECK_PODS_COLOR_GREEN + ERROR_GET_COLOUR_QUITE) &&
+       (int(GetGValue(color)) > CHECK_PODS_COLOR_GREEN - ERROR_GET_COLOUR_QUITE) &&
+       (int(GetBValue(color)) < CHECK_PODS_COLOR_BLUE  + ERROR_GET_COLOUR_QUITE) &&
+       (int(GetBValue(color)) > CHECK_PODS_COLOR_BLUE  - ERROR_GET_COLOUR_QUITE)
+       ||
+       (int(GetRValue(color2)) < CHECK_PODS_COLOR_RED   + ERROR_GET_COLOUR_QUITE) &&
+       (int(GetRValue(color2)) > CHECK_PODS_COLOR_RED   - ERROR_GET_COLOUR_QUITE) &&
+       (int(GetGValue(color2)) < CHECK_PODS_COLOR_GREEN + ERROR_GET_COLOUR_QUITE) &&
+       (int(GetGValue(color2)) > CHECK_PODS_COLOR_GREEN - ERROR_GET_COLOUR_QUITE) &&
+       (int(GetBValue(color2)) < CHECK_PODS_COLOR_BLUE  + ERROR_GET_COLOUR_QUITE) &&
+       (int(GetBValue(color2)) > CHECK_PODS_COLOR_BLUE  - ERROR_GET_COLOUR_QUITE)
+       )
     {
         File::LogFile("I am full! (pods)", true);
         ret = true;
@@ -424,10 +383,9 @@ bool check::IsBlack(int x, int y)
 
     COLORREF color = basicOperations::GetColor(x, y, false);
 
-    // It is the desiRED   color
-    if ((int(GetRValue(color)) < BLACK_COLOR_RED   + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetGValue(color)) < BLACK_COLOR_GREEN + ERROR_GET_COLOUR_SMALL) &&
-        (int(GetBValue(color)) < BLACK_COLOR_BLUE  + ERROR_GET_COLOUR_SMALL))
+    if ((int(GetRValue(color)) < BLACK_COLOR_RED   + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color)) < BLACK_COLOR_GREEN + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color)) < BLACK_COLOR_BLUE  + ERROR_GET_COLOUR_QUITE))
     {
         //File::LogFile("IS BLACK!", false);
         ret = true;
@@ -440,10 +398,6 @@ bool check::IsBlackScreen()
 {
     return  check::IsBlack(BLACK_SCREEN_POS_X_1, BLACK_SCREEN_POS_Y_1) &&
             check::IsBlack(BLACK_SCREEN_POS_X_2, BLACK_SCREEN_POS_Y_2) &&
-            check::IsBlack(BLACK_SCREEN_POS_X_3, BLACK_SCREEN_POS_Y_3) &&
-            check::IsBlack(BLACK_SCREEN_POS_X_3, BLACK_SCREEN_POS_Y_4) &&
-            check::IsBlack(BLACK_SCREEN_POS_X_3, BLACK_SCREEN_POS_Y_5) &&
-            check::IsBlack(BLACK_SCREEN_POS_X_3, BLACK_SCREEN_POS_Y_6) &&
             check::IsBlack(BLACK_SCREEN_POS_X_3, BLACK_SCREEN_POS_Y_7) &&
             check::IsBlack(BLACK_SCREEN_POS_X_4, BLACK_SCREEN_POS_Y_8);
 }
@@ -637,8 +591,9 @@ bool check::IsEmptyResource()
 
 bool check::WaitMapToChange()
 {
+    //File::LogFile("WaitMapToChange.", true);
     int blackScreenFlag = false;
-    for(int ii = 0; ii < 500; ++ii) {
+    for(int ii = 0; ii < 1000; ++ii) {
         if(!blackScreenFlag) { // No black screen yet, keep trying until black screen detected.
             if(IsBlackScreen()) {
                 blackScreenFlag = true;
@@ -650,7 +605,7 @@ bool check::WaitMapToChange()
                 return true;
             }
         }
-        std::this_thread::sleep_for(std::chrono::milliseconds(5));
+        std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }
     return false;
 }
