@@ -1,3 +1,11 @@
+# How to execute
+
+/build/bin/Dofus3Click.exe
+Right Click -> Open as an administrator.
+Would appear an external terminal. Game support.
+
+
+
 # Dofus3Click
 
 A bot

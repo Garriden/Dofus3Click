@@ -183,6 +183,9 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
 
     for(int ii = 0; ii < map.size(); ++ii) {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        if(ii != 0) { // NOT already changed map.
+            std::this_thread::sleep_for(std::chrono::seconds(8));
+        }
 
         if(check::IsFight()) {
             Fight fight;
@@ -215,8 +218,10 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
             inputs::PressCtrlKey(map[ii].second);
         } else { // normal coordenate value
             if(map.size() == 1) { //Check if change map has only one coordenada.
-                inputs::ShiftClick(map[ii].first, map[ii].second); // To avoid clicking mobs.
-                //inputs::Click(map[ii].first, map[ii].second);
+                //inputs::ShiftClick(map[ii].first, map[ii].second); // To avoid clicking mobs.
+                inputs::Click(map[ii].first, map[ii].second);
+            } else if(ii == map.size() - 1) { // The last coordenate (Change map).
+                inputs::Click(map[ii].first, map[ii].second);
             } else if((ii < map.size() - 1) && (map[ii].first >= (RIGHT_X - ERROR_GET_COLOUR_QUITE) ||
                                                 map[ii].first <= (LEFT_X + ERROR_GET_COLOUR_QUITE)  ||
                                                 map[ii].second >= (DOWN_Y - ERROR_GET_COLOUR_QUITE) ||
@@ -254,7 +259,7 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
                 x -= retries * 40;
             }
 
-            if(retries < 3) {
+            if(retries < 2) {
                 inputs::ShiftClick(x, y);
             } else {
                 inputs::Click(x, y);
@@ -262,7 +267,7 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
         }
     }
 
-    if(retries >= 6) {
+    if(retries > 6) {
         File::LogFile("Stuck! So many retries for invalid action...", true);
         return E_KO;
     }
@@ -395,7 +400,7 @@ void Roadmap::GoToZaap()
     } else if(zaap::CheckZaapAstrub() && _zaap == "") {
         return;
     } else if(zaap::CheckZaapAstrub() && _zaap != "astrub") {
-        zaap::ClickZaap(_zaap);
+        zaap::TeleportZaap(_zaap);
     } else { // not in Astrub ?
         for(int ii = 0; !zaap::CheckZaapAstrub() && ii < 20; ++ii) {
             if(zaap::CheckZaapInterface()) {
@@ -411,7 +416,7 @@ void Roadmap::GoToZaap()
         }
         inputs::PressCtrlKey('8'); // Recall Poti.
         std::this_thread::sleep_for(std::chrono::seconds(10));
-        zaap::ClickZaap(_zaap);
+        zaap::TeleportZaap(_zaap);
     }
 
     std::this_thread::sleep_for(std::chrono::seconds(1));
