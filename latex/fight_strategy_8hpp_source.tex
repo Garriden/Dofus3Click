@@ -1,0 +1,46 @@
+\doxysection{fight\+Strategy.\+hpp}
+\hypertarget{fight_strategy_8hpp_source}{}\label{fight_strategy_8hpp_source}\index{include/fightStrategy/fightStrategy.hpp@{include/fightStrategy/fightStrategy.hpp}}
+\mbox{\hyperlink{fight_strategy_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_fight_strategy_a58dc59ec5d6f8125c9762f1481bbe98f}{FightStrategy}}\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_fight_strategy_a58dc59ec5d6f8125c9762f1481bbe98f}{FightStrategy}}();}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_fight_strategy_a879b5a0c7a53eac3ad52270d39503c0f}{\string~FightStrategy}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_fight_strategy_aba77213f7c11cbc18794702b150a51b5}{Execute}}()\ =\ 0;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_fight_strategy_a9530cb75990fbc8310fbe68c05ac868e}{PrintStrategyName}}()\ =\ 0;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_fight_strategy_a3475c46d40c3f69ddf0c9ec90e73935e}{\_turn}};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_fight_strategy_a90feb64000766e6e732d61dac6290578}{\_myXPositionInMenuFight}};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ std::vector<int>\ \mbox{\hyperlink{class_fight_strategy_ad2088678478ec955972bb35a09c2543b}{\_enemiesXPositionInMenuFight}};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_fight_strategy_a0d5950a6608a635ed0800b4a16d63c01}{DefendMyself}}();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_fight_strategy_ab40739269dfea2237fa4f53605d5d08d}{ThrowSpell}}(\textcolor{keywordtype}{int}\ spell,\ \textcolor{keywordtype}{int}\ who,\ \textcolor{keywordtype}{int}\ upperRow);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_fight_strategy_afa40ad6dbdd402895c33662acdcf5d1c}{ThrowSpellToEnemies}}(\textcolor{keywordtype}{int}\ spell,\ \textcolor{keywordtype}{int}\ upperRow);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_fight_strategy_afe4d463967ee50a6f50d8ae6f3738a05}{ThrowSpellToMyself}}(\textcolor{keywordtype}{int}\ spell,\ \textcolor{keywordtype}{int}\ upperRow);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_fight_strategy_a4c842dc11ab88b93ecbf5a9f14fbacf5}{RandomMovePj}}(\textcolor{keywordtype}{int}\ moves);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_fight_strategy_a69ffc6552898c99ce2b48fd9971578c6}{PassTurn}}();}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_fight_strategy_aa3a149f46f9446625936cabaaa3fa389}{StartFight}}();}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_fight_strategy_a20c6c9197419d569a8adc5501a69c29c}{WaitForMyTurn}}();}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_fight_strategy_a43795a19b20e300002860bae66272149}{AfterFight}}();}
+\DoxyCodeLine{00105\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,70 @@
+\doxysection{include/basic\+Operations.hpp File Reference}
+\hypertarget{basic_operations_8hpp}{}\label{basic_operations_8hpp}\index{include/basicOperations.hpp@{include/basicOperations.hpp}}
+
+
+Low-\/level screen and input helper functions used across the project.  
+
+
+{\ttfamily \#include "{}utils.\+hpp"{}}\newline
+{\ttfamily \#include $<$windows.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{basic_operations_8hpp_a229d83cd82f9361f9c60d0c83b34e8cd}{basic\+Operations\+::\+Ruleta\+Input}} (int min, int max)
+\begin{DoxyCompactList}\small\item\em Generate a pseudo-\/random integer in the inclusive range \mbox{[}min, max\mbox{]}. \end{DoxyCompactList}\item 
+COLORREF \mbox{\hyperlink{basic_operations_8hpp_af6827a65e2327d6a7ae78af3eeb26d40}{basic\+Operations\+::\+Get\+Color}} (int x, int y, bool print\+RGB)
+\begin{DoxyCompactList}\small\item\em Read the color of the pixel at screen coordinates (x, y). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Low-\/level screen and input helper functions used across the project. 
+
+Contains helpers for reading screen pixels and generating random values. 
+
+\label{doc-func-members}
+\Hypertarget{basic_operations_8hpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{basic_operations_8hpp_af6827a65e2327d6a7ae78af3eeb26d40}\index{basicOperations.hpp@{basicOperations.hpp}!GetColor@{GetColor}}
+\index{GetColor@{GetColor}!basicOperations.hpp@{basicOperations.hpp}}
+\doxysubsubsection{\texorpdfstring{GetColor()}{GetColor()}}
+{\footnotesize\ttfamily \label{basic_operations_8hpp_af6827a65e2327d6a7ae78af3eeb26d40} 
+COLORREF basic\+Operations\+::\+Get\+Color (\begin{DoxyParamCaption}\item[{int}]{x}{, }\item[{int}]{y}{, }\item[{bool}]{print\+RGB}{}\end{DoxyParamCaption})}
+
+
+
+Read the color of the pixel at screen coordinates (x, y). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & X coordinate in screen space. \\
+\hline
+{\em y} & Y coordinate in screen space. \\
+\hline
+{\em print\+RGB} & If true, print the RGB value to stdout for debugging. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+COLORREF The RGB color of the pixel packed in a COLORREF. 
+\end{DoxyReturn}
+\Hypertarget{basic_operations_8hpp_a229d83cd82f9361f9c60d0c83b34e8cd}\index{basicOperations.hpp@{basicOperations.hpp}!RuletaInput@{RuletaInput}}
+\index{RuletaInput@{RuletaInput}!basicOperations.hpp@{basicOperations.hpp}}
+\doxysubsubsection{\texorpdfstring{RuletaInput()}{RuletaInput()}}
+{\footnotesize\ttfamily \label{basic_operations_8hpp_a229d83cd82f9361f9c60d0c83b34e8cd} 
+int basic\+Operations\+::\+Ruleta\+Input (\begin{DoxyParamCaption}\item[{int}]{min}{, }\item[{int}]{max}{}\end{DoxyParamCaption})}
+
+
+
+Generate a pseudo-\/random integer in the inclusive range \mbox{[}min, max\mbox{]}. 
+
+This helper is used by menus and non-\/critical codepaths that need a bounded random value.
+
+
+\begin{DoxyParams}{Parameters}
+{\em min} & Minimum value in the range. \\
+\hline
+{\em max} & Maximum value in the range. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Random value between min and max inclusive. 
+\end{DoxyReturn}

@@ -220,7 +220,7 @@ bool inputs::ClickOnExe()
     int y = DOFUS_EXE_POS_Y_1;
     COLORREF color;
 
-    for(int ii = 0; ii < 500; ++ii) {
+    for(int ii = 0; ii < 1000; ++ii) {
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
         color = basicOperations::GetColor(x+ii, y, false);
 

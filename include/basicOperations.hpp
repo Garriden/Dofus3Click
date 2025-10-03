@@ -1,28 +1,38 @@
+#pragma once
 #include "utils.hpp"
 //#include "Config.h"
 //#include "Logs.h"
 #include <windows.h>
 
-namespace basicOperations {
-    /*
-    * Prints the screen size in pixels (resolution: 1920/1080).
-    */
-    //void GetScreenSize();
+/**
+ * @file basicOperations.hpp
+ * @brief Low-level screen and input helper functions used across the project.
+ *
+ * Contains helpers for reading screen pixels and generating random values.
+ */
 
-    /*
-    * Returns a random number between x and y.
-    * 
-    * in: min, minimum range number.
-    * in: max, maximum range number.
-    */
+namespace basicOperations {
+
+    /**
+     * @brief Generate a pseudo-random integer in the inclusive range [min, max].
+     *
+     * This helper is used by menus and non-critical codepaths that need a
+     * bounded random value.
+     *
+     * @param min Minimum value in the range.
+     * @param max Maximum value in the range.
+     * @return int Random value between min and max inclusive.
+     */
     int RuletaInput(int min, int max);
 
-    /*
-    * Returns the pixel color RGB(red, green, blue) of x and y positions (coordenates).
-    *
-    * in: x, pixel in cordenate x.
-    * in: y, pixel in cordenate y.
-    * in: printRGB, if ture, it prints the RGB color in the console for debug.
-    */
+    /**
+     * @brief Read the color of the pixel at screen coordinates (x, y).
+     *
+     * @param x X coordinate in screen space.
+     * @param y Y coordinate in screen space.
+     * @param printRGB If true, print the RGB value to stdout for debugging.
+     * @return COLORREF The RGB color of the pixel packed in a COLORREF.
+     */
     COLORREF GetColor(int x, int y, bool printRGB);
+
 }

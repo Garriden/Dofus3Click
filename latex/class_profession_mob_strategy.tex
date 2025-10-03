@@ -1,0 +1,95 @@
+\doxysection{Profession\+Mob\+Strategy Class Reference}
+\hypertarget{class_profession_mob_strategy}{}\label{class_profession_mob_strategy}\index{ProfessionMobStrategy@{ProfessionMobStrategy}}
+Inheritance diagram for Profession\+Mob\+Strategy\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_profession_mob_strategy}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_profession_mob_strategy_a175dac951fbfd6c44afc69188fe3e9c1}{Print\+Strategy\+Name}} () override
+\begin{DoxyCompactList}\small\item\em Print this strategy\textquotesingle{}s name for debugging/logging. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_profession_mob_strategy_a8d47792f3a86b0ee34b11ae06570bd86}{Execute}} () override
+\begin{DoxyCompactList}\small\item\em Execute the profession mob strategy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_fight_strategy}{Fight\+Strategy}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Fight\+Strategy} ()
+\begin{DoxyCompactList}\small\item\em Construct a base \doxylink{class_fight_strategy}{Fight\+Strategy}. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Fight\+Strategy} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for polymorphic cleanup. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_fight_strategy}{Fight\+Strategy}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries Defend\+Myself} ()
+\begin{DoxyCompactList}\small\item\em Defensive action to protect the player (implementation detail). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_fight_strategy_ab40739269dfea2237fa4f53605d5d08d}{Throw\+Spell}} (int spell, int who, int upper\+Row)
+\begin{DoxyCompactList}\small\item\em Generic helper to cast a spell. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_fight_strategy_afa40ad6dbdd402895c33662acdcf5d1c}{Throw\+Spell\+To\+Enemies}} (int spell, int upper\+Row)
+\begin{DoxyCompactList}\small\item\em Convenience helper to throw a spell on enemies. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_fight_strategy_afe4d463967ee50a6f50d8ae6f3738a05}{Throw\+Spell\+To\+Myself}} (int spell, int upper\+Row)
+\begin{DoxyCompactList}\small\item\em Convenience helper to throw a spell on self. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_fight_strategy_a4c842dc11ab88b93ecbf5a9f14fbacf5}{Random\+Move\+Pj}} (int moves)
+\begin{DoxyCompactList}\small\item\em Perform randomized small movements for the player to end a turn. \end{DoxyCompactList}\item 
+void {\bfseries Pass\+Turn} ()
+\begin{DoxyCompactList}\small\item\em Pass the current turn. \end{DoxyCompactList}\item 
+void {\bfseries Start\+Fight} ()
+\begin{DoxyCompactList}\small\item\em Start fight internal flow (helper). \end{DoxyCompactList}\item 
+void {\bfseries Wait\+For\+My\+Turn} ()
+\begin{DoxyCompactList}\small\item\em Wait until it\textquotesingle{}s the player\textquotesingle{}s turn. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_fight_strategy_a43795a19b20e300002860bae66272149}{After\+Fight}} ()
+\begin{DoxyCompactList}\small\item\em Called after fight to perform common cleanup and return status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_fight_strategy}{Fight\+Strategy}}}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries \+\_\+turn}
+\begin{DoxyCompactList}\small\item\em Current turn number (strategy-\/specific usage). \end{DoxyCompactList}\item 
+int {\bfseries \+\_\+my\+XPosition\+In\+Menu\+Fight}
+\begin{DoxyCompactList}\small\item\em X position of the player in the fight menu UI. \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ {\bfseries \+\_\+enemies\+XPosition\+In\+Menu\+Fight}
+\begin{DoxyCompactList}\small\item\em X positions of enemies in the fight menu UI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_profession_mob_strategy_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_profession_mob_strategy_a8d47792f3a86b0ee34b11ae06570bd86}\index{ProfessionMobStrategy@{ProfessionMobStrategy}!Execute@{Execute}}
+\index{Execute@{Execute}!ProfessionMobStrategy@{ProfessionMobStrategy}}
+\doxysubsubsection{\texorpdfstring{Execute()}{Execute()}}
+{\footnotesize\ttfamily \label{class_profession_mob_strategy_a8d47792f3a86b0ee34b11ae06570bd86} 
+int Profession\+Mob\+Strategy\+::\+Execute (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Execute the profession mob strategy. 
+
+\begin{DoxyReturn}{Returns}
+int Status code (E\+\_\+\+OK on success). 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_fight_strategy_aba77213f7c11cbc18794702b150a51b5}{Fight\+Strategy}}.
+
+\Hypertarget{class_profession_mob_strategy_a175dac951fbfd6c44afc69188fe3e9c1}\index{ProfessionMobStrategy@{ProfessionMobStrategy}!PrintStrategyName@{PrintStrategyName}}
+\index{PrintStrategyName@{PrintStrategyName}!ProfessionMobStrategy@{ProfessionMobStrategy}}
+\doxysubsubsection{\texorpdfstring{PrintStrategyName()}{PrintStrategyName()}}
+{\footnotesize\ttfamily \label{class_profession_mob_strategy_a175dac951fbfd6c44afc69188fe3e9c1} 
+void Profession\+Mob\+Strategy\+::\+Print\+Strategy\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Print this strategy\textquotesingle{}s name for debugging/logging. 
+
+
+
+Implements \mbox{\hyperlink{class_fight_strategy_a9530cb75990fbc8310fbe68c05ac868e}{Fight\+Strategy}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/fight\+Strategy/\mbox{\hyperlink{profession_mob_strategy_8hpp}{profession\+Mob\+Strategy.\+hpp}}\item 
+src/fight\+Strategy/profession\+Mob\+Strategy.\+cpp\end{DoxyCompactItemize}

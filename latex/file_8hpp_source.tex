@@ -1,0 +1,30 @@
+\doxysection{file.\+hpp}
+\hypertarget{file_8hpp_source}{}\label{file_8hpp_source}\index{include/system/file.hpp@{include/system/file.hpp}}
+\mbox{\hyperlink{file_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ INPUT\_PATTERN\_CHARACTER\ \ \ \ \ \ \ \ \ \ \ \ \ (696969)}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ INPUT\_PATTERN\_ESC\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (696942)}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ INPUT\_PATTERN\_CTRL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (696924)}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ INPUT\_PATTERN\_AVPAG\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (696930)}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ INPUT\_PATTERN\_AVPAG\_UP\ \ \ \ \ \ \ \ \ \ \ \ \ \ (696931)}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ INPUT\_PATTERN\_AVPAG\_DOWN\ \ \ \ \ \ \ \ \ \ \ \ (696932)}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{namespace\ }File\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ std::string\ \mbox{\hyperlink{file_8hpp_a6c2843974a6099d9dba445224ab9ea03}{ReadFile}}(\textcolor{keyword}{const}\ std::string\ \&filePath);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{file_8hpp_a27601c747cffa530129b55add88888a3}{WriteFile}}(\textcolor{keyword}{const}\ std::string\ \&dataToWrite,\ \textcolor{keyword}{const}\ std::string\ \&filePath);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{file_8hpp_a331a7dd6edf0691e7021c1edefc84b35}{DeleteLocalFile}}(\textcolor{keyword}{const}\ std::string\ \&filePath);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{file_8hpp_aa0c9d06fe74a94039a7c6dfa13a88fc9}{LogFile}}(std::string\ message,\ \textcolor{keywordtype}{bool}\ date);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00052\ \ \ \ \ std::vector<std::vector<std::pair<int,\ int>\ >\ >\ \mbox{\hyperlink{file_8hpp_a9f750b63a1f49fd08b87e9fa1db40907}{ReadFileAndBuildMap}}(\textcolor{keyword}{const}\ std::string\ \&filePath);}
+\DoxyCodeLine{00053\ \};}
+
+\end{DoxyCode}

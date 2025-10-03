@@ -35,7 +35,7 @@
 // SCREEN POSITIONS
 ///////////////////////////////////////////////////////////
 
-#define DOFUS_EXE_POS_X_1                                  (130)
+#define DOFUS_EXE_POS_X_1                                  (100)
 #define DOFUS_EXE_POS_Y_1                                  (1064)
 #define DOFUS_EXE_POS_COLOR_RED_1                          (241)
 #define DOFUS_EXE_POS_COLOR_GREEN_1                        (247)
@@ -657,7 +657,7 @@
 ///////////////////////////////////
 // RETURN ERRORS
 ///////////////////////////////////
-
+// Error and return codes used across the project.
 #define E_OK                                               (0)
 #define E_KO                                               (-1)
 

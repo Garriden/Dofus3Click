@@ -1,0 +1,71 @@
+\doxysection{roadmap.\+hpp}
+\hypertarget{roadmap_8hpp_source}{}\label{roadmap_8hpp_source}\index{include/roadmap.hpp@{include/roadmap.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{enum}\ Profession\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ WOOD\ \ \ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{00008\ \ \ \ \ FARMER\ \ \ \ \ \ \ \ =\ 1,}
+\DoxyCodeLine{00009\ \ \ \ \ MINERAL\ \ \ \ \ \ \ =\ 2,}
+\DoxyCodeLine{00010\ \ \ \ \ ALCHEMIST\ \ \ \ \ =\ 3,}
+\DoxyCodeLine{00011\ \ \ \ \ FISHER\ \ \ \ \ \ \ \ =\ 4,}
+\DoxyCodeLine{00012\ \ \ \ \ LOWERING\_PODS\ =\ 5,}
+\DoxyCodeLine{00013\ \ \ \ \ TRAIN\ \ \ \ \ \ \ \ \ =\ 6,}
+\DoxyCodeLine{00014\ \ \ \ \ GHOST\ \ \ \ \ \ \ \ \ =\ 7,}
+\DoxyCodeLine{00015\ \ \ \ \ MISSIONS\ \ \ \ \ \ =\ 8}
+\DoxyCodeLine{00016\ \};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_roadmap_af9bcba98a986fd2d755b7833a32224c6}{Roadmap}}\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_roadmap_af9bcba98a986fd2d755b7833a32224c6}{Roadmap}}();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_roadmap_af9bcba98a986fd2d755b7833a32224c6}{Roadmap}}(Profession\ profession,\ std::string\ zaap,\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ std::function<\textcolor{keywordtype}{bool}()>\ callbackCheckInitialMap,\ std::function<\textcolor{keywordtype}{bool}()>\ callbackCheckInitialZaap,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ roadmapFiles);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_roadmap_a98766b3af0317071fe9714a7c0f29853}{\string~Roadmap}}();}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_roadmap_ad61ae1b51691f2f3e37142fee3f9bcd0}{Start}}();}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ Profession\ \_profession;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ std::string\ \_zaap;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ std::function<bool()>\ \_callbackCheckInitialMap;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ std::function<bool()>\ \_callbackCheckInitialZaap;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ std::vector<std::string>\ \_roadmapFiles;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_roadmap_a0e433247cb888497a8863b44b96c48bd}{RoadmapState}}\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ SET\_PODS\_SET\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ CONVERT\_RESOURCES\ \ \ \ \ \ \ \ \ \ \ =\ 1,}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ SET\_PRIVATE\_MODE\ \ \ \ \ \ \ \ \ \ \ \ =\ 2,}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ CHECK\_INITIAL\_POSITION\ \ \ \ \ \ =\ 3,}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ CHECK\_ZAAP\_POSITION\ \ \ \ \ \ \ \ \ =\ 4,}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ GO\_TO\_ZAAP\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 5,}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ GO\_TO\_INITIAL\_MAP\ \ \ \ \ \ \ \ \ \ \ =\ 6,}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ EXECUTE\_ROADMAP\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 7,}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ TRAIN\_MODE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 8,}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ END\_ROADMAP\_OK\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 9}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_roadmap_a7ee239a25bf811da95acf8b434e31023}{ExecuteRoadMap}}(std::string\ name);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_roadmap_aad9ecbe7cafd47cd6f45e7698cb2513f}{ClickIdentities}}(\textcolor{keyword}{const}\ std::vector<std::pair<int,\ int>\ >\ map);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_roadmap_a35700c139f5776ba2bea32d645d447f3}{ChangeObjectsMenu}}();}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_roadmap_aca79db11e4d2aac931d910906e2b49ca}{ChangeSpellsMenu}}();}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_roadmap_ad6d6f0e1e9084ff755059ed9e277a2a8}{SetPodsSet}}();}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_roadmap_a57c82fd70476fac4d0d3a89cf4389ca3}{ConvertResources}}();}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_roadmap_a5a4d2bdb991cc82e3f64586c13bb6e96}{GoToZaap}}();}
+\DoxyCodeLine{00102\ \};}
+
+\end{DoxyCode}

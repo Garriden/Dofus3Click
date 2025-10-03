@@ -1,0 +1,96 @@
+\doxysection{include/checks.hpp File Reference}
+\hypertarget{checks_8hpp}{}\label{checks_8hpp}\index{include/checks.hpp@{include/checks.hpp}}
+
+
+Collection of screen-\/state checks used to infer game UI state.  
+
+
+{\ttfamily \#include "{}utils.\+hpp"{}}\newline
+{\ttfamily \#include "{}basic\+Operations.\+hpp"{}}\newline
+{\ttfamily \#include "{}system/file.\+hpp"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{checks_8hpp_a1151981a681218ba9b5cb647908adf18}\label{checks_8hpp_a1151981a681218ba9b5cb647908adf18} 
+bool {\bfseries check\+::\+Is\+Fight} ()
+\begin{DoxyCompactList}\small\item\em True if the player is currently in a fight UI. (or if it is my turn). \end{DoxyCompactList}\item 
+\Hypertarget{checks_8hpp_a70078c206ded4322aa6e3508d0787d43}\label{checks_8hpp_a70078c206ded4322aa6e3508d0787d43} 
+bool {\bfseries check\+::\+Is\+Almost\+The\+End\+Of\+The\+Turn} ()
+\begin{DoxyCompactList}\small\item\em True if the player\textquotesingle{}s turn is almost finished (turn bar near end). \end{DoxyCompactList}\item 
+\Hypertarget{checks_8hpp_a0ea65366053b50a5e7b36d0a15ef014f}\label{checks_8hpp_a0ea65366053b50a5e7b36d0a15ef014f} 
+bool {\bfseries check\+::\+Am\+IFull} ()
+\begin{DoxyCompactList}\small\item\em True if the PODS (inventory weight) bar is (almost) full. \end{DoxyCompactList}\item 
+\Hypertarget{checks_8hpp_abe1059caf0a8e6f4f912f5bdbd9003b4}\label{checks_8hpp_abe1059caf0a8e6f4f912f5bdbd9003b4} 
+bool {\bfseries check\+::\+Have\+IHealth} ()
+\begin{DoxyCompactList}\small\item\em True when the player\textquotesingle{}s health is (almost) full. \end{DoxyCompactList}\item 
+\Hypertarget{checks_8hpp_afee27ff39f515476f703d8e45fdde4bf}\label{checks_8hpp_afee27ff39f515476f703d8e45fdde4bf} 
+bool {\bfseries check\+::\+Is\+Private\+Mode} ()
+\begin{DoxyCompactList}\small\item\em True if chat is in private mode (red/green indicator visible). \end{DoxyCompactList}\item 
+\Hypertarget{checks_8hpp_a38534c84e917f68c32ac2f04128d4dae}\label{checks_8hpp_a38534c84e917f68c32ac2f04128d4dae} 
+bool {\bfseries check\+::\+Is\+Recall\+Poti} ()
+\begin{DoxyCompactList}\small\item\em True when the recall potion icon (ctrl+8 position) is present. \end{DoxyCompactList}\item 
+\Hypertarget{checks_8hpp_a54ae4ad9813b90df6665342862bd1e32}\label{checks_8hpp_a54ae4ad9813b90df6665342862bd1e32} 
+bool {\bfseries check\+::\+Is\+Attention\+Box} ()
+\begin{DoxyCompactList}\small\item\em True when the attention dialog/window is visible. \end{DoxyCompactList}\item 
+\Hypertarget{checks_8hpp_a65dde06df0907288fe15dbd4e010c55d}\label{checks_8hpp_a65dde06df0907288fe15dbd4e010c55d} 
+bool {\bfseries check\+::\+Is\+Menu\+Principal\+Box} ()
+\begin{DoxyCompactList}\small\item\em True when the main menu (Esc) dialog is visible. \end{DoxyCompactList}\item 
+\Hypertarget{checks_8hpp_afd5b7678e2aea4305a09a1ca51015210}\label{checks_8hpp_afd5b7678e2aea4305a09a1ca51015210} 
+bool {\bfseries check\+::\+Am\+IDefeated} ()
+\begin{DoxyCompactList}\small\item\em True if the post-\/fight defeat window is visible. \end{DoxyCompactList}\item 
+\Hypertarget{checks_8hpp_a0acb9b1fb228da6cb7fa1127dcbb773f}\label{checks_8hpp_a0acb9b1fb228da6cb7fa1127dcbb773f} 
+bool {\bfseries check\+::\+Is\+Fenix\+Box} ()
+\begin{DoxyCompactList}\small\item\em True if the post-\/fight fenix/energy dialog is shown. \end{DoxyCompactList}\item 
+\Hypertarget{checks_8hpp_adb0ac55376666abbe597f896a735dacd}\label{checks_8hpp_adb0ac55376666abbe597f896a735dacd} 
+bool {\bfseries check\+::\+IWon\+The\+Fight} ()
+\begin{DoxyCompactList}\small\item\em True if the victory window is visible (player won the fight). \end{DoxyCompactList}\item 
+\Hypertarget{checks_8hpp_a91d41d0696440b382fb16233351a8985}\label{checks_8hpp_a91d41d0696440b382fb16233351a8985} 
+bool {\bfseries check\+::\+Is\+Fight\+Finished} ()
+\begin{DoxyCompactList}\small\item\em True if the fight has finished (won or lost). \end{DoxyCompactList}\item 
+\Hypertarget{checks_8hpp_accb0bb4f12544351446d9c5cb533ccb8}\label{checks_8hpp_accb0bb4f12544351446d9c5cb533ccb8} 
+bool {\bfseries check\+::\+Is\+Black\+Screen} ()
+\begin{DoxyCompactList}\small\item\em True if the screen is currently black (transition state). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{checks_8hpp_a5195edd13ce48629003e891ff30334cd}{check\+::\+Is\+Black}} (int x, int y)
+\begin{DoxyCompactList}\small\item\em Check whether the pixel at (x,y) is black within tolerances. \end{DoxyCompactList}\item 
+\Hypertarget{checks_8hpp_aa4a7f8440fb3ab2f40dd0a7cede97178}\label{checks_8hpp_aa4a7f8440fb3ab2f40dd0a7cede97178} 
+bool {\bfseries check\+::\+Am\+ILevel\+Up} ()
+\begin{DoxyCompactList}\small\item\em True if a level up dialog is visible. \end{DoxyCompactList}\item 
+\Hypertarget{checks_8hpp_a36d5f88d61da21ce1d11e0ca481889a8}\label{checks_8hpp_a36d5f88d61da21ce1d11e0ca481889a8} 
+bool {\bfseries check\+::\+Is\+Spells\+Menu} ()
+\begin{DoxyCompactList}\small\item\em True if the bottom menu currently shows spells (not objects). \end{DoxyCompactList}\item 
+\Hypertarget{checks_8hpp_a79e10128f004085120303d0eb3443c11}\label{checks_8hpp_a79e10128f004085120303d0eb3443c11} 
+bool {\bfseries check\+::\+Is\+Empty\+Resource} ()
+\begin{DoxyCompactList}\small\item\em True if the first inventory slot is empty. \end{DoxyCompactList}\item 
+\Hypertarget{checks_8hpp_a236f0f2e838412f3cd4e40bc0b9b2294}\label{checks_8hpp_a236f0f2e838412f3cd4e40bc0b9b2294} 
+bool {\bfseries check\+::\+Wait\+Map\+To\+Change} ()
+\begin{DoxyCompactList}\small\item\em Wait for a short period watching for the black screen transition that indicates a map change. Returns true if transition observed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Collection of screen-\/state checks used to infer game UI state. 
+
+Each function inspects one or more screen pixels and returns a boolean describing whether a particular UI box or state is visible. 
+
+\label{doc-func-members}
+\Hypertarget{checks_8hpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{checks_8hpp_a5195edd13ce48629003e891ff30334cd}\index{checks.hpp@{checks.hpp}!IsBlack@{IsBlack}}
+\index{IsBlack@{IsBlack}!checks.hpp@{checks.hpp}}
+\doxysubsubsection{\texorpdfstring{IsBlack()}{IsBlack()}}
+{\footnotesize\ttfamily \label{checks_8hpp_a5195edd13ce48629003e891ff30334cd} 
+bool check\+::\+Is\+Black (\begin{DoxyParamCaption}\item[{int}]{x}{, }\item[{int}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Check whether the pixel at (x,y) is black within tolerances. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & X coordinate. \\
+\hline
+{\em y} & Y coordinate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool True if pixel is considered black. 
+\end{DoxyReturn}

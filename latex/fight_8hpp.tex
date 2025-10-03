@@ -1,0 +1,20 @@
+\doxysection{include/fight.hpp File Reference}
+\hypertarget{fight_8hpp}{}\label{fight_8hpp}\index{include/fight.hpp@{include/fight.hpp}}
+
+
+High-\/level \doxylink{class_fight}{Fight} control class used to prepare and execute fights.  
+
+
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include "{}fight\+Strategy/fight\+Strategy.\+hpp"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_fight}{Fight}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+High-\/level \doxylink{class_fight}{Fight} control class used to prepare and execute fights. 
+
+The \doxylink{class_fight}{Fight} class orchestrates pre-\/fight preparation (setting menus, spells and objects), runs a provided \doxylink{class_fight_strategy}{Fight\+Strategy} implementation and performs post-\/fight actions (healing, sitting, etc.). It owns the currently active strategy via a unique\+\_\+ptr so strategies can be swapped at runtime. 

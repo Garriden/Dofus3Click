@@ -1,0 +1,650 @@
+\doxysection{utils.\+hpp}
+\hypertarget{utils_8hpp_source}{}\label{utils_8hpp_source}\index{include/utils.hpp@{include/utils.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <windows.h>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <TlHelp32.h>}\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ LIMIT\_CELL\_Y\_MIN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (80)}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ LIMIT\_CELL\_Y\_MAX\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (850)}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ LIMIT\_CELL\_X\_MIN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (405)}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ LIMIT\_CELL\_X\_MAX\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1470)}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ RIGHT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0)}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ DOWN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1)}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ LEFT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (2)}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ UP\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (3)}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ UP\_X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (800)}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ UP\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1300)}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ UP\_Y\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (30)}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ DOWN\_X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (989)}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ DOWN\_Y\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (908)}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ LEFT\_X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (346)}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ LEFT\_Y\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (531)}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ RIGHT\_X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1575)}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ RIGHT\_Y\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (511)}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ SCREEN\ POSITIONS}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ DOFUS\_EXE\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (130)}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ DOFUS\_EXE\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1064)}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ DOFUS\_EXE\_POS\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (241)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ DOFUS\_EXE\_POS\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (247)}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ DOFUS\_EXE\_POS\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (120)}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ DOFUS\_EXE\_POS\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (222)}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ DOFUS\_EXE\_POS\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (255)}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ DOFUS\_EXE\_POS\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (123)}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ BLACK\_SCREEN\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (850)}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ BLACK\_SCREEN\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (850)}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ BLACK\_SCREEN\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1200)}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ BLACK\_SCREEN\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (350)}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ BLACK\_SCREEN\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (700)}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ BLACK\_SCREEN\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (700)}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ BLACK\_SCREEN\_POS\_X\_4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1200)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ BLACK\_SCREEN\_POS\_Y\_4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (725)}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ BLACK\_SCREEN\_POS\_X\_5\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (800)}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ BLACK\_SCREEN\_POS\_Y\_5\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (500)}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ BLACK\_SCREEN\_POS\_X\_6\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1000)}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ BLACK\_SCREEN\_POS\_Y\_6\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (400)}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ BLACK\_SCREEN\_POS\_X\_7\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1100)}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ BLACK\_SCREEN\_POS\_Y\_7\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (550)}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ BLACK\_SCREEN\_POS\_X\_8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1200)}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ BLACK\_SCREEN\_POS\_Y\_8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (560)}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ BOTTOM\ MENU}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ IS\_ORANGE\_CAC\_WEAPON\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1129)}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ IS\_ORANGE\_CAC\_WEAPON\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1003)}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ IS\_ORANGE\_CAC\_WEAPON\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1127)}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ IS\_ORANGE\_CAC\_WEAPON\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1013)}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ IS\_ORANGE\_CAC\_WEAPON\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1158)}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ IS\_ORANGE\_CAC\_WEAPON\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1031)}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ IS\_ORANGE\_CAC\_WEAPON\_COLOR\_RED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (252)\ }\textcolor{comment}{//exact}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ IS\_ORANGE\_CAC\_WEAPON\_COLOR\_GREEN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (140)\ }\textcolor{comment}{//\ 128-\/150}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ IS\_ORANGE\_CAC\_WEAPON\_COLOR\_BLUE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (60)\ \ }\textcolor{comment}{//\ 46\ -\/\ 68}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ IS\_SIT\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (733)}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ IS\_SIT\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1008)}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ IS\_SIT\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (105)}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ IS\_SIT\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (66)}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ IS\_SIT\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (41)}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ IS\_SIT\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (727)}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ IS\_SIT\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1012)}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ IS\_SIT\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (180)}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ IS\_SIT\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (114)}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ IS\_SIT\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (69)}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ SWITCH\_BOTTOM\_MENU\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1217)}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ SWITCH\_BOTTOM\_MENU\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (997)}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00093\ \textcolor{comment}{//\ COLOR}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ BLACK\_COLOR\_RED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0)}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ BLACK\_COLOR\_GREEN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0)}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#define\ BLACK\_COLOR\_BLUE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0)}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00102\ \textcolor{comment}{//\ FIGHT}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#define\ IT\_IS\_MY\_TURN\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1273)\ }\textcolor{comment}{//\ almost\ finished}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ IT\_IS\_MY\_TURN\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (950)}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#define\ IT\_IS\_MY\_TURN\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1314)}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#define\ IT\_IS\_MY\_TURN\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (949)}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ IT\_IS\_MY\_TURN\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1308)}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#define\ IT\_IS\_MY\_TURN\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (950)}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#define\ IT\_IS\_MY\_TURN\_POS\_X\_4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1296)}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ IT\_IS\_MY\_TURN\_POS\_Y\_4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (950)}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#define\ IT\_IS\_MY\_TURN\_GREEN\_COLOR\_RED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (173)}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#define\ IT\_IS\_MY\_TURN\_GREEN\_COLOR\_GREEN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (255)}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#define\ IT\_IS\_MY\_TURN\_GREEN\_COLOR\_BLUE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (69)}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#define\ IT\_IS\_MY\_TURN\_YELLOW\_COLOR\_RED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (255)}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#define\ IT\_IS\_MY\_TURN\_YELLOW\_COLOR\_GREEN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (211)}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#define\ IT\_IS\_MY\_TURN\_YELLOW\_COLOR\_BLUE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (54)}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#define\ IT\_IS\_MY\_TURN\_RED\_COLOR\_RED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (255)}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#define\ IT\_IS\_MY\_TURN\_RED\_COLOR\_GREEN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (130)}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#define\ IT\_IS\_MY\_TURN\_RED\_COLOR\_BLUE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (84)}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#define\ ACCEPT\_RETO\_POS\_X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (186)}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#define\ ACCEPT\_RETO\_POS\_Y\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (363)}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#define\ FIGTH\_MENU\_FRIEND\_POS\_X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (750)\ }\textcolor{comment}{//\ Depending\ of\ the\ enemies\ on\ a\ fight}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#define\ FIGTH\_MENU\_FRIEND\_POS\_Y\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (59)}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#define\ FIGTH\_MENU\_FRIEND\_COLOR\_RED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (62)}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#define\ FIGTH\_MENU\_FRIEND\_COLOR\_GREEN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (102)}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#define\ FIGTH\_MENU\_FRIEND\_COLOR\_BLUE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (131)}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#define\ FIGTH\_MENU\_FRIEND\_TURN\_COLOR\_RED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (129)}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#define\ FIGTH\_MENU\_FRIEND\_TURN\_COLOR\_GREEN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (155)}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#define\ FIGTH\_MENU\_FRIEND\_TURN\_COLOR\_BLUE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (174)}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#define\ FIGTH\_MENU\_ENEMY\_COLOR\_RED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (117)}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#define\ FIGTH\_MENU\_ENEMY\_COLOR\_GREEN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (80)}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#define\ FIGTH\_MENU\_ENEMY\_COLOR\_BLUE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (84)}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#define\ FIGHT\_X\_LIMIT\_MIN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (600)}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#define\ FIGHT\_X\_LIMIT\_MAX\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1300)}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#define\ FIGHT\_Y\_LIMIT\_MIN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (225)}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#define\ FIGHT\_Y\_LIMIT\_MAX\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (725)}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00147\ \textcolor{comment}{//\ AFTER\ FIGHT}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#define\ I\_WON\_THE\_FIGHT\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1038)}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#define\ I\_WON\_THE\_FIGHT\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (491)}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#define\ I\_WON\_THE\_FIGHT\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (206)}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#define\ I\_WON\_THE\_FIGHT\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (147)}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#define\ I\_WON\_THE\_FIGHT\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (22)}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\#define\ I\_WON\_THE\_FIGHT\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (880)}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#define\ I\_WON\_THE\_FIGHT\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (494)}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#define\ I\_WON\_THE\_FIGHT\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (214)}}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#define\ I\_WON\_THE\_FIGHT\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (163)}}
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\#define\ I\_WON\_THE\_FIGHT\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (17)}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#define\ I\_WON\_THE\_FIGHT\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1048)}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#define\ I\_WON\_THE\_FIGHT\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (495)}}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\#define\ I\_WON\_THE\_FIGHT\_COLOR\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (210)}}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#define\ I\_WON\_THE\_FIGHT\_COLOR\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (157)}}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#define\ I\_WON\_THE\_FIGHT\_COLOR\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (16)}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\#define\ I\_LOST\_THE\_FIGHT\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1039)}}
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\#define\ I\_LOST\_THE\_FIGHT\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (501)}}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#define\ I\_LOST\_THE\_FIGHT\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (159)}}
+\DoxyCodeLine{00169\ \textcolor{preprocessor}{\#define\ I\_LOST\_THE\_FIGHT\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (72)}}
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\#define\ I\_LOST\_THE\_FIGHT\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (66)}}
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\#define\ I\_LOST\_THE\_FIGHT\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (879)}}
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#define\ I\_LOST\_THE\_FIGHT\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (505)}}
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\#define\ I\_LOST\_THE\_FIGHT\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (165)}}
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#define\ I\_LOST\_THE\_FIGHT\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (81)}}
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\#define\ I\_LOST\_THE\_FIGHT\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (68)}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\#define\ LOW\_ENERGY\_BOX\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1045)}}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#define\ LOW\_ENERGY\_BOX\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (480)}}
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\#define\ LOW\_ENERGY\_BOX\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (82)}}
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\#define\ LOW\_ENERGY\_BOX\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (82)}}
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#define\ LOW\_ENERGY\_BOX\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (114)}}
+\DoxyCodeLine{00182\ \textcolor{preprocessor}{\#define\ LOW\_ENERGY\_BOX\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1037)}}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#define\ LOW\_ENERGY\_BOX\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (509)}}
+\DoxyCodeLine{00184\ \textcolor{preprocessor}{\#define\ LOW\_ENERGY\_BOX\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (27)}}
+\DoxyCodeLine{00185\ \textcolor{preprocessor}{\#define\ LOW\_ENERGY\_BOX\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (29)}}
+\DoxyCodeLine{00186\ \textcolor{preprocessor}{\#define\ LOW\_ENERGY\_BOX\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (50)}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\#define\ FENIX\_BOX\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1115)}}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#define\ FENIX\_BOX\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (425)}}
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\#define\ FENIX\_BOX\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (82)}}
+\DoxyCodeLine{00191\ \textcolor{preprocessor}{\#define\ FENIX\_BOX\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (82)}}
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#define\ FENIX\_BOX\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (114)}}
+\DoxyCodeLine{00193\ \textcolor{preprocessor}{\#define\ FENIX\_BOX\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1157)}}
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#define\ FENIX\_BOX\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (469)}}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\#define\ FENIX\_BOX\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (27)}}
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\#define\ FENIX\_BOX\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (29)}}
+\DoxyCodeLine{00197\ \textcolor{preprocessor}{\#define\ FENIX\_BOX\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (50)}}
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\#define\ FENIX\_BOX\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (811)}}
+\DoxyCodeLine{00199\ \textcolor{preprocessor}{\#define\ FENIX\_BOX\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (510)}}
+\DoxyCodeLine{00200\ \textcolor{preprocessor}{\#define\ FENIX\_BOX\_COLOR\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (187)}}
+\DoxyCodeLine{00201\ \textcolor{preprocessor}{\#define\ FENIX\_BOX\_COLOR\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (86)}}
+\DoxyCodeLine{00202\ \textcolor{preprocessor}{\#define\ FENIX\_BOX\_COLOR\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (29)}}
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#define\ FENIX\_BOX\_CLICK\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (971)}}
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\#define\ FENIX\_BOX\_CLICK\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (636)}}
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#define\ FENIX\_BOX\_CLICK\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (985)}}
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\#define\ FENIX\_BOX\_CLICK\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (605)}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00209\ \textcolor{comment}{//\ ZAAPS\ CHECKS}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \textcolor{preprocessor}{\#define\ ZAAP\_INTERFACE\_POS\_X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (864)}}
+\DoxyCodeLine{00213\ \textcolor{preprocessor}{\#define\ ZAAP\_INTERFACE\_POS\_Y\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (299)}}
+\DoxyCodeLine{00214\ \textcolor{preprocessor}{\#define\ ZAAP\_INTERFACE\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (45)}}
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\#define\ ZAAP\_INTERFACE\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (47)}}
+\DoxyCodeLine{00216\ \textcolor{preprocessor}{\#define\ ZAAP\_INTERFACE\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (72)}}
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\#define\ ZAAP\_INTERFACE\_WRITE\_POS\_X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (600)}}
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\#define\ ZAAP\_INTERFACE\_WRITE\_POS\_Y\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (360)}}
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\#define\ ZAAP\_INTERFACE\_TELEPORT\_POS\_X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1276)}}
+\DoxyCodeLine{00220\ \textcolor{preprocessor}{\#define\ ZAAP\_INTERFACE\_TELEPORT\_POS\_Y\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (809)}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\#define\ ASTRUB\_ZAAP\_POS\_X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1103)}}
+\DoxyCodeLine{00223\ \textcolor{preprocessor}{\#define\ ASTRUB\_ZAAP\_POS\_Y\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (299)}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ASTRUB\_ZAAP\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (635)}}
+\DoxyCodeLine{00226\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ASTRUB\_ZAAP\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (57)}}
+\DoxyCodeLine{00227\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ASTRUB\_ZAAP\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (163)}}
+\DoxyCodeLine{00228\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ASTRUB\_ZAAP\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (168)}}
+\DoxyCodeLine{00229\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ASTRUB\_ZAAP\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (149)}}
+\DoxyCodeLine{00230\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ASTRUB\_ZAAP\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1478)}}
+\DoxyCodeLine{00231\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ASTRUB\_ZAAP\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (89)}}
+\DoxyCodeLine{00232\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ASTRUB\_ZAAP\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (105)}}
+\DoxyCodeLine{00233\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ASTRUB\_ZAAP\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (100)}}
+\DoxyCodeLine{00234\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ASTRUB\_ZAAP\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (66)}}
+\DoxyCodeLine{00235\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ASTRUB\_ZAAP\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (555)}}
+\DoxyCodeLine{00236\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ASTRUB\_ZAAP\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (888)}}
+\DoxyCodeLine{00237\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ASTRUB\_ZAAP\_COLOR\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (127)}}
+\DoxyCodeLine{00238\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ASTRUB\_ZAAP\_COLOR\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (103)}}
+\DoxyCodeLine{00239\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ASTRUB\_ZAAP\_COLOR\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (37)}}
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ASTRUB\_ZAAP\_POS\_X\_4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1520)}}
+\DoxyCodeLine{00241\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ASTRUB\_ZAAP\_POS\_Y\_4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (792)}}
+\DoxyCodeLine{00242\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ASTRUB\_ZAAP\_COLOR\_RED\_4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (74)}}
+\DoxyCodeLine{00243\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ASTRUB\_ZAAP\_COLOR\_GREEN\_4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (94)}}
+\DoxyCodeLine{00244\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ASTRUB\_ZAAP\_COLOR\_BLUE\_4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (115)}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_LINDE\_ZAAP\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (869)}}
+\DoxyCodeLine{00247\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_LINDE\_ZAAP\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (424)}}
+\DoxyCodeLine{00248\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_LINDE\_ZAAP\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (85)}}
+\DoxyCodeLine{00249\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_LINDE\_ZAAP\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (130)}}
+\DoxyCodeLine{00250\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_LINDE\_ZAAP\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (104)}}
+\DoxyCodeLine{00251\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_LINDE\_ZAAP\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (871)}}
+\DoxyCodeLine{00252\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_LINDE\_ZAAP\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (382)}}
+\DoxyCodeLine{00253\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_LINDE\_ZAAP\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (109)}}
+\DoxyCodeLine{00254\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_LINDE\_ZAAP\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (189)}}
+\DoxyCodeLine{00255\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_LINDE\_ZAAP\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (127)}}
+\DoxyCodeLine{00256\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_LINDE\_ZAAP\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (881)}}
+\DoxyCodeLine{00257\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_LINDE\_ZAAP\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (384)}}
+\DoxyCodeLine{00258\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_LINDE\_ZAAP\_COLOR\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (226)}}
+\DoxyCodeLine{00259\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_LINDE\_ZAAP\_COLOR\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (194)}}
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_LINDE\_ZAAP\_COLOR\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (109)}}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_RINCON\_ZAAP\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1414)}}
+\DoxyCodeLine{00263\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_RINCON\_ZAAP\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (38)}}
+\DoxyCodeLine{00264\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_RINCON\_ZAAP\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (176)}}
+\DoxyCodeLine{00265\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_RINCON\_ZAAP\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (65)}}
+\DoxyCodeLine{00266\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_RINCON\_ZAAP\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (8)}}
+\DoxyCodeLine{00267\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_RINCON\_ZAAP\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (440)}}
+\DoxyCodeLine{00268\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_RINCON\_ZAAP\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (46)}}
+\DoxyCodeLine{00269\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_RINCON\_ZAAP\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (73)}}
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_RINCON\_ZAAP\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (64)}}
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_RINCON\_ZAAP\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (32)}}
+\DoxyCodeLine{00272\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_RINCON\_ZAAP\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1514)}}
+\DoxyCodeLine{00273\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_RINCON\_ZAAP\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (893)}}
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_RINCON\_ZAAP\_COLOR\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (184)}}
+\DoxyCodeLine{00275\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_RINCON\_ZAAP\_COLOR\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (198)}}
+\DoxyCodeLine{00276\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_RINCON\_ZAAP\_COLOR\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (56)}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_PUERKAZOS\_ZAAP\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (740)}}
+\DoxyCodeLine{00279\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_PUERKAZOS\_ZAAP\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (282)}}
+\DoxyCodeLine{00280\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_PUERKAZOS\_ZAAP\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (211)}}
+\DoxyCodeLine{00281\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_PUERKAZOS\_ZAAP\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (182)}}
+\DoxyCodeLine{00282\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_PUERKAZOS\_ZAAP\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (63)}}
+\DoxyCodeLine{00283\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_PUERKAZOS\_ZAAP\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1532)}}
+\DoxyCodeLine{00284\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_PUERKAZOS\_ZAAP\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (97)}}
+\DoxyCodeLine{00285\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_PUERKAZOS\_ZAAP\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (149)}}
+\DoxyCodeLine{00286\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_PUERKAZOS\_ZAAP\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (146)}}
+\DoxyCodeLine{00287\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_PUERKAZOS\_ZAAP\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (28)}}
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_PUERKAZOS\_ZAAP\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (458)}}
+\DoxyCodeLine{00289\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_PUERKAZOS\_ZAAP\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (567)}}
+\DoxyCodeLine{00290\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_PUERKAZOS\_ZAAP\_COLOR\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (147)}}
+\DoxyCodeLine{00291\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_PUERKAZOS\_ZAAP\_COLOR\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (167)}}
+\DoxyCodeLine{00292\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_PUERKAZOS\_ZAAP\_COLOR\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (21)}}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_OTO\_COAST\_ZAAP\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (900)}}
+\DoxyCodeLine{00295\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_OTO\_COAST\_ZAAP\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (328)}}
+\DoxyCodeLine{00296\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_OTO\_COAST\_ZAAP\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (16)}}
+\DoxyCodeLine{00297\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_OTO\_COAST\_ZAAP\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (171)}}
+\DoxyCodeLine{00298\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_OTO\_COAST\_ZAAP\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (171)}}
+\DoxyCodeLine{00299\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_OTO\_COAST\_ZAAP\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (867)}}
+\DoxyCodeLine{00300\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_OTO\_COAST\_ZAAP\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (329)}}
+\DoxyCodeLine{00301\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_OTO\_COAST\_ZAAP\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (192)}}
+\DoxyCodeLine{00302\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_OTO\_COAST\_ZAAP\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (181)}}
+\DoxyCodeLine{00303\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_OTO\_COAST\_ZAAP\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (124)}}
+\DoxyCodeLine{00304\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_OTO\_COAST\_ZAAP\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (735)}}
+\DoxyCodeLine{00305\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_OTO\_COAST\_ZAAP\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (60)}}
+\DoxyCodeLine{00306\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_OTO\_COAST\_ZAAP\_COLOR\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (129)}}
+\DoxyCodeLine{00307\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_OTO\_COAST\_ZAAP\_COLOR\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (27)}}
+\DoxyCodeLine{00308\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_OTO\_COAST\_ZAAP\_COLOR\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (21)}}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_ZAAP\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (930)}}
+\DoxyCodeLine{00311\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_ZAAP\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (362)}}
+\DoxyCodeLine{00312\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_ZAAP\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (246)}}
+\DoxyCodeLine{00313\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_ZAAP\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (231)}}
+\DoxyCodeLine{00314\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_ZAAP\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (164)}}
+\DoxyCodeLine{00315\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_ZAAP\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (932)}}
+\DoxyCodeLine{00316\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_ZAAP\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (339)}}
+\DoxyCodeLine{00317\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_ZAAP\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (101)}}
+\DoxyCodeLine{00318\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_ZAAP\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (127)}}
+\DoxyCodeLine{00319\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_ZAAP\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0)}}
+\DoxyCodeLine{00320\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_ZAAP\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1265)}}
+\DoxyCodeLine{00321\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_ZAAP\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (126)}}
+\DoxyCodeLine{00322\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_ZAAP\_COLOR\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (118)}}
+\DoxyCodeLine{00323\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_ZAAP\_COLOR\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (131)}}
+\DoxyCodeLine{00324\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_ZAAP\_COLOR\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0)}}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_MOON\_ZAAP\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1700)}}
+\DoxyCodeLine{00327\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_MOON\_ZAAP\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (171)}}
+\DoxyCodeLine{00328\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_MOON\_ZAAP\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (93)}}
+\DoxyCodeLine{00329\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_MOON\_ZAAP\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (141)}}
+\DoxyCodeLine{00330\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_MOON\_ZAAP\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (112)}}
+\DoxyCodeLine{00331\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_MOON\_ZAAP\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1239)}}
+\DoxyCodeLine{00332\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_MOON\_ZAAP\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (850)}}
+\DoxyCodeLine{00333\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_MOON\_ZAAP\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (83)}}
+\DoxyCodeLine{00334\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_MOON\_ZAAP\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (181)}}
+\DoxyCodeLine{00335\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_MOON\_ZAAP\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (161)}}
+\DoxyCodeLine{00336\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_MOON\_ZAAP\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (366)}}
+\DoxyCodeLine{00337\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_MOON\_ZAAP\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (40)}}
+\DoxyCodeLine{00338\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_MOON\_ZAAP\_COLOR\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (156)}}
+\DoxyCodeLine{00339\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_MOON\_ZAAP\_COLOR\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (165)}}
+\DoxyCodeLine{00340\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_MOON\_ZAAP\_COLOR\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (32)}}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ROCOSAS\_ZAAP\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (655)}}
+\DoxyCodeLine{00343\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ROCOSAS\_ZAAP\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (64)}}
+\DoxyCodeLine{00344\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ROCOSAS\_ZAAP\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (254)}}
+\DoxyCodeLine{00345\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ROCOSAS\_ZAAP\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (248)}}
+\DoxyCodeLine{00346\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ROCOSAS\_ZAAP\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (100)}}
+\DoxyCodeLine{00347\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ROCOSAS\_ZAAP\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (653)}}
+\DoxyCodeLine{00348\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ROCOSAS\_ZAAP\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (91)}}
+\DoxyCodeLine{00349\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ROCOSAS\_ZAAP\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (254)}}
+\DoxyCodeLine{00350\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ROCOSAS\_ZAAP\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (252)}}
+\DoxyCodeLine{00351\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ROCOSAS\_ZAAP\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (95)}}
+\DoxyCodeLine{00352\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ROCOSAS\_ZAAP\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (635)}}
+\DoxyCodeLine{00353\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ROCOSAS\_ZAAP\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (129)}}
+\DoxyCodeLine{00354\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ROCOSAS\_ZAAP\_COLOR\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (201)}}
+\DoxyCodeLine{00355\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ROCOSAS\_ZAAP\_COLOR\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (183)}}
+\DoxyCodeLine{00356\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ROCOSAS\_ZAAP\_COLOR\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (55)}}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_BURGO\_ZAAP\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1526)}}
+\DoxyCodeLine{00359\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_BURGO\_ZAAP\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (245)}}
+\DoxyCodeLine{00360\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_BURGO\_ZAAP\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (211)}}
+\DoxyCodeLine{00361\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_BURGO\_ZAAP\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (230)}}
+\DoxyCodeLine{00362\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_BURGO\_ZAAP\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (234)}}
+\DoxyCodeLine{00363\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_BURGO\_ZAAP\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1523)}}
+\DoxyCodeLine{00364\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_BURGO\_ZAAP\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (200)}}
+\DoxyCodeLine{00365\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_BURGO\_ZAAP\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (245)}}
+\DoxyCodeLine{00366\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_BURGO\_ZAAP\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (247)}}
+\DoxyCodeLine{00367\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_BURGO\_ZAAP\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (250)}}
+\DoxyCodeLine{00368\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_BURGO\_ZAAP\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (504)}}
+\DoxyCodeLine{00369\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_BURGO\_ZAAP\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (93)}}
+\DoxyCodeLine{00370\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_BURGO\_ZAAP\_COLOR\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (111)}}
+\DoxyCodeLine{00371\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_BURGO\_ZAAP\_COLOR\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (134)}}
+\DoxyCodeLine{00372\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_BURGO\_ZAAP\_COLOR\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (101)}}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SEPULTADOS\_ZAAP\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (966)}}
+\DoxyCodeLine{00375\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SEPULTADOS\_ZAAP\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (311)}}
+\DoxyCodeLine{00376\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SEPULTADOS\_ZAAP\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (150)}}
+\DoxyCodeLine{00377\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SEPULTADOS\_ZAAP\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ (136)}}
+\DoxyCodeLine{00378\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SEPULTADOS\_ZAAP\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (108)}}
+\DoxyCodeLine{00379\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SEPULTADOS\_ZAAP\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (976)}}
+\DoxyCodeLine{00380\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SEPULTADOS\_ZAAP\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (338)}}
+\DoxyCodeLine{00381\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SEPULTADOS\_ZAAP\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (83)}}
+\DoxyCodeLine{00382\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SEPULTADOS\_ZAAP\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ (87)}}
+\DoxyCodeLine{00383\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SEPULTADOS\_ZAAP\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (68)}}
+\DoxyCodeLine{00384\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SEPULTADOS\_ZAAP\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1002)}}
+\DoxyCodeLine{00385\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SEPULTADOS\_ZAAP\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (315)}}
+\DoxyCodeLine{00386\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SEPULTADOS\_ZAAP\_COLOR\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (94)}}
+\DoxyCodeLine{00387\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SEPULTADOS\_ZAAP\_COLOR\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ (117)}}
+\DoxyCodeLine{00388\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SEPULTADOS\_ZAAP\_COLOR\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (86)}}
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00390\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_GOLFO\_ZAAP\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (716)}}
+\DoxyCodeLine{00391\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_GOLFO\_ZAAP\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (890)}}
+\DoxyCodeLine{00392\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_GOLFO\_ZAAP\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (88)}}
+\DoxyCodeLine{00393\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_GOLFO\_ZAAP\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (218)}}
+\DoxyCodeLine{00394\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_GOLFO\_ZAAP\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (193)}}
+\DoxyCodeLine{00395\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_GOLFO\_ZAAP\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1150)}}
+\DoxyCodeLine{00396\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_GOLFO\_ZAAP\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (865)}}
+\DoxyCodeLine{00397\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_GOLFO\_ZAAP\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (192)}}
+\DoxyCodeLine{00398\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_GOLFO\_ZAAP\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (236)}}
+\DoxyCodeLine{00399\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_GOLFO\_ZAAP\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (155)}}
+\DoxyCodeLine{00400\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_GOLFO\_ZAAP\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1537)}}
+\DoxyCodeLine{00401\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_GOLFO\_ZAAP\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (69)}}
+\DoxyCodeLine{00402\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_GOLFO\_ZAAP\_COLOR\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (254)}}
+\DoxyCodeLine{00403\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_GOLFO\_ZAAP\_COLOR\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (206)}}
+\DoxyCodeLine{00404\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_GOLFO\_ZAAP\_COLOR\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (47)}}
+\DoxyCodeLine{00405\ }
+\DoxyCodeLine{00406\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SUFOKIA\_ZAAP\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1501)}}
+\DoxyCodeLine{00407\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SUFOKIA\_ZAAP\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (57)}}
+\DoxyCodeLine{00408\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SUFOKIA\_ZAAP\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (31)}}
+\DoxyCodeLine{00409\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SUFOKIA\_ZAAP\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (115)}}
+\DoxyCodeLine{00410\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SUFOKIA\_ZAAP\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (182)}}
+\DoxyCodeLine{00411\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SUFOKIA\_ZAAP\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (369)}}
+\DoxyCodeLine{00412\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SUFOKIA\_ZAAP\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (98)}}
+\DoxyCodeLine{00413\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SUFOKIA\_ZAAP\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (44)}}
+\DoxyCodeLine{00414\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SUFOKIA\_ZAAP\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (175)}}
+\DoxyCodeLine{00415\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SUFOKIA\_ZAAP\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (234)}}
+\DoxyCodeLine{00416\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SUFOKIA\_ZAAP\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1280)}}
+\DoxyCodeLine{00417\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SUFOKIA\_ZAAP\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (104)}}
+\DoxyCodeLine{00418\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SUFOKIA\_ZAAP\_COLOR\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (49)}}
+\DoxyCodeLine{00419\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SUFOKIA\_ZAAP\_COLOR\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (66)}}
+\DoxyCodeLine{00420\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_SUFOKIA\_ZAAP\_COLOR\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (57)}}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00422\ }
+\DoxyCodeLine{00424\ \textcolor{comment}{//\ ROADMAPS\ CHECKS}}
+\DoxyCodeLine{00426\ }
+\DoxyCodeLine{00427\ \textcolor{comment}{//\ 0,\ -\/18}}
+\DoxyCodeLine{00428\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_LV1\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1369)}}
+\DoxyCodeLine{00429\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_LV1\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (161)}}
+\DoxyCodeLine{00430\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_LV1\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (84)}}
+\DoxyCodeLine{00431\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_LV1\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (134)}}
+\DoxyCodeLine{00432\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_LV1\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (138)}}
+\DoxyCodeLine{00433\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_LV1\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (625)}}
+\DoxyCodeLine{00434\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_LV1\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (99)}}
+\DoxyCodeLine{00435\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_LV1\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (114)}}
+\DoxyCodeLine{00436\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_LV1\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (27)}}
+\DoxyCodeLine{00437\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_LV1\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (23)}}
+\DoxyCodeLine{00438\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_LV1\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (695)}}
+\DoxyCodeLine{00439\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_LV1\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (871)}}
+\DoxyCodeLine{00440\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_LV1\_COLOR\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (110)}}
+\DoxyCodeLine{00441\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_LV1\_COLOR\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (104)}}
+\DoxyCodeLine{00442\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_LV1\_COLOR\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (63)}}
+\DoxyCodeLine{00443\ }
+\DoxyCodeLine{00444\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_OTO\_COAST\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1183)}}
+\DoxyCodeLine{00445\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_OTO\_COAST\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (207)}}
+\DoxyCodeLine{00446\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_OTO\_COAST\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (145)}}
+\DoxyCodeLine{00447\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_OTO\_COAST\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (27)}}
+\DoxyCodeLine{00448\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_OTO\_COAST\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (24)}}
+\DoxyCodeLine{00449\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_OTO\_COAST\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (676)}}
+\DoxyCodeLine{00450\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_OTO\_COAST\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (532)}}
+\DoxyCodeLine{00451\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_OTO\_COAST\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (254)}}
+\DoxyCodeLine{00452\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_OTO\_COAST\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (185)}}
+\DoxyCodeLine{00453\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_OTO\_COAST\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (70)}}
+\DoxyCodeLine{00454\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_OTO\_COAST\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (667)}}
+\DoxyCodeLine{00455\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_OTO\_COAST\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (532)}}
+\DoxyCodeLine{00456\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_OTO\_COAST\_COLOR\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (228)}}
+\DoxyCodeLine{00457\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_OTO\_COAST\_COLOR\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (209)}}
+\DoxyCodeLine{00458\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_WOOD\_OTO\_COAST\_COLOR\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (129)}}
+\DoxyCodeLine{00459\ }
+\DoxyCodeLine{00460\ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00461\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_LAKE\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1056)}}
+\DoxyCodeLine{00462\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_LAKE\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (48)}}
+\DoxyCodeLine{00463\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_LAKE\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (64)}}
+\DoxyCodeLine{00464\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_LAKE\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (159)}}
+\DoxyCodeLine{00465\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_LAKE\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (95)}}
+\DoxyCodeLine{00466\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_LAKE\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (681)}}
+\DoxyCodeLine{00467\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_LAKE\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (851)}}
+\DoxyCodeLine{00468\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_LAKE\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (91)}}
+\DoxyCodeLine{00469\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_LAKE\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (72)}}
+\DoxyCodeLine{00470\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_LAKE\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (32)}}
+\DoxyCodeLine{00471\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_LAKE\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1528)}}
+\DoxyCodeLine{00472\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_LAKE\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (80)}}
+\DoxyCodeLine{00473\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_LAKE\_COLOR\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (229)}}
+\DoxyCodeLine{00474\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_LAKE\_COLOR\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (78)}}
+\DoxyCodeLine{00475\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_LAKE\_COLOR\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (38)}}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00477\ \textcolor{comment}{//\ -\/11,\ 1}}
+\DoxyCodeLine{00478\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_WOOD\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (787)}}
+\DoxyCodeLine{00479\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_WOOD\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (318)}}
+\DoxyCodeLine{00480\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_WOOD\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (208)}}
+\DoxyCodeLine{00481\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_WOOD\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (178)}}
+\DoxyCodeLine{00482\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_WOOD\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (42)}}
+\DoxyCodeLine{00483\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_WOOD\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (822)}}
+\DoxyCodeLine{00484\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_WOOD\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (292)}}
+\DoxyCodeLine{00485\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_WOOD\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (79)}}
+\DoxyCodeLine{00486\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_WOOD\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (98)}}
+\DoxyCodeLine{00487\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_WOOD\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0)}}
+\DoxyCodeLine{00488\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_WOOD\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (864)}}
+\DoxyCodeLine{00489\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_WOOD\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (272)}}
+\DoxyCodeLine{00490\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_WOOD\_COLOR\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (171)}}
+\DoxyCodeLine{00491\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_WOOD\_COLOR\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (184)}}
+\DoxyCodeLine{00492\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_KOALAK\_WOOD\_COLOR\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0)}}
+\DoxyCodeLine{00493\ }
+\DoxyCodeLine{00494\ \textcolor{comment}{//\ -\/3,\ 9}}
+\DoxyCodeLine{00495\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_TIRITH\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1186)}}
+\DoxyCodeLine{00496\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_TIRITH\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (334)}}
+\DoxyCodeLine{00497\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_TIRITH\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (33)}}
+\DoxyCodeLine{00498\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_TIRITH\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (54)}}
+\DoxyCodeLine{00499\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_TIRITH\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (29)}}
+\DoxyCodeLine{00500\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_TIRITH\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (535)}}
+\DoxyCodeLine{00501\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_TIRITH\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (626)}}
+\DoxyCodeLine{00502\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_TIRITH\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (236)}}
+\DoxyCodeLine{00503\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_TIRITH\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (139)}}
+\DoxyCodeLine{00504\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_TIRITH\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0)}}
+\DoxyCodeLine{00505\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_TIRITH\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (514)}}
+\DoxyCodeLine{00506\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_TIRITH\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (377)}}
+\DoxyCodeLine{00507\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_TIRITH\_COLOR\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (29)}}
+\DoxyCodeLine{00508\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_TIRITH\_COLOR\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (23)}}
+\DoxyCodeLine{00509\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_TIRITH\_COLOR\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (8)}}
+\DoxyCodeLine{00510\ }
+\DoxyCodeLine{00511\ \textcolor{comment}{//\ -\/75,\ -\/49}}
+\DoxyCodeLine{00512\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ALAMO\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (605)}}
+\DoxyCodeLine{00513\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ALAMO\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (125)}}
+\DoxyCodeLine{00514\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ALAMO\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (83)}}
+\DoxyCodeLine{00515\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ALAMO\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (81)}}
+\DoxyCodeLine{00516\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ALAMO\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (66)}}
+\DoxyCodeLine{00517\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ALAMO\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (556)}}
+\DoxyCodeLine{00518\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ALAMO\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (127)}}
+\DoxyCodeLine{00519\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ALAMO\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (191)}}
+\DoxyCodeLine{00520\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ALAMO\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (181)}}
+\DoxyCodeLine{00521\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ALAMO\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (161)}}
+\DoxyCodeLine{00522\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ALAMO\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (432)}}
+\DoxyCodeLine{00523\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ALAMO\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (649)}}
+\DoxyCodeLine{00524\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ALAMO\_COLOR\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (49)}}
+\DoxyCodeLine{00525\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ALAMO\_COLOR\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (97)}}
+\DoxyCodeLine{00526\ \textcolor{preprocessor}{\#define\ I\_AM\_IN\_ALAMO\_COLOR\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (133)}}
+\DoxyCodeLine{00527\ }
+\DoxyCodeLine{00528\ }
+\DoxyCodeLine{00530\ \textcolor{comment}{//\ INTERFACE\ WORLD\ CHECKS}}
+\DoxyCodeLine{00532\ }
+\DoxyCodeLine{00533\ \textcolor{preprocessor}{\#define\ HEALTH\_POS\_X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (518)}}
+\DoxyCodeLine{00534\ \textcolor{preprocessor}{\#define\ HEALTH\_POS\_Y\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (968)}}
+\DoxyCodeLine{00535\ \textcolor{preprocessor}{\#define\ HEALTH\_COLOR\_RED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (166)}}
+\DoxyCodeLine{00536\ \textcolor{preprocessor}{\#define\ HEALTH\_COLOR\_GREEN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (28)}}
+\DoxyCodeLine{00537\ \textcolor{preprocessor}{\#define\ HEALTH\_COLOR\_BLUE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (47)}}
+\DoxyCodeLine{00538\ \textcolor{preprocessor}{\#define\ HEALTH\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (537)}}
+\DoxyCodeLine{00539\ \textcolor{preprocessor}{\#define\ HEALTH\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (969)}}
+\DoxyCodeLine{00540\ \textcolor{preprocessor}{\#define\ HEALTH\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (179)}}
+\DoxyCodeLine{00541\ \textcolor{preprocessor}{\#define\ HEALTH\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (50)}}
+\DoxyCodeLine{00542\ \textcolor{preprocessor}{\#define\ HEALTH\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (72)}}
+\DoxyCodeLine{00543\ }
+\DoxyCodeLine{00544\ \textcolor{preprocessor}{\#define\ CHECK\_PODS\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1856)}}
+\DoxyCodeLine{00545\ \textcolor{preprocessor}{\#define\ CHECK\_PODS\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1007)}}
+\DoxyCodeLine{00546\ \textcolor{preprocessor}{\#define\ CHECK\_PODS\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1860)}}
+\DoxyCodeLine{00547\ \textcolor{preprocessor}{\#define\ CHECK\_PODS\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1008)}}
+\DoxyCodeLine{00548\ \textcolor{preprocessor}{\#define\ CHECK\_PODS\_COLOR\_RED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (232)}}
+\DoxyCodeLine{00549\ \textcolor{preprocessor}{\#define\ CHECK\_PODS\_COLOR\_GREEN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (250)}}
+\DoxyCodeLine{00550\ \textcolor{preprocessor}{\#define\ CHECK\_PODS\_COLOR\_BLUE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (75)}}
+\DoxyCodeLine{00551\ }
+\DoxyCodeLine{00552\ \textcolor{preprocessor}{\#define\ PRIVATE\_MODE\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (322)}}
+\DoxyCodeLine{00553\ \textcolor{preprocessor}{\#define\ PRIVATE\_MODE\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1036)}}
+\DoxyCodeLine{00554\ \textcolor{preprocessor}{\#define\ PRIVATE\_MODE\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (363)}}
+\DoxyCodeLine{00555\ \textcolor{preprocessor}{\#define\ PRIVATE\_MODE\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1023)}}
+\DoxyCodeLine{00556\ \textcolor{comment}{//\#define\ PRIVATE\_MODE\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (320)}}
+\DoxyCodeLine{00557\ \textcolor{comment}{//\#define\ PRIVATE\_MODE\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1035)}}
+\DoxyCodeLine{00558\ \textcolor{preprocessor}{\#define\ PRIVATE\_MODE\_POS\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (255)\ }\textcolor{comment}{//\ red\ dot}}
+\DoxyCodeLine{00559\ \textcolor{preprocessor}{\#define\ PRIVATE\_MODE\_POS\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (84)}}
+\DoxyCodeLine{00560\ \textcolor{preprocessor}{\#define\ PRIVATE\_MODE\_POS\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (84)}}
+\DoxyCodeLine{00561\ }
+\DoxyCodeLine{00562\ \textcolor{preprocessor}{\#define\ I\_AM\_LEVEL\_UP\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (714)}}
+\DoxyCodeLine{00563\ \textcolor{preprocessor}{\#define\ I\_AM\_LEVEL\_UP\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (713)}}
+\DoxyCodeLine{00564\ \textcolor{preprocessor}{\#define\ I\_AM\_LEVEL\_UP\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (224)}\textcolor{comment}{//(33)}}
+\DoxyCodeLine{00565\ \textcolor{preprocessor}{\#define\ I\_AM\_LEVEL\_UP\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (183)}\textcolor{comment}{//(32)}}
+\DoxyCodeLine{00566\ \textcolor{preprocessor}{\#define\ I\_AM\_LEVEL\_UP\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (133)}\textcolor{comment}{//(28)}}
+\DoxyCodeLine{00567\ \textcolor{preprocessor}{\#define\ I\_AM\_LEVEL\_UP\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1202)}}
+\DoxyCodeLine{00568\ \textcolor{preprocessor}{\#define\ I\_AM\_LEVEL\_UP\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (693)}}
+\DoxyCodeLine{00569\ \textcolor{preprocessor}{\#define\ I\_AM\_LEVEL\_UP\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (249)}}
+\DoxyCodeLine{00570\ \textcolor{preprocessor}{\#define\ I\_AM\_LEVEL\_UP\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (235)}}
+\DoxyCodeLine{00571\ \textcolor{preprocessor}{\#define\ I\_AM\_LEVEL\_UP\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (128)}}
+\DoxyCodeLine{00572\ \textcolor{preprocessor}{\#define\ I\_AM\_LEVEL\_UP\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1094)}}
+\DoxyCodeLine{00573\ \textcolor{preprocessor}{\#define\ I\_AM\_LEVEL\_UP\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (571)}}
+\DoxyCodeLine{00574\ \textcolor{preprocessor}{\#define\ I\_AM\_LEVEL\_UP\_BIG\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1095)}}
+\DoxyCodeLine{00575\ \textcolor{preprocessor}{\#define\ I\_AM\_LEVEL\_UP\_BIG\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (423)}}
+\DoxyCodeLine{00576\ \textcolor{preprocessor}{\#define\ I\_AM\_LEVEL\_UP\_COLOR\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (28)}\textcolor{comment}{//(204)}}
+\DoxyCodeLine{00577\ \textcolor{preprocessor}{\#define\ I\_AM\_LEVEL\_UP\_COLOR\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (30)}\textcolor{comment}{//(146)}}
+\DoxyCodeLine{00578\ \textcolor{preprocessor}{\#define\ I\_AM\_LEVEL\_UP\_COLOR\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (50)}\textcolor{comment}{//(21)}}
+\DoxyCodeLine{00579\ \textcolor{preprocessor}{\#define\ I\_AM\_LEVEL\_UP\_POS\_X\_4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1027)}\textcolor{comment}{//(984)\ /*\ OK\ button\ */}}
+\DoxyCodeLine{00580\ \textcolor{preprocessor}{\#define\ I\_AM\_LEVEL\_UP\_POS\_Y\_4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (622)}\textcolor{comment}{//(793)}}
+\DoxyCodeLine{00581\ \textcolor{preprocessor}{\#define\ I\_AM\_LEVEL\_UP\_COLOR\_RED\_4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (225)}}
+\DoxyCodeLine{00582\ \textcolor{preprocessor}{\#define\ I\_AM\_LEVEL\_UP\_COLOR\_GREEN\_4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (247)}}
+\DoxyCodeLine{00583\ \textcolor{preprocessor}{\#define\ I\_AM\_LEVEL\_UP\_COLOR\_BLUE\_4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0)}}
+\DoxyCodeLine{00584\ }
+\DoxyCodeLine{00585\ \textcolor{preprocessor}{\#define\ IS\_MENU\_PRINCIPAL\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1059)}}
+\DoxyCodeLine{00586\ \textcolor{preprocessor}{\#define\ IS\_MENU\_PRINCIPAL\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (407)}}
+\DoxyCodeLine{00587\ \textcolor{preprocessor}{\#define\ IS\_MENU\_PRINCIPAL\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (82)}}
+\DoxyCodeLine{00588\ \textcolor{preprocessor}{\#define\ IS\_MENU\_PRINCIPAL\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (82)}}
+\DoxyCodeLine{00589\ \textcolor{preprocessor}{\#define\ IS\_MENU\_PRINCIPAL\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (114)}}
+\DoxyCodeLine{00590\ \textcolor{preprocessor}{\#define\ IS\_MENU\_PRINCIPAL\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1100)}}
+\DoxyCodeLine{00591\ \textcolor{preprocessor}{\#define\ IS\_MENU\_PRINCIPAL\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (455)}}
+\DoxyCodeLine{00592\ \textcolor{preprocessor}{\#define\ IS\_MENU\_PRINCIPAL\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (27)}}
+\DoxyCodeLine{00593\ \textcolor{preprocessor}{\#define\ IS\_MENU\_PRINCIPAL\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (29)}}
+\DoxyCodeLine{00594\ \textcolor{preprocessor}{\#define\ IS\_MENU\_PRINCIPAL\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (50)}}
+\DoxyCodeLine{00595\ \textcolor{preprocessor}{\#define\ IS\_MENU\_PRINCIPAL\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1095)}}
+\DoxyCodeLine{00596\ \textcolor{preprocessor}{\#define\ IS\_MENU\_PRINCIPAL\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (780)}}
+\DoxyCodeLine{00597\ \textcolor{preprocessor}{\#define\ IS\_MENU\_PRINCIPAL\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (58)}}
+\DoxyCodeLine{00598\ \textcolor{preprocessor}{\#define\ IS\_MENU\_PRINCIPAL\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (61)}}
+\DoxyCodeLine{00599\ \textcolor{preprocessor}{\#define\ IS\_MENU\_PRINCIPAL\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (88)}}
+\DoxyCodeLine{00600\ }
+\DoxyCodeLine{00601\ \textcolor{preprocessor}{\#define\ IS\_ATTENTION\_BOX\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1068)}}
+\DoxyCodeLine{00602\ \textcolor{preprocessor}{\#define\ IS\_ATTENTION\_BOX\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (478)}}
+\DoxyCodeLine{00603\ \textcolor{preprocessor}{\#define\ IS\_ATTENTION\_BOX\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (82)}}
+\DoxyCodeLine{00604\ \textcolor{preprocessor}{\#define\ IS\_ATTENTION\_BOX\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (82)}}
+\DoxyCodeLine{00605\ \textcolor{preprocessor}{\#define\ IS\_ATTENTION\_BOX\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (114)}}
+\DoxyCodeLine{00606\ \textcolor{preprocessor}{\#define\ IS\_ATTENTION\_BOX\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1074)}}
+\DoxyCodeLine{00607\ \textcolor{preprocessor}{\#define\ IS\_ATTENTION\_BOX\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (502)}}
+\DoxyCodeLine{00608\ \textcolor{preprocessor}{\#define\ IS\_ATTENTION\_BOX\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (27)}}
+\DoxyCodeLine{00609\ \textcolor{preprocessor}{\#define\ IS\_ATTENTION\_BOX\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (29)}}
+\DoxyCodeLine{00610\ \textcolor{preprocessor}{\#define\ IS\_ATTENTION\_BOX\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (50)}}
+\DoxyCodeLine{00611\ \textcolor{preprocessor}{\#define\ IS\_ATTENTION\_BOX\_POS\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1075)}}
+\DoxyCodeLine{00612\ \textcolor{preprocessor}{\#define\ IS\_ATTENTION\_BOX\_POS\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (571)}}
+\DoxyCodeLine{00613\ \textcolor{preprocessor}{\#define\ IS\_ATTENTION\_BOX\_RED\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (58)}}
+\DoxyCodeLine{00614\ \textcolor{preprocessor}{\#define\ IS\_ATTENTION\_BOX\_GREEN\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (61)}}
+\DoxyCodeLine{00615\ \textcolor{preprocessor}{\#define\ IS\_ATTENTION\_BOX\_BLUE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (88)}}
+\DoxyCodeLine{00616\ }
+\DoxyCodeLine{00617\ }
+\DoxyCodeLine{00619\ \textcolor{comment}{//\ RESOURCES}}
+\DoxyCodeLine{00621\ }
+\DoxyCodeLine{00622\ \textcolor{preprocessor}{\#define\ RECALL\_POTI\_POS\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (989)}}
+\DoxyCodeLine{00623\ \textcolor{preprocessor}{\#define\ RECALL\_POTI\_POS\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1024)}}
+\DoxyCodeLine{00624\ \textcolor{preprocessor}{\#define\ RECALL\_POTI\_COLOR\_RED\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (121)}}
+\DoxyCodeLine{00625\ \textcolor{preprocessor}{\#define\ RECALL\_POTI\_COLOR\_GREEN\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (109)}}
+\DoxyCodeLine{00626\ \textcolor{preprocessor}{\#define\ RECALL\_POTI\_COLOR\_BLUE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (165)}}
+\DoxyCodeLine{00627\ \textcolor{preprocessor}{\#define\ RECALL\_POTI\_POS\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (996)}}
+\DoxyCodeLine{00628\ \textcolor{preprocessor}{\#define\ RECALL\_POTI\_POS\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1025)}}
+\DoxyCodeLine{00629\ \textcolor{preprocessor}{\#define\ RECALL\_POTI\_COLOR\_RED\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (94)}}
+\DoxyCodeLine{00630\ \textcolor{preprocessor}{\#define\ RECALL\_POTI\_COLOR\_GREEN\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (66)}}
+\DoxyCodeLine{00631\ \textcolor{preprocessor}{\#define\ RECALL\_POTI\_COLOR\_BLUE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (146)}}
+\DoxyCodeLine{00632\ }
+\DoxyCodeLine{00633\ \textcolor{preprocessor}{\#define\ INVENTARY\_CONVERT\_RESOURCES\_X\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1001)}}
+\DoxyCodeLine{00634\ \textcolor{preprocessor}{\#define\ INVENTARY\_CONVERT\_RESOURCES\_Y\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (317)}}
+\DoxyCodeLine{00635\ \textcolor{preprocessor}{\#define\ INVENTARY\_CONVERT\_RESOURCES\_X\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1187)}}
+\DoxyCodeLine{00636\ \textcolor{preprocessor}{\#define\ INVENTARY\_CONVERT\_RESOURCES\_Y\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (223)}}
+\DoxyCodeLine{00637\ \textcolor{preprocessor}{\#define\ INVENTARY\_CONVERT\_RESOURCES\_X\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1086)}}
+\DoxyCodeLine{00638\ \textcolor{preprocessor}{\#define\ INVENTARY\_CONVERT\_RESOURCES\_Y\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (221)}}
+\DoxyCodeLine{00639\ \textcolor{preprocessor}{\#define\ INVENTARY\_CONVERT\_RESOURCES\_X\_4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1082)}}
+\DoxyCodeLine{00640\ \textcolor{preprocessor}{\#define\ INVENTARY\_CONVERT\_RESOURCES\_Y\_4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (333)}}
+\DoxyCodeLine{00641\ \textcolor{preprocessor}{\#define\ INVENTARY\_NO\_RESOURCES\_COLOR\_RED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (17)}}
+\DoxyCodeLine{00642\ \textcolor{preprocessor}{\#define\ INVENTARY\_NO\_RESOURCES\_COLOR\_GREEN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (19)}}
+\DoxyCodeLine{00643\ \textcolor{preprocessor}{\#define\ INVENTARY\_NO\_RESOURCES\_COLOR\_BLUE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (32)}}
+\DoxyCodeLine{00644\ }
+\DoxyCodeLine{00645\ }
+\DoxyCodeLine{00647\ \textcolor{comment}{//\ ERRORS\ VARIANCE}}
+\DoxyCodeLine{00649\ }
+\DoxyCodeLine{00650\ \textcolor{preprocessor}{\#define\ ERROR\_GET\_COLOUR\_BIG\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (50)}}
+\DoxyCodeLine{00651\ \textcolor{preprocessor}{\#define\ ERROR\_GET\_COLOUR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (25)}}
+\DoxyCodeLine{00652\ \textcolor{preprocessor}{\#define\ ERROR\_GET\_COLOUR\_SOME\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (20)}}
+\DoxyCodeLine{00653\ \textcolor{preprocessor}{\#define\ ERROR\_GET\_COLOUR\_QUITE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (10)}}
+\DoxyCodeLine{00654\ \textcolor{preprocessor}{\#define\ ERROR\_GET\_COLOUR\_SMALL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (5)}}
+\DoxyCodeLine{00655\ \textcolor{preprocessor}{\#define\ ERROR\_GET\_COLOUR\_SMALLER\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1)}}
+\DoxyCodeLine{00656\ }
+\DoxyCodeLine{00658\ \textcolor{comment}{//\ RETURN\ ERRORS}}
+\DoxyCodeLine{00660\ \textcolor{comment}{//\ Error\ and\ return\ codes\ used\ across\ the\ project.}}
+\DoxyCodeLine{00661\ \textcolor{preprocessor}{\#define\ E\_OK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0)}}
+\DoxyCodeLine{00662\ \textcolor{preprocessor}{\#define\ E\_KO\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (-\/1)}}
+\DoxyCodeLine{00663\ }
+\DoxyCodeLine{00664\ \textcolor{preprocessor}{\#define\ E\_KO\_MAP\_NOT\_CHANGED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (-\/30)}}
+\DoxyCodeLine{00665\ \textcolor{preprocessor}{\#define\ E\_NEED\_TO\_RESTART\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (-\/10)}}
+\DoxyCodeLine{00666\ \textcolor{preprocessor}{\#define\ E\_IM\_A\_GHOST\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (-\/11)}}
+
+\end{DoxyCode}

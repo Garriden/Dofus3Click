@@ -1,9 +1,5 @@
 #pragma once
 
-//////////////////////////////////
-// SPELLS MAPPING
-//////////////////////////////////
-
 // FECA AIR
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //   1       2          3         4      5    6      7       8     9      0       '         ¡
@@ -15,6 +11,16 @@
 //-------------------------------------------------------------------------------------------------------
 // Muralla Escudo Bastión Barricada Tele Refuerzo Escarcha Pompa Escapadita Magnetismo Dominio CaC(Pala)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+/**
+ * @file menuMappings.hpp
+ * @brief Enumerations that map spell/menu keys to readable identifiers.
+ *
+ * These enums are used by fight strategies and UI helpers to refer to
+ * specific spells and control-row spells using meaningful names instead
+ * of hard-coded key codes.
+ */
 
 enum SpellsRow {
     SILBO          = 1 +'0',

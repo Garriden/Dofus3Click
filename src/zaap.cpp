@@ -5,7 +5,7 @@
 #include "system/file.hpp"
 #include "system/inputs.hpp"
 
-void zaap::ClickZaap(std::string zaapName)
+void zaap::TeleportZaap(std::string zaapName)
 {
     std::this_thread::sleep_for(std::chrono::seconds(2));
 
