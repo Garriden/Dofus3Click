@@ -229,7 +229,7 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
             {
                     File::LogFile("Careful, changeMap coordenate is not the last value!", true);
                     inputs::ShiftClick(map[ii].first, map[ii].second);
-                    std::this_thread::sleep_for(std::chrono::seconds(20));
+                    std::this_thread::sleep_for(std::chrono::seconds(10));
             } else if(Profession::LOWERING_PODS == _profession || Profession::GHOST == _profession ||
                       Profession::TRAIN == _profession         || Profession::MISSIONS == _profession)
             {
