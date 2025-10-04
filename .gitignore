@@ -32,6 +32,10 @@
 *.out
 *.app
 
+# Doxygen trash files
+Doxyfile.bak
+doxygen.log
+
 settings.json
 
 #Cmake
@@ -49,4 +53,6 @@ CMakeUserPresets.json
 
 # all folder
 build
+latex
+html
 `
