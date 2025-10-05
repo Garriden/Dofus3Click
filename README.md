@@ -8,39 +8,22 @@ This bot iterate through a Roadmap to recolect resources automatically while you
 It follows a .csv telemetry with the points where the resources are located. <br>
 (You need it to introduce it manually, but you can record a telemetry with this program 1, 2)
 
-<img src="Videos/RecolectaFast.gif" alt="Video">
-
-<!-- <video src="Videos/RecolectaFast.mp4" width="640" height="480" autoplay muted></video> -->
-
-<!--
-<video controls width="50%" poster="assets/espantal_preview.png" autoplay muted>
-    <source src="Videos/RecolectaFast.mp4" type="video/mp4">
-    Your browser does not support the video tag. <a href="Videos/RecolectaFast.mp4">Download the video instead.</a>
-</video>
--->
+<img src="Videos/RecolectaFastL.gif" alt="Video"  width="600">
 
 <br>
 <br>
 
-When it encounters a resource protector it figths!
+When it encounters a resource protector, figths it and kills it!
 
-<img src="Videos/EspantaLittle.gif" alt="Video">
+<img src="Videos/EspantaLittleF.gif" alt="Video"  width="600">
 
-<!-- <video src="Videos/EspantaLittle.mp4" width="640" height="480" autoplay muted></video> -->
-
-<!--
-<video controls width="50%" poster="assets/espantal_preview.png" autoplay muted>
-    <source src="Videos/EspantaLittle.mp4" type="video/mp4">
-    Your browser does not support the video tag. <a href="Videos/EspantaLittle.mp4">Download the video instead.</a>
-</video>
--->
 
 <br>
 <br>
 
 Log:
 
-<img src="Images/salviasLog.png" alt="SalviasLog" width="300" style="opacity:0.9;"/>
+<img src="Images/salviasLog.PNG" alt="SalviasLog" width="300" style="opacity:0.9;"/>
 
 <br>
 <br>
