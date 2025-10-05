@@ -126,7 +126,7 @@ int FightStrategy::AfterFight()
         return E_IM_A_GHOST;
     } else if(check::AmIDefeated()) {
         return E_KO;
-    } else if(check::AmILevelUp() || check::IsAttentionBox()) {
+    } else if(check::AmILevelUp() || check::IsAttentionBox() || check::IsMenuPrincipalBox()) {
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
         inputs::PressEscape();
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
@@ -136,9 +136,13 @@ int FightStrategy::AfterFight()
     //    return E_KO_MAP_NOT_CHANGED;
     //}
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    std::this_thread::sleep_for(std::chrono::seconds(2));
     inputs::PressEscape();
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+    if(check::IsMenuPrincipalBox()) {
+        inputs::PressEscape();
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+    }
 
     if(zaap::CheckZaapAstrub()) {
         return E_KO;

@@ -214,6 +214,11 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
             inputs::PressKey(map[ii].second);
         } else if(map[ii].first == INPUT_PATTERN_ESC) {
             inputs::PressEscape();
+            std::this_thread::sleep_for(std::chrono::seconds(2));
+            if(check::IsMenuPrincipalBox()) {
+                inputs::PressEscape();
+                std::this_thread::sleep_for(std::chrono::seconds(2));
+            }
         } else if(map[ii].first == INPUT_PATTERN_CTRL) {
             inputs::PressCtrlKey(map[ii].second);
         } else { // normal coordenate value
@@ -350,7 +355,7 @@ void Roadmap::ConvertResources()
     std::this_thread::sleep_for(std::chrono::seconds(1));
 
     int retires = 0;
-    while(!check::IsEmptyResource() && ++retires < 20) {
+    while(!check::IsEmptyResource() && ++retires < 30) {
         inputs::DoubleClick(INVENTARY_CONVERT_RESOURCES_X_4, INVENTARY_CONVERT_RESOURCES_Y_4);
         std::this_thread::sleep_for(std::chrono::seconds(2));
     }

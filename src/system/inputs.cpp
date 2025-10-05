@@ -189,6 +189,7 @@ void inputs::PressEscape()
     escape.ki.wVk = VK_ESCAPE;
     escape.ki.wScan = MapVirtualKey(VK_ESCAPE, 0);
     SendInput(1, &escape, sizeof(INPUT)); // Send KeyDown
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
     escape.ki.dwFlags = KEYEVENTF_KEYUP; // | KEYEVENTF_EXTENDEDKEY;
     SendInput(1, &escape, sizeof(INPUT)); // Send KeyUp
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
