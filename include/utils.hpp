@@ -558,6 +558,10 @@
 #define PRIVATE_MODE_POS_COLOR_RED_1                       (255) // red dot
 #define PRIVATE_MODE_POS_COLOR_GREEN_1                     (84)
 #define PRIVATE_MODE_POS_COLOR_BLUE_1                      (84)
+#define PRIVATE_MODE_POS_GREEN_COLOR_RED_1                 (144) // green dot
+#define PRIVATE_MODE_POS_GREEN_COLOR_GREEN_1               (224)
+#define PRIVATE_MODE_POS_GREEN_COLOR_BLUE_1                (82)
+
 
 #define I_AM_LEVEL_UP_POS_X_1                              (714)
 #define I_AM_LEVEL_UP_POS_Y_1                              (713)

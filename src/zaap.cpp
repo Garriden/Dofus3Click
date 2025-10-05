@@ -50,7 +50,7 @@ bool zaap::CheckZaapInterface()
 {
     bool ret = false;
 
-    COLORREF color1 = basicOperations::GetColor(ZAAP_INTERFACE_POS_X, ZAAP_INTERFACE_POS_Y, true);
+    COLORREF color1 = basicOperations::GetColor(ZAAP_INTERFACE_POS_X, ZAAP_INTERFACE_POS_Y, false);
 
     if ((int(GetRValue(color1)) < ZAAP_INTERFACE_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
         (int(GetRValue(color1)) > ZAAP_INTERFACE_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&

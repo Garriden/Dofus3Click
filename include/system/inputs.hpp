@@ -8,6 +8,10 @@
  */
 
 namespace inputs {
+
+    /** @brief Gets Windows Version, useful to calculate the taskbar diff. */
+    int GetWindowsVersion();
+
     /**
      * @brief Simulate pressing a single key.
      * @param keyParam Virtual-key code to press.
@@ -90,8 +94,11 @@ namespace inputs {
     /** @brief Print or collect debug coordinates for clicks. */
     void DebugPoints();
 
-    /** @brief Toggle private chat mode by clicking the Green/Red dot in the chat UI. */
-    void ClickPrivateMode();
+    /** 
+     * @brief Toggle private chat mode by clicking the Green/Red dot in the chat UI. 
+     * @return True if Clicked, false if already private.
+    */
+    bool ClickPrivateMode();
 
     ////////////////////
     // Fight related helpers

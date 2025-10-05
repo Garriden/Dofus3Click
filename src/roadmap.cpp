@@ -66,9 +66,7 @@ int Roadmap::Start()
             step = RoadmapState::SET_PRIVATE_MODE;
             break;
         case RoadmapState::SET_PRIVATE_MODE:
-            if(!check::IsPrivateMode()) {
-                inputs::ClickPrivateMode();
-            }
+            inputs::ClickPrivateMode();
             step = RoadmapState::CHECK_INITIAL_POSITION;
             break;
         case RoadmapState::CHECK_INITIAL_POSITION:

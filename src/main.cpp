@@ -16,8 +16,14 @@ int main()
     AllocConsole();
     HWND consoleWindow = GetConsoleWindow();
     if(consoleWindow != NULL) {
-        SetWindowPos(consoleWindow, 0, -600, -300, 600, 1000, 0);
+        if(GetSystemMetrics(SM_CMONITORS) > 1) {
+            SetWindowPos(consoleWindow, 0, -600, -300, 600, 1000, 0);
+        } else {
+            SetWindowPos(consoleWindow, 0, 0, 0, 340, 900, 0);
+        }
     }
+
+    //inputs::GetWindowsVersion();
     
     //AskPj();
     while(true) {
