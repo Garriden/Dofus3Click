@@ -309,8 +309,8 @@
 
 #define I_AM_IN_KOALAK_ZAAP_POS_X_1                        (930)
 #define I_AM_IN_KOALAK_ZAAP_POS_Y_1                        (362)
-#define I_AM_IN_KOALAK_ZAAP_COLOR_RED_1                    (246)
-#define I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_1                  (231)
+#define I_AM_IN_KOALAK_ZAAP_COLOR_RED_1                    (250)
+#define I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_1                  (233)
 #define I_AM_IN_KOALAK_ZAAP_COLOR_BLUE_1                   (164)
 #define I_AM_IN_KOALAK_ZAAP_POS_X_2                        (932)
 #define I_AM_IN_KOALAK_ZAAP_POS_Y_2                        (339)

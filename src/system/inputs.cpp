@@ -543,7 +543,7 @@ bool inputs::ClickPrivateMode()
 
     for(int ii = 0; ii < 500; ++++ii) {
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
-        color = basicOperations::GetColor(x+ii, y, true);
+        color = basicOperations::GetColor(x+ii, y, false);
         //SetCursorPos(x+ii, y);
 
         if(FindPrivateModeDot(color, "red")) {

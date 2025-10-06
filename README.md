@@ -37,11 +37,20 @@ If your PJ dies and becomes a ghost, it goes to the closer fenix statue to resuc
 
 <br>
 
-## Prepare interface
+## 🧩 In-Game Interface (UI) Layout
 
 Ui should look like this:
 
 <img src="Images/UIDisposition.PNG" alt="UI" width="800" style="opacity:1;"/>
+
+
+| Element | Position/Layout |
+| :--- | :--- |
+| **Chat Menu** | On the left, further out than the map change zone. |
+| **Map** | On the Right. Slightly moved up. |
+| **XP Bar** | Bottom-left and smaller. |
+| **Pods Bar** | Bottom-left, just on top of the XP bar. |
+| **Item/Object Menu** | **2-Row** configuration. |
 
 Keep the sets shortcuts on those positions.
 
@@ -52,8 +61,6 @@ Keep the sets shortcuts on those positions.
 More important, keep available recall potions on (Ctrl + 8)
 
 Sit emote on (Ctrl + 2)
-
-Lv and Pods row are important too.
 
 
 ---
@@ -70,8 +77,9 @@ Upper row for attacks, First bottom row for defending.
 
 ## 🎮 Game Setup and Preparation
 
-This section details the necessary configuration steps for proper code usage, including screen resolution, launcher settings, and in-game menu adjustments.
+- Windows - Night light 60%
 
+- Taskbar must be of 30 width.
 
 ### 🖥️ Screen and Launcher Configuration (Ankama Launcher)
 
@@ -81,28 +89,16 @@ This section details the necessary configuration steps for proper code usage, in
 | **Language** | `Español` | Configured in the Ankama Launcher. |
 | **Performance** | `Low Configuration` | Recommended for optimized performance. |
 
-### ⚙️ In-Game Main Menu Options
+### ⚙️ In-Game Main Menu Options (Apariencia)
 
 | Option | Setting | Status |
 | :--- | :--- | :--- |
 | **Display Mode** | `Windowed (Ventana)` | Essential for automation. |
 | **Game Quality** | `Low (Baja)` | Reduced graphic quality. |
-| **Aura** | `Disable (Desactivar)` | Removes visual effects. |
-| **Graphical Appearance of Maps** | `Disable (Desactivar)` | Removes cosmetic map details. |
+| **Aura** | `Disable All (Desactivar)` | Removes visual effects. |
+| **Graphical Appearance of Maps** | `Disable All (Desactivar)` | Removes cosmetic map details. |
 
 ***
-
-## 🧩 In-Game Interface (UI) Layout
-
-This section describes the required interface layout **before initiating any automated function** (after entering the game).
-
-| Element | Position/Layout |
-| :--- | :--- |
-| **Chat Menu** | On the left, further out than the map change zone. |
-| **Map** | On the Right. Slightly moved up. |
-| **XP Bar** | Bottom-left and smaller. |
-| **Pods Bar** | Bottom-left, just on top of the XP bar. |
-| **Item/Object Menu** | **2-Row** configuration. |
 
 ### 🔒 Interface Locking and Combat Settings
 
@@ -136,7 +132,13 @@ These are the fundamental movement and interface hotkeys required for the game e
 | **Melee Attack** | `Q` |
 | **End Turn** | `Space` |
 
+### More in game settings
 
+- Victory menu small.
+
+- Acept reto automatically when starting a fight.
+
+- Reto aleatorio.
 
 ## Setup
 
@@ -172,19 +174,19 @@ doxygen Doxyfile
 
 A quick look at how the code and the calls work:
 
-<img src="Images/mainClass.png" alt="img" width="600"/>
+<img src="Images/mainClass.png" alt="img" width="1000"/>
 
 
 Fight Class:
 
-<img src="Images/FightClass.png" alt="img" width="600"/>
+<img src="Images/FightClass.png" alt="img" width="1000"/>
 
 
-If you want to know the strategy the PJ uses to figth:
+If you want to know the strategy the PJ uses to fight:
 Is still quite brute force, pending to improve it.
 
 
-<img src="Images/FightStrategyClass.png" alt="img" width="600"/>
+<img src="Images/FightStrategyClass.png" alt="img" width="1000"/>
 
 
 ## About

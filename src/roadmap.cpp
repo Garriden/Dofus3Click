@@ -221,10 +221,11 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
             inputs::PressCtrlKey(map[ii].second);
         } else { // normal coordenate value
             if(map.size() == 1) { //Check if change map has only one coordenada.
-                //inputs::ShiftClick(map[ii].first, map[ii].second); // To avoid clicking mobs.
-                inputs::Click(map[ii].first, map[ii].second);
+                inputs::ShiftClick(map[ii].first, map[ii].second); // To avoid clicking mobs and therefore keeping stuck on the same map.
+                //inputs::Click(map[ii].first, map[ii].second);
             } else if(ii == map.size() - 1) { // The last coordenate (Change map).
-                inputs::Click(map[ii].first, map[ii].second);
+                inputs::ShiftClick(map[ii].first, map[ii].second); // To avoid clicking mobs and therefore keeping stuck on the same map.
+                //inputs::Click(map[ii].first, map[ii].second);
             } else if((ii < map.size() - 1) && (map[ii].first >= (RIGHT_X - ERROR_GET_COLOUR_QUITE) ||
                                                 map[ii].first <= (LEFT_X + ERROR_GET_COLOUR_QUITE)  ||
                                                 map[ii].second >= (DOWN_Y - ERROR_GET_COLOUR_QUITE) ||
