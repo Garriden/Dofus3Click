@@ -1,111 +1,80 @@
+#pragma once
+
 #include "utils.hpp"
 //#include "config.hpp"
 #include "basicOperations.hpp"
 #include "system/file.hpp"
 
-namespace check {
-/*
- * Given the colour a specific position, see if it is the unique color to check.
+/**
+ * @file checks.hpp
+ * @brief Collection of screen-state checks used to infer game UI state.
+ *
+ * Each function inspects one or more screen pixels and returns a boolean
+ * describing whether a particular UI box or state is visible.
  */
 
-// Look if I am in a fight (or if it is my turn). Check the turn hexa orange "bar".
+namespace check {
+
+/** @brief True if the player is currently in a fight UI. (or if it is my turn and the bar is green). */
 bool IsFight();
 
-// Look if I am in a fight (or if it is my turn). Check the turn hexa orange "bar" if it is already finished.
+/** @brief True if the player's turn is almost finished (turn bar near end, bar orange or red). */
 bool IsAlmostTheEndOfTheTurn();
 
-// Check if the PODS bar its (almost) full.
+/** @brief True if the PODS (inventory weight) bar is (almost) full. */
 bool AmIFull();
 
-// The hearth (life) is (almost) full.
+/** @brief True when the player's health is (almost) full. */
 bool HaveIHealth();
 
-//Find the red/green dot in the chat (private mode).
+/** @brief True if chat is in private mode (red/green indicator visible). */
 bool IsPrivateMode();
 
-/*
- * Given a color, Check if the Consumable is a Mimilk.
- *
- * in: color, the color of a given pixel.
- */
-//bool IsMimilk(COLORREF color);
-
-// Check if the position ctrl + 8 is a recall poti.
+/** @brief True when the recall potion icon (ctrl+8 position) is present. */
 bool IsRecallPoti();
 
-/*
- * Given a color, Check if the Consumable is a Bark Potion.
- *
- * in: color, the color of a given pixel.
- */
-//bool IsBrakPoti(COLORREF color);
-
-// Check if I am viewing the attention window.
+/** @brief True when the attention dialog/window is visible. */
 bool IsAttentionBox();
 
-// Check if is the menu principal box, which it appears when I press Escape.
+/** @brief True when the main menu (Esc) dialog is visible. */
 bool IsMenuPrincipalBox();
 
-/*
- * Look if the fight it is already finished. If I lost it
- * Checking if it is visible the postFight defeated window.
- */
+/** @brief True if the post-fight defeat window is visible. */
 bool AmIDefeated();
 
-// Check if after fight, I don't have enery and appears the fenix box.
+/** @brief True if the post-fight fenix/energy dialog is shown. */
 bool IsFenixBox();
 
-/*
- * Look if the fight it is already finished. If I won it
- * Checking if it is visible the postFight Victory window.
- */
+/** @brief True if the victory window is visible (player won the fight). */
 bool IWonTheFight();
 
-// If I won or I lost.
+/** @brief True if the fight has finished (won or lost). */
 bool IsFightFinished();
 
-// Is the screen black?
+/** @brief True if the screen is currently black (transition state). */
 bool IsBlackScreen();
 
-/*
- * Given a Coordenate, is that pixel Black ?
- *
- * in: x, Coordenate X.
- * in: Y, Coordenate Y.
+/**
+ * @brief Check whether the pixel at (x,y) is black within tolerances.
+ * @param x X coordinate.
+ * @param y Y coordinate.
+ * @return bool True if pixel is considered black.
  */
 bool IsBlack(int x, int y);
 
-// Check if the levelUp window its shown.
+/** @brief True if a level up dialog is visible. */
 bool AmILevelUp();
 
-/*
- * Check if it is showed the dead window.
- */
-//bool AmIDead();
-
-/*
- * Check if I am talking with an NPJ.
- */
-//bool AmITalkingWithNPJ();
-
-/*
- * Check if I pressed a merchant interface.
- */
-//bool IsMercant();
-
-/*
- * Check if I am trying to go into merchant mode.
- */
-//bool IsMercantMode();
-
-// Check if the bottom menu is spells menu.
-//  I check if the bottom rightmost icon is orange (CaC weapon)
+/** @brief True if the bottom menu currently shows spells (not objects). */
 bool IsSpellsMenu();
 
-// Check if the first position in the inventary is empty.
+/** @brief True if the first inventory slot is empty. */
 bool IsEmptyResource();
 
-// Active check for some seconds if the blackScreen transition apprears when changing maps.
+/**
+ * @brief Wait for a short period watching for the black screen transition
+ *        that indicates a map change. Returns true if transition observed.
+ */
 bool WaitMapToChange();
 
 }

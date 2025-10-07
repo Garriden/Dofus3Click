@@ -35,7 +35,7 @@
 // SCREEN POSITIONS
 ///////////////////////////////////////////////////////////
 
-#define DOFUS_EXE_POS_X_1                                  (130)
+#define DOFUS_EXE_POS_X_1                                  (100)
 #define DOFUS_EXE_POS_Y_1                                  (1064)
 #define DOFUS_EXE_POS_COLOR_RED_1                          (241)
 #define DOFUS_EXE_POS_COLOR_GREEN_1                        (247)
@@ -243,21 +243,21 @@
 #define I_AM_IN_ASTRUB_ZAAP_COLOR_GREEN_4                  (94)
 #define I_AM_IN_ASTRUB_ZAAP_COLOR_BLUE_4                   (115)
 
-#define I_AM_IN_LINDE_ZAAP_POS_X_1                         (869)
-#define I_AM_IN_LINDE_ZAAP_POS_Y_1                         (424)
-#define I_AM_IN_LINDE_ZAAP_COLOR_RED_1                     (85)
-#define I_AM_IN_LINDE_ZAAP_COLOR_GREEN_1                   (130)
-#define I_AM_IN_LINDE_ZAAP_COLOR_BLUE_1                    (104)
+#define I_AM_IN_LINDE_ZAAP_POS_X_1                         (361)
+#define I_AM_IN_LINDE_ZAAP_POS_Y_1                         (891)
+#define I_AM_IN_LINDE_ZAAP_COLOR_RED_1                     (184)
+#define I_AM_IN_LINDE_ZAAP_COLOR_GREEN_1                   (206)
+#define I_AM_IN_LINDE_ZAAP_COLOR_BLUE_1                    (16)
 #define I_AM_IN_LINDE_ZAAP_POS_X_2                         (871)
 #define I_AM_IN_LINDE_ZAAP_POS_Y_2                         (382)
 #define I_AM_IN_LINDE_ZAAP_COLOR_RED_2                     (109)
 #define I_AM_IN_LINDE_ZAAP_COLOR_GREEN_2                   (189)
 #define I_AM_IN_LINDE_ZAAP_COLOR_BLUE_2                    (127)
-#define I_AM_IN_LINDE_ZAAP_POS_X_3                         (881)
-#define I_AM_IN_LINDE_ZAAP_POS_Y_3                         (384)
-#define I_AM_IN_LINDE_ZAAP_COLOR_RED_3                     (226)
-#define I_AM_IN_LINDE_ZAAP_COLOR_GREEN_3                   (194)
-#define I_AM_IN_LINDE_ZAAP_COLOR_BLUE_3                    (109)
+#define I_AM_IN_LINDE_ZAAP_POS_X_3                         (772)
+#define I_AM_IN_LINDE_ZAAP_POS_Y_3                         (369)
+#define I_AM_IN_LINDE_ZAAP_COLOR_RED_3                     (242)
+#define I_AM_IN_LINDE_ZAAP_COLOR_GREEN_3                   (218)
+#define I_AM_IN_LINDE_ZAAP_COLOR_BLUE_3                    (127)
 
 #define I_AM_IN_RINCON_ZAAP_POS_X_1                        (1414)
 #define I_AM_IN_RINCON_ZAAP_POS_Y_1                        (38)
@@ -309,8 +309,8 @@
 
 #define I_AM_IN_KOALAK_ZAAP_POS_X_1                        (930)
 #define I_AM_IN_KOALAK_ZAAP_POS_Y_1                        (362)
-#define I_AM_IN_KOALAK_ZAAP_COLOR_RED_1                    (246)
-#define I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_1                  (231)
+#define I_AM_IN_KOALAK_ZAAP_COLOR_RED_1                    (250)
+#define I_AM_IN_KOALAK_ZAAP_COLOR_GREEN_1                  (233)
 #define I_AM_IN_KOALAK_ZAAP_COLOR_BLUE_1                   (164)
 #define I_AM_IN_KOALAK_ZAAP_POS_X_2                        (932)
 #define I_AM_IN_KOALAK_ZAAP_POS_Y_2                        (339)
@@ -558,6 +558,10 @@
 #define PRIVATE_MODE_POS_COLOR_RED_1                       (255) // red dot
 #define PRIVATE_MODE_POS_COLOR_GREEN_1                     (84)
 #define PRIVATE_MODE_POS_COLOR_BLUE_1                      (84)
+#define PRIVATE_MODE_POS_GREEN_COLOR_RED_1                 (144) // green dot
+#define PRIVATE_MODE_POS_GREEN_COLOR_GREEN_1               (224)
+#define PRIVATE_MODE_POS_GREEN_COLOR_BLUE_1                (82)
+
 
 #define I_AM_LEVEL_UP_POS_X_1                              (714)
 #define I_AM_LEVEL_UP_POS_Y_1                              (713)
@@ -657,7 +661,7 @@
 ///////////////////////////////////
 // RETURN ERRORS
 ///////////////////////////////////
-
+// Error and return codes used across the project.
 #define E_OK                                               (0)
 #define E_KO                                               (-1)
 

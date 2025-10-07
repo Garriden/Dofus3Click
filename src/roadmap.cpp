@@ -66,9 +66,7 @@ int Roadmap::Start()
             step = RoadmapState::SET_PRIVATE_MODE;
             break;
         case RoadmapState::SET_PRIVATE_MODE:
-            if(!check::IsPrivateMode()) {
-                inputs::ClickPrivateMode();
-            }
+            inputs::ClickPrivateMode();
             step = RoadmapState::CHECK_INITIAL_POSITION;
             break;
         case RoadmapState::CHECK_INITIAL_POSITION:
@@ -183,6 +181,9 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
 
     for(int ii = 0; ii < map.size(); ++ii) {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        if(ii != 0) { // NOT already changed map.
+            std::this_thread::sleep_for(std::chrono::seconds(8));
+        }
 
         if(check::IsFight()) {
             Fight fight;
@@ -211,11 +212,19 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
             inputs::PressKey(map[ii].second);
         } else if(map[ii].first == INPUT_PATTERN_ESC) {
             inputs::PressEscape();
+            std::this_thread::sleep_for(std::chrono::seconds(2));
+            if(check::IsMenuPrincipalBox()) {
+                inputs::PressEscape();
+                std::this_thread::sleep_for(std::chrono::seconds(2));
+            }
         } else if(map[ii].first == INPUT_PATTERN_CTRL) {
             inputs::PressCtrlKey(map[ii].second);
         } else { // normal coordenate value
             if(map.size() == 1) { //Check if change map has only one coordenada.
-                inputs::ShiftClick(map[ii].first, map[ii].second); // To avoid clicking mobs.
+                inputs::ShiftClick(map[ii].first, map[ii].second); // To avoid clicking mobs and therefore keeping stuck on the same map.
+                //inputs::Click(map[ii].first, map[ii].second);
+            } else if(ii == map.size() - 1) { // The last coordenate (Change map).
+                inputs::ShiftClick(map[ii].first, map[ii].second); // To avoid clicking mobs and therefore keeping stuck on the same map.
                 //inputs::Click(map[ii].first, map[ii].second);
             } else if((ii < map.size() - 1) && (map[ii].first >= (RIGHT_X - ERROR_GET_COLOUR_QUITE) ||
                                                 map[ii].first <= (LEFT_X + ERROR_GET_COLOUR_QUITE)  ||
@@ -224,7 +233,7 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
             {
                     File::LogFile("Careful, changeMap coordenate is not the last value!", true);
                     inputs::ShiftClick(map[ii].first, map[ii].second);
-                    std::this_thread::sleep_for(std::chrono::seconds(20));
+                    std::this_thread::sleep_for(std::chrono::seconds(10));
             } else if(Profession::LOWERING_PODS == _profession || Profession::GHOST == _profession ||
                       Profession::TRAIN == _profession         || Profession::MISSIONS == _profession)
             {
@@ -254,7 +263,7 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
                 x -= retries * 40;
             }
 
-            if(retries < 3) {
+            if(retries < 2) {
                 inputs::ShiftClick(x, y);
             } else {
                 inputs::Click(x, y);
@@ -262,7 +271,7 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
         }
     }
 
-    if(retries >= 6) {
+    if(retries > 6) {
         File::LogFile("Stuck! So many retries for invalid action...", true);
         return E_KO;
     }
@@ -345,7 +354,7 @@ void Roadmap::ConvertResources()
     std::this_thread::sleep_for(std::chrono::seconds(1));
 
     int retires = 0;
-    while(!check::IsEmptyResource() && ++retires < 20) {
+    while(!check::IsEmptyResource() && ++retires < 30) {
         inputs::DoubleClick(INVENTARY_CONVERT_RESOURCES_X_4, INVENTARY_CONVERT_RESOURCES_Y_4);
         std::this_thread::sleep_for(std::chrono::seconds(2));
     }
@@ -395,7 +404,7 @@ void Roadmap::GoToZaap()
     } else if(zaap::CheckZaapAstrub() && _zaap == "") {
         return;
     } else if(zaap::CheckZaapAstrub() && _zaap != "astrub") {
-        zaap::ClickZaap(_zaap);
+        zaap::TeleportZaap(_zaap);
     } else { // not in Astrub ?
         for(int ii = 0; !zaap::CheckZaapAstrub() && ii < 20; ++ii) {
             if(zaap::CheckZaapInterface()) {
@@ -411,7 +420,7 @@ void Roadmap::GoToZaap()
         }
         inputs::PressCtrlKey('8'); // Recall Poti.
         std::this_thread::sleep_for(std::chrono::seconds(10));
-        zaap::ClickZaap(_zaap);
+        zaap::TeleportZaap(_zaap);
     }
 
     std::this_thread::sleep_for(std::chrono::seconds(1));

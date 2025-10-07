@@ -3,15 +3,12 @@
 #include "menus.hpp"
 #include "train.hpp"
 
-
-#include "checks.hpp"
-#include "fight.hpp"
-#include "roadmap.hpp"
-#include "zaap.hpp"
-
+//#include "checks.hpp"
+//#include "fight.hpp"
+//#include "roadmap.hpp"
+//#include "zaap.hpp"
 
 #include <windows.h>
-#include <iostream>
 
 int main()
 {
@@ -19,8 +16,14 @@ int main()
     AllocConsole();
     HWND consoleWindow = GetConsoleWindow();
     if(consoleWindow != NULL) {
-        SetWindowPos(consoleWindow, 0, -600, -300, 600, 1000, 0);
+        if(GetSystemMetrics(SM_CMONITORS) > 1) {
+            SetWindowPos(consoleWindow, 0, -600, -300, 600, 1000, 0);
+        } else {
+            SetWindowPos(consoleWindow, 0, 0, 0, 340, 900, 0);
+        }
     }
+
+    //inputs::GetWindowsVersion();
     
     //AskPj();
     while(true) {
@@ -83,14 +86,14 @@ int main()
                 break;
             case 99: //debug
 
-                std::this_thread::sleep_for(std::chrono::seconds(3));
-                inputs::ClickOnExe();
+                //std::this_thread::sleep_for(std::chrono::seconds(3));
+                //inputs::ClickOnExe();
 
                 //check::AmIDefeated();
                 //zaap::CheckZaapAstrub();
-                check::IsMenuPrincipalBox();
+                //check::IsMenuPrincipalBox();
 
-                std::this_thread::sleep_for(std::chrono::seconds(3));
+                //std::this_thread::sleep_for(std::chrono::seconds(3));
 
                 //inputs::ShiftClick(1000, 300);
 

@@ -36,6 +36,69 @@ namespace {
 
         return ret;
     }
+
+    bool FindPrivateModeDot(COLORREF color, std::string colorWanted)
+    {
+        bool ret = false;
+
+        if(colorWanted == "red") {
+            if(((int(GetRValue(color)) < PRIVATE_MODE_POS_COLOR_RED_1   + ERROR_GET_COLOUR) &&
+                (int(GetRValue(color)) > PRIVATE_MODE_POS_COLOR_RED_1   - ERROR_GET_COLOUR) &&
+                (int(GetGValue(color)) < PRIVATE_MODE_POS_COLOR_GREEN_1 + ERROR_GET_COLOUR_QUITE) &&
+                (int(GetGValue(color)) > PRIVATE_MODE_POS_COLOR_GREEN_1 - ERROR_GET_COLOUR_QUITE) &&
+                (int(GetBValue(color)) < PRIVATE_MODE_POS_COLOR_BLUE_1  + ERROR_GET_COLOUR_QUITE) &&
+                (int(GetBValue(color)) > PRIVATE_MODE_POS_COLOR_BLUE_1  - ERROR_GET_COLOUR_QUITE)) )
+            {
+                ret = true;
+                File::LogFile("Private RED dot found!", true);
+            }
+        } else if(colorWanted == "green") {
+            if(((int(GetRValue(color)) < PRIVATE_MODE_POS_GREEN_COLOR_RED_1   + ERROR_GET_COLOUR) &&
+                (int(GetRValue(color)) > PRIVATE_MODE_POS_GREEN_COLOR_RED_1   - ERROR_GET_COLOUR) &&
+                (int(GetGValue(color)) < PRIVATE_MODE_POS_GREEN_COLOR_GREEN_1 + ERROR_GET_COLOUR_QUITE) &&
+                (int(GetGValue(color)) > PRIVATE_MODE_POS_GREEN_COLOR_GREEN_1 - ERROR_GET_COLOUR_QUITE) &&
+                (int(GetBValue(color)) < PRIVATE_MODE_POS_GREEN_COLOR_BLUE_1  + ERROR_GET_COLOUR_QUITE) &&
+                (int(GetBValue(color)) > PRIVATE_MODE_POS_GREEN_COLOR_BLUE_1  - ERROR_GET_COLOUR_QUITE)) )
+            {
+                ret = true;
+                File::LogFile("Private GREEN dot found!", true);
+            }
+        }
+
+        return ret;
+    }
+}
+
+// Undocumented API declaration (required to use RtlGetVersion)
+typedef NTSTATUS(WINAPI *RtlGetVersionPtr)(PRTL_OSVERSIONINFOW);
+
+int inputs::GetWindowsVersion() {
+    RtlGetVersionPtr pRtlGetVersion = (RtlGetVersionPtr)GetProcAddress(GetModuleHandle(TEXT("ntdll.dll")), "RtlGetVersion");
+
+    //inputs::_diffTaskBar = 0;
+
+    if(pRtlGetVersion != NULL) {
+        OSVERSIONINFOEXW osInfo = {0};
+        osInfo.dwOSVersionInfoSize = sizeof(osInfo);
+        
+        if(pRtlGetVersion((PRTL_OSVERSIONINFOW)&osInfo) == 0) { // NTSTATUS 0 is success
+            //std::cout << "Reported Version: " << osInfo.dwMajorVersion << "." << osInfo.dwMinorVersion << "\n";
+            //std::cout << "Build Number: " << osInfo.dwBuildNumber << "\n";
+
+            if(osInfo.dwMajorVersion == 10 && osInfo.dwBuildNumber >= 22000) {
+                //std::cout << "Detected OS: Windows 11\n";
+                //inputs::_diffTaskBar = 20;
+                return 11;
+            } else if(osInfo.dwMajorVersion == 10 && osInfo.dwBuildNumber < 22000) {
+                //std::cout << "Detected OS: Windows 10\n";
+                return 10;
+            } else {
+                //std::cout << "Detected OS: Other Windows Version\n";
+                return 1;
+            }
+        }
+    }
+    return -1;
 }
 
 void inputs::PressKey(int keyParam)
@@ -189,6 +252,7 @@ void inputs::PressEscape()
     escape.ki.wVk = VK_ESCAPE;
     escape.ki.wScan = MapVirtualKey(VK_ESCAPE, 0);
     SendInput(1, &escape, sizeof(INPUT)); // Send KeyDown
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
     escape.ki.dwFlags = KEYEVENTF_KEYUP; // | KEYEVENTF_EXTENDEDKEY;
     SendInput(1, &escape, sizeof(INPUT)); // Send KeyUp
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
@@ -220,9 +284,10 @@ bool inputs::ClickOnExe()
     int y = DOFUS_EXE_POS_Y_1;
     COLORREF color;
 
-    for(int ii = 0; ii < 500; ++ii) {
+    for(int ii = 0; ii < 1000; ++++ii) {
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
         color = basicOperations::GetColor(x+ii, y, false);
+        //SetCursorPos(x+ii, y);
 
         if(FindDofusExe(color)) {
             Click(x+ii, y);
@@ -468,15 +533,36 @@ void inputs::RecordTelemetry()
     std::cout << "Record Telemetry ended." << std::endl;
 }
 
-void inputs::ClickPrivateMode()
+bool inputs::ClickPrivateMode()
 {
-    std::this_thread::sleep_for(std::chrono::milliseconds(200));
-    Click(PRIVATE_MODE_POS_X_1, PRIVATE_MODE_POS_Y_1);
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
-    Click(PRIVATE_MODE_POS_X_2, PRIVATE_MODE_POS_Y_2);
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
-    //Click(PRIVATE_MODE_POS_X_3, PRIVATE_MODE_POS_Y_3);
-    std::this_thread::sleep_for(std::chrono::milliseconds(200));
+
+    int x = PRIVATE_MODE_POS_X_1 - 100;
+    int y = PRIVATE_MODE_POS_Y_1;
+    COLORREF color;
+
+
+    for(int ii = 0; ii < 500; ++++ii) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        color = basicOperations::GetColor(x+ii, y, false);
+        //SetCursorPos(x+ii, y);
+
+        if(FindPrivateModeDot(color, "red")) {
+            // Already in private mode.
+            return false;
+        } else if(FindPrivateModeDot(color, "green")) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(200));
+            Click(x + ii, y);
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            Click(x + ii + 40, y - 15);
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            //Click(PRIVATE_MODE_POS_X_3, PRIVATE_MODE_POS_Y_3);
+            std::this_thread::sleep_for(std::chrono::milliseconds(200));
+            return true;
+        }
+
+    }
+
+    return false;
 }
 
 int inputs::FindMyPosition()

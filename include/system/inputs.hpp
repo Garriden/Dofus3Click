@@ -1,159 +1,118 @@
 #pragma once
 #include <iostream>
 #include <vector>
-//#include "Utils.h"
-//#include "Config.h"
-//#include "BasicOperations.h"
-//#include "Menus.h"
+
+/**
+ * @file inputs.hpp
+ * @brief Wrappers around OS input injection (keyboard/mouse) used by the bot.
+ */
 
 namespace inputs {
-    /*
-    * Simulates a key pressing.
-    *
-    * in: keyParam, key desired to press.
-    */
+
+    /** @brief Gets Windows Version, useful to calculate the taskbar diff. */
+    int GetWindowsVersion();
+
+    /**
+     * @brief Simulate pressing a single key.
+     * @param keyParam Virtual-key code to press.
+     */
     void PressKey(int keyParam);
 
-    /*
-    * Simulates a special key pressing (Repag...).
-    *
-    * in: specialKey, key desired to press.
-    */
+    /**
+     * @brief Simulate pressing a special key (page up/down etc.).
+     * @param specialKey Virtual-key code.
+     */
     void PressSpecialKey(int specialKey);
 
-    /*
-    * Simulates a key pressing + Ctrl key pressing.
-    *
-    * in: keyParam, key desired to press, besides the Ctrl key.
-    */
+    /**
+     * @brief Simulate pressing a key while holding Ctrl.
+     * @param keyParam Virtual-key code.
+     */
     void PressCtrlKey(int keyParam);
 
-    /*
-    * Simulates a key pressing + Shift key pressing.
-    *
-    * in: keyParam, key desired to press, besides the Shift key.
-    */
+    /**
+     * @brief Simulate pressing a key while holding Shift.
+     * @param keyParam Virtual-key code.
+     */
     void PressShiftKey(int keyParam);
 
-    /*
-    * Simulates a key pressing, keeps it pressed.
-    *
-    * in: keyParam, key desired to press.
-    */
-    //void KeepKeyPressed(int keyParam);
-
-    /*
-    * Simulates a key release.
-    *
-    * in: keyParam, key desired to release.
-    */
-    //void ReleaseKeyPressed(int keyParam);
-
-    /*
-    * Simulates a space key pressing.
-    */
+    /** @brief Simulate pressing the space key. */
     void PressSpace();
 
-    /*
-    * Simulates an escape key pressing.
-    */
+    /** @brief Simulate pressing the Escape key. */
     void PressEscape();
 
-    /*
-    * Simulates an enter key pressing.
-    */
+    /** @brief Simulate pressing the Enter key. */
     void PressEnter();
 
-    /*
-    * Simulate an execution of different sequencial keys.
-    * Useful to write things.
-    *
-    * in: s, string desired to write.
-    */
+    /**
+     * @brief Type a string as a sequence of key presses.
+     * @param s The string to type.
+     */
     void KeyboardWrite(std::string s);
 
-    // Do a Click a little bit on the Dofus executable bar.
+    /**
+     * @brief Click near the Dofus executable bar to ensure the game has focus.
+     * @return bool True on success.
+     */
     bool ClickOnExe();
 
-    /*
-    * Get all the characters inside a .txt, given a file.
-    *
-    * in: file_name, the name of the desired file.
-    */
-    //std::string getTxt(std::string file_name);
-
-    /*
-    * Find the desired file .txt to extract his charactes.
-    *
-    * in: file_name, the name of the desired file.
-    */
-    //std::string GetTxtFile(std::string file_name);
-
-    /*
-    * Click the OK button in the levelUp window.
-    */
-    //void ClickLevelUpOk();
-
-    /*
-    * Click the OK button in the dead window.
-    */
-    //void ClickDeadOk();
-
-    /*
-    * Click the OK button in the error window.
-    */
-    //void ClickErrorWindowOk();
-
-    /*
-    * Start recording real Clicks. Check menu telemetry for more information.
-    */
+    /** @brief Start recording actual mouse clicks to build telemetry files. */
     void RecordTelemetry();
 
-    /*
-    * Set the cursor and click the position I want.
-    *
-    * in: x and y coordenates.
-    */
+    /**
+     * @brief Move the cursor to (x,y) and click.
+     * @param x X screen coordinate.
+     * @param y Y screen coordinate.
+     */
     void Click(int x, int y);
 
-    // Similar as Click but With the Shift key also pressed.
+    /** @brief Click while holding Shift modifier at (x,y). */
     void ShiftClick(int x, int y);
 
-    // Similar as Click but DoubleClick.
+    /**
+     * @brief Double-click at (x,y).
+     */
     void DoubleClick(int x, int y);
 
-    /*
-    * Change the map in the desired direction.
-    *
-    * in: position, RIGHT, LEFT, UP, DOWN.
-    */
+    /**
+     * @brief Change map in the given direction (RIGHT/LEFT/UP/DOWN macros).
+     * @param position Direction constant.
+     */
     void ChangeMap(int position);
 
-    /*
-    * Change the objects bar up or down.
-    *
-    * in: changes: How many ups or downs do you wanna change.
-    * in: up: if true, send Re Pag shortcut, Av Pag if false.
-    */
+    /**
+     * @brief Change the objects menu bar by a number of page changes.
+     * @param changes Number of page changes.
+     * @param down If true move down (Av Pag), otherwise up.
+     */
     void ChangeMenuBar(int changes, bool down);
 
-    // Change bottom menu, from spells menu to objects menu, or otherwise.
-    //  Can check first if it is spells menu, calling: check::IsSpellsMenu()
+    /** @brief Switch the bottom menu between spells and objects. */
     void ClickSwitchBottomMenu();
 
-    // Give information of the coordenates of real clicks.
+    /** @brief Print or collect debug coordinates for clicks. */
     void DebugPoints();
 
-    // Change to private mode.
-    void ClickPrivateMode();
+    /** 
+     * @brief Toggle private chat mode by clicking the Green/Red dot in the chat UI. 
+     * @return True if Clicked, false if already private.
+    */
+    bool ClickPrivateMode();
 
     ////////////////////
-    // Fight related
+    // Fight related helpers
     ////////////////////
 
-    // return the X coordenate of the menu window where I am located.
+    /**
+     * @brief Obtain the X coordinate of the player's position in the fight menu.
+     * @return int X coordinate used by fight UI helpers.
+     */
     int FindMyPosition();
 
-    // return the X coordenates of the menu window where the enemies are located.
+    /**
+     * @brief Obtain X coordinates of enemies in the fight menu.
+     * @return std::vector<int> Vector of enemy X coordinates.
+     */
     std::vector<int> FindEnemiesPositions();
 }

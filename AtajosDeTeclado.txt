@@ -1,30 +1,28 @@
 Screen resoluton:
     1920x1080
 
-Anama launcher:
+Ankama launcher:
     - Languange: Español.
-    - Rendmento confguracon baja.
+    - Rendimento configuracion baja.
 
-Opcones menu:
+Opciones menu:
     - Modo de vsualzacon: Ventana.
     - Caldad del juego: Baja.
-    - Aura: Desactvar los dos tcs.
-    - Aparenca grafca de los mapas: Desactvar lso dos tcs.
-    - Desactvar musca.
+    - Aura: Desactivar.
+    - Apariencia grafica de los mapas: Desactivar.
 
 Enter game:
 Put menus correctly:
     - chat menu on the left. More than the map change.
-    - mnmapa lttle bt up.
-    - xp bottom-left and more smaller.
+    - mapa little bit up.
+    - xp bar at bottom-left and more smaller.
+    - pods bar at bottom-left, just on top of the xp bar.
     - Objects menu. 2 rows.
 
-Opcones menu juego:
+Opciones menu juego:
     - Interfaz: Bloquear modulos interfaz.
 Combate:
     - Ocultar invocaciones.
-
-
 
 
 
@@ -33,14 +31,11 @@ Alt + S             Ir al Sur
 Alt + A             Ir al Oste
 Alt + D             Ir al Este
 
-
-
 X                   Transparencia
 Z                   Burbuja Monstruos y NPCs
 Y                   Elementos interactivos
 
 Somewhat but Space  Activar ventana de chat
-
 
 Q                   Ataque cuerpo a cuerpo
 Space               Pasar turno
