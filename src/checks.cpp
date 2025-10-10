@@ -218,8 +218,11 @@ bool check::IsMenuPrincipalBox()
     COLORREF color1 = basicOperations::GetColor(IS_MENU_PRINCIPAL_POS_X_1, IS_MENU_PRINCIPAL_POS_Y_1, false);
     COLORREF color2 = basicOperations::GetColor(IS_MENU_PRINCIPAL_POS_X_2, IS_MENU_PRINCIPAL_POS_Y_2, false);
     COLORREF color3 = basicOperations::GetColor(IS_MENU_PRINCIPAL_POS_X_3, IS_MENU_PRINCIPAL_POS_Y_3, false);
+    COLORREF colorBlack1 = basicOperations::GetColor(IS_MENU_PRINCIPAL_POS_X_BLACK, IS_MENU_PRINCIPAL_POS_Y_BLACK,       false);
+    COLORREF colorBlack2 = basicOperations::GetColor(IS_MENU_PRINCIPAL_POS_X_BLACK + 50, IS_MENU_PRINCIPAL_POS_Y_BLACK,  false);
+    COLORREF colorBlack3 = basicOperations::GetColor(IS_MENU_PRINCIPAL_POS_X_BLACK + 100, IS_MENU_PRINCIPAL_POS_Y_BLACK, false);
 
-    if ((int(GetRValue(color1)) < IS_MENU_PRINCIPAL_RED_1   + ERROR_GET_COLOUR_SMALL) &&
+    if(((int(GetRValue(color1)) < IS_MENU_PRINCIPAL_RED_1   + ERROR_GET_COLOUR_SMALL) &&
         (int(GetRValue(color1)) > IS_MENU_PRINCIPAL_RED_1   - ERROR_GET_COLOUR_SMALL) &&
         (int(GetGValue(color1)) < IS_MENU_PRINCIPAL_GREEN_1 + ERROR_GET_COLOUR_SMALL) &&
         (int(GetGValue(color1)) > IS_MENU_PRINCIPAL_GREEN_1 - ERROR_GET_COLOUR_SMALL) &&
@@ -239,7 +242,28 @@ bool check::IsMenuPrincipalBox()
         (int(GetGValue(color3)) > IS_MENU_PRINCIPAL_GREEN_3 - ERROR_GET_COLOUR_SMALL) &&
         (int(GetBValue(color3)) < IS_MENU_PRINCIPAL_BLUE_3  + ERROR_GET_COLOUR_SMALL) &&
         (int(GetBValue(color3)) > IS_MENU_PRINCIPAL_BLUE_3  - ERROR_GET_COLOUR_SMALL)
-        )
+        ) || (
+        (int(GetRValue(colorBlack1)) < IS_MENU_PRINCIPAL_RED_BLACK   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(colorBlack1)) > IS_MENU_PRINCIPAL_RED_BLACK   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(colorBlack1)) < IS_MENU_PRINCIPAL_GREEN_BLACK + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(colorBlack1)) > IS_MENU_PRINCIPAL_GREEN_BLACK - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(colorBlack1)) < IS_MENU_PRINCIPAL_BLUE_BLACK  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(colorBlack1)) > IS_MENU_PRINCIPAL_BLUE_BLACK  - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(colorBlack2)) < IS_MENU_PRINCIPAL_RED_BLACK   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(colorBlack2)) > IS_MENU_PRINCIPAL_RED_BLACK   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(colorBlack2)) < IS_MENU_PRINCIPAL_GREEN_BLACK + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(colorBlack2)) > IS_MENU_PRINCIPAL_GREEN_BLACK - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(colorBlack2)) < IS_MENU_PRINCIPAL_BLUE_BLACK  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(colorBlack2)) > IS_MENU_PRINCIPAL_BLUE_BLACK  - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(colorBlack3)) < IS_MENU_PRINCIPAL_RED_BLACK   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(colorBlack3)) > IS_MENU_PRINCIPAL_RED_BLACK   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(colorBlack3)) < IS_MENU_PRINCIPAL_GREEN_BLACK + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(colorBlack3)) > IS_MENU_PRINCIPAL_GREEN_BLACK - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(colorBlack3)) < IS_MENU_PRINCIPAL_BLUE_BLACK  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(colorBlack3)) > IS_MENU_PRINCIPAL_BLUE_BLACK  - ERROR_GET_COLOUR_SMALL)
+        ) )
     {
         File::LogFile("Is the menu principal window!", true);
         ret = true;
