@@ -259,6 +259,7 @@
 #define I_AM_IN_LINDE_ZAAP_COLOR_GREEN_3                   (218)
 #define I_AM_IN_LINDE_ZAAP_COLOR_BLUE_3                    (127)
 
+
 #define I_AM_IN_RINCON_ZAAP_POS_X_1                        (1414)
 #define I_AM_IN_RINCON_ZAAP_POS_Y_1                        (38)
 #define I_AM_IN_RINCON_ZAAP_COLOR_RED_1                    (176)
@@ -274,6 +275,17 @@
 #define I_AM_IN_RINCON_ZAAP_COLOR_RED_3                    (184)
 #define I_AM_IN_RINCON_ZAAP_COLOR_GREEN_3                  (198)
 #define I_AM_IN_RINCON_ZAAP_COLOR_BLUE_3                   (56)
+
+#define I_AM_IN_KANI_ZAAP_POS_X_1                          (1472)
+#define I_AM_IN_KANI_ZAAP_POS_Y_1                          (212)
+#define I_AM_IN_KANI_ZAAP_COLOR_RED_1                      (223)
+#define I_AM_IN_KANI_ZAAP_COLOR_GREEN_1                    (214)
+#define I_AM_IN_KANI_ZAAP_COLOR_BLUE_1                     (69)
+#define I_AM_IN_KANI_ZAAP_POS_X_2                          (1462)
+#define I_AM_IN_KANI_ZAAP_POS_Y_2                          (238)
+#define I_AM_IN_KANI_ZAAP_COLOR_RED_2                      (254)
+#define I_AM_IN_KANI_ZAAP_COLOR_GREEN_2                    (241)
+#define I_AM_IN_KANI_ZAAP_COLOR_BLUE_2                     (109)
 
 #define I_AM_IN_PUERKAZOS_ZAAP_POS_X_1                     (740)
 #define I_AM_IN_PUERKAZOS_ZAAP_POS_Y_1                     (282)
@@ -550,7 +562,7 @@
 #define CHECK_PODS_COLOR_BLUE                              (75)
 
 #define PRIVATE_MODE_POS_X_1                               (322)
-#define PRIVATE_MODE_POS_Y_1                               (1036)
+#define PRIVATE_MODE_POS_Y_1                               (1034)
 #define PRIVATE_MODE_POS_X_2                               (363)
 #define PRIVATE_MODE_POS_Y_2                               (1023)
 //#define PRIVATE_MODE_POS_X_3                               (320)

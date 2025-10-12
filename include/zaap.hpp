@@ -58,4 +58,7 @@ namespace zaap {
     /** @brief True if the player is in Rincon zaap. */
     bool CheckZaapRincon();
 
+    /** @brief True if the player is in Kani zaap. */
+    bool CheckZaapKani();
+
 }

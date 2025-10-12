@@ -104,6 +104,7 @@ void show::FishermanMenu()
     std::cout << "2 = lv.20           (Golfo Sufokia)" << std::endl;
     std::cout << "4 = lv.80-120           (Ganaderos)" << std::endl;
     //std::cout << "4 = lv.120                [PANDALA]" << std::endl;
+    std::cout << "10= lv.160                  (Kanis)" << std::endl;
     std::cout << "0 = Back to main menu" << std::endl;
     std::cout << "===================================" << std::endl;
 }

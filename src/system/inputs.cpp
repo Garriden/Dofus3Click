@@ -540,26 +540,29 @@ bool inputs::ClickPrivateMode()
     int y = PRIVATE_MODE_POS_Y_1;
     COLORREF color;
 
+    for(int row = 0; row < 10; ++++row) {
+        for(int ii = 0; ii < 300; ++++ii) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            color = basicOperations::GetColor(x+ii, y+row, false);
+            //SetCursorPos(x+ii, y);
 
-    for(int ii = 0; ii < 500; ++++ii) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
-        color = basicOperations::GetColor(x+ii, y, false);
-        //SetCursorPos(x+ii, y);
+            if(FindPrivateModeDot(color, "red")) {
+                // Already in private mode.
+                return false;
+            } else if(FindPrivateModeDot(color, "green")) {
+                std::this_thread::sleep_for(std::chrono::milliseconds(200));
+                Click(x + ii, y);
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
+                Click(x + ii + 40, y - 15);
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
+                //Click(PRIVATE_MODE_POS_X_3, PRIVATE_MODE_POS_Y_3);
+                std::this_thread::sleep_for(std::chrono::milliseconds(200));
+                return true;
+            } else {
 
-        if(FindPrivateModeDot(color, "red")) {
-            // Already in private mode.
-            return false;
-        } else if(FindPrivateModeDot(color, "green")) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(200));
-            Click(x + ii, y);
-            std::this_thread::sleep_for(std::chrono::milliseconds(500));
-            Click(x + ii + 40, y - 15);
-            std::this_thread::sleep_for(std::chrono::milliseconds(500));
-            //Click(PRIVATE_MODE_POS_X_3, PRIVATE_MODE_POS_Y_3);
-            std::this_thread::sleep_for(std::chrono::milliseconds(200));
-            return true;
+            }
+
         }
-
     }
 
     return false;

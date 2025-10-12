@@ -264,6 +264,14 @@ void menu::Fisherman()
             roadmap.Start();
             break;
         }
+        case 10:
+        {
+            File::LogFile("10 = lv.160            (kanis)", true);
+            Roadmap roadmap(Profession::FISHER, "kani", &zaap::CheckZaapKani, &zaap::CheckZaapKani,
+                {"", "../../Telemetry/Fisher/kani.csv"});
+            roadmap.Start();
+            break;
+        }
 
 
     }
