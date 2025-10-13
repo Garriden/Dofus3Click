@@ -9,6 +9,43 @@
 //#include "zaap.hpp"
 
 #include <windows.h>
+#include <gdiplus.h> // Screenshoot.
+
+int GetEncoderClsid(const WCHAR* format, CLSID* pClsid) {
+    UINT num = 0;           // Number of image encoders
+    UINT size = 0;          // Size of the image encoder array in bytes
+    Gdiplus::Status status;
+
+    // 1. Get the required size for the encoder information array
+    status = Gdiplus::GetImageEncodersSize(&num, &size);
+    if(status != Gdiplus::Ok || size == 0) {
+        return -1; // Failure
+    }
+
+    // 2. Allocate memory using a standard C++ vector for safety
+    // The vector ensures the memory is freed automatically when it goes out of scope.
+    std::vector<char> buffer(size);
+    Gdiplus::ImageCodecInfo* pImageCodecInfo = (Gdiplus::ImageCodecInfo*)buffer.data();
+
+    // 3. Get the encoder information
+    status = Gdiplus::GetImageEncoders(num, size, pImageCodecInfo);
+    if(status != Gdiplus::Ok) {
+        return -1; // Failure
+    }
+
+    // 4. Loop through the encoders to find the matching MIME type
+    for(UINT j = 0; j < num; ++j) {
+        // wcscmp is a C-style function, but is standard for comparing WCHAR strings
+        if(wcscmp(pImageCodecInfo[j].MimeType, format) == 0) {
+            *pClsid = pImageCodecInfo[j].Clsid;
+            return j; // Success, return the index
+        }
+    }
+
+    // If the loop finishes, the encoder was not found
+    return -1;
+}
+
 
 int main()
 {
@@ -22,6 +59,55 @@ int main()
             SetWindowPos(consoleWindow, 0, 0, 0, 340, 900, 0);
         }
     }
+
+
+
+    // ScreenShoot.
+    ULONG_PTR gdiplusToken;
+    Gdiplus::GdiplusStartupInput gdiplusStartupInput;
+    Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
+
+    HDC hScreenDC = GetDC(nullptr);
+    HDC hMemoryDC = CreateCompatibleDC(hScreenDC);
+    int width = GetDeviceCaps(hScreenDC, HORZRES);
+    int height = GetDeviceCaps(hScreenDC, VERTRES);
+    HBITMAP hBitmap = CreateCompatibleBitmap(hScreenDC,width,height);
+    HBITMAP hOldBitmap = static_cast<HBITMAP>(SelectObject(hMemoryDC,hBitmap));
+
+    // Catch Coordenadas photo.
+    int x = 20;
+    int y = 300;
+    width = 400;
+    height = 100;
+    BitBlt(hMemoryDC, 0, 0, width, height, hScreenDC, x, y, SRCCOPY);
+    hBitmap = static_cast<HBITMAP>(SelectObject(hMemoryDC,hOldBitmap));
+
+
+CLSID pngClsid;
+if(GetEncoderClsid(L"image/png", &pngClsid) == -1) {
+    // Handle error: PNG encoder not found
+    std::cout << "PNG encoder not found" << std::endl;
+}
+
+// 1. Create a GDI+ Bitmap object from the HBITMAP
+Gdiplus::Bitmap image(hBitmap, NULL);
+
+// 2. Save the GDI+ Bitmap to a file
+Gdiplus::Status status = image.Save(L"screenshot.png", &pngClsid, NULL);
+
+if (status == Gdiplus::Ok) {
+    // Success!
+    // The screenshot is saved as "screenshot.png"
+} else {
+    // Handle error
+}
+
+// 3. CLEANUP: Delete the HBITMAP created earlier (WinAPI cleanup)
+DeleteObject(hBitmap);
+
+
+    DeleteDC(hMemoryDC);
+    DeleteDC(hScreenDC);
 
     //inputs::GetWindowsVersion();
     
@@ -114,6 +200,8 @@ int main()
             break;
         }
     }
+
+    Gdiplus::GdiplusShutdown(gdiplusToken);
 
     return 0;
 }
