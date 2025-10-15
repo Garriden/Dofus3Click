@@ -598,6 +598,17 @@
 #define I_AM_LEVEL_UP_COLOR_GREEN_4                        (247)
 #define I_AM_LEVEL_UP_COLOR_BLUE_4                         (0)
 
+#define I_AM_LEVEL_UP_POS_X_5                              (1037)
+#define I_AM_LEVEL_UP_POS_Y_5                              (358)
+#define I_AM_LEVEL_UP_COLOR_RED_5                          (206)
+#define I_AM_LEVEL_UP_COLOR_GREEN_5                        (147)
+#define I_AM_LEVEL_UP_COLOR_BLUE_5                         (24)
+#define I_AM_LEVEL_UP_POS_X_6                              (1036)
+#define I_AM_LEVEL_UP_POS_Y_6                              (414)
+#define I_AM_LEVEL_UP_COLOR_RED_6                          (25)
+#define I_AM_LEVEL_UP_COLOR_GREEN_6                        (27)
+#define I_AM_LEVEL_UP_COLOR_BLUE_6                         (48)
+
 #define IS_MENU_PRINCIPAL_POS_X_1                          (1059)
 #define IS_MENU_PRINCIPAL_POS_Y_1                          (407)
 #define IS_MENU_PRINCIPAL_RED_1                            (82)

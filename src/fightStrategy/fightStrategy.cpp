@@ -42,7 +42,7 @@ void FightStrategy::ThrowSpell(int spell, int who, int upperRow)
 void FightStrategy::ThrowSpellToEnemies(int spell, int upperRow)
 {
     for(int ii = 0; ii < _enemiesXPositionInMenuFight.size(); ++ii) {
-        if(check::IsAlmostTheEndOfTheTurn()) {
+        if(check::IsTheEndOfTheTurn()) {
             PassTurn();
         } else if(check::IsFight()) { // if still on fight or my turn.
             ThrowSpell(spell, _enemiesXPositionInMenuFight[ii], upperRow);
@@ -78,8 +78,8 @@ void FightStrategy::PassTurn()
 
 void FightStrategy::RandomMovePj(int moves)
 {
-    for (int ii = 0; ii < moves; ++ii) {
-        if(check::IsAlmostTheEndOfTheTurn()) {
+    for(int ii = 0; ii < moves; ++ii) {
+        if(check::IsTheEndOfTheTurn()) {
             PassTurn();
         } else if(check::IsFight()) { // if still on fight or my turn.
             int ruletNumberPosX = basicOperations::RuletaInput(FIGHT_X_LIMIT_MIN, FIGHT_X_LIMIT_MAX);

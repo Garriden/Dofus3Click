@@ -21,6 +21,9 @@ bool IsFight();
 /** @brief True if the player's turn is almost finished (turn bar near end, bar orange or red). */
 bool IsAlmostTheEndOfTheTurn();
 
+/** @brief True if the player's turn is super mostly finished (turn bar near end, red). */
+bool IsTheEndOfTheTurn();
+
 /** @brief True if the PODS (inventory weight) bar is (almost) full. */
 bool AmIFull();
 

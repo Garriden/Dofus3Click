@@ -49,6 +49,9 @@ namespace zaap {
     /** @brief True if the player is in Sufokia zaap. */
     bool CheckZaapSufokia();
 
+    /** @brief True if the player is in Golfo Sufokia zaap. */
+    bool CheckZaapGolfo();
+
     /** @brief True if the player is in Moon island zaap. */
     bool CheckZaapMoon();
 

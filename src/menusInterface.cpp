@@ -115,10 +115,11 @@ void show::FindEnemiesMenu()
     std::cout << "===================================" << std::endl;
     std::cout << "1  = Jabatos               (Astrub)" << std::endl;
     std::cout << "2  = Abraknidos             (Linde)" << std::endl;
-    std::cout << "4  = Robocops              (Puerka)" << std::endl;
-    std::cout << "6  = Cocodrilos         (Ganaderos)" << std::endl;
-    std::cout << "10 = Kokokos                X(Moon)" << std::endl;
-    std::cout << "15 = Trools              X(Rocosas)" << std::endl;
-    std::cout << "20 = Jalamuts               (Burgo)" << std::endl;
+    std::cout << "5  = Muluscos              (Golfo)" << std::endl;
+    std::cout << "15 = Robocops              (Puerka)" << std::endl;
+    std::cout << "20 = Cocodrilos         (Ganaderos)" << std::endl;
+    std::cout << "30 = Kokokos                X(Moon)" << std::endl;
+    std::cout << "35 = Trools              X(Rocosas)" << std::endl;
+    std::cout << "40 = Jalamuts               (Burgo)" << std::endl;
     std::cout << "===================================" << std::endl;
 }

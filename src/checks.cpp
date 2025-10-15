@@ -57,7 +57,29 @@ bool check::IsAlmostTheEndOfTheTurn()
        (int(GetGValue(colorFarest)) < IT_IS_MY_TURN_YELLOW_COLOR_GREEN  + ERROR_GET_COLOUR_QUITE) &&
        (int(GetGValue(colorFarest)) > IT_IS_MY_TURN_YELLOW_COLOR_GREEN  - ERROR_GET_COLOUR_QUITE) &&
        (int(GetBValue(colorFarest)) < IT_IS_MY_TURN_YELLOW_COLOR_BLUE   + ERROR_GET_COLOUR_QUITE) &&
-       (int(GetBValue(colorFarest)) > IT_IS_MY_TURN_YELLOW_COLOR_BLUE   - ERROR_GET_COLOUR_QUITE) )
+       (int(GetBValue(colorFarest)) > IT_IS_MY_TURN_YELLOW_COLOR_BLUE   - ERROR_GET_COLOUR_QUITE) 
+       )
+       {
+           ret = true;
+           //File::LogFile("Almost end of turn!", true);
+       }
+
+    return ret;
+}
+
+bool check::IsTheEndOfTheTurn()
+{
+    bool ret = false;
+
+    COLORREF colorFarest = basicOperations::GetColor(IT_IS_MY_TURN_POS_X_1, IT_IS_MY_TURN_POS_Y_1, false);
+
+    if((int(GetRValue(colorFarest)) < IT_IS_MY_TURN_RED_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
+       (int(GetRValue(colorFarest)) > IT_IS_MY_TURN_RED_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
+       (int(GetGValue(colorFarest)) < IT_IS_MY_TURN_RED_COLOR_GREEN  + ERROR_GET_COLOUR_QUITE) &&
+       (int(GetGValue(colorFarest)) > IT_IS_MY_TURN_RED_COLOR_GREEN  - ERROR_GET_COLOUR_QUITE) &&
+       (int(GetBValue(colorFarest)) < IT_IS_MY_TURN_RED_COLOR_BLUE   + ERROR_GET_COLOUR_QUITE) &&
+       (int(GetBValue(colorFarest)) > IT_IS_MY_TURN_RED_COLOR_BLUE   - ERROR_GET_COLOUR_QUITE)
+        )
        {
            ret = true;
            //File::LogFile("Almost end of turn!", true);
@@ -437,6 +459,8 @@ bool check::AmILevelUp()
     COLORREF color2 = basicOperations::GetColor(I_AM_LEVEL_UP_POS_X_2, I_AM_LEVEL_UP_POS_Y_2, false);
     COLORREF color3 = basicOperations::GetColor(I_AM_LEVEL_UP_POS_X_3, I_AM_LEVEL_UP_POS_Y_3, false);
     COLORREF color4 = basicOperations::GetColor(I_AM_LEVEL_UP_BIG_POS_X_3, I_AM_LEVEL_UP_BIG_POS_Y_3, false);
+    COLORREF colorOcra1 = basicOperations::GetColor(I_AM_LEVEL_UP_POS_X_5, I_AM_LEVEL_UP_POS_Y_5, false);
+    COLORREF colorOcra2 = basicOperations::GetColor(I_AM_LEVEL_UP_POS_X_6, I_AM_LEVEL_UP_POS_Y_6, false);
 
     if ((int(GetRValue(color1)) < I_AM_LEVEL_UP_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
         (int(GetRValue(color1)) > I_AM_LEVEL_UP_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&
@@ -466,7 +490,24 @@ bool check::AmILevelUp()
         (int(GetGValue(color4)) > I_AM_LEVEL_UP_COLOR_GREEN_3 - ERROR_GET_COLOUR_SMALL) &&
         (int(GetBValue(color4)) < I_AM_LEVEL_UP_COLOR_BLUE_3  + ERROR_GET_COLOUR_SMALL) &&
         (int(GetBValue(color4)) > I_AM_LEVEL_UP_COLOR_BLUE_3  - ERROR_GET_COLOUR_SMALL)
-        )))
+        ))
+        ||
+        (
+            (int(GetRValue(colorOcra1)) < I_AM_LEVEL_UP_COLOR_RED_5   + ERROR_GET_COLOUR_SMALL) &&
+            (int(GetRValue(colorOcra1)) > I_AM_LEVEL_UP_COLOR_RED_5   - ERROR_GET_COLOUR_SMALL) &&
+            (int(GetGValue(colorOcra1)) < I_AM_LEVEL_UP_COLOR_GREEN_5 + ERROR_GET_COLOUR_SMALL) &&
+            (int(GetGValue(colorOcra1)) > I_AM_LEVEL_UP_COLOR_GREEN_5 - ERROR_GET_COLOUR_SMALL) &&
+            (int(GetBValue(colorOcra1)) < I_AM_LEVEL_UP_COLOR_BLUE_5  + ERROR_GET_COLOUR_SMALL) &&
+            (int(GetBValue(colorOcra1)) > I_AM_LEVEL_UP_COLOR_BLUE_5  - ERROR_GET_COLOUR_SMALL)
+            &&
+            (int(GetRValue(colorOcra2)) < I_AM_LEVEL_UP_COLOR_RED_6   + ERROR_GET_COLOUR_SMALL) &&
+            (int(GetRValue(colorOcra2)) > I_AM_LEVEL_UP_COLOR_RED_6   - ERROR_GET_COLOUR_SMALL) &&
+            (int(GetGValue(colorOcra2)) < I_AM_LEVEL_UP_COLOR_GREEN_6 + ERROR_GET_COLOUR_SMALL) &&
+            (int(GetGValue(colorOcra2)) > I_AM_LEVEL_UP_COLOR_GREEN_6 - ERROR_GET_COLOUR_SMALL) &&
+            (int(GetBValue(colorOcra2)) < I_AM_LEVEL_UP_COLOR_BLUE_6  + ERROR_GET_COLOUR_SMALL) &&
+            (int(GetBValue(colorOcra2)) > I_AM_LEVEL_UP_COLOR_BLUE_6  - ERROR_GET_COLOUR_SMALL)
+        )
+        )
     {
         File::LogFile("I just level UP!", true);
         ret = true;
@@ -594,7 +635,7 @@ bool check::IsEmptyResource()
 {
     bool ret = false;
 
-    COLORREF color1 = basicOperations::GetColor(INVENTARY_CONVERT_RESOURCES_X_4, INVENTARY_CONVERT_RESOURCES_Y_4, true);
+    COLORREF color1 = basicOperations::GetColor(INVENTARY_CONVERT_RESOURCES_X_4, INVENTARY_CONVERT_RESOURCES_Y_4, false);
 
     // Check if the first position in the inventary is empty (dark black).
     if ((int(GetRValue(color1)) < INVENTARY_NO_RESOURCES_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
