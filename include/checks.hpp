@@ -80,4 +80,17 @@ bool IsEmptyResource();
  */
 bool WaitMapToChange();
 
+
+/** @brief True if bubble information mob. */
+bool IsBubble(int x, int y);
+
+/** @brief True if bubble information mob. */
+bool IsBubbleBottom(int x, int y);
+
+/** @brief True if bubble information mob. */
+bool IsBubbleMiddle(int x, int y);
+
+/** @brief True if bubble information mob. */
+bool IsBubbleTop(int x, int y);
+
 }

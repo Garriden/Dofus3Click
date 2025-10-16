@@ -118,6 +118,20 @@ void inputs::PressKey(int keyParam)
     std::this_thread::sleep_for(std::chrono::milliseconds(50));
 }
 
+void inputs::PressKeyLocked(int keyParam)
+{
+    SHORT key;
+    UINT mappedkey;
+    INPUT input = { 0 };
+    key = VkKeyScan(keyParam);
+    mappedkey = MapVirtualKey(LOBYTE(key), 0);
+    input.type = INPUT_KEYBOARD;
+    input.ki.dwFlags = KEYEVENTF_SCANCODE;
+    input.ki.wScan = mappedkey;
+    SendInput(1, &input, sizeof(input));
+    std::this_thread::sleep_for(std::chrono::milliseconds(20));
+}
+
 void inputs::PressSpecialKey(int specialKey)
 {
     SHORT key;

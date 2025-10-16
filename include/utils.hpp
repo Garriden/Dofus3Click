@@ -676,6 +676,16 @@
 #define INVENTARY_NO_RESOURCES_COLOR_GREEN                 (19)
 #define INVENTARY_NO_RESOURCES_COLOR_BLUE                  (32)
 
+#define BUBBLE_BOTTOM_COLOR_RED                            (35)
+#define BUBBLE_BOTTOM_COLOR_GREEN                          (38)
+#define BUBBLE_BOTTOM_COLOR_BLUE                           (51)
+#define BUBBLE_MIDDLE_COLOR_RED                            (85)
+#define BUBBLE_MIDDLE_COLOR_GREEN                          (86)
+#define BUBBLE_MIDDLE_COLOR_BLUE                           (111)
+#define BUBBLE_TOP_COLOR_RED                               (25)
+#define BUBBLE_TOP_COLOR_GREEN                             (28)
+#define BUBBLE_TOP_COLOR_BLUE                              (37)
+
 
 ///////////////////////////////////
 // ERRORS VARIANCE

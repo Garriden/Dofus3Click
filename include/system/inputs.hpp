@@ -19,6 +19,12 @@ namespace inputs {
     void PressKey(int keyParam);
 
     /**
+     * @brief Simulate pressing a single key (and keep the key pressed).
+     * @param keyParam Virtual-key code to press.
+     */
+    void PressKeyLocked(int keyParam);
+
+    /**
      * @brief Simulate pressing a special key (page up/down etc.).
      * @param specialKey Virtual-key code.
      */

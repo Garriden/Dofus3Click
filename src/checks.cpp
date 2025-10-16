@@ -674,3 +674,65 @@ bool check::WaitMapToChange()
     }
     return false;
 }
+
+bool check::IsBubble(int x, int y)
+{
+    return IsBubbleBottom(x, y) || IsBubbleMiddle(x, y) || IsBubbleTop(x, y);
+}
+
+bool check::IsBubbleBottom(int x, int y)
+{
+    COLORREF color = basicOperations::GetColor(x, y, false);
+
+    if( (int(GetRValue(color)) < BUBBLE_BOTTOM_COLOR_RED    + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetRValue(color)) > BUBBLE_BOTTOM_COLOR_RED    - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color)) < BUBBLE_BOTTOM_COLOR_GREEN  + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color)) > BUBBLE_BOTTOM_COLOR_GREEN  - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color)) < BUBBLE_BOTTOM_COLOR_BLUE   + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color)) > BUBBLE_BOTTOM_COLOR_BLUE   - ERROR_GET_COLOUR_QUITE)
+        )
+    {
+        File::LogFile("Bubble bottom!", true);
+        return true;
+    }
+
+    return false;
+}
+
+bool check::IsBubbleMiddle(int x, int y)
+{
+    COLORREF color = basicOperations::GetColor(x, y, false);
+
+    if( (int(GetRValue(color)) < BUBBLE_MIDDLE_COLOR_RED    + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetRValue(color)) > BUBBLE_MIDDLE_COLOR_RED    - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color)) < BUBBLE_MIDDLE_COLOR_GREEN  + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color)) > BUBBLE_MIDDLE_COLOR_GREEN  - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color)) < BUBBLE_MIDDLE_COLOR_BLUE   + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color)) > BUBBLE_MIDDLE_COLOR_BLUE   - ERROR_GET_COLOUR_QUITE)
+        )
+    {
+        File::LogFile("Bubble middle!", true);
+        return true;
+    }
+
+    return false;
+}
+
+bool check::IsBubbleTop(int x, int y)
+{
+    COLORREF color = basicOperations::GetColor(x, y, false);
+
+    if( (int(GetRValue(color)) < BUBBLE_TOP_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color)) > BUBBLE_TOP_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color)) < BUBBLE_TOP_COLOR_GREEN  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color)) > BUBBLE_TOP_COLOR_GREEN  - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color)) < BUBBLE_TOP_COLOR_BLUE   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color)) > BUBBLE_TOP_COLOR_BLUE   - ERROR_GET_COLOUR_SMALL)
+        )
+    {
+        File::LogFile("Bubble top!", true);
+        return true;
+    }
+
+    return false;
+}
