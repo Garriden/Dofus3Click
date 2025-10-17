@@ -87,9 +87,13 @@ int Train::CheckMobSize(int &x, int &y)
 
     if(boxSize == 0) { // 0 enemies ?
         enemiesNumber = 0;
-    } else if(boxSize < 60) { // 2 enemies aprox.
+    } else if(boxSize < 40) { // 0 enemies aprox.
+        enemiesNumber = 0;
+    } else if(boxSize < 70) { // 2 enemies aprox.
         enemiesNumber = 2;
-    } else if(boxSize < 110) { // 4 enemies aprox.
+    } else if(boxSize < 90) { // 3 enemies aprox.
+        enemiesNumber = 3;
+    } else if(boxSize < 105) { // 4 enemies aprox.
         enemiesNumber = 4;
     } else if (boxSize < 140) {
         enemiesNumber = 6;
@@ -123,6 +127,8 @@ int Train::IterateBetweenMaps()
 
 int Train::IterateCells()
 {
+    const int NUM_ENEMIES_TO_FIND = 3;
+
     uint32_t iteration = 0;
     int oddSuplement = 22;
     int xxAvoid = 0; // When clicking a real player, don't interact with him.
@@ -148,7 +154,7 @@ int Train::IterateCells()
                 int mobSize = CheckMobSize(xx, yy);
                 if(mobSize <= 0) { // mob NOT found or to little.
                     File::LogFile("MOOB NOT really found.",true);
-                } else if(mobSize > 4) { // mob NOT found or to little.
+                } else if(mobSize > NUM_ENEMIES_TO_FIND) { // mob NOT found or to little.
                     File::LogFile("MOOB to large.",true);
                 } else { // I wanna fight this mob.
 

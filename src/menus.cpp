@@ -358,6 +358,13 @@ void menu::FindEnemiesMenu()
             roadmap.Start();
             break;
         }
+        case 8:
+        {
+            File::LogFile("8  = Bworks              (Rocosas)", true);
+            Roadmap roadmap(Profession::TRAIN, "Rocosas", nullptr, &zaap::CheckZaapRocosas, {"../../Telemetry/Train/bworks.csv", ""});
+            roadmap.Start();
+            break;
+        }
         case 15:
         {
             File::LogFile("15 = Robocops              (Puerka)", true);
