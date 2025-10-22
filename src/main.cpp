@@ -4,7 +4,7 @@
 #include "train.hpp"
 
 #include "checks.hpp"
-//#include "fight.hpp"
+#include "fight.hpp"
 //#include "roadmap.hpp"
 //#include "zaap.hpp"
 
@@ -87,10 +87,10 @@ int main()
             case 99: //debug
 
                 std::this_thread::sleep_for(std::chrono::seconds(3));
-                //inputs::ClickOnExe();
+                inputs::ClickOnExe();
 
-                std::this_thread::sleep_for(std::chrono::seconds(3));
-                check::AmILevelUp();
+                //std::this_thread::sleep_for(std::chrono::seconds(3));
+                //check::AmILevelUp();
 
                 //check::AmIDefeated();
                 //zaap::CheckZaapAstrub();
@@ -100,10 +100,10 @@ int main()
 
                 //inputs::ShiftClick(1000, 300);
 
-                //if(check::IsFight()) {
-                //    Fight fight(0);
-                //    fight.Start();
-                //}
+                if(check::IsFight()) {
+                    Fight fight(0);
+                    fight.Start();
+                }
 
                 //std::this_thread::sleep_for(std::chrono::seconds(2));
 

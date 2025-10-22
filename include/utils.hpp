@@ -431,6 +431,17 @@
 #define I_AM_IN_SUFOKIA_ZAAP_COLOR_GREEN_3                 (66)
 #define I_AM_IN_SUFOKIA_ZAAP_COLOR_BLUE_3                  (57)
 
+#define I_AM_IN_PUEBLO_ZAAP_POS_X_1                        (1510)
+#define I_AM_IN_PUEBLO_ZAAP_POS_Y_1                        (852)
+#define I_AM_IN_PUEBLO_ZAAP_COLOR_RED_1                    (245)
+#define I_AM_IN_PUEBLO_ZAAP_COLOR_GREEN_1                  (192)
+#define I_AM_IN_PUEBLO_ZAAP_COLOR_BLUE_1                   (39)
+#define I_AM_IN_PUEBLO_ZAAP_POS_X_2                        (1548)
+#define I_AM_IN_PUEBLO_ZAAP_POS_Y_2                        (863)
+#define I_AM_IN_PUEBLO_ZAAP_COLOR_RED_2                    (126)
+#define I_AM_IN_PUEBLO_ZAAP_COLOR_GREEN_2                  (254)
+#define I_AM_IN_PUEBLO_ZAAP_COLOR_BLUE_2                   (56)
+
 
 //////////////////////////////////////////////////////////////
 // ROADMAPS CHECKS

@@ -64,4 +64,7 @@ namespace zaap {
     /** @brief True if the player is in Kani zaap. */
     bool CheckZaapKani();
 
+    /** @brief True if the player is in Pueblo zaap. */
+    bool CheckZaapPueblo();
+
 }
