@@ -20,6 +20,10 @@ Train::~Train()
 
 int Train::CheckMobSize(int &x, int &y)
 {
+    if(check::IsFight()) {
+        return 1; // Already in fight, say that I found a monster.
+    }
+
     int enemiesNumber = 0;
 
     inputs::PressKeyLocked('z'); // activate mob information bubble
@@ -37,11 +41,11 @@ int Train::CheckMobSize(int &x, int &y)
     //        cardinalPoint = LEFT;
     //    } else {
     
-            if(y > UP_Y) {
-                isBubble = check::IsBubble(x, y - 50);
-                //              SetCursorPos(x, y - 50);
+            //if(y > UP_Y) {
+            //    isBubble = check::IsBubble(x, y - 50);
+                //SetCursorPos(x, y - 50);
                 //std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-            }
+            //}
     //        if(isBubble) cardinalPoint = UP;
     //    }
     //    
@@ -69,7 +73,7 @@ int Train::CheckMobSize(int &x, int &y)
     int boxSize = 0;
 
     // iterate vertical line
-    for(int yy = 0; yy < 300 && !topBubbleFound && (y - yy) > UP_Y; ++++yy) {
+    for(int yy = 0; yy < 400 && !topBubbleFound && (y - yy) > UP_Y; ++++yy) {
 
         //SetCursorPos(x, y - yy);
         //std::this_thread::sleep_for(std::chrono::milliseconds(10));
@@ -168,6 +172,14 @@ int Train::IterateCells()
                         int fightReturn = fight.Start();
                         if(E_OK != fightReturn) {
                             File::LogFile("Fight NOT ended well for me...", true);
+
+                            inputs::PressEscape();
+                            std::this_thread::sleep_for(std::chrono::seconds(3));
+                            if(check::IsMenuPrincipalBox()) {
+                                inputs::PressEscape();
+                                std::this_thread::sleep_for(std::chrono::seconds(3));
+                            }
+
                             return fightReturn;
                         }
                         xx -= 88;

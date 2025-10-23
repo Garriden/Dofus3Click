@@ -136,11 +136,14 @@ int Roadmap::Start()
         case RoadmapState::TRAIN_MODE:
         {
             Train train;
-            if(train.IterateBetweenMaps() == E_IM_A_GHOST) {
+            int ret = train.IterateBetweenMaps();
+            if(ret == E_IM_A_GHOST) {
                 std::string ghostRoadmap = "../../Telemetry/Ghost/" + _zaap + ".csv";
                 Roadmap roadmap(Profession::GHOST, _zaap, nullptr, nullptr, {ghostRoadmap, ghostRoadmap});
                 roadmap.Start();
 
+                step = RoadmapState::SET_PODS_SET;
+            } else if(ret != E_OK) {
                 step = RoadmapState::SET_PODS_SET;
             } else {
                 step = RoadmapState::TRAIN_MODE;

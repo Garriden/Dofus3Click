@@ -43,7 +43,7 @@ void show::DailyMissions()
     std::cout << "1 = All of them + week" << std::endl;
     std::cout << "5 = [ANKAMA]  Capitan    [0kk]  (5min) (daily)" << std::endl;
     std::cout << "10= [FRIGOST] Fight Club [16kk] (5min) (week) " << std::endl;
-    std::cout << "50= [SUFOKIA] Fight Club [16kk] (5min) (week) " << std::endl;
+    std::cout << "50= [SUFOKIA] ?                 (5min) (week) " << std::endl;
     std::cout << "==============================================" << std::endl;
 }
 
@@ -116,8 +116,9 @@ void show::FindEnemiesMenu()
     std::cout << "1  = Jabatos               (Astrub)" << std::endl;
     std::cout << "2  = Abraknidos             (Linde)" << std::endl;
     std::cout << "5  = Muluscos               (Golfo)" << std::endl;
-    std::cout << "8  = Bworks               (Rocosas)" << std::endl;
+    std::cout << "8  = Sidimonte          (Caravanas)" << std::endl;
     std::cout << "15 = Robocops              (Puerka)" << std::endl;
+    std::cout << "18 = Bworks               (Rocosas)" << std::endl;
     std::cout << "20 = Cocodrilos         (Ganaderos)" << std::endl;
     std::cout << "30 = Kokokos                X(Moon)" << std::endl;
     std::cout << "35 = Trools              X(Rocosas)" << std::endl;

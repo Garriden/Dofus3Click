@@ -298,6 +298,14 @@ void menu::DailyMissions()
         {
             break;
         }
+        case 5:
+        {
+            File::LogFile("5 = [ANKAMA]  Capitan    [0kk]  (5min) (daily)", true);
+            Roadmap roadmap(Profession::MISSIONS, "pueblo de am", &zaap::CheckZaapPueblo, &zaap::CheckZaapPueblo,
+                {"../../Telemetry/Missions/Amakna/first.csv", "../../Telemetry/Missions/Amakna/Gomberro.csv"});
+            roadmap.Start();
+            break;
+        }
         case 10:
         {
             File::LogFile("10= [FRIGOST] Fight Club [16kk] (5min) (week)", true);
@@ -308,10 +316,10 @@ void menu::DailyMissions()
         }
         case 50:
         {
-            File::LogFile("10= [FRIGOST] Fight Club [16kk] (5min) (week)", true);
-            Roadmap roadmap(Profession::MISSIONS, "sufokia", &zaap::CheckZaapBurgo, &zaap::CheckZaapBurgo,
-                {"", "../../Telemetry/Missions/Frigost/FightClub.csv", "../../Telemetry/Missions/Frigost/FightClubAfter.csv"});
-            roadmap.Start();
+            //File::LogFile("10= [FRIGOST] Fight Club [16kk] (5min) (week)", true);
+            //Roadmap roadmap(Profession::MISSIONS, "sufokia", &zaap::CheckZaapBurgo, &zaap::CheckZaapBurgo,
+            //    {"", "../../Telemetry/Missions/Frigost/FightClub.csv", "../../Telemetry/Missions/Frigost/FightClubAfter.csv"});
+            //roadmap.Start();
             break;
         }
 
@@ -360,8 +368,8 @@ void menu::FindEnemiesMenu()
         }
         case 8:
         {
-            File::LogFile("8  = Bworks              (Rocosas)", true);
-            Roadmap roadmap(Profession::TRAIN, "Rocosas", nullptr, &zaap::CheckZaapRocosas, {"../../Telemetry/Train/bworks.csv", ""});
+            File::LogFile("8  = Sidimonte         (caravanas)", true);
+            Roadmap roadmap(Profession::TRAIN, "caravanas", nullptr, &zaap::CheckZaapCaravanas, {"../../Telemetry/Train/sidimonte.csv", ""});
             roadmap.Start();
             break;
         }
@@ -369,6 +377,13 @@ void menu::FindEnemiesMenu()
         {
             File::LogFile("15 = Robocops              (Puerka)", true);
             Roadmap roadmap(Profession::TRAIN, "puerka", nullptr, &zaap::CheckZaapPuerkazos, {"../../Telemetry/Train/puerka.csv", ""});
+            roadmap.Start();
+            break;
+        }
+        case 18:
+        {
+            File::LogFile("18 = Bworks              (Rocosas)", true);
+            Roadmap roadmap(Profession::TRAIN, "Rocosas", nullptr, &zaap::CheckZaapRocosas, {"../../Telemetry/Train/bworks.csv", ""});
             roadmap.Start();
             break;
         }

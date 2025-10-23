@@ -442,6 +442,16 @@
 #define I_AM_IN_PUEBLO_ZAAP_COLOR_GREEN_2                  (254)
 #define I_AM_IN_PUEBLO_ZAAP_COLOR_BLUE_2                   (56)
 
+#define I_AM_IN_CARAVANAS_ZAAP_POS_X_1                     (1153)
+#define I_AM_IN_CARAVANAS_ZAAP_POS_Y_1                     (214)
+#define I_AM_IN_CARAVANAS_ZAAP_COLOR_RED_1                 (46)
+#define I_AM_IN_CARAVANAS_ZAAP_COLOR_GREEN_1               (29)
+#define I_AM_IN_CARAVANAS_ZAAP_COLOR_BLUE_1                (14)
+#define I_AM_IN_CARAVANAS_ZAAP_POS_X_2                     (369)
+#define I_AM_IN_CARAVANAS_ZAAP_POS_Y_2                     (896)
+#define I_AM_IN_CARAVANAS_ZAAP_COLOR_RED_2                 (31)
+#define I_AM_IN_CARAVANAS_ZAAP_COLOR_GREEN_2               (20)
+#define I_AM_IN_CARAVANAS_ZAAP_COLOR_BLUE_2                (13)
 
 //////////////////////////////////////////////////////////////
 // ROADMAPS CHECKS
@@ -687,14 +697,14 @@
 #define INVENTARY_NO_RESOURCES_COLOR_GREEN                 (19)
 #define INVENTARY_NO_RESOURCES_COLOR_BLUE                  (32)
 
-#define BUBBLE_BOTTOM_COLOR_RED                            (35)
-#define BUBBLE_BOTTOM_COLOR_GREEN                          (38)
+#define BUBBLE_BOTTOM_COLOR_RED                            (32)
+#define BUBBLE_BOTTOM_COLOR_GREEN                          (33)
 #define BUBBLE_BOTTOM_COLOR_BLUE                           (51)
 #define BUBBLE_MIDDLE_COLOR_RED                            (85)
 #define BUBBLE_MIDDLE_COLOR_GREEN                          (86)
 #define BUBBLE_MIDDLE_COLOR_BLUE                           (111)
-#define BUBBLE_TOP_COLOR_RED                               (25)
-#define BUBBLE_TOP_COLOR_GREEN                             (28)
+#define BUBBLE_TOP_COLOR_RED                               (24)
+#define BUBBLE_TOP_COLOR_GREEN                             (25)
 #define BUBBLE_TOP_COLOR_BLUE                              (37)
 
 
