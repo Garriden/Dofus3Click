@@ -684,12 +684,19 @@ bool check::IsBubbleBottom(int x, int y)
 {
     COLORREF color = basicOperations::GetColor(x, y, false);
 
-    if( (int(GetRValue(color)) < BUBBLE_BOTTOM_COLOR_RED    + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetRValue(color)) > BUBBLE_BOTTOM_COLOR_RED    - ERROR_GET_COLOUR_QUITE) &&
-        (int(GetGValue(color)) < BUBBLE_BOTTOM_COLOR_GREEN  + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetGValue(color)) > BUBBLE_BOTTOM_COLOR_GREEN  - ERROR_GET_COLOUR_QUITE) &&
-        (int(GetBValue(color)) < BUBBLE_BOTTOM_COLOR_BLUE   + ERROR_GET_COLOUR_QUITE) &&
-        (int(GetBValue(color)) > BUBBLE_BOTTOM_COLOR_BLUE   - ERROR_GET_COLOUR_QUITE)
+    if(((int(GetRValue(color)) < BUBBLE_BOTTOM_COLOR_RED      + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetRValue(color)) > BUBBLE_BOTTOM_COLOR_RED      - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color)) < BUBBLE_BOTTOM_COLOR_GREEN    + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color)) > BUBBLE_BOTTOM_COLOR_GREEN    - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color)) < BUBBLE_BOTTOM_COLOR_BLUE     + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color)) > BUBBLE_BOTTOM_COLOR_BLUE     - ERROR_GET_COLOUR_QUITE) )
+        ||
+       ((int(GetRValue(color)) < BUBBLE_BOTTOM_2_COLOR_RED    + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetRValue(color)) > BUBBLE_BOTTOM_2_COLOR_RED    - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color)) < BUBBLE_BOTTOM_2_COLOR_GREEN  + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color)) > BUBBLE_BOTTOM_2_COLOR_GREEN  - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color)) < BUBBLE_BOTTOM_2_COLOR_BLUE   + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color)) > BUBBLE_BOTTOM_2_COLOR_BLUE   - ERROR_GET_COLOUR_QUITE) )
         )
     {
         File::LogFile("Bubble bottom!", true);

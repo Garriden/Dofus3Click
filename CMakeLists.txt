@@ -35,6 +35,7 @@ set(HEADERS
     fightStrategy/fightStrategy.hpp
     fightStrategy/professionMobStrategy.hpp
     fightStrategy/fecaAgiBruteStrategy.hpp
+    fightStrategy/ocraLejanoStrategy.hpp
 )
 
 # Source files (relative to "src" directory)
@@ -56,6 +57,7 @@ set(SOURCES
     fightStrategy/fightStrategy.cpp
     fightStrategy/professionMobStrategy.cpp
     fightStrategy/fecaAgiBruteStrategy.cpp
+    fightStrategy/ocraLejanoStrategy.cpp
 )
 
 # Compiler definitions

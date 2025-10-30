@@ -7,6 +7,7 @@
 #include "system/file.hpp"
 
 #include "fightStrategy/fecaAgiBruteStrategy.hpp"
+#include "fightStrategy/ocraLejanoStrategy.hpp"
 
 Train::Train()
 {
@@ -148,6 +149,7 @@ int Train::IterateCells()
             //SetCursorPos(xx, yy);
             color = basicOperations::GetColor(xx, yy, false);
             inputs::PressKey('x');
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
 
             if(color != basicOperations::GetColor(xx, yy, false)) { // color different than before, there is a monster.
 
@@ -168,7 +170,8 @@ int Train::IterateCells()
                     std::this_thread::sleep_for(std::chrono::seconds(8));
 
                     if(check::IsFight()) {
-                        Fight fight(true, std::make_unique<FecaAgiBruteStrategy>()); // wait for the pj to arrive at the mob.
+                        //Fight fight(true, std::make_unique<FecaAgiBruteStrategy>()); // wait for the pj to arrive at the mob.
+                        Fight fight(true, std::make_unique<OcraLejanoStrategy>()); // wait for the pj to arrive at the mob.
                         int fightReturn = fight.Start();
                         if(E_OK != fightReturn) {
                             File::LogFile("Fight NOT ended well for me...", true);

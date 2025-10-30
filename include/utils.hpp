@@ -12,7 +12,7 @@
 
 #define LIMIT_CELL_Y_MIN                                (80)
 #define LIMIT_CELL_Y_MAX                                (850)
-#define LIMIT_CELL_X_MIN                                (405)
+#define LIMIT_CELL_X_MIN                                (350)
 #define LIMIT_CELL_X_MAX                                (1470)
 
 #define RIGHT                                           (0)
@@ -700,12 +700,15 @@
 #define BUBBLE_BOTTOM_COLOR_RED                            (32)
 #define BUBBLE_BOTTOM_COLOR_GREEN                          (33)
 #define BUBBLE_BOTTOM_COLOR_BLUE                           (51)
+#define BUBBLE_BOTTOM_2_COLOR_RED                          (37)
+#define BUBBLE_BOTTOM_2_COLOR_GREEN                        (39)
+#define BUBBLE_BOTTOM_2_COLOR_BLUE                         (59)
 #define BUBBLE_MIDDLE_COLOR_RED                            (85)
 #define BUBBLE_MIDDLE_COLOR_GREEN                          (86)
 #define BUBBLE_MIDDLE_COLOR_BLUE                           (111)
 #define BUBBLE_TOP_COLOR_RED                               (24)
 #define BUBBLE_TOP_COLOR_GREEN                             (25)
-#define BUBBLE_TOP_COLOR_BLUE                              (37)
+#define BUBBLE_TOP_COLOR_BLUE                              (38)
 
 
 ///////////////////////////////////
