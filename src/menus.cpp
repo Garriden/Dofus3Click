@@ -328,8 +328,15 @@ void menu::DailyMissions()
     }
 }
 
+void menu::SelectPjMenu()
+{
+    show::SelectPjMenu();
+}
+
 void menu::FindEnemiesMenu()
 {
+    SelectPjMenu();
+
     show::FindEnemiesMenu();
 
     int in;

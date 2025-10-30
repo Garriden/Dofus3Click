@@ -109,6 +109,16 @@ void show::FishermanMenu()
     std::cout << "===================================" << std::endl;
 }
 
+void show::SelectPjMenu()
+{
+    system("TITLE Select Pj menu");
+    std::cout << "===================================" << std::endl;
+    std::cout << "1  = Feca" << std::endl;
+    std::cout << "21 = Ocra Lejano                   " << std::endl;
+    std::cout << "22 = Ocra Cercano                   " << std::endl;
+    std::cout << "===================================" << std::endl;
+}
+
 void show::FindEnemiesMenu()
 {
     system("TITLE Find enemies menu");
