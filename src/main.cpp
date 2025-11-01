@@ -104,13 +104,27 @@ if (status == Gdiplus::Ok) {
 
 // 3. CLEANUP: Delete the HBITMAP created earlier (WinAPI cleanup)
 DeleteObject(hBitmap);
-
-
     DeleteDC(hMemoryDC);
     DeleteDC(hScreenDC);
 
     //inputs::GetWindowsVersion();
+
+    //std::string tesseract_path = "C:\\Program Files\\Tesseract-OCR\\tesseract.exe";
+    std::string tesseract_path = "C:\\Program Files\\Tesseract-OCR\\tesseract.exe";
+
+    std::string image_path = "../../Images/captura1.png"; 
     
+    // Note: Windows paths usually need to be quoted if they contain spaces
+    std::string command = "\"" + tesseract_path + "\" " + image_path + " output_OCR" + " -l spa";
+    
+    std::cout << "Executing command: " << command << std::endl;
+
+    // 2. Execute the command.
+    // The system() function returns the exit status of the command.
+    int return_code = std::system(command.c_str());
+
+
+
     //AskPj();
     while(true) {
         show::MainMenu();
