@@ -11,6 +11,7 @@
 #include <windows.h>
 #include <gdiplus.h> // Screenshoot.
 
+
 int GetEncoderClsid(const WCHAR* format, CLSID* pClsid) {
     UINT num = 0;           // Number of image encoders
     UINT size = 0;          // Size of the image encoder array in bytes
@@ -45,6 +46,93 @@ int GetEncoderClsid(const WCHAR* format, CLSID* pClsid) {
     // If the loop finishes, the encoder was not found
     return -1;
 }
+
+
+
+
+
+
+
+#include <windows.h>
+#include <psapi.h>
+#include <tchar.h>
+#include <iostream>
+#include <tchar.h>
+#include <vector>
+
+#define MAX_PROCESS_NAME 1024
+
+// Generic string type definitions for TCHAR compatibility
+#ifdef UNICODE
+    #define tcout std::wcout
+#else
+    #define tcout std::cout
+#endif
+
+// Function to find and print the name for each PID
+bool FindProcessIdByName(std::string s) {
+    // 1. Array to hold PIDs and size variables
+    DWORD aProcesses[MAX_PROCESS_NAME], cbNeeded, cProcesses;
+    
+    // 2. Call EnumProcesses to get the list of PIDs
+    if (!EnumProcesses(aProcesses, sizeof(aProcesses), &cbNeeded)) {
+        tcout << _T("ERROR: EnumProcesses failed. Error: ") << GetLastError() << _T("\n");
+        return false;
+    }
+
+    // 3. Calculate how many process identifiers were returned
+    cProcesses = cbNeeded / sizeof(DWORD);
+
+    bool found = false;
+    // 4. Loop through the list of PIDs
+    for(unsigned int i = 0; !found && i < cProcesses; i++) {
+        DWORD processID = aProcesses[i];
+        
+        // Skip unused/zeroed entries
+        if (processID == 0) continue;
+        
+        TCHAR szProcessName[MAX_PATH] = _T("<unknown>");
+        HANDLE hProcess = NULL;
+
+        // 5. Open the process to get a handle
+        // We need PROCESS_QUERY_INFORMATION to read process info
+        hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, processID);
+
+        // 6. If we successfully opened the process, get the name
+        if(hProcess != NULL) {
+            HMODULE hMod;
+            DWORD cbActual;
+
+            // Get the first module handle (usually the EXE)
+            if (EnumProcessModules(hProcess, &hMod, sizeof(hMod), &cbActual)) {
+                // Get the base name of the module
+                GetModuleBaseName(hProcess, hMod, szProcessName, sizeof(szProcessName) / sizeof(TCHAR));
+            }
+            
+            // 7. Print the PID and the name
+            //tcout << szProcessName << _T(" (PID: ") << processID << _T(")\n");
+            
+            if(_tcsicmp(szProcessName, s.c_str()) == 0) {
+                //return true;
+                found = true;
+            }
+            
+            // 8. Close the process handle
+            CloseHandle(hProcess);
+        } else {
+            // Print unknown processes (e.g., Idle Process, CSRSS)
+            // Error code 5 (Access is denied) is common here.
+            //tcout << szProcessName << _T(" (PID: ") << processID << _T("). OpenProcess Failed: ") << GetLastError() << _T("\n");
+        }
+    }
+
+    return found;
+}
+
+
+
+
+
 
 
 int main()
@@ -110,18 +198,34 @@ DeleteObject(hBitmap);
     //inputs::GetWindowsVersion();
 
     //std::string tesseract_path = "C:\\Program Files\\Tesseract-OCR\\tesseract.exe";
-    std::string tesseract_path = "C:\\Program Files\\Tesseract-OCR\\tesseract.exe";
-
-    std::string image_path = "../../Images/captura1.png"; 
+    std::string tesseractPath = "C:\\Program Files\\Tesseract-OCR\\tesseract.exe";
+    std::string imagePath = "../../Images/captura1.png";
+    std::string outputPath = "outputOCR.txt";
     
     // Note: Windows paths usually need to be quoted if they contain spaces
-    std::string command = "\"" + tesseract_path + "\" " + image_path + " output_OCR" + " -l spa";
+    std::string command = "\"" + tesseractPath + "\" " + imagePath + " " + outputPath + " -l spa";
     
     std::cout << "Executing command: " << command << std::endl;
 
     // 2. Execute the command.
     // The system() function returns the exit status of the command.
     int return_code = std::system(command.c_str());
+
+
+
+
+    std::string dofhuntExeName = "dofhunt-win64.exe";
+
+    if(FindProcessIdByName(dofhuntExeName)) {
+        //std::cout << "DofHunt is already running. Skipping launch." << std::endl;
+        std::cout << "DofHunt is already running." << std::endl;
+    } else { // Start DofHunt.
+        std::string dofhuntPath = "C:\\Program Files\\"+ dofhuntExeName;
+        command = "start \"\" \"" + dofhuntPath + "\"";
+        return_code = std::system(command.c_str());
+    }
+
+
 
 
 
