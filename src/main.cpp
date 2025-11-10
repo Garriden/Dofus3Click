@@ -60,23 +60,48 @@ int GetEncoderClsid(const WCHAR* format, CLSID* pClsid) {
 #include <tchar.h>
 #include <vector>
 
-#define MAX_PROCESS_NAME 1024
 
-// Generic string type definitions for TCHAR compatibility
-#ifdef UNICODE
-    #define tcout std::wcout
+#include <tchar.h>  // Contains TCHAR, _T, and _tcsicmp
+
+
+// Define a type alias for a string that correctly follows TCHAR's definition.
+// This will be std::string if TCHAR is char, or std::wstring if TCHAR is wchar_t.
+typedef std::basic_string<TCHAR> tstring;
+
+tstring stringToTString(const std::string& s) {
+#ifdef _UNICODE
+    // --- UNICODE BUILD PATH (TCHAR == wchar_t) ---
+    // 1. Determine the size needed for the wide character buffer
+    int len = MultiByteToWideChar(CP_UTF8, 0, s.c_str(), -1, NULL, 0);
+
+    if (len == 0) {
+        // Handle error or empty string
+        return tstring(); 
+    }
+
+    // 2. Allocate the buffer and perform the conversion
+    tstring ws(len - 1, 0); // Initialize string with required size (minus null terminator)
+    MultiByteToWideChar(CP_UTF8, 0, s.c_str(), -1, &ws[0], len);
+    
+    // The previous steps guarantee the returned type is std::wstring, which matches tstring
+    return ws;
+
 #else
-    #define tcout std::cout
+    // --- ANSI/MBCS BUILD PATH (TCHAR == char) ---
+    // The tstring is simply a std::string, so we can return it directly.
+    return s;
 #endif
+}
 
 // Function to find and print the name for each PID
-bool FindProcessIdByName(std::string s) {
+bool FindProcessIdByName(std::string &s) {
     // 1. Array to hold PIDs and size variables
+    constexpr int MAX_PROCESS_NAME = 256;
     DWORD aProcesses[MAX_PROCESS_NAME], cbNeeded, cProcesses;
     
     // 2. Call EnumProcesses to get the list of PIDs
     if (!EnumProcesses(aProcesses, sizeof(aProcesses), &cbNeeded)) {
-        tcout << _T("ERROR: EnumProcesses failed. Error: ") << GetLastError() << _T("\n");
+        std::cout << _T("ERROR: EnumProcesses failed. Error: ") << GetLastError() << _T("\n");
         return false;
     }
 
@@ -111,12 +136,13 @@ bool FindProcessIdByName(std::string s) {
             
             // 7. Print the PID and the name
             //tcout << szProcessName << _T(" (PID: ") << processID << _T(")\n");
-            
-            if(_tcsicmp(szProcessName, s.c_str()) == 0) {
-                //return true;
+
+            tstring targetProcessName = stringToTString(s);
+
+            if(_tcsicmp(szProcessName, targetProcessName.c_str()) == 0) {
                 found = true;
             }
-            
+
             // 8. Close the process handle
             CloseHandle(hProcess);
         } else {
