@@ -29,13 +29,14 @@ int OcraLejanoStrategy::Execute()
 
         if(_turn % 4 == 0) {
             ThrowSpellToMyself(SpellsCtrlRow::MURALLA, SpellsCtrlRow::SPELLS_CTRL_ROW); // Potente.
-            ThrowSpellToMyself(SpellsCtrlRow::ESCUDO, SpellsCtrlRow::SPELLS_CTRL_ROW); // Lejano.
+            //ThrowSpellToMyself(SpellsCtrlRow::ESCUDO, SpellsCtrlRow::SPELLS_CTRL_ROW); // Lejano.
         }
 
-        //if((_turn-1) % 3 == 0) {
-        //    ThrowSpellToMyself(SpellsCtrlRow::ESCUDO, SpellsCtrlRow::SPELLS_CTRL_ROW);
-        //}
+        if((_turn-1) % 3 == 0) {
+            ThrowSpellToMyself(SpellsCtrlRow::ESCUDO, SpellsCtrlRow::SPELLS_CTRL_ROW);
+        }
 
+        ThrowSpellToEnemies(SpellsRow::BORRASCA,    SpellsRow::SPELLS_ROW); // Absorbente.
 
         //if(_turn % 3 == 0) {
             ThrowSpellToEnemies(SpellsRow::RECELO,       SpellsRow::SPELLS_ROW); // Charge Expi.
@@ -48,11 +49,10 @@ int OcraLejanoStrategy::Execute()
 
         ThrowSpellToEnemies(SpellsCtrlRow::WEAPON,  SpellsRow::SPELLS_ROW); // weapon is just 'q'
         ThrowSpellToEnemies(SpellsRow::SILBO,       SpellsRow::SPELLS_ROW);
-        ThrowSpellToEnemies(SpellsRow::BORRASCA,    SpellsRow::SPELLS_ROW); // Absorbente.
         ThrowSpellToEnemies(SpellsRow::ESCALOFRIO,  SpellsRow::SPELLS_ROW); // Optica.
         ThrowSpellToEnemies(SpellsRow::MANIOBRA,    SpellsRow::SPELLS_ROW);
         ThrowSpellToEnemies(SpellsRow::PASTO,       SpellsRow::SPELLS_ROW);
-        ThrowSpellToEnemies(SpellsRow::MOON,        SpellsRow::SPELLS_ROW);
+        //ThrowSpellToEnemies(SpellsRow::MOON,        SpellsRow::SPELLS_ROW);
         ThrowSpellToEnemies(SpellsRow::LLAMILLA,    SpellsRow::SPELLS_ROW);
 
         if(_enemiesXPositionInMenuFight.size() == 1) {
@@ -63,6 +63,7 @@ int OcraLejanoStrategy::Execute()
 
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
         if(!check::IsRecallPoti()) {
+            ThrowSpellToEnemies(SpellsRow::BORRASCA,    SpellsRow::SPELLS_ROW); // Absorbente.
             //if(_turn % 3 == 0) {
                 ThrowSpellToEnemies(SpellsRow::RECELO,       SpellsRow::SPELLS_ROW); // Charge Expi.
             //}
@@ -71,7 +72,6 @@ int OcraLejanoStrategy::Execute()
                 ThrowSpellToEnemies(SpellsRow::VIGIA,        SpellsRow::SPELLS_ROW); // Charge Casti.
             //}
 
-            ThrowSpellToEnemies(SpellsRow::BORRASCA,    SpellsRow::SPELLS_ROW); // Absorbente.
             ThrowSpellToEnemies(SpellsRow::ESCALOFRIO,  SpellsRow::SPELLS_ROW); // Optica.
         }
 

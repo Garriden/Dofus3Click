@@ -58,6 +58,9 @@ namespace zaap {
     /** @brief True if the player is in Llanuras Rocosas zaap. */
     bool CheckZaapRocosas();
 
+    /** @brief True if the player is in Caminos Rocosos zaap. */
+    bool CheckZaapRocosos();
+
     /** @brief True if the player is in Rincon zaap. */
     bool CheckZaapRincon();
 

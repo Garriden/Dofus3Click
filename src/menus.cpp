@@ -335,7 +335,7 @@ void menu::SelectPjMenu()
 
 void menu::FindEnemiesMenu()
 {
-    SelectPjMenu();
+    //SelectPjMenu();
 
     show::FindEnemiesMenu();
 
@@ -405,6 +405,13 @@ void menu::FindEnemiesMenu()
         {
             File::LogFile("30 = Kokokos                 (Moon)", true);
             Roadmap roadmap(Profession::TRAIN, "moon", nullptr, &zaap::CheckZaapMoon, {"../../Telemetry/Train/moon.csv", ""});
+            roadmap.Start();
+            break;
+        }
+        case 33:
+        {
+            File::LogFile("33 = Aullidos            (Rocosos)", true);
+            Roadmap roadmap(Profession::TRAIN, "rocosos", nullptr, &zaap::CheckZaapRocosos, {"../../Telemetry/Train/aullidos.csv", ""});
             roadmap.Start();
             break;
         }

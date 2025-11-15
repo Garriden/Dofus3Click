@@ -367,6 +367,17 @@
 #define I_AM_IN_ROCOSAS_ZAAP_COLOR_GREEN_3                 (183)
 #define I_AM_IN_ROCOSAS_ZAAP_COLOR_BLUE_3                  (55)
 
+#define I_AM_IN_ROCOSOS_ZAAP_POS_X_1                       (409)
+#define I_AM_IN_ROCOSOS_ZAAP_POS_Y_1                       (60)
+#define I_AM_IN_ROCOSOS_ZAAP_COLOR_RED_1                   (164)
+#define I_AM_IN_ROCOSOS_ZAAP_COLOR_GREEN_1                 (209)
+#define I_AM_IN_ROCOSOS_ZAAP_COLOR_BLUE_1                  (36)
+#define I_AM_IN_ROCOSOS_ZAAP_POS_X_2                       (421)
+#define I_AM_IN_ROCOSOS_ZAAP_POS_Y_2                       (80)
+#define I_AM_IN_ROCOSOS_ZAAP_COLOR_RED_2                   (95)
+#define I_AM_IN_ROCOSOS_ZAAP_COLOR_GREEN_2                 (112)
+#define I_AM_IN_ROCOSOS_ZAAP_COLOR_BLUE_2                  (1)
+
 #define I_AM_IN_BURGO_ZAAP_POS_X_1                         (1526)
 #define I_AM_IN_BURGO_ZAAP_POS_Y_1                         (245)
 #define I_AM_IN_BURGO_ZAAP_COLOR_RED_1                     (211)

@@ -341,6 +341,35 @@ bool zaap::CheckZaapRocosas()
     return ret;
 }
 
+bool zaap::CheckZaapRocosos()
+{
+    bool ret = false;
+
+    COLORREF color1 = basicOperations::GetColor(I_AM_IN_ROCOSOS_ZAAP_POS_X_1, I_AM_IN_ROCOSOS_ZAAP_POS_Y_1, true);
+    COLORREF color2 = basicOperations::GetColor(I_AM_IN_ROCOSOS_ZAAP_POS_X_2, I_AM_IN_ROCOSOS_ZAAP_POS_Y_2, true);
+
+    if ((int(GetRValue(color1)) < I_AM_IN_ROCOSOS_ZAAP_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color1)) > I_AM_IN_ROCOSOS_ZAAP_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) < I_AM_IN_ROCOSOS_ZAAP_COLOR_GREEN_1 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color1)) > I_AM_IN_ROCOSOS_ZAAP_COLOR_GREEN_1 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) < I_AM_IN_ROCOSOS_ZAAP_COLOR_BLUE_1  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color1)) > I_AM_IN_ROCOSOS_ZAAP_COLOR_BLUE_1  - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(color2)) < I_AM_IN_ROCOSOS_ZAAP_COLOR_RED_2   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color2)) > I_AM_IN_ROCOSOS_ZAAP_COLOR_RED_2   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) < I_AM_IN_ROCOSOS_ZAAP_COLOR_GREEN_2 + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color2)) > I_AM_IN_ROCOSOS_ZAAP_COLOR_GREEN_2 - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color2)) < I_AM_IN_ROCOSOS_ZAAP_COLOR_BLUE_2  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color2)) > I_AM_IN_ROCOSOS_ZAAP_COLOR_BLUE_2  - ERROR_GET_COLOUR_SMALL)
+        )
+    {
+        File::LogFile("I'm in Caminos Rocosos Zaap !", true);
+        ret = true;
+    }
+
+    return ret;
+}
+
 bool zaap::CheckZaapBurgo()
 {
     bool ret = false;
