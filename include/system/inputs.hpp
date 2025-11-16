@@ -52,10 +52,16 @@ namespace inputs {
     void KeyboardWrite(std::string s);
 
     /**
-     * @brief Click near the Dofus executable bar to ensure the game has focus.
+     * @brief Find & Click near the Dofus executable bar to ensure the game has focus.
      * @return bool True on success.
      */
     bool ClickOnExe();
+
+    /**
+     * @brief Find & Click near the Dofhunt program.
+     * @return bool True on success.
+     */
+    bool ClickOnDofHunt();
 
     /** @brief Start recording actual mouse clicks to build telemetry files. */
     void RecordTelemetry();

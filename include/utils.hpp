@@ -44,6 +44,28 @@
 #define DOFUS_EXE_POS_COLOR_GREEN_2                        (255)
 #define DOFUS_EXE_POS_COLOR_BLUE_2                         (123)
 
+
+#define DOFHUNT_POS_X                                      (30)
+#define DOFHUNT_POS_Y                                      (500)
+#define DOFHUNT_COLOR_RED                                  (3)
+#define DOFHUNT_COLOR_GREEN                                (3)
+#define DOFHUNT_COLOR_BLUE                                 (203)
+#define DOFHUNT_RELATIVE_MENU_X_COORD_X_POS                (20)
+#define DOFHUNT_RELATIVE_MENU_X_COORD_Y_POS                (50)
+#define DOFHUNT_RELATIVE_MENU_Y_COORD_X_POS                (85)
+#define DOFHUNT_RELATIVE_MENU_Y_COORD_Y_POS                (50)
+#define DOFHUNT_RELATIVE_MENU_WRITE_X_POS                  (135)
+#define DOFHUNT_RELATIVE_MENU_WRITE_Y_POS                  (50)
+#define DOFHUNT_RELATIVE_MENU_ARROW_UP_X_POS               (40)
+#define DOFHUNT_RELATIVE_MENU_ARROW_UP_Y_POS               (70)
+#define DOFHUNT_RELATIVE_MENU_ARROW_DOWN_X_POS             (40)
+#define DOFHUNT_RELATIVE_MENU_ARROW_DOWN_Y_POS             (125)
+#define DOFHUNT_RELATIVE_MENU_ARROW_LEFT_X_POS             (10)
+#define DOFHUNT_RELATIVE_MENU_ARROW_LEFT_Y_POS             (110)
+#define DOFHUNT_RELATIVE_MENU_ARROW_RIGHT_X_POS            (75)
+#define DOFHUNT_RELATIVE_MENU_ARROW_RIGHT_Y_POS            (110)
+
+
 #define BLACK_SCREEN_POS_X_1                               (850)
 #define BLACK_SCREEN_POS_Y_1                               (850)
 #define BLACK_SCREEN_POS_X_2                               (1200)

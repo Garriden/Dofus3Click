@@ -10,6 +10,12 @@
 
 #include <windows.h>
 #include <gdiplus.h> // Screenshoot.
+#include <windows.h>
+#include <psapi.h>
+#include <tchar.h>  // Contains TCHAR, _T, and _tcsicmp
+
+
+
 
 
 int GetEncoderClsid(const WCHAR* format, CLSID* pClsid) {
@@ -52,16 +58,6 @@ int GetEncoderClsid(const WCHAR* format, CLSID* pClsid) {
 
 
 
-
-#include <windows.h>
-#include <psapi.h>
-#include <tchar.h>
-#include <iostream>
-#include <tchar.h>
-#include <vector>
-
-
-#include <tchar.h>  // Contains TCHAR, _T, and _tcsicmp
 
 
 // Define a type alias for a string that correctly follows TCHAR's definition.
@@ -250,6 +246,56 @@ DeleteObject(hBitmap);
         command = "start \"\" \"" + dofhuntPath + "\"";
         return_code = std::system(command.c_str());
     }
+
+
+    // Find dofhunt positions
+    int dofhuntAbsoluteXPos = 0;
+    int dofhuntAbsoluteYPos = 0;
+
+    if(!inputs::ClickOnDofHunt()) {
+        std::cout << "CANNOT find DofHunt program!" << std::endl;
+        return -1;
+    } else { // DofuHunt normal execution.
+
+        // Roadmap? to take the treasure.
+
+
+
+        // Screenshoot.
+
+
+
+        // Get cordinates to start. (Zaap name)
+
+        // Zap, go to those zaap.
+
+        // Go to inital coordenates.
+
+
+            // Get arrow direction from screenshoot.
+
+            // Get hint name.
+
+            // Paste X Coordenate into DofHunt.
+
+            // Paste Y Coordenate into DofHunt.
+
+            // Paste Hint into DofHunt.
+
+            // Paste into Dofus chat (click or keyword? ).
+
+            // Wait until pj goes to the new map. (Screenshoot upper-left coordinate? ).
+
+            // Click on the flag. (Search the flag? for? image recognition not implemented.)
+
+        // All hints on this page are OK, next page.
+
+
+        // Final battle.
+        // Strategy or image recognition ?
+
+    }
+
 
 
 

@@ -37,6 +37,24 @@ namespace {
         return ret;
     }
 
+    bool FindDofHunt(COLORREF color)
+    {
+        bool ret = false;
+
+        if(((int(GetRValue(color)) < DOFHUNT_COLOR_RED   + ERROR_GET_COLOUR_SMALL) &&
+            (int(GetRValue(color)) > DOFHUNT_COLOR_RED   - ERROR_GET_COLOUR_SMALL) &&
+            (int(GetGValue(color)) < DOFHUNT_COLOR_GREEN + ERROR_GET_COLOUR_SMALL) &&
+            (int(GetGValue(color)) > DOFHUNT_COLOR_GREEN - ERROR_GET_COLOUR_SMALL) &&
+            (int(GetBValue(color)) < DOFHUNT_COLOR_BLUE  + ERROR_GET_COLOUR_SMALL) &&
+            (int(GetBValue(color)) > DOFHUNT_COLOR_BLUE  - ERROR_GET_COLOUR_SMALL)) )
+        {
+            ret = true;
+            File::LogFile("DofHunt program found!", true);
+        }
+
+        return ret;
+    }
+
     bool FindPrivateModeDot(COLORREF color, std::string colorWanted)
     {
         bool ret = false;
@@ -292,6 +310,38 @@ bool inputs::ClickOnExe()
         if(FindDofusExe(color)) {
             Click(x+ii, y);
             return true;
+        }
+    }
+
+    return false;
+}
+
+bool inputs::ClickOnDofHunt()
+{
+    int x = DOFHUNT_POS_X;
+    int y = DOFHUNT_POS_Y;
+    COLORREF color;
+
+    for(int ii = 0; ii < 1000; ++++ii) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        color = basicOperations::GetColor(x, y+ii, false);
+        SetCursorPos(x, y+ii);
+
+        if(FindDofHunt(color)) {
+            //Click(x+ii, y);
+            y += ii; // Update y position.
+            
+            // Find the left limit. x position.
+            for(int jj = 0; ((x-jj) > 2) && (jj < 100); ++jj) {
+                SetCursorPos(x-jj, y);
+
+                if(!FindDofHunt(color)) { // When is NOT blue anymore.
+                    x -= jj; // Update y position.
+                    return true;
+                }
+            }
+
+            break;
         }
     }
 
