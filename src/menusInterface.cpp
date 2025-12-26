@@ -14,7 +14,7 @@ void show::MainMenu()
     std::cout << "5  = ALCHEMIST" << std::endl;
     std::cout << "6  = FISHERMAN" << std::endl;
     std::cout << "9  = Daily missions" << std::endl;
-    std::cout << "10 = Find enemies" << std::endl;
+    std::cout << "10 = Train" << std::endl;
     std::cout << "11 = Find enemies here" << std::endl;
     std::cout << "-----------------------------------" << std::endl;
     std::cout << "99= DEBUG" << std::endl;
