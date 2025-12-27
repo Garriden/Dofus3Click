@@ -31,4 +31,6 @@ class Train {
 
     private:
 
+        int CheckMobSize(int &x, int &y);
+
 };

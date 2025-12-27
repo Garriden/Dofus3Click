@@ -14,7 +14,7 @@ void show::MainMenu()
     std::cout << "5  = ALCHEMIST" << std::endl;
     std::cout << "6  = FISHERMAN" << std::endl;
     std::cout << "9  = Daily missions" << std::endl;
-    std::cout << "10 = Find enemies" << std::endl;
+    std::cout << "10 = Train" << std::endl;
     std::cout << "11 = Find enemies here" << std::endl;
     std::cout << "-----------------------------------" << std::endl;
     std::cout << "99= DEBUG" << std::endl;
@@ -43,7 +43,7 @@ void show::DailyMissions()
     std::cout << "1 = All of them + week" << std::endl;
     std::cout << "5 = [ANKAMA]  Capitan    [0kk]  (5min) (daily)" << std::endl;
     std::cout << "10= [FRIGOST] Fight Club [16kk] (5min) (week) " << std::endl;
-    std::cout << "50= [SUFOKIA] Fight Club [16kk] (5min) (week) " << std::endl;
+    std::cout << "50= [SUFOKIA] ?                 (5min) (week) " << std::endl;
     std::cout << "==============================================" << std::endl;
 }
 
@@ -104,7 +104,18 @@ void show::FishermanMenu()
     std::cout << "2 = lv.20           (Golfo Sufokia)" << std::endl;
     std::cout << "4 = lv.80-120           (Ganaderos)" << std::endl;
     //std::cout << "4 = lv.120                [PANDALA]" << std::endl;
+    std::cout << "10= lv.160                  (Kanis)" << std::endl;
     std::cout << "0 = Back to main menu" << std::endl;
+    std::cout << "===================================" << std::endl;
+}
+
+void show::SelectPjMenu()
+{
+    system("TITLE Select Pj menu");
+    std::cout << "===================================" << std::endl;
+    std::cout << "1  = Feca" << std::endl;
+    std::cout << "21 = Ocra Lejano                   " << std::endl;
+    std::cout << "22 = Ocra Cercano                   " << std::endl;
     std::cout << "===================================" << std::endl;
 }
 
@@ -114,10 +125,14 @@ void show::FindEnemiesMenu()
     std::cout << "===================================" << std::endl;
     std::cout << "1  = Jabatos               (Astrub)" << std::endl;
     std::cout << "2  = Abraknidos             (Linde)" << std::endl;
-    std::cout << "4  = Robocops              (Puerka)" << std::endl;
-    std::cout << "6  = Cocodrilos         (Ganaderos)" << std::endl;
-    std::cout << "10 = Kokokos                X(Moon)" << std::endl;
-    std::cout << "15 = Trools              X(Rocosas)" << std::endl;
-    std::cout << "20 = Jalamuts               (Burgo)" << std::endl;
+    std::cout << "5  = Muluscos               (Golfo)" << std::endl;
+    std::cout << "8  = Sidimonte          (Caravanas)" << std::endl;
+    std::cout << "15 = Robocops              (Puerka)" << std::endl;
+    std::cout << "18 = Bworks               (Rocosas)" << std::endl;
+    std::cout << "20 = Cocodrilos         (Ganaderos)" << std::endl;
+    std::cout << "30 = Kokokos                X(Moon)" << std::endl;
+    std::cout << "33 = Aullidos             (Rocosos)" << std::endl;
+    std::cout << "35 = Trools              X(Rocosas)" << std::endl;
+    std::cout << "40 = Jalamuts               (Burgo)" << std::endl;
     std::cout << "===================================" << std::endl;
 }

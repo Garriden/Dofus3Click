@@ -21,6 +21,9 @@ bool IsFight();
 /** @brief True if the player's turn is almost finished (turn bar near end, bar orange or red). */
 bool IsAlmostTheEndOfTheTurn();
 
+/** @brief True if the player's turn is super mostly finished (turn bar near end, red). */
+bool IsTheEndOfTheTurn();
+
 /** @brief True if the PODS (inventory weight) bar is (almost) full. */
 bool AmIFull();
 
@@ -76,5 +79,18 @@ bool IsEmptyResource();
  *        that indicates a map change. Returns true if transition observed.
  */
 bool WaitMapToChange();
+
+
+/** @brief True if bubble information mob. */
+bool IsBubble(int x, int y);
+
+/** @brief True if bubble information mob. */
+bool IsBubbleBottom(int x, int y);
+
+/** @brief True if bubble information mob. */
+bool IsBubbleMiddle(int x, int y);
+
+/** @brief True if bubble information mob. */
+bool IsBubbleTop(int x, int y);
 
 }

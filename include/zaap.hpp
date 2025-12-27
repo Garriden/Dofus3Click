@@ -49,13 +49,27 @@ namespace zaap {
     /** @brief True if the player is in Sufokia zaap. */
     bool CheckZaapSufokia();
 
+    /** @brief True if the player is in Golfo Sufokia zaap. */
+    bool CheckZaapGolfo();
+
     /** @brief True if the player is in Moon island zaap. */
     bool CheckZaapMoon();
 
     /** @brief True if the player is in Llanuras Rocosas zaap. */
     bool CheckZaapRocosas();
 
+    /** @brief True if the player is in Caminos Rocosos zaap. */
+    bool CheckZaapRocosos();
+
     /** @brief True if the player is in Rincon zaap. */
     bool CheckZaapRincon();
 
+    /** @brief True if the player is in Kani zaap. */
+    bool CheckZaapKani();
+
+    /** @brief True if the player is in Pueblo zaap. */
+    bool CheckZaapPueblo();
+
+    /** @brief True if the player is in Caravanas zaap. */
+    bool CheckZaapCaravanas();
 }

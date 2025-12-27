@@ -1,3 +1,8 @@
+# Release 1.4 TrainImprovements:
+ - Dofus 3.4
+ - Detect how large the mob is.
+ - More train maps + Ocra.
+
 # Release 1.3:
  - Documentation
  - Compatible with laptop PC.

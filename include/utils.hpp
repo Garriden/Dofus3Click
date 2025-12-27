@@ -12,7 +12,7 @@
 
 #define LIMIT_CELL_Y_MIN                                (80)
 #define LIMIT_CELL_Y_MAX                                (850)
-#define LIMIT_CELL_X_MIN                                (405)
+#define LIMIT_CELL_X_MIN                                (350)
 #define LIMIT_CELL_X_MAX                                (1470)
 
 #define RIGHT                                           (0)
@@ -259,6 +259,7 @@
 #define I_AM_IN_LINDE_ZAAP_COLOR_GREEN_3                   (218)
 #define I_AM_IN_LINDE_ZAAP_COLOR_BLUE_3                    (127)
 
+
 #define I_AM_IN_RINCON_ZAAP_POS_X_1                        (1414)
 #define I_AM_IN_RINCON_ZAAP_POS_Y_1                        (38)
 #define I_AM_IN_RINCON_ZAAP_COLOR_RED_1                    (176)
@@ -274,6 +275,17 @@
 #define I_AM_IN_RINCON_ZAAP_COLOR_RED_3                    (184)
 #define I_AM_IN_RINCON_ZAAP_COLOR_GREEN_3                  (198)
 #define I_AM_IN_RINCON_ZAAP_COLOR_BLUE_3                   (56)
+
+#define I_AM_IN_KANI_ZAAP_POS_X_1                          (1472)
+#define I_AM_IN_KANI_ZAAP_POS_Y_1                          (212)
+#define I_AM_IN_KANI_ZAAP_COLOR_RED_1                      (223)
+#define I_AM_IN_KANI_ZAAP_COLOR_GREEN_1                    (214)
+#define I_AM_IN_KANI_ZAAP_COLOR_BLUE_1                     (69)
+#define I_AM_IN_KANI_ZAAP_POS_X_2                          (1462)
+#define I_AM_IN_KANI_ZAAP_POS_Y_2                          (238)
+#define I_AM_IN_KANI_ZAAP_COLOR_RED_2                      (254)
+#define I_AM_IN_KANI_ZAAP_COLOR_GREEN_2                    (241)
+#define I_AM_IN_KANI_ZAAP_COLOR_BLUE_2                     (109)
 
 #define I_AM_IN_PUERKAZOS_ZAAP_POS_X_1                     (740)
 #define I_AM_IN_PUERKAZOS_ZAAP_POS_Y_1                     (282)
@@ -355,6 +367,17 @@
 #define I_AM_IN_ROCOSAS_ZAAP_COLOR_GREEN_3                 (183)
 #define I_AM_IN_ROCOSAS_ZAAP_COLOR_BLUE_3                  (55)
 
+#define I_AM_IN_ROCOSOS_ZAAP_POS_X_1                       (409)
+#define I_AM_IN_ROCOSOS_ZAAP_POS_Y_1                       (60)
+#define I_AM_IN_ROCOSOS_ZAAP_COLOR_RED_1                   (164)
+#define I_AM_IN_ROCOSOS_ZAAP_COLOR_GREEN_1                 (209)
+#define I_AM_IN_ROCOSOS_ZAAP_COLOR_BLUE_1                  (36)
+#define I_AM_IN_ROCOSOS_ZAAP_POS_X_2                       (421)
+#define I_AM_IN_ROCOSOS_ZAAP_POS_Y_2                       (80)
+#define I_AM_IN_ROCOSOS_ZAAP_COLOR_RED_2                   (95)
+#define I_AM_IN_ROCOSOS_ZAAP_COLOR_GREEN_2                 (112)
+#define I_AM_IN_ROCOSOS_ZAAP_COLOR_BLUE_2                  (1)
+
 #define I_AM_IN_BURGO_ZAAP_POS_X_1                         (1526)
 #define I_AM_IN_BURGO_ZAAP_POS_Y_1                         (245)
 #define I_AM_IN_BURGO_ZAAP_COLOR_RED_1                     (211)
@@ -419,6 +442,27 @@
 #define I_AM_IN_SUFOKIA_ZAAP_COLOR_GREEN_3                 (66)
 #define I_AM_IN_SUFOKIA_ZAAP_COLOR_BLUE_3                  (57)
 
+#define I_AM_IN_PUEBLO_ZAAP_POS_X_1                        (1510)
+#define I_AM_IN_PUEBLO_ZAAP_POS_Y_1                        (852)
+#define I_AM_IN_PUEBLO_ZAAP_COLOR_RED_1                    (245)
+#define I_AM_IN_PUEBLO_ZAAP_COLOR_GREEN_1                  (192)
+#define I_AM_IN_PUEBLO_ZAAP_COLOR_BLUE_1                   (39)
+#define I_AM_IN_PUEBLO_ZAAP_POS_X_2                        (1548)
+#define I_AM_IN_PUEBLO_ZAAP_POS_Y_2                        (863)
+#define I_AM_IN_PUEBLO_ZAAP_COLOR_RED_2                    (126)
+#define I_AM_IN_PUEBLO_ZAAP_COLOR_GREEN_2                  (254)
+#define I_AM_IN_PUEBLO_ZAAP_COLOR_BLUE_2                   (56)
+
+#define I_AM_IN_CARAVANAS_ZAAP_POS_X_1                     (1153)
+#define I_AM_IN_CARAVANAS_ZAAP_POS_Y_1                     (214)
+#define I_AM_IN_CARAVANAS_ZAAP_COLOR_RED_1                 (46)
+#define I_AM_IN_CARAVANAS_ZAAP_COLOR_GREEN_1               (29)
+#define I_AM_IN_CARAVANAS_ZAAP_COLOR_BLUE_1                (14)
+#define I_AM_IN_CARAVANAS_ZAAP_POS_X_2                     (369)
+#define I_AM_IN_CARAVANAS_ZAAP_POS_Y_2                     (896)
+#define I_AM_IN_CARAVANAS_ZAAP_COLOR_RED_2                 (31)
+#define I_AM_IN_CARAVANAS_ZAAP_COLOR_GREEN_2               (20)
+#define I_AM_IN_CARAVANAS_ZAAP_COLOR_BLUE_2                (13)
 
 //////////////////////////////////////////////////////////////
 // ROADMAPS CHECKS
@@ -550,7 +594,7 @@
 #define CHECK_PODS_COLOR_BLUE                              (75)
 
 #define PRIVATE_MODE_POS_X_1                               (322)
-#define PRIVATE_MODE_POS_Y_1                               (1036)
+#define PRIVATE_MODE_POS_Y_1                               (1034)
 #define PRIVATE_MODE_POS_X_2                               (363)
 #define PRIVATE_MODE_POS_Y_2                               (1023)
 //#define PRIVATE_MODE_POS_X_3                               (320)
@@ -586,6 +630,17 @@
 #define I_AM_LEVEL_UP_COLOR_GREEN_4                        (247)
 #define I_AM_LEVEL_UP_COLOR_BLUE_4                         (0)
 
+#define I_AM_LEVEL_UP_POS_X_5                              (1037)
+#define I_AM_LEVEL_UP_POS_Y_5                              (358)
+#define I_AM_LEVEL_UP_COLOR_RED_5                          (206)
+#define I_AM_LEVEL_UP_COLOR_GREEN_5                        (147)
+#define I_AM_LEVEL_UP_COLOR_BLUE_5                         (24)
+#define I_AM_LEVEL_UP_POS_X_6                              (1036)
+#define I_AM_LEVEL_UP_POS_Y_6                              (414)
+#define I_AM_LEVEL_UP_COLOR_RED_6                          (25)
+#define I_AM_LEVEL_UP_COLOR_GREEN_6                        (27)
+#define I_AM_LEVEL_UP_COLOR_BLUE_6                         (48)
+
 #define IS_MENU_PRINCIPAL_POS_X_1                          (1059)
 #define IS_MENU_PRINCIPAL_POS_Y_1                          (407)
 #define IS_MENU_PRINCIPAL_RED_1                            (82)
@@ -601,6 +656,11 @@
 #define IS_MENU_PRINCIPAL_RED_3                            (58)
 #define IS_MENU_PRINCIPAL_GREEN_3                          (61)
 #define IS_MENU_PRINCIPAL_BLUE_3                           (88)
+#define IS_MENU_PRINCIPAL_POS_X_BLACK                      (900)
+#define IS_MENU_PRINCIPAL_POS_Y_BLACK                      (600)
+#define IS_MENU_PRINCIPAL_RED_BLACK                        (27)
+#define IS_MENU_PRINCIPAL_GREEN_BLACK                      (29)
+#define IS_MENU_PRINCIPAL_BLUE_BLACK                       (50)
 
 #define IS_ATTENTION_BOX_POS_X_1                            (1068)
 #define IS_ATTENTION_BOX_POS_Y_1                            (478)
@@ -638,6 +698,8 @@
 #define INVENTARY_CONVERT_RESOURCES_Y_1                    (317)
 #define INVENTARY_CONVERT_RESOURCES_X_2                    (1187)
 #define INVENTARY_CONVERT_RESOURCES_Y_2                    (223)
+#define INVENTARY_CONVERT_RESOURCES_X_25                   (1190)
+#define INVENTARY_CONVERT_RESOURCES_Y_25                   (220)
 #define INVENTARY_CONVERT_RESOURCES_X_3                    (1086)
 #define INVENTARY_CONVERT_RESOURCES_Y_3                    (221)
 #define INVENTARY_CONVERT_RESOURCES_X_4                    (1082)
@@ -645,6 +707,19 @@
 #define INVENTARY_NO_RESOURCES_COLOR_RED                   (17)
 #define INVENTARY_NO_RESOURCES_COLOR_GREEN                 (19)
 #define INVENTARY_NO_RESOURCES_COLOR_BLUE                  (32)
+
+#define BUBBLE_BOTTOM_COLOR_RED                            (32)
+#define BUBBLE_BOTTOM_COLOR_GREEN                          (33)
+#define BUBBLE_BOTTOM_COLOR_BLUE                           (51)
+#define BUBBLE_BOTTOM_2_COLOR_RED                          (37)
+#define BUBBLE_BOTTOM_2_COLOR_GREEN                        (39)
+#define BUBBLE_BOTTOM_2_COLOR_BLUE                         (59)
+#define BUBBLE_MIDDLE_COLOR_RED                            (85)
+#define BUBBLE_MIDDLE_COLOR_GREEN                          (86)
+#define BUBBLE_MIDDLE_COLOR_BLUE                           (111)
+#define BUBBLE_TOP_COLOR_RED                               (24)
+#define BUBBLE_TOP_COLOR_GREEN                             (25)
+#define BUBBLE_TOP_COLOR_BLUE                              (38)
 
 
 ///////////////////////////////////

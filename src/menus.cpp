@@ -264,6 +264,14 @@ void menu::Fisherman()
             roadmap.Start();
             break;
         }
+        case 10:
+        {
+            File::LogFile("10 = lv.160            (kanis)", true);
+            Roadmap roadmap(Profession::FISHER, "kani", &zaap::CheckZaapKani, &zaap::CheckZaapKani,
+                {"", "../../Telemetry/Fisher/kani.csv"});
+            roadmap.Start();
+            break;
+        }
 
 
     }
@@ -290,6 +298,14 @@ void menu::DailyMissions()
         {
             break;
         }
+        case 5:
+        {
+            File::LogFile("5 = [ANKAMA]  Capitan    [0kk]  (5min) (daily)", true);
+            Roadmap roadmap(Profession::MISSIONS, "pueblo de am", &zaap::CheckZaapPueblo, &zaap::CheckZaapPueblo,
+                {"../../Telemetry/Missions/Amakna/first.csv", "../../Telemetry/Missions/Amakna/Gomberro.csv"});
+            roadmap.Start();
+            break;
+        }
         case 10:
         {
             File::LogFile("10= [FRIGOST] Fight Club [16kk] (5min) (week)", true);
@@ -300,10 +316,10 @@ void menu::DailyMissions()
         }
         case 50:
         {
-            File::LogFile("10= [FRIGOST] Fight Club [16kk] (5min) (week)", true);
-            Roadmap roadmap(Profession::MISSIONS, "sufokia", &zaap::CheckZaapBurgo, &zaap::CheckZaapBurgo,
-                {"", "../../Telemetry/Missions/Frigost/FightClub.csv", "../../Telemetry/Missions/Frigost/FightClubAfter.csv"});
-            roadmap.Start();
+            //File::LogFile("10= [FRIGOST] Fight Club [16kk] (5min) (week)", true);
+            //Roadmap roadmap(Profession::MISSIONS, "sufokia", &zaap::CheckZaapBurgo, &zaap::CheckZaapBurgo,
+            //    {"", "../../Telemetry/Missions/Frigost/FightClub.csv", "../../Telemetry/Missions/Frigost/FightClubAfter.csv"});
+            //roadmap.Start();
             break;
         }
 
@@ -312,8 +328,15 @@ void menu::DailyMissions()
     }
 }
 
+void menu::SelectPjMenu()
+{
+    show::SelectPjMenu();
+}
+
 void menu::FindEnemiesMenu()
 {
+    //SelectPjMenu();
+
     show::FindEnemiesMenu();
 
     int in;
@@ -343,37 +366,65 @@ void menu::FindEnemiesMenu()
             roadmap.Start();
             break;
         }
-        case 4:
+        case 5:
         {
-            File::LogFile("4  = Robocops              (Puerka)", true);
-            Roadmap roadmap(Profession::TRAIN, "puerka", nullptr, &zaap::CheckZaapPuerkazos, {"../../Telemetry/Train/puerka.csv", ""});
+            File::LogFile("5  = Muluscos              (Golfo)", true);
+            Roadmap roadmap(Profession::TRAIN, "golfo", nullptr, &zaap::CheckZaapGolfo, {"../../Telemetry/Train/mulu.csv", ""});
             roadmap.Start();
             break;
         }
-        case 6:
+        case 8:
         {
-            File::LogFile("6  = Cocodrilos         (Ganaderos)", true);
-            Roadmap roadmap(Profession::TRAIN, "ganaderos", nullptr, &zaap::CheckZaapKoalak, {"../../Telemetry/Train/cocodrilos.csv", ""});
-            roadmap.Start();
-            break;
-        }
-        case 10:
-        {
-            File::LogFile("10 = Kokokos                 (Moon)", true);
-            Roadmap roadmap(Profession::TRAIN, "moon", nullptr, &zaap::CheckZaapMoon, {"../../Telemetry/Train/moon.csv", ""});
+            File::LogFile("8  = Sidimonte         (caravanas)", true);
+            Roadmap roadmap(Profession::TRAIN, "caravanas", nullptr, &zaap::CheckZaapCaravanas, {"../../Telemetry/Train/sidimonte.csv", ""});
             roadmap.Start();
             break;
         }
         case 15:
         {
-            File::LogFile("15 = Trools               (Rocosas)", true);
-            Roadmap roadmap(Profession::TRAIN, "rocosas", nullptr, &zaap::CheckZaapRocosas, {"../../Telemetry/Train/rocosas.csv", ""});
+            File::LogFile("15 = Robocops              (Puerka)", true);
+            Roadmap roadmap(Profession::TRAIN, "puerka", nullptr, &zaap::CheckZaapPuerkazos, {"../../Telemetry/Train/puerka.csv", ""});
+            roadmap.Start();
+            break;
+        }
+        case 18:
+        {
+            File::LogFile("18 = Bworks              (Rocosas)", true);
+            Roadmap roadmap(Profession::TRAIN, "Rocosas", nullptr, &zaap::CheckZaapRocosas, {"../../Telemetry/Train/bworks.csv", ""});
             roadmap.Start();
             break;
         }
         case 20:
         {
-            File::LogFile("20 = Jalamuts               (Burgo)", true);
+            File::LogFile("20 = Cocodrilos         (Ganaderos)", true);
+            Roadmap roadmap(Profession::TRAIN, "ganaderos", nullptr, &zaap::CheckZaapKoalak, {"../../Telemetry/Train/cocodrilos.csv", ""});
+            roadmap.Start();
+            break;
+        }
+        case 30:
+        {
+            File::LogFile("30 = Kokokos                 (Moon)", true);
+            Roadmap roadmap(Profession::TRAIN, "moon", nullptr, &zaap::CheckZaapMoon, {"../../Telemetry/Train/moon.csv", ""});
+            roadmap.Start();
+            break;
+        }
+        case 33:
+        {
+            File::LogFile("33 = Aullidos            (Rocosos)", true);
+            Roadmap roadmap(Profession::TRAIN, "rocosos", nullptr, &zaap::CheckZaapRocosos, {"../../Telemetry/Train/aullidos.csv", ""});
+            roadmap.Start();
+            break;
+        }
+        case 35:
+        {
+            File::LogFile("35 = Trools               (Rocosas)", true);
+            Roadmap roadmap(Profession::TRAIN, "rocosas", nullptr, &zaap::CheckZaapRocosas, {"../../Telemetry/Train/rocosas.csv", ""});
+            roadmap.Start();
+            break;
+        }
+        case 40:
+        {
+            File::LogFile("40 = Jalamuts               (Burgo)", true);
             Roadmap roadmap(Profession::TRAIN, "burgo", nullptr, &zaap::CheckZaapBurgo, {"../../Telemetry/Train/burgo.csv", ""});
             roadmap.Start();
             break;

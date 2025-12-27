@@ -136,11 +136,14 @@ int Roadmap::Start()
         case RoadmapState::TRAIN_MODE:
         {
             Train train;
-            if(train.IterateBetweenMaps() == E_IM_A_GHOST) {
+            int ret = train.IterateBetweenMaps();
+            if(ret == E_IM_A_GHOST) {
                 std::string ghostRoadmap = "../../Telemetry/Ghost/" + _zaap + ".csv";
                 Roadmap roadmap(Profession::GHOST, _zaap, nullptr, nullptr, {ghostRoadmap, ghostRoadmap});
                 roadmap.Start();
 
+                step = RoadmapState::SET_PODS_SET;
+            } else if(ret != E_OK) {
                 step = RoadmapState::SET_PODS_SET;
             } else {
                 step = RoadmapState::TRAIN_MODE;
@@ -345,9 +348,13 @@ void Roadmap::ConvertResources()
     inputs::PressKey('i');
     std::this_thread::sleep_for(std::chrono::seconds(1));
 
-    inputs::Click(INVENTARY_CONVERT_RESOURCES_X_1, INVENTARY_CONVERT_RESOURCES_Y_1);
-    inputs::Click(INVENTARY_CONVERT_RESOURCES_X_2, INVENTARY_CONVERT_RESOURCES_Y_2);
-    inputs::Click(INVENTARY_CONVERT_RESOURCES_X_3, INVENTARY_CONVERT_RESOURCES_Y_3);
+    inputs::Click(INVENTARY_CONVERT_RESOURCES_X_1,  INVENTARY_CONVERT_RESOURCES_Y_1);
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    inputs::Click(INVENTARY_CONVERT_RESOURCES_X_2,  INVENTARY_CONVERT_RESOURCES_Y_2);
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    inputs::Click(INVENTARY_CONVERT_RESOURCES_X_25, INVENTARY_CONVERT_RESOURCES_Y_25);
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    inputs::Click(INVENTARY_CONVERT_RESOURCES_X_3,  INVENTARY_CONVERT_RESOURCES_Y_3);
 
     std::this_thread::sleep_for(std::chrono::seconds(1));
     inputs::KeyboardWrite("saco");
@@ -359,14 +366,14 @@ void Roadmap::ConvertResources()
         std::this_thread::sleep_for(std::chrono::seconds(2));
     }
 
-    std::this_thread::sleep_for(std::chrono::seconds(1));
-    inputs::PressEscape();
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::this_thread::sleep_for(std::chrono::seconds(2));
     inputs::PressEscape();
     std::this_thread::sleep_for(std::chrono::seconds(2));
+    inputs::PressEscape();
+    std::this_thread::sleep_for(std::chrono::seconds(3));
     if(check::IsMenuPrincipalBox()) {
         inputs::PressEscape();
-        std::this_thread::sleep_for(std::chrono::seconds(2));
+        std::this_thread::sleep_for(std::chrono::seconds(3));
     }
 }
 

@@ -63,6 +63,9 @@ int FecaAgiBruteStrategy::Execute()
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
         if(!check::IsRecallPoti()) {
             ThrowSpellToEnemies(SpellsCtrlRow::POMPA,      SpellsCtrlRow::SPELLS_CTRL_ROW);
+            ThrowSpellToEnemies(SpellsRow::MOON,        SpellsRow::SPELLS_ROW);
+            ThrowSpellToEnemies(SpellsRow::SILBO,       SpellsRow::SPELLS_ROW);
+            ThrowSpellToEnemies(SpellsRow::BORRASCA,    SpellsRow::SPELLS_ROW);
         }
 
         PassTurn();

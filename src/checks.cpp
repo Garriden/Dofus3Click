@@ -57,7 +57,29 @@ bool check::IsAlmostTheEndOfTheTurn()
        (int(GetGValue(colorFarest)) < IT_IS_MY_TURN_YELLOW_COLOR_GREEN  + ERROR_GET_COLOUR_QUITE) &&
        (int(GetGValue(colorFarest)) > IT_IS_MY_TURN_YELLOW_COLOR_GREEN  - ERROR_GET_COLOUR_QUITE) &&
        (int(GetBValue(colorFarest)) < IT_IS_MY_TURN_YELLOW_COLOR_BLUE   + ERROR_GET_COLOUR_QUITE) &&
-       (int(GetBValue(colorFarest)) > IT_IS_MY_TURN_YELLOW_COLOR_BLUE   - ERROR_GET_COLOUR_QUITE) )
+       (int(GetBValue(colorFarest)) > IT_IS_MY_TURN_YELLOW_COLOR_BLUE   - ERROR_GET_COLOUR_QUITE) 
+       )
+       {
+           ret = true;
+           //File::LogFile("Almost end of turn!", true);
+       }
+
+    return ret;
+}
+
+bool check::IsTheEndOfTheTurn()
+{
+    bool ret = false;
+
+    COLORREF colorFarest = basicOperations::GetColor(IT_IS_MY_TURN_POS_X_1, IT_IS_MY_TURN_POS_Y_1, false);
+
+    if((int(GetRValue(colorFarest)) < IT_IS_MY_TURN_RED_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
+       (int(GetRValue(colorFarest)) > IT_IS_MY_TURN_RED_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
+       (int(GetGValue(colorFarest)) < IT_IS_MY_TURN_RED_COLOR_GREEN  + ERROR_GET_COLOUR_QUITE) &&
+       (int(GetGValue(colorFarest)) > IT_IS_MY_TURN_RED_COLOR_GREEN  - ERROR_GET_COLOUR_QUITE) &&
+       (int(GetBValue(colorFarest)) < IT_IS_MY_TURN_RED_COLOR_BLUE   + ERROR_GET_COLOUR_QUITE) &&
+       (int(GetBValue(colorFarest)) > IT_IS_MY_TURN_RED_COLOR_BLUE   - ERROR_GET_COLOUR_QUITE)
+        )
        {
            ret = true;
            //File::LogFile("Almost end of turn!", true);
@@ -218,8 +240,11 @@ bool check::IsMenuPrincipalBox()
     COLORREF color1 = basicOperations::GetColor(IS_MENU_PRINCIPAL_POS_X_1, IS_MENU_PRINCIPAL_POS_Y_1, false);
     COLORREF color2 = basicOperations::GetColor(IS_MENU_PRINCIPAL_POS_X_2, IS_MENU_PRINCIPAL_POS_Y_2, false);
     COLORREF color3 = basicOperations::GetColor(IS_MENU_PRINCIPAL_POS_X_3, IS_MENU_PRINCIPAL_POS_Y_3, false);
+    COLORREF colorBlack1 = basicOperations::GetColor(IS_MENU_PRINCIPAL_POS_X_BLACK, IS_MENU_PRINCIPAL_POS_Y_BLACK,       false);
+    COLORREF colorBlack2 = basicOperations::GetColor(IS_MENU_PRINCIPAL_POS_X_BLACK + 50, IS_MENU_PRINCIPAL_POS_Y_BLACK,  false);
+    COLORREF colorBlack3 = basicOperations::GetColor(IS_MENU_PRINCIPAL_POS_X_BLACK + 100, IS_MENU_PRINCIPAL_POS_Y_BLACK, false);
 
-    if ((int(GetRValue(color1)) < IS_MENU_PRINCIPAL_RED_1   + ERROR_GET_COLOUR_SMALL) &&
+    if(((int(GetRValue(color1)) < IS_MENU_PRINCIPAL_RED_1   + ERROR_GET_COLOUR_SMALL) &&
         (int(GetRValue(color1)) > IS_MENU_PRINCIPAL_RED_1   - ERROR_GET_COLOUR_SMALL) &&
         (int(GetGValue(color1)) < IS_MENU_PRINCIPAL_GREEN_1 + ERROR_GET_COLOUR_SMALL) &&
         (int(GetGValue(color1)) > IS_MENU_PRINCIPAL_GREEN_1 - ERROR_GET_COLOUR_SMALL) &&
@@ -239,7 +264,28 @@ bool check::IsMenuPrincipalBox()
         (int(GetGValue(color3)) > IS_MENU_PRINCIPAL_GREEN_3 - ERROR_GET_COLOUR_SMALL) &&
         (int(GetBValue(color3)) < IS_MENU_PRINCIPAL_BLUE_3  + ERROR_GET_COLOUR_SMALL) &&
         (int(GetBValue(color3)) > IS_MENU_PRINCIPAL_BLUE_3  - ERROR_GET_COLOUR_SMALL)
-        )
+        ) || (
+        (int(GetRValue(colorBlack1)) < IS_MENU_PRINCIPAL_RED_BLACK   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(colorBlack1)) > IS_MENU_PRINCIPAL_RED_BLACK   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(colorBlack1)) < IS_MENU_PRINCIPAL_GREEN_BLACK + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(colorBlack1)) > IS_MENU_PRINCIPAL_GREEN_BLACK - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(colorBlack1)) < IS_MENU_PRINCIPAL_BLUE_BLACK  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(colorBlack1)) > IS_MENU_PRINCIPAL_BLUE_BLACK  - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(colorBlack2)) < IS_MENU_PRINCIPAL_RED_BLACK   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(colorBlack2)) > IS_MENU_PRINCIPAL_RED_BLACK   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(colorBlack2)) < IS_MENU_PRINCIPAL_GREEN_BLACK + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(colorBlack2)) > IS_MENU_PRINCIPAL_GREEN_BLACK - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(colorBlack2)) < IS_MENU_PRINCIPAL_BLUE_BLACK  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(colorBlack2)) > IS_MENU_PRINCIPAL_BLUE_BLACK  - ERROR_GET_COLOUR_SMALL)
+        &&
+        (int(GetRValue(colorBlack3)) < IS_MENU_PRINCIPAL_RED_BLACK   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(colorBlack3)) > IS_MENU_PRINCIPAL_RED_BLACK   - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(colorBlack3)) < IS_MENU_PRINCIPAL_GREEN_BLACK + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(colorBlack3)) > IS_MENU_PRINCIPAL_GREEN_BLACK - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(colorBlack3)) < IS_MENU_PRINCIPAL_BLUE_BLACK  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(colorBlack3)) > IS_MENU_PRINCIPAL_BLUE_BLACK  - ERROR_GET_COLOUR_SMALL)
+        ) )
     {
         File::LogFile("Is the menu principal window!", true);
         ret = true;
@@ -413,6 +459,8 @@ bool check::AmILevelUp()
     COLORREF color2 = basicOperations::GetColor(I_AM_LEVEL_UP_POS_X_2, I_AM_LEVEL_UP_POS_Y_2, false);
     COLORREF color3 = basicOperations::GetColor(I_AM_LEVEL_UP_POS_X_3, I_AM_LEVEL_UP_POS_Y_3, false);
     COLORREF color4 = basicOperations::GetColor(I_AM_LEVEL_UP_BIG_POS_X_3, I_AM_LEVEL_UP_BIG_POS_Y_3, false);
+    COLORREF colorOcra1 = basicOperations::GetColor(I_AM_LEVEL_UP_POS_X_5, I_AM_LEVEL_UP_POS_Y_5, false);
+    COLORREF colorOcra2 = basicOperations::GetColor(I_AM_LEVEL_UP_POS_X_6, I_AM_LEVEL_UP_POS_Y_6, false);
 
     if ((int(GetRValue(color1)) < I_AM_LEVEL_UP_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
         (int(GetRValue(color1)) > I_AM_LEVEL_UP_COLOR_RED_1   - ERROR_GET_COLOUR_SMALL) &&
@@ -442,7 +490,24 @@ bool check::AmILevelUp()
         (int(GetGValue(color4)) > I_AM_LEVEL_UP_COLOR_GREEN_3 - ERROR_GET_COLOUR_SMALL) &&
         (int(GetBValue(color4)) < I_AM_LEVEL_UP_COLOR_BLUE_3  + ERROR_GET_COLOUR_SMALL) &&
         (int(GetBValue(color4)) > I_AM_LEVEL_UP_COLOR_BLUE_3  - ERROR_GET_COLOUR_SMALL)
-        )))
+        ))
+        ||
+        (
+            (int(GetRValue(colorOcra1)) < I_AM_LEVEL_UP_COLOR_RED_5   + ERROR_GET_COLOUR_SMALL) &&
+            (int(GetRValue(colorOcra1)) > I_AM_LEVEL_UP_COLOR_RED_5   - ERROR_GET_COLOUR_SMALL) &&
+            (int(GetGValue(colorOcra1)) < I_AM_LEVEL_UP_COLOR_GREEN_5 + ERROR_GET_COLOUR_SMALL) &&
+            (int(GetGValue(colorOcra1)) > I_AM_LEVEL_UP_COLOR_GREEN_5 - ERROR_GET_COLOUR_SMALL) &&
+            (int(GetBValue(colorOcra1)) < I_AM_LEVEL_UP_COLOR_BLUE_5  + ERROR_GET_COLOUR_SMALL) &&
+            (int(GetBValue(colorOcra1)) > I_AM_LEVEL_UP_COLOR_BLUE_5  - ERROR_GET_COLOUR_SMALL)
+            &&
+            (int(GetRValue(colorOcra2)) < I_AM_LEVEL_UP_COLOR_RED_6   + ERROR_GET_COLOUR_SMALL) &&
+            (int(GetRValue(colorOcra2)) > I_AM_LEVEL_UP_COLOR_RED_6   - ERROR_GET_COLOUR_SMALL) &&
+            (int(GetGValue(colorOcra2)) < I_AM_LEVEL_UP_COLOR_GREEN_6 + ERROR_GET_COLOUR_SMALL) &&
+            (int(GetGValue(colorOcra2)) > I_AM_LEVEL_UP_COLOR_GREEN_6 - ERROR_GET_COLOUR_SMALL) &&
+            (int(GetBValue(colorOcra2)) < I_AM_LEVEL_UP_COLOR_BLUE_6  + ERROR_GET_COLOUR_SMALL) &&
+            (int(GetBValue(colorOcra2)) > I_AM_LEVEL_UP_COLOR_BLUE_6  - ERROR_GET_COLOUR_SMALL)
+        )
+        )
     {
         File::LogFile("I just level UP!", true);
         ret = true;
@@ -570,7 +635,7 @@ bool check::IsEmptyResource()
 {
     bool ret = false;
 
-    COLORREF color1 = basicOperations::GetColor(INVENTARY_CONVERT_RESOURCES_X_4, INVENTARY_CONVERT_RESOURCES_Y_4, true);
+    COLORREF color1 = basicOperations::GetColor(INVENTARY_CONVERT_RESOURCES_X_4, INVENTARY_CONVERT_RESOURCES_Y_4, false);
 
     // Check if the first position in the inventary is empty (dark black).
     if ((int(GetRValue(color1)) < INVENTARY_NO_RESOURCES_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
@@ -607,5 +672,74 @@ bool check::WaitMapToChange()
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }
+    return false;
+}
+
+bool check::IsBubble(int x, int y)
+{
+    return IsBubbleBottom(x, y) || IsBubbleMiddle(x, y) || IsBubbleTop(x, y);
+}
+
+bool check::IsBubbleBottom(int x, int y)
+{
+    COLORREF color = basicOperations::GetColor(x, y, false);
+
+    if(((int(GetRValue(color)) < BUBBLE_BOTTOM_COLOR_RED      + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetRValue(color)) > BUBBLE_BOTTOM_COLOR_RED      - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color)) < BUBBLE_BOTTOM_COLOR_GREEN    + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color)) > BUBBLE_BOTTOM_COLOR_GREEN    - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color)) < BUBBLE_BOTTOM_COLOR_BLUE     + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color)) > BUBBLE_BOTTOM_COLOR_BLUE     - ERROR_GET_COLOUR_QUITE) )
+        ||
+       ((int(GetRValue(color)) < BUBBLE_BOTTOM_2_COLOR_RED    + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetRValue(color)) > BUBBLE_BOTTOM_2_COLOR_RED    - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color)) < BUBBLE_BOTTOM_2_COLOR_GREEN  + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color)) > BUBBLE_BOTTOM_2_COLOR_GREEN  - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color)) < BUBBLE_BOTTOM_2_COLOR_BLUE   + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color)) > BUBBLE_BOTTOM_2_COLOR_BLUE   - ERROR_GET_COLOUR_QUITE) )
+        )
+    {
+        File::LogFile("Bubble bottom!", true);
+        return true;
+    }
+
+    return false;
+}
+
+bool check::IsBubbleMiddle(int x, int y)
+{
+    COLORREF color = basicOperations::GetColor(x, y, false);
+
+    if( (int(GetRValue(color)) < BUBBLE_MIDDLE_COLOR_RED    + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetRValue(color)) > BUBBLE_MIDDLE_COLOR_RED    - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color)) < BUBBLE_MIDDLE_COLOR_GREEN  + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetGValue(color)) > BUBBLE_MIDDLE_COLOR_GREEN  - ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color)) < BUBBLE_MIDDLE_COLOR_BLUE   + ERROR_GET_COLOUR_QUITE) &&
+        (int(GetBValue(color)) > BUBBLE_MIDDLE_COLOR_BLUE   - ERROR_GET_COLOUR_QUITE)
+        )
+    {
+        File::LogFile("Bubble middle!", true);
+        return true;
+    }
+
+    return false;
+}
+
+bool check::IsBubbleTop(int x, int y)
+{
+    COLORREF color = basicOperations::GetColor(x, y, false);
+
+    if( (int(GetRValue(color)) < BUBBLE_TOP_COLOR_RED    + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetRValue(color)) > BUBBLE_TOP_COLOR_RED    - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color)) < BUBBLE_TOP_COLOR_GREEN  + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetGValue(color)) > BUBBLE_TOP_COLOR_GREEN  - ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color)) < BUBBLE_TOP_COLOR_BLUE   + ERROR_GET_COLOUR_SMALL) &&
+        (int(GetBValue(color)) > BUBBLE_TOP_COLOR_BLUE   - ERROR_GET_COLOUR_SMALL)
+        )
+    {
+        File::LogFile("Bubble top!", true);
+        return true;
+    }
+
     return false;
 }

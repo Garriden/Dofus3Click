@@ -31,6 +31,9 @@ namespace show {
     /** @brief Display the fisherman profession menu. */
     void FishermanMenu();
 
+    /** @brief Display the select pj menu. */
+    void SelectPjMenu();
+
     /** @brief Display the find-enemies menu. */
     void FindEnemiesMenu();
 }

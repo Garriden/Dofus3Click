@@ -25,6 +25,9 @@ namespace menu {
     /** @brief Show the Daily Missions menu screen. */
     void DailyMissions();
 
+    /** @brief Show the Pj selection menu. */
+    void SelectPjMenu();
+
     /** @brief Show the Find Enemies / Roadmap menu and handle selections. */
     void FindEnemiesMenu();
 }
