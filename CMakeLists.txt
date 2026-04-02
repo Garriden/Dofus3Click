@@ -13,8 +13,8 @@ set(CMAKE_CXX_STANDARD 20)
 
 # Project variables
 set(LOCAL_PROJECT_NAME        "Dofus3Click")
-set(LOCAL_PROJECT_VERSION     "0.90.0")
-set(LOCAL_PROJECT_DESCRIPTION "Migration to Dofus3")
+set(LOCAL_PROJECT_VERSION     "1.4.0")
+set(LOCAL_PROJECT_DESCRIPTION "TrainImprovements")
 
 # Header files (relative to "include" directory)
 set(HEADERS
