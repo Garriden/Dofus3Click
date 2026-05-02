@@ -94,7 +94,7 @@ void menu::Wood()
         case 5:
         {
             File::LogFile("lv.70 [OLVIO]        (caravanas). . .", true);
-            Roadmap roadmap(Profession::WOOD, "caravanas", &zaap::CheckZaapCaravanas, &zaap::CheckZaapCaravanas, {"../../Telemetry/Wood/olvio1.csv", ""});
+            Roadmap roadmap(Profession::WOOD, "caravanas", &zaap::CheckZaapCaravanas, &zaap::CheckZaapCaravanas, {"", "../../Telemetry/Wood/olvio1.csv"});
             roadmap.Start();
             break;
         }
