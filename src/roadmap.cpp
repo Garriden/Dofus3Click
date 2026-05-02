@@ -47,12 +47,17 @@ Roadmap::~Roadmap()
 int Roadmap::Start()
 {
     int step = RoadmapState::SET_PODS_SET;
-    if( Profession::LOWERING_PODS == _profession) {
-        step = RoadmapState::CONVERT_RESOURCES;
-    }
 
-    if(_callbackCheckInitialMap == nullptr && _callbackCheckInitialZaap == nullptr) {
+    if(Profession::TEST == _profession) {
         step = RoadmapState::EXECUTE_ROADMAP;
+    } else {
+        if(Profession::LOWERING_PODS == _profession) {
+            step = RoadmapState::CONVERT_RESOURCES;
+        }
+
+        if(_callbackCheckInitialMap == nullptr && _callbackCheckInitialZaap == nullptr) {
+            step = RoadmapState::EXECUTE_ROADMAP;
+        }
     }
 
     while(1) {
@@ -204,7 +209,7 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
             }
         }
 
-        if(_profession != Profession::LOWERING_PODS && check::AmIFull()) {
+        if(_profession != Profession::LOWERING_PODS && check::AmIFull() && Profession::TEST != _profession) {
             Roadmap goToBank(Profession::LOWERING_PODS, "", &zaap::CheckZaapAstrub, &zaap::CheckZaapAstrub,
                 {"", "../../Telemetry/ZaapToBank/astrubBankTransaction.csv", "../../Telemetry/ZaapToBank/fromAstrubZaapToBank.csv"});
             return goToBank.Start();

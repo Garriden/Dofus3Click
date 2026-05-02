@@ -5,8 +5,9 @@
 
 #include "checks.hpp"
 #include "fight.hpp"
-//#include "roadmap.hpp"
-//#include "zaap.hpp"
+
+#include "roadmap.hpp"
+#include "zaap.hpp"
 
 #include <windows.h>
 
@@ -100,16 +101,16 @@ int main()
 
                 //inputs::ShiftClick(1000, 300);
 
-                if(check::IsFight()) {
-                    Fight fight(0);
-                    fight.Start();
-                }
+                //if(check::IsFight()) {
+                //    Fight fight(0);
+                //    fight.Start();
+                //}
 
                 //std::this_thread::sleep_for(std::chrono::seconds(2));
 
-                //Roadmap roadmap(Profession::WOOD, "golfo", nullptr, nullptr,
-                //    {"", "../../Telemetry/test.csv", /*"../../Telemetry/Fisher/Ganaderoslv80_2.csv"*/});
-                //roadmap.Start();
+                Roadmap roadmap(Profession::TEST, "hola", nullptr, nullptr,
+                    {"", "../../Telemetry/test.csv", /*"../../Telemetry/Fisher/Ganaderoslv80_2.csv"*/});
+                roadmap.Start();
                 
             break;
         }

@@ -12,7 +12,8 @@ enum Profession {
     LOWERING_PODS = 5,
     TRAIN         = 6,
     GHOST         = 7,
-    MISSIONS      = 8
+    MISSIONS      = 8,
+    TEST          = 99
 };
 
 class Roadmap {
@@ -42,6 +43,16 @@ class Roadmap {
         int Start();
 
 
+        /**
+        * @brief Execute a single roadmap file (.csv) by visiting every map,
+        *        clicking the recorded identities, and change map.
+        *
+        * @param name File name of the csv telemetry for the roadmap.
+        * @return int Status code.
+        * Public because debug.
+        */
+        int ExecuteRoadMap(std::string name);
+
     private:
 
         Profession _profession;
@@ -67,14 +78,7 @@ class Roadmap {
             END_ROADMAP_OK              = 9
         };
 
-        /**
-        * @brief Execute a single roadmap file (.csv) by visiting every map,
-        *        clicking the recorded identities, and change map.
-        *
-        * @param name File name of the csv telemetry for the roadmap.
-        * @return int Status code.
-        */
-        int ExecuteRoadMap(std::string name);
+
 
         /**
         * @brief Click all resource identities in a map (except last which is the
