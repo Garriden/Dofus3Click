@@ -121,6 +121,7 @@ std::vector<std::vector<std::pair<int, int> > > File::ReadFileAndBuildMap(const 
         }
         ifs.close();
     } else {
+        File::LogFile("File doesnt exist... ", true);
         std::cout << "File doesnt exist: " << filePath << " / " << error.message() << std::endl;
         std::cout << "Creating new file..." << std::endl;
         std::filesystem::create_directories(path);
@@ -150,6 +151,7 @@ std::string File::ReadFile(const std::string &filePath)
         }
         ifs.close();
     } else {
+        File::LogFile("File doesnt exist... ", true);
         std::cout << "File doesnt exist: " << filePath << " / " << error.message() << std::endl;
         std::cout << "Creating new file..." << std::endl;
         std::ofstream ofs(path);
@@ -176,6 +178,7 @@ void File::DeleteLocalFile(const std::string &filePath)
 
     std::error_code error;
     if(!std::filesystem::remove(path, error)) {
+        File::LogFile("Could not remove the file... ", true);
         std::cout << "! Could not remove the file: " << filePath << ". Error: " << error.message() << std::endl;
     }
 }
