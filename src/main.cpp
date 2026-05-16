@@ -10,6 +10,8 @@
 #include "zaap.hpp"
 
 #include <windows.h>
+#include <stdio.h>
+#include <opencv2/opencv.hpp>
 
 int main()
 {
@@ -108,9 +110,20 @@ int main()
 
                 //std::this_thread::sleep_for(std::chrono::seconds(2));
 
-                Roadmap roadmap(Profession::TEST, "hola", nullptr, nullptr,
-                    {"", "../../Telemetry/test.csv", /*"../../Telemetry/Fisher/Ganaderoslv80_2.csv"*/});
-                roadmap.Start();
+                cv::Mat image;
+                //image = cv::imread("../../Images/lvup.png");
+                image = cv::imread("Images/lvup.png");
+                if(!image.data) {
+                    printf("No image data \n");
+                } else {
+                    cv::namedWindow("Display Image", cv::WINDOW_AUTOSIZE);
+                    cv::imshow("Display Image", image);
+                    cv::waitKey(0);
+                }
+
+                //Roadmap roadmap(Profession::TEST, "hola", nullptr, nullptr,
+                //    {"", "../../Telemetry/test.csv", /*"../../Telemetry/Fisher/Ganaderoslv80_2.csv"*/});
+                //roadmap.Start();
                 
             break;
         }

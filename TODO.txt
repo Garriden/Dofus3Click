@@ -35,6 +35,9 @@ Game:
 ----------------------
 
 - Misiones diarias Frigost. + kammas de hielo.
-- Almanax
-- Feria del trool (larva)
+- Almanax.
+- Feria del trool (larva).
 
+- Malefiscof.
+- Archis.
+- Drop anomalias.

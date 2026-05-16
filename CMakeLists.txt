@@ -77,6 +77,7 @@ project(${LOCAL_PROJECT_NAME}
         LANGUAGES CXX)
 
 add_executable(${LOCAL_PROJECT_NAME})
+target_link_options(${LOCAL_PROJECT_NAME} PRIVATE -static-libgcc -static-libstdc++) # OpenCV dlls and procedure entry point errors.
 
 list(TRANSFORM HEADERS PREPEND "include/")
 list(TRANSFORM SOURCES PREPEND "src/")
@@ -93,3 +94,16 @@ set_target_properties(${LOCAL_PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY 
 ####################
 #   Dependencies   #
 ####################
+
+# set(OpenCV_DIR "D:/OpenCV/opencv/build/x64/vc16/bin")
+set(OpenCV_DIR "C:/msys64/mingw64/lib/cmake/opencv4")
+
+find_package(OpenCV REQUIRED)
+
+target_include_directories(${LOCAL_PROJECT_NAME} PRIVATE ${OpenCV_INCLUDE_DIRS})
+target_link_libraries(${LOCAL_PROJECT_NAME} PRIVATE ${OpenCV_LIBS})
+
+
+# Automatically copy the Images folder to the build/bin output directory
+file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/Images" 
+     DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
