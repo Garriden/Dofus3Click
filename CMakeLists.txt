@@ -105,5 +105,13 @@ target_link_libraries(${LOCAL_PROJECT_NAME} PRIVATE ${OpenCV_LIBS})
 
 
 # Automatically copy the Images folder to the build/bin output directory
-file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/Images" 
-     DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+
+#file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/Images" 
+#     DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+
+# POSTBuild everytime we build the project.
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${CMAKE_CURRENT_SOURCE_DIR}/Images"
+        "${CMAKE_CURRENT_BINARY_DIR}/bin/Images"
+)
