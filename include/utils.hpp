@@ -10,6 +10,17 @@
 #include <sstream>
 #include <TlHelp32.h> 
 
+// Activate behaviours. (TODO: Precompile)
+#define USE_OPENCV          true
+
+
+
+
+
+///////////////////////////////////////////////////////////
+// SCREEN LIMITS
+///////////////////////////////////////////////////////////
+
 #define LIMIT_CELL_Y_MIN                                (80)
 #define LIMIT_CELL_Y_MAX                                (850)
 #define LIMIT_CELL_X_MIN                                (350)
@@ -743,3 +754,15 @@
 #define E_KO_MAP_NOT_CHANGED                               (-30)
 #define E_NEED_TO_RESTART                                  (-10)
 #define E_IM_A_GHOST                                       (-11)
+
+
+
+
+
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+// OPENCV
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+
+#define SCREENSHOOT_X_STARTPOSITION                         (300)

@@ -22,12 +22,13 @@ set(HEADERS
     checks.hpp
     checksRoadmap.hpp
     fight.hpp
+    openCVOperations.hpp
     roadmap.hpp
-    utils.hpp
     menuMappings.hpp
     menus.hpp
     menusInterface.hpp
     train.hpp
+    utils.hpp
     zaap.hpp
     system/inputs.hpp
     system/file.hpp
@@ -41,11 +42,11 @@ set(HEADERS
 # Source files (relative to "src" directory)
 set(SOURCES
     main.cpp
-    
     basicOperations.cpp
     checks.cpp
     checksRoadmap.cpp
     fight.cpp
+    openCVOperations.cpp
     menusInterface.cpp
     menus.cpp
     roadmap.cpp
