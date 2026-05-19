@@ -123,7 +123,8 @@ int main()
                 double confidenceThreshold = 0.80;
                 int XPos = -1;
                 int YPos = -1;
-                bool success = OpenCVOperations::FindImage("Images/Zaap/zaapInterface.PNG", XPos, YPos);
+                //bool success = OpenCVOperations::FindImage("Images/Zaap/zaapInterface.PNG", XPos, YPos);
+                bool success = OpenCVOperations::CheckPj("roadmap"); // TODO: OCR tesseract find text. (see branch)
 
 #endif
 

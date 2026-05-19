@@ -172,21 +172,9 @@ int Train::IterateCells()
                     std::this_thread::sleep_for(std::chrono::seconds(8));
 
                     if(check::IsFight()) {
-                        //Fight fight(true, std::make_unique<FecaAgiBruteStrategy>()); // wait for the pj to arrive at the mob.
-                        Fight fight(true, std::make_unique<OcraLejanoStrategy>()); // wait for the pj to arrive at the mob.
-                        int fightReturn = fight.Start();
-                        if(E_OK != fightReturn) {
-                            File::LogFile("Fight NOT ended well for me...", true);
 
-                            inputs::PressEscape();
-                            std::this_thread::sleep_for(std::chrono::seconds(3));
-                            if(check::IsMenuPrincipalBox()) {
-                                inputs::PressEscape();
-                                std::this_thread::sleep_for(std::chrono::seconds(3));
-                            }
+                        ReadyToFight();
 
-                            return fightReturn;
-                        }
                         xx -= 88;
                     }
                 }
@@ -216,24 +204,39 @@ int Train::ReadyToFight()
 {
     int fightReturn = E_KO;
 
-    if(check::IsFight()) {
-        // TODO: Check pj with OPENCV .
-        //Fight fight(true, std::make_unique<FecaAgiBruteStrategy>()); // wait for the pj to arrive at the mob.
-        Fight fight(true, std::make_unique<OcraLejanoStrategy>()); // wait for the pj to arrive at the mob.
-        fightReturn = fight.Start();
-        if(E_OK != fightReturn) {
-            File::LogFile("[Train] Fight NOT ended well for me...", true);
+    // Check Pj.
+    bool classFeca = OpenCVOperations::CheckPj("Feca");
+    bool classOcra = OpenCVOperations::CheckPj("Ocra");
+    bool classAnutrof = OpenCVOperations::CheckPj("Anutrof");
 
-            inputs::PressEscape();
-            std::this_thread::sleep_for(std::chrono::seconds(3));
-            if(check::IsMenuPrincipalBox()) {
-                inputs::PressEscape();
-                std::this_thread::sleep_for(std::chrono::seconds(3));
-            }
+    std::unique_ptr<FightStrategy> selectedStrategy = nullptr;
 
-        }
+    if(classFeca) {
+        selectedStrategy = std::make_unique<FecaAgiBruteStrategy>();
+    } else if(classOcra) {
+        selectedStrategy = std::make_unique<OcraLejanoStrategy>();
+    } else if(classAnutrof) {
+        selectedStrategy = std::make_unique<OcraLejanoStrategy>(); // TODO: anu.
+    } else {
+        selectedStrategy = std::make_unique<OcraLejanoStrategy>();
     }
 
+
+    // Call fight strategy.
+    Fight fight(true, std::move(selectedStrategy)); // wait for the pj to arrive at the mob.
+    fightReturn = fight.Start();
+    if(E_OK != fightReturn) {
+        File::LogFile("[Train] Fight NOT ended well for me...", true);
+
+        inputs::PressEscape();
+        std::this_thread::sleep_for(std::chrono::seconds(3));
+        if(check::IsMenuPrincipalBox()) {
+            inputs::PressEscape();
+            std::this_thread::sleep_for(std::chrono::seconds(3));
+        }
+
+    }
+    
     return fightReturn;
 }
 
@@ -281,7 +284,9 @@ int Train::FindMob(std::string mobName, std::vector<int> mobNumber)
 
         std::this_thread::sleep_for(std::chrono::seconds(8));
 
-        ReadyToFight();
+        if(check::IsFight()) {
+            ReadyToFight();
+        }
 
         ret = E_OK;
     }
