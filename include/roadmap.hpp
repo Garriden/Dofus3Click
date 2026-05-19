@@ -10,9 +10,10 @@ enum Profession {
     ALCHEMIST     = 3,
     FISHER        = 4,
     LOWERING_PODS = 5,
-    TRAIN         = 6,
-    GHOST         = 7,
-    MISSIONS      = 8,
+    TRAIN         = 10,
+    TRAIN_OPENCV  = 11,
+    MISSIONS      = 20,
+    GHOST         = 90,
     TEST          = 99
 };
 
@@ -53,6 +54,9 @@ class Roadmap {
         */
         int ExecuteRoadMap(std::string name);
 
+
+        int ExecuteTrainingRoadMap(std::string name);
+
     private:
 
         Profession _profession;
@@ -75,7 +79,8 @@ class Roadmap {
             GO_TO_INITIAL_MAP           = 6,
             EXECUTE_ROADMAP             = 7,
             TRAIN_MODE                  = 8,
-            END_ROADMAP_OK              = 9
+            TRAIN_OPENCV_MODE           = 9,
+            END_ROADMAP_OK              = 10
         };
 
 

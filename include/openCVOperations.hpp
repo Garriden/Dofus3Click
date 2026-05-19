@@ -1,5 +1,6 @@
 #pragma once
 
+#include <vector>
 #include <opencv2/opencv.hpp>
 
 /**
@@ -11,6 +12,7 @@ class OpenCVOperations {
     public:
 
         static bool FindImage(std::string imageToFindName, int &XPosition, int &YPosition, double acceptableThreshold = 0.8);
+        static bool FindImages(std::vector<std::string> imageToFindName, int &XPosition, int &YPosition, double acceptableThreshold = 0.8);
 
     private:
 

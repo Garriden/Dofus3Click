@@ -134,3 +134,13 @@ bool OpenCVOperations::FindImage(std::string imageToFindName, int &XPosition, in
     return success;
 }
 
+bool OpenCVOperations::FindImages(std::vector<std::string> imagesToFindName, int &XPosition, int &YPosition, double acceptableThreshold)
+{
+    bool success = false;
+
+    for(int ii = 0; !success && ii < imagesToFindName.size(); ++ii) {
+        success = FindImage(imagesToFindName[ii], XPosition, YPosition, acceptableThreshold)
+    }
+
+    return success;
+}

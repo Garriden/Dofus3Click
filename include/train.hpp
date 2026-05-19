@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 /**
  * @file train.hpp
  * @brief Helpers used by the training logic to move around maps and search cells where the enemies are.
@@ -29,8 +31,12 @@ class Train {
          */
         int IterateCells();
 
+
+        int FindMob(std::string mobName, std::vector<int> mobNumber);
+
     private:
 
         int CheckMobSize(int &x, int &y);
+        int ReadyToFight();
 
 };

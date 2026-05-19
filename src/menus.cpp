@@ -361,8 +361,8 @@ void menu::FindEnemiesMenu()
             break;
         case 1:
         {
-            File::LogFile("1  = Jabatos               (Astrub)", true);
-            Roadmap roadmap(Profession::TRAIN, "astrub", nullptr, &zaap::CheckZaapAstrub, {"../../Telemetry/Train/astrub.csv", ""});
+            File::LogFile("1  = Bosque                (Astrub)", true);
+            Roadmap roadmap(Profession::TRAIN_OPENCV, "astrub", nullptr, &zaap::CheckZaapAstrub, {"../../Telemetry/Train/astrub.csv", ""});
             roadmap.Start();
             break;
         }

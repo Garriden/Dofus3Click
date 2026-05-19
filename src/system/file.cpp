@@ -134,6 +134,17 @@ std::vector<std::vector<std::pair<int, int> > > File::ReadFileAndBuildMap(const 
     return ret;
 }
 
+bool ExistFile(const std::string &filePath)
+{
+    bool ret = false;
+
+    if(std::filesystem::exists(filePath)) {
+        ret = true;
+    }
+
+    return ret;
+}
+
 std::string File::ReadFile(const std::string &filePath)
 {
     // Find file.

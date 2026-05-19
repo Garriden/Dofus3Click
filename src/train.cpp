@@ -3,6 +3,8 @@
 #include "basicOperations.hpp"
 #include "checks.hpp"
 #include "roadmap.hpp"
+#include "openCVOperations.hpp"
+
 #include "system/inputs.hpp"
 #include "system/file.hpp"
 
@@ -117,7 +119,7 @@ int Train::IterateBetweenMaps()
     int ret = E_KO;
 
     for(int cardinalPoint = 0; cardinalPoint < 4; ++cardinalPoint) { // RIGHT, DOWN, LEFT, UP
-        ret = IterateCells();
+        //ret = IterateCells();
         if(E_OK != ret) {
             return ret;
         }
@@ -206,4 +208,83 @@ int Train::IterateCells()
     }
 
     return E_OK;
+}
+
+
+
+int Train::ReadyToFight()
+{
+    int fightReturn = E_KO;
+
+    if(check::IsFight()) {
+        // TODO: Check pj with OPENCV .
+        //Fight fight(true, std::make_unique<FecaAgiBruteStrategy>()); // wait for the pj to arrive at the mob.
+        Fight fight(true, std::make_unique<OcraLejanoStrategy>()); // wait for the pj to arrive at the mob.
+        fightReturn = fight.Start();
+        if(E_OK != fightReturn) {
+            File::LogFile("[Train] Fight NOT ended well for me...", true);
+
+            inputs::PressEscape();
+            std::this_thread::sleep_for(std::chrono::seconds(3));
+            if(check::IsMenuPrincipalBox()) {
+                inputs::PressEscape();
+                std::this_thread::sleep_for(std::chrono::seconds(3));
+            }
+
+        }
+    }
+
+    return fightReturn;
+}
+
+
+
+
+int Train::FindMob(std::string mobName, std::vector<int> mobNumber)
+{
+    int ret = E_KO;
+
+    //////////////////////////
+    // From mobName and mobNumber, build a vector of strings with the correct images to do check it.
+    //////////////////////////
+    std::string mobImage;
+    std::vector<std::string> mobImages;
+    for(int ii = 0; ii < mobNumber.size(); ++ii) {
+        mobImage = mobName + std::to_string(mobNumber[ii]); // e.g., "Bosque2"
+        // Find all available images in the sequence
+        int index = 0;
+        while(true) {
+            // Construct the filename (make sure to adjust the extension if using .jpg)
+            std::string fileName = mobImage + "_" + std::to_string(index) + ".PNG";
+
+            // Check if the file exists on the hard drive. 
+            if(!File::ExistFile(fileName)) {
+                break; 
+            }
+
+            // Add the valid file path to our vector
+            mobImages.push_back(fileName);
+            ++index;
+        }
+    }
+
+    //////////////////
+    // OpenCV call for mob recognition.
+    //////////////////
+    int posX = 0;
+    int posY = 0;
+    bool mobFound = OpenCVOperations::FindImages(mobImages, posX, posY);
+    if(mobFound) {
+        File::LogFile("Mob found!");
+        SetCursorPos(posX, posY);
+        Click(posX, posY);
+
+        std::this_thread::sleep_for(std::chrono::seconds(8));
+
+        ReadyToFight();
+
+        ret = E_OK;
+    }
+
+    return ret;
 }
