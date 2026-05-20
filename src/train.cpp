@@ -221,7 +221,6 @@ int Train::ReadyToFight()
         selectedStrategy = std::make_unique<OcraLejanoStrategy>();
     }
 
-
     // Call fight strategy.
     Fight fight(true, std::move(selectedStrategy)); // wait for the pj to arrive at the mob.
     fightReturn = fight.Start();
@@ -253,12 +252,12 @@ int Train::FindMob(std::string mobName, std::vector<int> mobNumber)
     std::string mobImage;
     std::vector<std::string> mobImages;
     for(int ii = 0; ii < mobNumber.size(); ++ii) {
-        mobImage = mobName + std::to_string(mobNumber[ii]); // e.g., "Bosque2"
+        mobImage = mobName + std::to_string(mobNumber[ii]); // "Astrub2"
         // Find all available images in the sequence
         int index = 0;
         while(true) {
             // Construct the filename (make sure to adjust the extension if using .jpg)
-            std::string fileName = mobImage + "_" + std::to_string(index) + ".PNG";
+            std::string fileName = mobImage + "_" + std::to_string(index) + ".PNG"; // "Astrub2_0.PNG"
 
             // Check if the file exists on the hard drive. 
             if(!File::ExistFile(fileName)) {
@@ -278,9 +277,9 @@ int Train::FindMob(std::string mobName, std::vector<int> mobNumber)
     int posY = 0;
     bool mobFound = OpenCVOperations::FindImages(mobImages, posX, posY);
     if(mobFound) {
-        File::LogFile("Mob found!");
+        File::LogFile("Mob found!", true);
         SetCursorPos(posX, posY);
-        Click(posX, posY);
+        inputs::Click(posX, posY);
 
         std::this_thread::sleep_for(std::chrono::seconds(8));
 

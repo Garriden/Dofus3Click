@@ -124,7 +124,7 @@ void show::FindEnemiesMenu()
 {
     system("TITLE Find enemies menu");
     std::cout << "===================================" << std::endl;
-    std::cout << "1  = Jabatos               (Astrub)" << std::endl;
+    std::cout << "1  = Bosque                (Astrub)" << std::endl;
     std::cout << "2  = Abraknidos             (Linde)" << std::endl;
     std::cout << "5  = Muluscos               (Golfo)" << std::endl;
     std::cout << "8  = Sidimonte          (Caravanas)" << std::endl;

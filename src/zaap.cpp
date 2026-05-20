@@ -2,6 +2,7 @@
 #include "checks.hpp"
 #include "utils.hpp"
 #include "basicOperations.hpp"
+#include "openCVOperations.hpp"
 #include "system/file.hpp"
 #include "system/inputs.hpp"
 
@@ -29,6 +30,14 @@ void zaap::TeleportZaap(std::string zaapName)
         std::this_thread::sleep_for(std::chrono::seconds(3));
     }
 
+    if(!CheckZaapInterface()) {
+        File::LogFile("Zaap click failed", true);
+
+        // Try Merkasako. TODO:
+
+
+    }
+
     // Click Zaap tab.
     inputs::Click(ZAAP_INTERFACE_POS_X, ZAAP_INTERFACE_POS_Y);
     std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -50,6 +59,11 @@ bool zaap::CheckZaapInterface()
 {
     bool ret = false;
 
+#if USE_OPENCV
+    int XPos, YPos;
+    ret = OpenCVOperations::FindImage("Images/Zaap/zaapInterface.PNG", XPos, YPos);
+#else
+
     COLORREF color1 = basicOperations::GetColor(ZAAP_INTERFACE_POS_X, ZAAP_INTERFACE_POS_Y, false);
 
     if ((int(GetRValue(color1)) < ZAAP_INTERFACE_COLOR_RED_1   + ERROR_GET_COLOUR_SMALL) &&
@@ -64,6 +78,7 @@ bool zaap::CheckZaapInterface()
     }
 
     std::this_thread::sleep_for(std::chrono::seconds(1));
+#endif
 
     return ret;
 }

@@ -203,7 +203,7 @@ int Roadmap::Start()
 
 int Roadmap::ExecuteTrainingRoadMap(std::string name)
 {
-    File::LogFile("ExecuteRoadMap: " + name, true);
+    File::LogFile("ExecuteTrainingRoadMap: " + name, true);
     std::vector<std::vector<std::pair<int, int> > > roadmap = File::ReadFileAndBuildMap(name);
 
     bool mobFound = true;
