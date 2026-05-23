@@ -2,7 +2,7 @@
 #include "checks.hpp"
 #include "utils.hpp"
 #include "basicOperations.hpp"
-#include "openCVOperations.hpp"
+#include "OpenCVWrapper.hpp"
 #include "system/file.hpp"
 #include "system/inputs.hpp"
 
@@ -59,10 +59,11 @@ bool zaap::CheckZaapInterface()
 {
     bool ret = false;
 
-#if USE_OPENCV
-    int XPos, YPos;
-    ret = OpenCVOperations::FindImage("Images/Zaap/zaapInterface.PNG", XPos, YPos);
-#else
+//#if USE_OPENCV
+//    int XPos, YPos;
+    //ret = OpenCVOperations::FindImage("Images/Zaap/zaapInterface.PNG", XPos, YPos);
+//    ret = Wrapper_FindImage("Images/Zaap/zaapInterface.PNG", &XPos, &YPos);
+//#else
 
     COLORREF color1 = basicOperations::GetColor(ZAAP_INTERFACE_POS_X, ZAAP_INTERFACE_POS_Y, false);
 
@@ -78,7 +79,7 @@ bool zaap::CheckZaapInterface()
     }
 
     std::this_thread::sleep_for(std::chrono::seconds(1));
-#endif
+//#endif
 
     return ret;
 }

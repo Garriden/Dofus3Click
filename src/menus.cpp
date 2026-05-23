@@ -17,7 +17,7 @@ void menu::Farmer()
     int in;
     std::cin >> in;
 
-    if(!inputs::ClickOnExe()) {
+    if(in != 0 && !inputs::ClickOnExe()) {
         File::LogFile("! Error Cannot find Dofus exe!", true);
         return;
     }
@@ -54,7 +54,7 @@ void menu::Wood()
     int in;
     std::cin >> in;
 
-    if(!inputs::ClickOnExe()) {
+    if(in != 0 && !inputs::ClickOnExe()) {
         File::LogFile("! Error Cannot find Dofus exe!", true);
         return;
     }
@@ -150,7 +150,7 @@ void menu::Mineral()
     int in;
     std::cin >> in;
 
-    if(!inputs::ClickOnExe()) {
+    if(in != 0 && !inputs::ClickOnExe()) {
         File::LogFile("! Error Cannot find Dofus exe!", true);
         return;
     }
@@ -179,7 +179,7 @@ void menu::Alchemist()
     int in;
     std::cin >> in;
 
-    if(!inputs::ClickOnExe()) {
+    if(in != 0 && !inputs::ClickOnExe()) {
         File::LogFile("! Error Cannot find Dofus exe!", true);
         return;
     }
@@ -240,7 +240,7 @@ void menu::Fisherman()
     int in;
     std::cin >> in;
 
-    if(!inputs::ClickOnExe()) {
+    if(in != 0 && !inputs::ClickOnExe()) {
         File::LogFile("! Error Cannot find Dofus exe!", true);
         return;
     }
@@ -291,7 +291,7 @@ void menu::DailyMissions()
     int in;
     std::cin >> in;
 
-    if(!inputs::ClickOnExe()) {
+    if(in != 0 && !inputs::ClickOnExe()) {
         File::LogFile("! Error Cannot find Dofus exe!", true);
         return;
     }
@@ -349,7 +349,7 @@ void menu::FindEnemiesMenu()
     int in;
     std::cin >> in;
 
-    if(!inputs::ClickOnExe()) {
+    if(in != 0 && !inputs::ClickOnExe()) {
         File::LogFile("! Error Cannot find Dofus exe!", true);
         return;
     }

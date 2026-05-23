@@ -2,7 +2,7 @@
 #include "menusInterface.hpp"
 #include "menus.hpp"
 #include "train.hpp"
-#include "openCVOperations.hpp"
+#include "OpenCVWrapper.hpp" //#include "openCVOperations.hpp"
 
 #include "checks.hpp"
 #include "fight.hpp"
@@ -100,6 +100,7 @@ int main()
 
                 std::this_thread::sleep_for(std::chrono::seconds(1));
                 inputs::ClickOnExe();
+                std::this_thread::sleep_for(std::chrono::seconds(5));
 
                 //std::this_thread::sleep_for(std::chrono::seconds(3));
                 //check::AmILevelUp();
@@ -124,10 +125,14 @@ int main()
                 int XPos = -1;
                 int YPos = -1;
                 //bool success = OpenCVOperations::FindImage("Images/Zaap/zaapInterface.PNG", XPos, YPos);
-                bool success = OpenCVOperations::CheckPj("roadmap"); // TODO: OCR tesseract find text. (see branch)
+                //bool success = OpenCVOperations::CheckPj("Feca"); // TODO: OCR tesseract find text. (see branch)
+
+                //OpenCVOperations::CountMobsByTextLines();
+                int mobs = Wrapper_CountMobsByTextLines();
+                File::LogFile("Wrapper returned safely! Mobs: " + std::to_string(mobs), true);
 
 #endif
-
+                std::this_thread::sleep_for(std::chrono::seconds(1));
                 //Roadmap roadmap(Profession::TEST, "hola", nullptr, nullptr,
                 //    {"", "../../Telemetry/test.csv", /*"../../Telemetry/Fisher/Ganaderoslv80_2.csv"*/});
                 //roadmap.Start();

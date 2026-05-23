@@ -16,11 +16,15 @@ class OpenCVOperations {
 
         static bool CheckPj(std::string className, double acceptableThreshold = 0.8);
 
+        // Careful with black things, like dragopavo.
+        static int CountMobsByTextLines();
+
     private:
 
         static double FindImageInScreenshot(const cv::Mat &screenshot, const cv::Mat &templateImg, int &XPosition, int &YPosition);
 
         static cv::Mat CapturePlayableScreen();
+        static cv::Mat CapturePlayableScreenWithoutUI();
         static cv::Mat CaptureEntireScreen();
         static cv::Mat CaptureWindowBar();
 

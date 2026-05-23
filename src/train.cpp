@@ -3,7 +3,7 @@
 #include "basicOperations.hpp"
 #include "checks.hpp"
 #include "roadmap.hpp"
-#include "openCVOperations.hpp"
+#include "OpenCVWrapper.hpp"
 
 #include "system/inputs.hpp"
 #include "system/file.hpp"
@@ -205,9 +205,9 @@ int Train::ReadyToFight()
     int fightReturn = E_KO;
 
     // Check Pj.
-    bool classFeca = OpenCVOperations::CheckPj("Feca");
-    bool classOcra = OpenCVOperations::CheckPj("Ocra");
-    bool classAnutrof = OpenCVOperations::CheckPj("Anutrof");
+    bool classFeca = (Wrapper_CheckPj("Feca") == 1);
+    bool classOcra = (Wrapper_CheckPj("Ocra") == 1);
+    bool classAnutrof = (Wrapper_CheckPj("Anutrof") == 1);
 
     std::unique_ptr<FightStrategy> selectedStrategy = nullptr;
 
@@ -275,7 +275,7 @@ int Train::FindMob(std::string mobName, std::vector<int> mobNumber)
     //////////////////
     int posX = 0;
     int posY = 0;
-    bool mobFound = OpenCVOperations::FindImages(mobImages, posX, posY);
+    bool mobFound = false;//OpenCVOperations::FindImages(mobImages, posX, posY);
     if(mobFound) {
         File::LogFile("Mob found!", true);
         SetCursorPos(posX, posY);
