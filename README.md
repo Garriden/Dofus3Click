@@ -189,6 +189,13 @@ Is still quite brute force, pending to improve it.
 <img src="Images/FightStrategyClass.png" alt="img" width="1000"/>
 
 
+## OpenCV
+
+Follow this tutorial: https://docs.opencv.org/4.x/d3/d42/tutorial_windows_msys2_vscode.html
+
+OpenCV Works! Compile with msys64 ucrt64.
+
+
 ## About
 
 First version, on Dofus2: https://github.com/Garriden/Bots/tree/main/Dofus

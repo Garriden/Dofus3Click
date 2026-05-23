@@ -27,8 +27,10 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/bin")
 ####################
 
 # 2. ALWAYS find packages before building targets that need them
-set(OpenCV_DIR "C:/Users/Garri/opencv/build/install")
+#set(OpenCV_DIR "C:/Users/Garri/opencv/build/install")
+#set(OpenCV_DIR "C:/Users/Garri/Desktop/OpenCVInstall")
 #set(OpenCV_DIR "C:/msys64/mingw64/lib/cmake/opencv4")
+set(OpenCV_DIR "OpenCVDLLs")
 find_package(OpenCV REQUIRED)
 
 #################################
@@ -123,4 +125,16 @@ add_custom_command(TARGET ${LOCAL_PROJECT_NAME} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
         "${CMAKE_CURRENT_SOURCE_DIR}/Images"
         "${CMAKE_CURRENT_BINARY_DIR}/bin/Images"
+)
+
+add_custom_command(TARGET ${LOCAL_PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${CMAKE_CURRENT_SOURCE_DIR}/Telemetry"
+        "${CMAKE_CURRENT_BINARY_DIR}/bin/Telemetry"
+)
+
+add_custom_command(TARGET ${LOCAL_PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${CMAKE_CURRENT_SOURCE_DIR}/OpenCVDLLs/x64/mingw/bin"
+        "${CMAKE_CURRENT_BINARY_DIR}/bin/OpenCVDLLs"
 )
