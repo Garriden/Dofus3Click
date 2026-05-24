@@ -3,7 +3,7 @@
 #include "basicOperations.hpp"
 #include "checks.hpp"
 #include "roadmap.hpp"
-#include "OpenCVWrapper.hpp"
+#include "openCVOperations.hpp"
 
 #include "system/inputs.hpp"
 #include "system/file.hpp"
@@ -205,9 +205,9 @@ int Train::ReadyToFight()
     int fightReturn = E_KO;
 
     // Check Pj.
-    bool classFeca = (Wrapper_CheckPj("Feca") == 1);
-    bool classOcra = (Wrapper_CheckPj("Ocra") == 1);
-    bool classAnutrof = (Wrapper_CheckPj("Anutrof") == 1);
+    bool classFeca = OpenCVOperations::CheckPj("Feca");
+    bool classOcra = OpenCVOperations::CheckPj("Ocra");
+    bool classAnutrof = OpenCVOperations::CheckPj("Anutrof");
 
     std::unique_ptr<FightStrategy> selectedStrategy = nullptr;
 

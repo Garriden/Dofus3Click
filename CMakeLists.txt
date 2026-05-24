@@ -37,24 +37,24 @@ find_package(OpenCV REQUIRED)
 #  3. BUILD THE OPENCV PLUGIN   #
 #################################
 
-add_library(OpenCVPlugin SHARED
+add_library(OpenCVPlugin STATIC
     src/openCVOperations.cpp
-    src/OpenCVWrapper.cpp
+    #src/OpenCVWrapper.cpp
     src/system/file.cpp
     src/system/actualTime.cpp
     include/openCVOperations.hpp
-    include/OpenCVWrapper.hpp
+    #include/OpenCVWrapper.hpp
     include/system/file.hpp
     include/system/actualTime.hpp
 )
 
-target_include_directories(OpenCVPlugin PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include ${OpenCV_INCLUDE_DIRS})
-target_compile_definitions(OpenCVPlugin PRIVATE BUILD_OPENCV_WRAPPER)
+target_include_directories(OpenCVPlugin PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include ${OpenCV_INCLUDE_DIRS})
+#target_compile_definitions(OpenCVPlugin PRIVATE BUILD_OPENCV_WRAPPER)
 
 # CRITICAL: OpenCV is ONLY linked to the plugin!
-target_link_libraries(OpenCVPlugin PRIVATE ${OpenCV_LIBS})
+target_link_libraries(OpenCVPlugin PUBLIC ${OpenCV_LIBS})
 
-target_link_options(OpenCVPlugin PRIVATE -static-libgcc -static-libstdc++)
+#target_link_options(OpenCVPlugin PUBLIC -static-libgcc -static-libstdc++)
 
 
 
@@ -137,4 +137,5 @@ add_custom_command(TARGET ${LOCAL_PROJECT_NAME} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
         "${CMAKE_CURRENT_SOURCE_DIR}/OpenCVDLLs/x64/mingw/bin"
         "${CMAKE_CURRENT_BINARY_DIR}/bin/OpenCVDLLs"
+        #"${CMAKE_CURRENT_BINARY_DIR}/bin"
 )

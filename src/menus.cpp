@@ -432,12 +432,10 @@ void menu::FindEnemiesMenu()
         case 40:
         {
             File::LogFile("40 = Jalamuts               (Burgo)", true);
-            Roadmap roadmap(Profession::TRAIN, "burgo", nullptr, &zaap::CheckZaapBurgo, {"../../Telemetry/Train/burgo.csv", ""});
+            Roadmap roadmap(Profession::TRAIN_OPENCV, "burgo", nullptr, &zaap::CheckZaapBurgo, {"../../Telemetry/Train/burgo.csv", "../../Telemetry/Train/TrainIteration/jalamuts.csv"});
             roadmap.Start();
             break;
         }
-
-        
 
     }
 

@@ -2,7 +2,7 @@
 #include "menusInterface.hpp"
 #include "menus.hpp"
 #include "train.hpp"
-#include "OpenCVWrapper.hpp" //#include "openCVOperations.hpp"
+#include "openCVOperations.hpp"
 
 #include "checks.hpp"
 #include "fight.hpp"
@@ -127,9 +127,8 @@ int main()
                 //bool success = OpenCVOperations::FindImage("Images/Zaap/zaapInterface.PNG", XPos, YPos);
                 //bool success = OpenCVOperations::CheckPj("Feca"); // TODO: OCR tesseract find text. (see branch)
 
-                //OpenCVOperations::CountMobsByTextLines();
-                int mobs = Wrapper_CountMobsByTextLines();
-                File::LogFile("Wrapper returned safely! Mobs: " + std::to_string(mobs), true);
+                int mobs = OpenCVOperations::CountMobsByTextLines();
+                File::LogFile(" Mobs: " + std::to_string(mobs), true);
 
 #endif
                 std::this_thread::sleep_for(std::chrono::seconds(1));
