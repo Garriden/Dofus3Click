@@ -255,18 +255,14 @@ int Train::FindMob(std::string mobName, std::vector<int> mobNumber)
         mobImage = mobName + std::to_string(mobNumber[ii]); // "Astrub2"
         // Find all available images in the sequence
         int index = 0;
-        while(true) {
-            // Construct the filename (make sure to adjust the extension if using .jpg)
+        while(true) { // TODO: Check all folder.
             std::string fileName = mobImage + "_" + std::to_string(index) + ".PNG"; // "Astrub2_0.PNG"
 
-            // Check if the file exists on the hard drive. 
-            if(!File::ExistFile(fileName)) {
-                break; 
+            if(File::ExistFile(fileName)) {
+                mobImages.push_back(fileName);
+                ++index;
             }
 
-            // Add the valid file path to our vector
-            mobImages.push_back(fileName);
-            ++index;
         }
     }
 
