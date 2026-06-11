@@ -10,8 +10,8 @@ set(CMAKE_CXX_STANDARD 20)
 #####################
 
 set(LOCAL_PROJECT_NAME        "Dofus3Click")
-set(LOCAL_PROJECT_VERSION     "1.4.0")
-set(LOCAL_PROJECT_DESCRIPTION "TrainImprovements")
+set(LOCAL_PROJECT_VERSION     "1.5.0")
+set(LOCAL_PROJECT_DESCRIPTION "OpenCV")
 
 # 1. ALWAYS declare the project first
 project(${LOCAL_PROJECT_NAME}
