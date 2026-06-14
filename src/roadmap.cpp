@@ -47,12 +47,17 @@ Roadmap::~Roadmap()
 int Roadmap::Start()
 {
     int step = RoadmapState::SET_PODS_SET;
-    if( Profession::LOWERING_PODS == _profession) {
-        step = RoadmapState::CONVERT_RESOURCES;
-    }
 
-    if(_callbackCheckInitialMap == nullptr && _callbackCheckInitialZaap == nullptr) {
+    if(Profession::TEST == _profession) {
         step = RoadmapState::EXECUTE_ROADMAP;
+    } else {
+        if(Profession::LOWERING_PODS == _profession) {
+            step = RoadmapState::CONVERT_RESOURCES;
+        }
+
+        if(_callbackCheckInitialMap == nullptr && _callbackCheckInitialZaap == nullptr) {
+            step = RoadmapState::EXECUTE_ROADMAP;
+        }
     }
 
     while(1) {
@@ -98,6 +103,8 @@ int Roadmap::Start()
 
             if(_profession == Profession::TRAIN) {
                 step = RoadmapState::TRAIN_MODE;
+            } else if(_profession == Profession::TRAIN_OPENCV) {
+                step = RoadmapState::TRAIN_OPENCV_MODE;
             } else {
                 step = RoadmapState::EXECUTE_ROADMAP;
             }
@@ -150,6 +157,40 @@ int Roadmap::Start()
             }
             break;
         }
+        case RoadmapState::TRAIN_OPENCV_MODE:
+        {
+            int roadmapExecution = E_KO;
+            for(int roadmapIndex = 1; roadmapIndex < _roadmapFiles.size(); ++roadmapIndex) {
+                // Similar to roadmap but look for mob fight between maps.
+                roadmapExecution = ExecuteTrainingRoadMap(_roadmapFiles[roadmapIndex]);
+                if(roadmapExecution == E_KO) {
+                    step = SET_PODS_SET; //-1;
+                    break;
+                } else if(roadmapExecution == E_NEED_TO_RESTART) {
+                    step = SET_PODS_SET;
+                    break;
+                }
+                //step = RoadmapState::AFTER_FIGHT_SET;
+            }
+
+            if(roadmapExecution == E_OK) { // necesary ?
+                if(Profession::LOWERING_PODS == _profession) {
+                    return E_NEED_TO_RESTART;
+                } else if(Profession::GHOST == _profession) {
+                    step = RoadmapState::END_ROADMAP_OK;
+                } else if(_callbackCheckInitialMap != nullptr && _callbackCheckInitialMap()) {
+                    step = RoadmapState::TRAIN_OPENCV_MODE;
+                } else if(_callbackCheckInitialZaap != nullptr && _callbackCheckInitialZaap()) {
+                    step = RoadmapState::GO_TO_INITIAL_MAP;
+                } else {
+                    step = SET_PODS_SET;
+                }
+            }
+
+
+
+
+        }
         case RoadmapState::END_ROADMAP_OK:
         default:
             return E_KO;
@@ -157,6 +198,31 @@ int Roadmap::Start()
         }
     }
 
+}
+
+
+int Roadmap::ExecuteTrainingRoadMap(std::string name)
+{
+    File::LogFile("ExecuteTrainingRoadMap: " + name, true);
+    std::vector<std::vector<std::pair<int, int> > > roadmap = File::ReadFileAndBuildMap(name);
+
+    bool mobFound = true;
+    Train train;
+
+    for(int ii = 0; ii < static_cast<int>(roadmap.size()); ++ii) {
+        File::LogFile("map: " + std::to_string(ii), true);
+
+        //while(mobFound) {
+        mobFound = train.FindMob(_zaap, {2, 3} /* TODO: Ask mob number */ );
+        //}
+
+        int returnError = ClickIdentities(roadmap[ii]); // change map.
+        if(E_OK != returnError) {
+            return returnError;
+        }
+    }
+
+    return E_OK;
 }
 
 int Roadmap::ExecuteRoadMap(std::string name)
@@ -204,7 +270,7 @@ int Roadmap::ClickIdentities(const std::vector<std::pair<int, int> > map)
             }
         }
 
-        if(_profession != Profession::LOWERING_PODS && check::AmIFull()) {
+        if(_profession != Profession::LOWERING_PODS && check::AmIFull() && Profession::TEST != _profession) {
             Roadmap goToBank(Profession::LOWERING_PODS, "", &zaap::CheckZaapAstrub, &zaap::CheckZaapAstrub,
                 {"", "../../Telemetry/ZaapToBank/astrubBankTransaction.csv", "../../Telemetry/ZaapToBank/fromAstrubZaapToBank.csv"});
             return goToBank.Start();

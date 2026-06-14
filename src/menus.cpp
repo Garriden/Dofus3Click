@@ -17,7 +17,7 @@ void menu::Farmer()
     int in;
     std::cin >> in;
 
-    if(!inputs::ClickOnExe()) {
+    if(in != 0 && !inputs::ClickOnExe()) {
         File::LogFile("! Error Cannot find Dofus exe!", true);
         return;
     }
@@ -54,7 +54,7 @@ void menu::Wood()
     int in;
     std::cin >> in;
 
-    if(!inputs::ClickOnExe()) {
+    if(in != 0 && !inputs::ClickOnExe()) {
         File::LogFile("! Error Cannot find Dofus exe!", true);
         return;
     }
@@ -88,6 +88,13 @@ void menu::Wood()
             Roadmap roadmap(Profession::WOOD, "puerka", &zaap::CheckZaapPuerkazos, &zaap::CheckZaapPuerkazos,
                 {"", "../../Telemetry/Wood/bombu1.csv", "../../Telemetry/Wood/bombu2.csv",  "../../Telemetry/Wood/bombu3.csv",
                      "../../Telemetry/Wood/bombu4.csv", "../../Telemetry/Wood/bombu5.csv"});
+            roadmap.Start();
+            break;
+        }
+        case 5:
+        {
+            File::LogFile("lv.70 [OLVIO]        (caravanas). . .", true);
+            Roadmap roadmap(Profession::WOOD, "caravanas", &zaap::CheckZaapCaravanas, &zaap::CheckZaapCaravanas, {"", "../../Telemetry/Wood/olvio1.csv"});
             roadmap.Start();
             break;
         }
@@ -143,7 +150,7 @@ void menu::Mineral()
     int in;
     std::cin >> in;
 
-    if(!inputs::ClickOnExe()) {
+    if(in != 0 && !inputs::ClickOnExe()) {
         File::LogFile("! Error Cannot find Dofus exe!", true);
         return;
     }
@@ -172,7 +179,7 @@ void menu::Alchemist()
     int in;
     std::cin >> in;
 
-    if(!inputs::ClickOnExe()) {
+    if(in != 0 && !inputs::ClickOnExe()) {
         File::LogFile("! Error Cannot find Dofus exe!", true);
         return;
     }
@@ -233,7 +240,7 @@ void menu::Fisherman()
     int in;
     std::cin >> in;
 
-    if(!inputs::ClickOnExe()) {
+    if(in != 0 && !inputs::ClickOnExe()) {
         File::LogFile("! Error Cannot find Dofus exe!", true);
         return;
     }
@@ -284,7 +291,7 @@ void menu::DailyMissions()
     int in;
     std::cin >> in;
 
-    if(!inputs::ClickOnExe()) {
+    if(in != 0 && !inputs::ClickOnExe()) {
         File::LogFile("! Error Cannot find Dofus exe!", true);
         return;
     }
@@ -342,7 +349,7 @@ void menu::FindEnemiesMenu()
     int in;
     std::cin >> in;
 
-    if(!inputs::ClickOnExe()) {
+    if(in != 0 && !inputs::ClickOnExe()) {
         File::LogFile("! Error Cannot find Dofus exe!", true);
         return;
     }
@@ -354,8 +361,8 @@ void menu::FindEnemiesMenu()
             break;
         case 1:
         {
-            File::LogFile("1  = Jabatos               (Astrub)", true);
-            Roadmap roadmap(Profession::TRAIN, "astrub", nullptr, &zaap::CheckZaapAstrub, {"../../Telemetry/Train/astrub.csv", ""});
+            File::LogFile("1  = Bosque                (Astrub)", true); // Todo: Check roadmap: nullptr -2, -20
+            Roadmap roadmap(Profession::TRAIN_OPENCV, "astrub", nullptr, &zaap::CheckZaapAstrub, {"../../Telemetry/Train/astrub.csv", "../../Telemetry/Train/TrainIteration/bosque.csv"});
             roadmap.Start();
             break;
         }
@@ -425,12 +432,10 @@ void menu::FindEnemiesMenu()
         case 40:
         {
             File::LogFile("40 = Jalamuts               (Burgo)", true);
-            Roadmap roadmap(Profession::TRAIN, "burgo", nullptr, &zaap::CheckZaapBurgo, {"../../Telemetry/Train/burgo.csv", ""});
+            Roadmap roadmap(Profession::TRAIN_OPENCV, "burgo", nullptr, &zaap::CheckZaapBurgo, {"../../Telemetry/Train/burgo.csv", "../../Telemetry/Train/TrainIteration/jalamuts.csv"});
             roadmap.Start();
             break;
         }
-
-        
 
     }
 

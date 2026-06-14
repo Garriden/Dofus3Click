@@ -1,3 +1,9 @@
+# Release 1.5 OpenCV:
+ - Dofus 3.5
+ - OpenCV works.
+ - Necessary files inside the release folder.
+ - Got Banned.
+
 # Release 1.4 TrainImprovements:
  - Dofus 3.4
  - Detect how large the mob is.

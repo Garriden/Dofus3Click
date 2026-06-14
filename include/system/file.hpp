@@ -16,6 +16,11 @@
 #define INPUT_PATTERN_AVPAG_DOWN            (696932)
 
 namespace File {
+
+
+    bool ExistFile(const std::string &filePath);
+
+
     /**
      * @brief Read an entire file into a string.
      * @param filePath Path to the file to read.

@@ -1,29 +1,43 @@
 - Documentate 
-  . How code works. UML classes
-
-
 Programming:
     . Threads ?
        . Thread checks.
 
 Game:
+
+- Reset game every x hours.
+
+- Daily missions.
+
 - Mineral profession.
 
 - Invos?
 - Grodoko - Troloko pacifista
 
-- DOPEULS ?
+- DOPEULS
 
-- Search archis.
+- Search archis ?
 
-- Tresure search.
   . In game recognition?
 
 
 # In game recognition.
     - words
       . secure change map (pos).
-      . Treasure search.
       . Sell things in mercadillo.
 
     - Fight enemies.
+
+    - Retos
+
+
+
+----------------------
+
+- Misiones diarias Frigost. + kammas de hielo.
+- Almanax.
+- Feria del trool (larva).
+
+- Malefiscof.
+- Archis.
+- Drop anomalias.

@@ -2,13 +2,21 @@
 #include "menusInterface.hpp"
 #include "menus.hpp"
 #include "train.hpp"
+#include "openCVOperations.hpp"
 
 #include "checks.hpp"
 #include "fight.hpp"
-//#include "roadmap.hpp"
-//#include "zaap.hpp"
+
+#include "roadmap.hpp"
+#include "zaap.hpp"
 
 #include <windows.h>
+#include <stdio.h>
+
+
+
+
+
 
 int main()
 {
@@ -85,9 +93,14 @@ int main()
                 //LogFile("Playing as Enutrof.");
                 break;
             case 99: //debug
+                //char buffer[MAX_PATH];
+                //GetCurrentDirectoryA(MAX_PATH, buffer);
+                //std::string currentPath(buffer);
+                //File::LogFile("Current directory: " + currentPath, true);
 
-                std::this_thread::sleep_for(std::chrono::seconds(3));
+                std::this_thread::sleep_for(std::chrono::seconds(1));
                 inputs::ClickOnExe();
+                std::this_thread::sleep_for(std::chrono::seconds(5));
 
                 //std::this_thread::sleep_for(std::chrono::seconds(3));
                 //check::AmILevelUp();
@@ -100,14 +113,26 @@ int main()
 
                 //inputs::ShiftClick(1000, 300);
 
-                if(check::IsFight()) {
-                    Fight fight(0);
-                    fight.Start();
-                }
+                //if(check::IsFight()) {
+                //    Fight fight(0);
+                //    fight.Start();
+                //}
 
                 //std::this_thread::sleep_for(std::chrono::seconds(2));
+#if USE_OPENCV
 
-                //Roadmap roadmap(Profession::WOOD, "golfo", nullptr, nullptr,
+                double confidenceThreshold = 0.80;
+                int XPos = -1;
+                int YPos = -1;
+                //bool success = OpenCVOperations::FindImage("Images/Zaap/zaapInterface.PNG", XPos, YPos);
+                //bool success = OpenCVOperations::CheckPj("Feca"); // TODO: OCR tesseract find text. (see branch)
+
+                int mobs = OpenCVOperations::CountMobsByTextLines();
+                File::LogFile(" Mobs: " + std::to_string(mobs), true);
+
+#endif
+                std::this_thread::sleep_for(std::chrono::seconds(1));
+                //Roadmap roadmap(Profession::TEST, "hola", nullptr, nullptr,
                 //    {"", "../../Telemetry/test.csv", /*"../../Telemetry/Fisher/Ganaderoslv80_2.csv"*/});
                 //roadmap.Start();
                 
